@@ -65,5 +65,65 @@ namespace MfGames.Text.Markup
         /// Indicates a block of insignificant whitespace.
         /// </summary>
         Whitespace, 
+
+        /// <summary>
+        /// Indicates the beginning of a blockquote.
+        /// </summary>
+        BeginBlockquote, 
+
+        /// <summary>
+        /// Indicates the end of a blockquote.
+        /// </summary>
+        EndBlockquote, 
+
+        /// <summary>
+        /// Indicates the beginning of an italic.
+        /// </summary>
+        BeginItalic, 
+
+        /// <summary>
+        /// Indicates the end of an italic.
+        /// </summary>
+        EndItalic, 
+
+        /// <summary>
+        /// Indicates the beginning of a bold.
+        /// </summary>
+        BeginBold, 
+
+        /// <summary>
+        /// Indicates the end of a bold.
+        /// </summary>
+        EndBold, 
+
+        /// <summary>
+        /// Indicates the beginning of a code span.
+        /// </summary>
+        BeginCodeSpan, 
+
+        /// <summary>
+        /// Indicates the end of a code span.
+        /// </summary>
+        EndCodeSpan, 
+
+        /// <summary>
+        /// Indicates a non-processed YAML configuration block.
+        /// </summary>
+        YamlMetadata, 
+
+        /// <summary>
+        /// Indicates a break or horizontal rule.
+        /// </summary>
+        Break, 
+
+        /// <summary>
+        /// Indicates the beginning of a heading section.
+        /// </summary>
+        BeginHeading, 
+
+        /// <summary>
+        /// Indicates the end of a heading section.
+        /// </summary>
+        EndHeading, 
     }
 }
