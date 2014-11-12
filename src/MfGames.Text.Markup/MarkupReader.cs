@@ -7,6 +7,8 @@ namespace MfGames.Text.Markup
     using System;
     using System.IO;
 
+    using MfGames.IO;
+
     /// <summary>
     /// Common base class for all markup readers.
     /// </summary>
@@ -22,7 +24,7 @@ namespace MfGames.Text.Markup
         /// </param>
         protected MarkupReader(TextReader reader)
         {
-            this.TextReader = reader;
+            this.Reader = new PeekableTextReaderAdapter(reader);
         }
 
         /// <summary>
@@ -41,16 +43,31 @@ namespace MfGames.Text.Markup
 
         #endregion
 
+        #region Public Properties
+
+        /// <summary>
+        /// Gets the type of the element of the current state.
+        /// </summary>
+        /// <value>
+        /// The type of the element.
+        /// </value>
+        public abstract MarkupElementType ElementType { get; }
+
+        /// <summary>
+        /// Gets or sets the text of the current state.
+        /// </summary>
+        public string Text { get; protected set; }
+
+        #endregion
+
         #region Properties
 
         /// <summary>
         /// Gets the text reader associated with the reader.
         /// </summary>
-        protected TextReader TextReader { get; private set; }
+        protected PeekableTextReaderAdapter Reader { get; private set; }
 
         #endregion
-
-        public abstract MarkupElementType ElementType { get; }
 
         #region Public Methods and Operators
 

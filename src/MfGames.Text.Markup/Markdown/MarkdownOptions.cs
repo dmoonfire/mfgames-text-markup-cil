@@ -29,6 +29,12 @@ namespace MfGames.Text.Markup.Markdown
         /// </summary>
         public static MarkdownOptions DefaultOptions { get; private set; }
 
+        /// <summary>
+        /// Gets or sets whether newline are treated as breaks or just continuation
+        /// characters of the same block.
+        /// </summary>
+        public bool TreatNewLinesAsBreaks { get; set; }
+
         #endregion
     }
 }

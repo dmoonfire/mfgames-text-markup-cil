@@ -14,15 +14,18 @@ namespace MfGames.Text.Markup.Tests
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkupReaderRecordedEvent"/> class.
         /// </summary>
-        /// <param name="reader">The reader.</param>
+        /// <param name="reader">
+        /// The reader.
+        /// </param>
         public MarkupReaderRecordedEvent(MarkupReader reader)
         {
             this.ElementType = reader.ElementType;
+            this.Text = reader.Text;
         }
 
         #endregion
 
-        #region Properties
+        #region Public Properties
 
         /// <summary>
         /// Gets the type of the element.
@@ -31,6 +34,11 @@ namespace MfGames.Text.Markup.Tests
         /// The type of the element.
         /// </value>
         public MarkupElementType ElementType { get; private set; }
+
+        /// <summary>
+        /// Contains the text element at the point of the event.
+        /// </summary>
+        public string Text { get; private set; }
 
         #endregion
     }

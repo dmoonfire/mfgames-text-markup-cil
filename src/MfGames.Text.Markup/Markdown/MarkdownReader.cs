@@ -17,9 +17,17 @@ namespace MfGames.Text.Markup.Markdown
         #region Fields
 
         /// <summary>
+        /// </summary>
+        private string currentLine;
+
+        /// <summary>
         /// Contains the internal state.
         /// </summary>
         private MarkupElementType elementType;
+
+        /// <summary>
+        /// </summary>
+        private string originaLine;
 
         #endregion
 
@@ -95,6 +103,52 @@ namespace MfGames.Text.Markup.Markdown
         }
 
         /// <summary>
+        /// Retrieves the leading non-signficant characters characters from the beginning
+        /// of the current line.
+        /// </summary>
+        /// <returns>The significant characters or null if there are none.</returns>
+        public string GetNonSignificant()
+        {
+            return this.GetNonSignificant(this.currentLine);
+        }
+
+        /// <summary>
+        /// Retrieves the leading non-signficant characters characters from the beginning
+        /// of the lines.
+        /// </summary>
+        /// <param name="line">
+        /// The line to process.
+        /// </param>
+        /// <returns>
+        /// The significant characters or null if there are none.
+        /// </returns>
+        public string GetNonSignificant(string line)
+        {
+            // Go through the current line until we get to the end or we find a significant
+            // element to process.
+            bool found = false;
+            int index;
+
+            for (index = 0; index < line.Length; index++)
+            {
+                // Escape characters always advance to the next one.
+                if (line[index] == '\\')
+                {
+                    index++;
+                }
+            }
+
+            // If not found, return the whole line.
+            if (!found)
+            {
+                return line;
+            }
+
+            // Otherwise, blow up.
+            throw new Exception("I can't handle change.");
+        }
+
+        /// <summary>
         /// Reads the next significant element from the marked-up file.
         /// </summary>
         /// <returns>
@@ -102,6 +156,13 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         public override bool Read()
         {
+            // If the current line is null, then load the next one.
+            if (this.currentLine == null)
+            {
+                this.originaLine = this.Reader.ReadLine();
+                this.currentLine = this.originaLine;
+            }
+
             // Our processing is based on our current state.
             switch (this.ElementType)
             {
@@ -110,8 +171,30 @@ namespace MfGames.Text.Markup.Markdown
                     return true;
 
                 case MarkupElementType.BeginDocument:
-                    this.elementType = MarkupElementType.BeginContent;
+                    this.elementType = this.CheckMetadata()
+                        ? MarkupElementType.BeginMetadata
+                        : MarkupElementType.BeginContent;
                     return true;
+
+                case MarkupElementType.BeginContent:
+                    return this.ProcessBeginContent();
+
+                case MarkupElementType.BeginParagraph:
+                    return this.ProcessBeginParagraph();
+
+                case MarkupElementType.Text:
+                case MarkupElementType.Whitespace:
+                    return this.ProcessText();
+
+                case MarkupElementType.EndParagraph:
+                    return this.ProcessEndParagraph();
+
+                case MarkupElementType.EndContent:
+                    this.elementType = MarkupElementType.EndDocument;
+                    return true;
+
+                case MarkupElementType.EndDocument:
+                    return false;
             }
 
             // If we drop out, we are done processing.
@@ -130,6 +213,180 @@ namespace MfGames.Text.Markup.Markdown
         /// </param>
         protected virtual void Dispose(bool isDisposing)
         {
+        }
+
+        /// <summary>
+        /// Checks for metadata in the input stream.
+        /// </summary>
+        /// <returns>Returns true if there is metadata, otherwise false.</returns>
+        private bool CheckMetadata()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Identifies the current type of content of the line.
+        /// </summary>
+        /// <returns>
+        /// The content type of the current line.
+        /// </returns>
+        private MarkdownContentType GetContentType()
+        {
+            // If we have a blank line left, then this is just whitespace.
+            int trimmedLength = this.currentLine.Trim()
+                .Length;
+
+            if (trimmedLength == 0)
+            {
+                // Return that we are nothing but whitespace.
+                return MarkdownContentType.Whitespace;
+            }
+
+            // Everything else is a paragraph.
+            return MarkdownContentType.Paragraph;
+        }
+
+        /// <summary>
+        /// Processes the content and returns the resulting Markup type.
+        /// </summary>
+        /// <returns>
+        /// True if this is successfully processed.
+        /// </returns>
+        private bool ProcessBeginContent()
+        {
+            // Figure out what the next line is.
+            MarkdownContentType type = this.GetContentType();
+
+            switch (type)
+            {
+                case MarkdownContentType.Whitespace:
+
+                    // Set up the state for the whitespace.
+                    this.elementType = MarkupElementType.Whitespace;
+                    this.Text = this.currentLine;
+
+                    // Clear out the line so we read the next.
+                    this.currentLine = null;
+
+                    // Return true because we're done.
+                    return true;
+
+                case MarkdownContentType.Paragraph:
+                    this.elementType = MarkupElementType.BeginParagraph;
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        /// <summary>
+        /// Processes the buffer after the BeginParagraph event.
+        /// </summary>
+        /// <returns>
+        /// True if this is successfully processed.
+        /// </returns>
+        private bool ProcessBeginParagraph()
+        {
+            // If we have non-significant characters, then process that.
+            if (this.ProcessNonSignificant())
+            {
+                return true;
+            }
+
+            // No clue, throw an exception.
+            throw new Exception("Panic");
+        }
+
+        /// <summary>
+        /// Processes the input after a EndParagraph element.
+        /// </summary>
+        /// <returns>
+        /// True if this is successfully processed.
+        /// </returns>
+        private bool ProcessEndParagraph()
+        {
+            // If we don't have a current line.
+            if (this.currentLine == null)
+            {
+                this.elementType = MarkupElementType.EndContent;
+                return true;
+            }
+
+            // Pass it into the begin content.
+            return this.ProcessBeginContent();
+        }
+
+        /// <summary>
+        /// Checks for non-significant characters. If they exist, sets the element
+        /// type and text and returns true.
+        /// </summary>
+        /// <returns>True if there are non-significant, otherwise false.</returns>
+        private bool ProcessNonSignificant()
+        {
+            // Grab the next non-significant characters from the line.
+            string nonSignificant = this.GetNonSignificant();
+
+            // If we haven't found anything, then the entire line counts.
+            if (nonSignificant != null)
+            {
+                // Set up the state elements.
+                this.elementType = MarkupElementType.Text;
+                this.Text = nonSignificant;
+
+                // Remove the text we just added, but keep a blank line so we can
+                // process the next element.
+                this.currentLine = this.currentLine.Substring(nonSignificant.Length);
+
+                // Indicate we have successful processed it.
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Processes the input after a Text element.
+        /// </summary>
+        /// <returns>
+        /// True if this is successfully processed.
+        /// </returns>
+        private bool ProcessText()
+        {
+            // Check to see if we have remaining text in the current line.
+            if (this.currentLine.Length == 0)
+            {
+                // We are at the end of the line. This is a paragraph break if we don't have
+                // a line after this one or we have the Options.TreatNewlinesAsBreaks. Otherwise,
+                // we are just going to continue the paragraph.
+                bool isEndOfBuffer = this.Reader.PeekLine(0) == null;
+
+                if (isEndOfBuffer || this.Options.TreatNewLinesAsBreaks)
+                {
+                    // End the paragraph to get into our endgame.
+                    this.currentLine = null;
+                    this.elementType = MarkupElementType.EndParagraph;
+                }
+                else
+                {
+                    // Record it as whitespace and move on.
+                    this.Text = Environment.NewLine;
+                    this.currentLine = null;
+                    this.elementType = MarkupElementType.Whitespace;
+                }
+
+                // We are done processing this one.
+                return true;
+            }
+
+            // If we have non-significant characters, then process that.
+            if (this.ProcessNonSignificant())
+            {
+                return true;
+            }
+
+            // No clue, throw an exception.
+            throw new Exception("Panic some more.");
         }
 
         #endregion

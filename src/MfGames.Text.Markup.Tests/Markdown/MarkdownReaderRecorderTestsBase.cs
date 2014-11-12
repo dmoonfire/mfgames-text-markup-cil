@@ -34,8 +34,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
             if (!matches)
             {
                 Console.WriteLine(
-                    "Recorded events had {0:N0} items but expected {1:N0}",
-                    this.Events.Count,
+                    "Recorded events had {0:N0} items but expected {1:N0}", 
+                    this.Events.Count, 
                     elementTypes.Length);
             }
 
@@ -52,9 +52,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
                     // Report an inconsistency.
                     Console.WriteLine(
-                        "Element {0} does not match: Expected {1}, Recorded {2}",
-                        i,
-                        elementTypes[i],
+                        "Element {0} does not match: Expected {1}, Recorded {2}", 
+                        i, 
+                        elementTypes[i], 
                         this.Events[i].ElementType);
                     matches = false;
                 }
@@ -71,25 +71,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 Console.WriteLine("Expected did not match recorded:");
                 Console.WriteLine();
                 Console.WriteLine(
-                    FormatLine,
-                    "Expected".PadRight(FormatWidth),
-                    "Actual".PadRight(FormatWidth),
-                    "  ",
+                    FormatLine, 
+                    "Expected".PadRight(FormatWidth), 
+                    "Actual".PadRight(FormatWidth), 
+                    "  ", 
                     "  #");
                 Console.WriteLine(
-                    FormatLine,
+                    FormatLine, 
                     new string(
-                        '-',
-                        FormatWidth),
+                        '-', 
+                        FormatWidth), 
                     new string(
-                        '-',
-                        FormatWidth),
-                        "--",
-                        "---");
+                        '-', 
+                        FormatWidth), 
+                    "--", 
+                    "---");
 
                 // Write out the lines.
                 int maxSize = Math.Max(
-                    this.Events.Count,
+                    this.Events.Count, 
                     elementTypes.Length);
 
                 for (int i = 0; i < maxSize; i++)
@@ -104,11 +104,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
                     // Write out the elements.
                     Console.WriteLine(
-                        FormatLine,
-                        expected.PadRight(FormatWidth),
-                        actual.PadRight(FormatWidth),
-                        expected == actual ? "==" : "!=",
-                        i.ToString().PadLeft(3));
+                        FormatLine, 
+                        expected.PadRight(FormatWidth), 
+                        actual.PadRight(FormatWidth), 
+                        expected == actual ? "==" : "!=", 
+                        i.ToString()
+                            .PadLeft(3));
                 }
             }
 
@@ -128,8 +129,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// </param>
         protected void Setup(params string[] buffer)
         {
+            this.Setup(
+                MarkdownOptions.DefaultOptions, 
+                buffer);
+        }
+
+        /// <summary>
+        /// Sets up a test by creating a MarkdownReader based on the given buffer and then
+        /// records the events as they happen.
+        /// </summary>
+        /// <param name="options">
+        /// The options to pass into the reader.
+        /// </param>
+        /// <param name="buffer">
+        /// An arrow of lines to parse as a Markdown file.
+        /// </param>
+        protected void Setup(
+            MarkdownOptions options, 
+            params string[] buffer)
+        {
             // Create the Markdown reader using the given strings as a source.
-            using (var reader = new MarkdownReader(buffer))
+            using (var reader = new MarkdownReader(
+                buffer, 
+                options))
             {
                 this.Record(reader);
             }

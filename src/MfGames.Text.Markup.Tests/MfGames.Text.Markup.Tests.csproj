@@ -47,7 +47,7 @@
     <Compile Include="Markdown\MarkdownReaderRecorderTestsBase.cs" />
     <Compile Include="MarkupReaderRecordedEvent.cs" />
     <Compile Include="MarkupReaderRecorder.cs" />
-    <Compile Include="Markdown\SingleLineParagraphParsing.cs" />
+    <Compile Include="Markdown\SimpleMarkdownParsing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
