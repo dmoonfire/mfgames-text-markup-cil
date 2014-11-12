@@ -45,12 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Markdown\MarkdownReaderRecorderTestsBase.cs" />
+    <Compile Include="MarkupReaderRecordedEvent.cs" />
     <Compile Include="MarkupReaderRecorder.cs" />
     <Compile Include="Markdown\SingleLineParagraphParsing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MfGames.Text.Markup\MfGames.Text.Markup.csproj">
+      <Project>{04B44B8C-1621-4373-86B1-1844F41C6888}</Project>
+      <Name>MfGames.Text.Markup</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -4,6 +4,12 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests.Markdown
 {
+    using System;
+
+    using MfGames.Text.Markup.Markdown;
+
+    using NUnit.Framework;
+
     /// <summary>
     /// Contains common testing setup and methods for Markdown files.
     /// </summary>
@@ -11,6 +17,104 @@ namespace MfGames.Text.Markup.Tests.Markdown
         MarkupReaderRecorderTestsBase
     {
         #region Methods
+
+        /// <summary>
+        /// Asserts that the list of recorded events element types matches the provided
+        /// list.
+        /// </summary>
+        /// <param name="elementTypes">
+        /// The element types.
+        /// </param>
+        protected void AssertEventElementTypes(
+            params MarkupElementType[] elementTypes)
+        {
+            // First check the lenghts of the arrays.
+            bool matches = this.Events.Count == elementTypes.Length;
+
+            if (!matches)
+            {
+                Console.WriteLine(
+                    "Recorded events had {0:N0} items but expected {1:N0}",
+                    this.Events.Count,
+                    elementTypes.Length);
+            }
+
+            // If they still match, then compare each item.
+            if (matches)
+            {
+                for (int i = 0; i < this.Events.Count; i++)
+                {
+                    // Compare the item.
+                    if (this.Events[i].ElementType != elementTypes[i])
+                    {
+                        Console.WriteLine(
+                            "Element {0} does not match: Expected {1}, Recorded {2}",
+                            i,
+                            elementTypes[i],
+                            this.Events[i].ElementType);
+                        matches = false;
+                    }
+                }
+            }
+
+            // If we don't match, then display the list.
+            if (!matches)
+            {
+                // Add a little bit of a header.
+                const string FormatLine = "{3} {0} {2} {1}";
+                const int FormatWidth = 20;
+
+                Console.WriteLine();
+                Console.WriteLine("Expected did not match recorded:");
+                Console.WriteLine();
+                Console.WriteLine(
+                    FormatLine,
+                    "Expected".PadRight(FormatWidth),
+                    "Actual".PadRight(FormatWidth),
+                    "  ",
+                    "  #");
+                Console.WriteLine(
+                    FormatLine,
+                    new string(
+                        '-',
+                        FormatWidth),
+                    new string(
+                        '-',
+                        FormatWidth),
+                        "--",
+                        "---");
+
+                // Write out the lines.
+                int maxSize = Math.Max(
+                    this.Events.Count,
+                    elementTypes.Length);
+
+                for (int i = 0; i < maxSize; i++)
+                {
+                    // Figure out the element.
+                    string expected = i < elementTypes.Length
+                        ? elementTypes[i].ToString()
+                        : string.Empty;
+                    string actual = i < this.Events.Count
+                        ? this.Events[i].ElementType.ToString()
+                        : string.Empty;
+
+                    // Write out the elements.
+                    Console.WriteLine(
+                        FormatLine,
+                        expected.PadRight(FormatWidth),
+                        actual.PadRight(FormatWidth),
+                        expected == actual ? "==" : "!=",
+                        i.ToString().PadLeft(3));
+                }
+            }
+
+            // If we aren't matching, then fail the tasks.
+            if (!matches)
+            {
+                Assert.Fail("Expected results did not match.");
+            }
+        }
 
         /// <summary>
         /// Sets up a test by creating a MarkdownReader based on the given buffer and then
@@ -21,13 +125,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// </param>
         protected void Setup(params string[] buffer)
         {
-            // Call the base implementation to set up the test.
-            this.Setup();
-
             // Create the Markdown reader using the given strings as a source.
             using (var reader = new MarkdownReader(buffer))
             {
-                Record(reader);
+                this.Record(reader);
             }
         }
 

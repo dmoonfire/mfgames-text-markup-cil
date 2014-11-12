@@ -4,21 +4,40 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests
 {
+    using System.Collections.Generic;
+
     /// <summary>
     /// A test base set up to record events from a MarkupReader and then
     /// allow inspection of the results.
     /// </summary>
     public abstract class MarkupReaderRecorderTestsBase
     {
+        #region Properties
+
+        /// <summary>
+        /// </summary>
+        protected List<MarkupReaderRecordedEvent> Events { get; private set; }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
-        /// Sets up the common functionality of the unit test, which may include
-        /// one or more operations that are then verified or tested in the [Test]
-        /// methods of the class.
+        /// Records the events from a specified reader.
         /// </summary>
-        protected virtual void Setup()
+        /// <param name="reader">
+        /// The reader.
+        /// </param>
+        protected virtual void Record(MarkupReader reader)
         {
+            this.Events = new List<MarkupReaderRecordedEvent>();
+
+            while (reader.Read())
+            {
+                var state = new MarkupReaderRecordedEvent(reader);
+
+                this.Events.Add(state);
+            }
         }
 
         #endregion
