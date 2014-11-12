@@ -44,16 +44,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
             {
                 for (int i = 0; i < this.Events.Count; i++)
                 {
-                    // Compare the item.
-                    if (this.Events[i].ElementType != elementTypes[i])
+                    // Compare the item, if they are identical, then we don't report it.
+                    if (this.Events[i].ElementType == elementTypes[i])
                     {
-                        Console.WriteLine(
-                            "Element {0} does not match: Expected {1}, Recorded {2}",
-                            i,
-                            elementTypes[i],
-                            this.Events[i].ElementType);
-                        matches = false;
+                        continue;
                     }
+
+                    // Report an inconsistency.
+                    Console.WriteLine(
+                        "Element {0} does not match: Expected {1}, Recorded {2}",
+                        i,
+                        elementTypes[i],
+                        this.Events[i].ElementType);
+                    matches = false;
                 }
             }
 
