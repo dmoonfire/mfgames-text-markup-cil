@@ -15,8 +15,13 @@ namespace MfGames.Text.Markup.Markdown
         Paragraph, 
 
         /// <summary>
-        /// indicates that the content type is whitespace.
+        /// Indicates that the content type is whitespace.
         /// </summary>
-        Whitespace, 
+        Whitespace,
+
+        /// <summary>
+        /// Indicates that the content type is a ATX-style heading line.
+        /// </summary>
+        AtxHeading,
     }
 }

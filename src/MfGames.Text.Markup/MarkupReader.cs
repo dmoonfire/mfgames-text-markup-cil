@@ -58,6 +58,11 @@ namespace MfGames.Text.Markup
         /// </summary>
         public string Text { get; protected set; }
 
+        /// <summary>
+        /// Gets the heading level of the current element.
+        /// </summary>
+        public int HeadingLevel { get; protected set; }
+
         #endregion
 
         #region Properties

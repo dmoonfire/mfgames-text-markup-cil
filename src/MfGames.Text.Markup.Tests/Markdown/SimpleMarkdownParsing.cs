@@ -58,12 +58,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.BeginContent, 
                 MarkupElementType.BeginHeading, 
                 MarkupElementType.Text, 
-                MarkupElementType.BeginBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndBold, 
-                MarkupElementType.Text, 
                 MarkupElementType.EndHeading, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -81,12 +76,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.BeginContent, 
                 MarkupElementType.BeginHeading, 
                 MarkupElementType.Text, 
-                MarkupElementType.BeginBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndBold, 
-                MarkupElementType.Text, 
                 MarkupElementType.EndHeading, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -104,12 +94,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.BeginContent, 
                 MarkupElementType.BeginHeading, 
                 MarkupElementType.Text, 
-                MarkupElementType.BeginBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndBold, 
-                MarkupElementType.Text, 
                 MarkupElementType.EndHeading, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -127,12 +112,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.BeginContent, 
                 MarkupElementType.BeginHeading, 
                 MarkupElementType.Text, 
-                MarkupElementType.BeginBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndBold, 
-                MarkupElementType.Text, 
                 MarkupElementType.EndHeading, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -150,12 +130,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.BeginContent, 
                 MarkupElementType.BeginHeading, 
                 MarkupElementType.Text, 
-                MarkupElementType.BeginBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndBold, 
-                MarkupElementType.Text, 
                 MarkupElementType.EndHeading, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -173,12 +148,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.BeginContent, 
                 MarkupElementType.BeginHeading, 
                 MarkupElementType.Text, 
-                MarkupElementType.BeginBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndBold, 
-                MarkupElementType.Text, 
                 MarkupElementType.EndHeading, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -194,7 +164,6 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 MarkupElementType.BeginDocument, 
                 MarkupElementType.BeginContent, 
-                MarkupElementType.BeginBlockquote, 
                 MarkupElementType.BeginParagraph, 
                 MarkupElementType.Text, 
                 MarkupElementType.BeginBold, 
@@ -202,7 +171,6 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.EndBold, 
                 MarkupElementType.Text, 
                 MarkupElementType.EndParagraph, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -375,12 +343,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.BeginContent, 
                 MarkupElementType.BeginHeading, 
                 MarkupElementType.Text, 
-                MarkupElementType.BeginBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndBold, 
-                MarkupElementType.Text, 
                 MarkupElementType.EndHeading, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -400,12 +363,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.BeginContent, 
                 MarkupElementType.BeginHeading, 
                 MarkupElementType.Text, 
-                MarkupElementType.BeginBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndBold, 
-                MarkupElementType.Text, 
                 MarkupElementType.EndHeading, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }

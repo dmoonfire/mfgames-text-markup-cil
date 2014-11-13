@@ -6,6 +6,7 @@ namespace MfGames.Text.Markup.Markdown
 {
     using System;
     using System.IO;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Implements a Markdown reader that parses various flavors of Markdown based
@@ -14,6 +15,30 @@ namespace MfGames.Text.Markup.Markdown
     public class MarkdownReader : MarkupReader, 
         IDisposable
     {
+        #region Static Fields
+
+        /// <summary>
+        /// <para>
+        /// Contains the regular expression for identifying an ATX-style header. The first
+        /// matched group is the series of # characters. The second is the header contents
+        /// itself.
+        /// </para><para>
+        /// CommonMark 0.12 § 4.2: An ATX header consists of a string of characters, parsed as
+        /// inline content, between an opening sequence of 1–6 unescaped # characters and an
+        /// optional closing sequence of any number of # characters. The opening sequence of #
+        /// characters cannot be followed directly by a non-space character. The optional
+        /// closing sequence of #s must be preceded by a space and may be followed by spaces
+        /// only. The opening # character may be indented 0-3 spaces. The raw contents of the
+        /// header are stripped of leading and trailing spaces before being parsed as inline
+        /// content. The header level is equal to the number of # characters in the opening
+        /// sequence.
+        /// </para>
+        /// </summary>
+        public static readonly Regex AtxHeaderRegex =
+            new Regex(@"^ {0,3}(#{1,6})(?:\s+\#+|\s+(.+?)(?:\s+\#+)?)?\s*$");
+
+        #endregion
+
         #region Fields
 
         /// <summary>
@@ -179,6 +204,9 @@ namespace MfGames.Text.Markup.Markdown
                 case MarkupElementType.BeginContent:
                     return this.ProcessBeginContent();
 
+                   case MarkupElementType.BeginHeading:
+                    return this.ProcessBeginHeading();
+
                 case MarkupElementType.BeginParagraph:
                     return this.ProcessBeginParagraph();
 
@@ -242,6 +270,16 @@ namespace MfGames.Text.Markup.Markdown
                 return MarkdownContentType.Whitespace;
             }
 
+            // Check to see if this is an ATX header.
+            bool isAtxHeader = AtxHeaderRegex.IsMatch(this.currentLine);
+
+            if (isAtxHeader)
+            {
+                return MarkdownContentType.AtxHeading;
+            }
+
+            // Check to see if this is a Setext header.
+
             // Everything else is a paragraph.
             return MarkdownContentType.Paragraph;
         }
@@ -275,6 +313,10 @@ namespace MfGames.Text.Markup.Markdown
                     this.elementType = MarkupElementType.BeginParagraph;
                     return true;
 
+                case MarkdownContentType.AtxHeading:
+                    this.elementType = MarkupElementType.BeginHeading;
+                    return true;
+
                 default:
                     return false;
             }
@@ -296,6 +338,34 @@ namespace MfGames.Text.Markup.Markdown
 
             // No clue, throw an exception.
             throw new Exception("Panic");
+        }
+
+        /// <summary>
+        /// Processes the buffer after the BeginHeading event.
+        /// </summary>
+        /// <returns>
+        /// True if this is successfully processed.
+        /// </returns>
+        private bool ProcessBeginHeading()
+        {
+            // Figure out the content type.
+            MarkdownContentType contentType = this.GetContentType();
+
+            switch (contentType)
+            {
+                case MarkdownContentType.AtxHeading:
+                    // Remove the leading space and hash marks. We do this in three parts
+                    // because the second hash in " # #" should not be removed.
+                    this.currentLine = this.currentLine.TrimStart(' ')
+                        .TrimStart('#')
+                        .TrimStart(' ');
+                    return this.ProcessBeginParagraph();
+
+                default:
+                    throw new InvalidOperationException(
+                        "Cannot process BeginHeading with content type of "
+                            + contentType + ".");
+            }
         }
 
         /// <summary>
@@ -336,7 +406,8 @@ namespace MfGames.Text.Markup.Markdown
 
                 // Remove the text we just added, but keep a blank line so we can
                 // process the next element.
-                this.currentLine = this.currentLine.Substring(nonSignificant.Length);
+                this.currentLine =
+                    this.currentLine.Substring(nonSignificant.Length);
 
                 // Indicate we have successful processed it.
                 return true;
