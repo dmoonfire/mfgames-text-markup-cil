@@ -23,5 +23,10 @@ namespace MfGames.Text.Markup.Markdown
         /// Indicates that the content type is a ATX-style heading line.
         /// </summary>
         AtxHeading,
+
+        /// <summary>
+        /// Indicates that the content type is a setext heading line.
+        /// </summary>
+        SetextHeading,
     }
 }

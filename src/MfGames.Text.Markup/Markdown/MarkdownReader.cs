@@ -6,7 +6,6 @@ namespace MfGames.Text.Markup.Markdown
 {
     using System;
     using System.IO;
-    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Implements a Markdown reader that parses various flavors of Markdown based
@@ -15,30 +14,6 @@ namespace MfGames.Text.Markup.Markdown
     public class MarkdownReader : MarkupReader, 
         IDisposable
     {
-        #region Static Fields
-
-        /// <summary>
-        /// <para>
-        /// Contains the regular expression for identifying an ATX-style header. The first
-        /// matched group is the series of # characters. The second is the header contents
-        /// itself.
-        /// </para><para>
-        /// CommonMark 0.12 § 4.2: An ATX header consists of a string of characters, parsed as
-        /// inline content, between an opening sequence of 1–6 unescaped # characters and an
-        /// optional closing sequence of any number of # characters. The opening sequence of #
-        /// characters cannot be followed directly by a non-space character. The optional
-        /// closing sequence of #s must be preceded by a space and may be followed by spaces
-        /// only. The opening # character may be indented 0-3 spaces. The raw contents of the
-        /// header are stripped of leading and trailing spaces before being parsed as inline
-        /// content. The header level is equal to the number of # characters in the opening
-        /// sequence.
-        /// </para>
-        /// </summary>
-        public static readonly Regex AtxHeaderRegex =
-            new Regex(@"^ {0,3}(#{1,6})(?:\s+\#+|\s+(.+?)(?:\s+\#+)?)?\s*$");
-
-        #endregion
-
         #region Fields
 
         /// <summary>
@@ -284,14 +259,26 @@ namespace MfGames.Text.Markup.Markdown
             }
 
             // Check to see if this is an ATX header.
-            bool isAtxHeader = AtxHeaderRegex.IsMatch(this.currentLine);
+            bool isAtxHeader = CommonMarkSpecification.AtxHeaderRegex.IsMatch(this.currentLine);
 
             if (isAtxHeader)
             {
                 return MarkdownContentType.AtxHeading;
             }
 
-            // Check to see if this is a Setext header.
+            // Check to see if this is a setext header.
+            string nextLine = this.Reader.PeekLine(0);
+
+            if (nextLine != null && CommonMarkSpecification.SetextHeaderRegex.IsMatch(nextLine))
+            {
+                // The next line appears to be a header, so check this line.
+                if (this.currentLine.Trim()
+                    .Length > 0)
+                {
+                    // We have at least one line.
+                    return MarkdownContentType.SetextHeading;
+                }
+            }
 
             // Everything else is a paragraph.
             return MarkdownContentType.Paragraph;
@@ -328,6 +315,7 @@ namespace MfGames.Text.Markup.Markdown
                     return true;
 
                 case MarkdownContentType.AtxHeading:
+                case MarkdownContentType.SetextHeading:
                     this.elementType = MarkupElementType.BeginHeading;
                     this.inHeading = true;
                     return true;
@@ -360,7 +348,16 @@ namespace MfGames.Text.Markup.Markdown
                         .TrimEnd(' ')
                         .TrimEnd('#')
                         .TrimEnd(' ');
-                    return this.ProcessBeginParagraph();
+                    return this.ProcessContent();
+
+                case MarkdownContentType.SetextHeading:
+
+                    // Pop off the next line, which is the underline.
+                    this.Reader.ReadLine();
+
+                    // We don't have to change the line since that is the header text.
+                    // So just move into the content processing.
+                    return this.ProcessContent();
 
                 default:
                     throw new InvalidOperationException(
@@ -376,6 +373,15 @@ namespace MfGames.Text.Markup.Markdown
         /// True if this is successfully processed.
         /// </returns>
         private bool ProcessBeginParagraph()
+        {
+            return this.ProcessContent();
+        }
+
+        /// <summary>
+        /// Processes textual content inside a paragraph or heading.
+        /// </summary>
+        /// <returns>True if we've processed the paragraph properly.</returns>
+        private bool ProcessContent()
         {
             // If we have non-significant characters, then process that.
             if (this.ProcessNonSignificant())
