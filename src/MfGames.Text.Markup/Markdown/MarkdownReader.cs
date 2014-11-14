@@ -6,6 +6,7 @@ namespace MfGames.Text.Markup.Markdown
 {
     using System;
     using System.IO;
+    using System.Text;
 
     /// <summary>
     /// Implements a Markdown reader that parses various flavors of Markdown based
@@ -180,6 +181,17 @@ namespace MfGames.Text.Markup.Markdown
                     this.elementType = MarkupElementType.BeginDocument;
                     return true;
 
+                case MarkupElementType.BeginMetadata:
+                    return ProcessBeginMetadata();
+
+                case MarkupElementType.YamlMetadata:
+                    this.elementType = MarkupElementType.EndMetadata;
+                    return true;
+
+                case MarkupElementType.EndMetadata:
+                    this.elementType = MarkupElementType.BeginContent;
+                    return true;
+
                 case MarkupElementType.BeginDocument:
                     this.elementType = this.CheckMetadata()
                         ? MarkupElementType.BeginMetadata
@@ -218,6 +230,33 @@ namespace MfGames.Text.Markup.Markdown
             return false;
         }
 
+        /// <summary>
+        /// Processes the state after the BeginMetadata.
+        /// </summary>
+        /// <returns></returns>
+        private bool ProcessBeginMetadata()
+        {
+            // Right now, we only support YAML headers. Grab the first "---" and then
+            // loop through until we find the last one.
+            StringBuilder buffer = new StringBuilder();
+
+            buffer.AppendLine(this.currentLine);
+
+            do
+            {
+                // Grab the next line.
+                this.currentLine = this.Reader.ReadLine();
+                buffer.AppendLine(this.currentLine);
+            }
+            while (this.currentLine != "---");
+
+            // Gather up the elements and set it.
+            this.currentLine = null;
+            this.elementType = MarkupElementType.YamlMetadata;
+            this.Text = buffer.ToString();
+            return true;
+        }
+
         #endregion
 
         #region Methods
@@ -238,6 +277,14 @@ namespace MfGames.Text.Markup.Markdown
         /// <returns>Returns true if there is metadata, otherwise false.</returns>
         private bool CheckMetadata()
         {
+            // Check the first line for a YAML header.
+            if (this.currentLine == "---")
+            {
+                // We are in a YAML header.
+                return true;
+            }
+
+            // Otherwise, go directly to content.
             return false;
         }
 

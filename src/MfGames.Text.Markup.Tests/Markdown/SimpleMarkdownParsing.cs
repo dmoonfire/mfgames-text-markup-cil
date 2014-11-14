@@ -184,7 +184,6 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 MarkupElementType.BeginDocument, 
                 MarkupElementType.BeginContent, 
-                MarkupElementType.BeginBlockquote, 
                 MarkupElementType.BeginParagraph, 
                 MarkupElementType.Text, 
                 MarkupElementType.BeginCodeSpan, 
@@ -192,7 +191,6 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.EndCodeSpan, 
                 MarkupElementType.Text, 
                 MarkupElementType.EndParagraph, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -285,7 +283,6 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 MarkupElementType.BeginDocument, 
                 MarkupElementType.BeginContent, 
-                MarkupElementType.BeginBlockquote, 
                 MarkupElementType.BeginParagraph, 
                 MarkupElementType.Text, 
                 MarkupElementType.BeginItalic, 
@@ -293,7 +290,6 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.EndItalic, 
                 MarkupElementType.Text, 
                 MarkupElementType.EndParagraph, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
@@ -511,11 +507,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 MarkupElementType.YamlMetadata, 
                 MarkupElementType.EndMetadata, 
                 MarkupElementType.BeginContent, 
-                MarkupElementType.BeginBlockquote, 
                 MarkupElementType.BeginParagraph, 
                 MarkupElementType.Text, 
                 MarkupElementType.EndParagraph, 
-                MarkupElementType.EndBlockquote, 
                 MarkupElementType.EndContent, 
                 MarkupElementType.EndDocument);
         }
