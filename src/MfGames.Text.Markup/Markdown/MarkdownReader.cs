@@ -51,6 +51,16 @@ namespace MfGames.Text.Markup.Markdown
         private MarkupElementType elementType;
 
         /// <summary>
+        /// Internal state flag to determine if we are currently in a heading.
+        /// </summary>
+        private bool inHeading;
+
+        /// <summary>
+        /// Internal state flag to determine if we are inside a paragraph.
+        /// </summary>
+        private bool inParagraph;
+
+        /// <summary>
         /// </summary>
         private string originaLine;
 
@@ -204,7 +214,7 @@ namespace MfGames.Text.Markup.Markdown
                 case MarkupElementType.BeginContent:
                     return this.ProcessBeginContent();
 
-                   case MarkupElementType.BeginHeading:
+                case MarkupElementType.BeginHeading:
                     return this.ProcessBeginHeading();
 
                 case MarkupElementType.BeginParagraph:
@@ -216,6 +226,9 @@ namespace MfGames.Text.Markup.Markdown
 
                 case MarkupElementType.EndParagraph:
                     return this.ProcessEndParagraph();
+
+                case MarkupElementType.EndHeading:
+                    return this.ProcessEndHeading();
 
                 case MarkupElementType.EndContent:
                     this.elementType = MarkupElementType.EndDocument;
@@ -311,14 +324,48 @@ namespace MfGames.Text.Markup.Markdown
 
                 case MarkdownContentType.Paragraph:
                     this.elementType = MarkupElementType.BeginParagraph;
+                    this.inParagraph = true;
                     return true;
 
                 case MarkdownContentType.AtxHeading:
                     this.elementType = MarkupElementType.BeginHeading;
+                    this.inHeading = true;
                     return true;
 
                 default:
                     return false;
+            }
+        }
+
+        /// <summary>
+        /// Processes the buffer after the BeginHeading event.
+        /// </summary>
+        /// <returns>
+        /// True if this is successfully processed.
+        /// </returns>
+        private bool ProcessBeginHeading()
+        {
+            // Figure out the content type.
+            MarkdownContentType contentType = this.GetContentType();
+
+            switch (contentType)
+            {
+                case MarkdownContentType.AtxHeading:
+
+                    // Remove the leading and trail space and hash marks. But only in a
+                    // specific order to prevent removing too much.
+                    this.currentLine = this.currentLine.TrimStart(' ')
+                        .TrimStart('#')
+                        .TrimStart(' ')
+                        .TrimEnd(' ')
+                        .TrimEnd('#')
+                        .TrimEnd(' ');
+                    return this.ProcessBeginParagraph();
+
+                default:
+                    throw new InvalidOperationException(
+                        "Cannot process BeginHeading with content type of "
+                            + contentType + ".");
             }
         }
 
@@ -341,31 +388,25 @@ namespace MfGames.Text.Markup.Markdown
         }
 
         /// <summary>
-        /// Processes the buffer after the BeginHeading event.
+        /// Processes the input after a EndHeading element.
         /// </summary>
         /// <returns>
         /// True if this is successfully processed.
         /// </returns>
-        private bool ProcessBeginHeading()
+        private bool ProcessEndHeading()
         {
-            // Figure out the content type.
-            MarkdownContentType contentType = this.GetContentType();
+            // Clear the paragraph flag.
+            this.inHeading = false;
 
-            switch (contentType)
+            // If we don't have a current line.
+            if (this.currentLine == null)
             {
-                case MarkdownContentType.AtxHeading:
-                    // Remove the leading space and hash marks. We do this in three parts
-                    // because the second hash in " # #" should not be removed.
-                    this.currentLine = this.currentLine.TrimStart(' ')
-                        .TrimStart('#')
-                        .TrimStart(' ');
-                    return this.ProcessBeginParagraph();
-
-                default:
-                    throw new InvalidOperationException(
-                        "Cannot process BeginHeading with content type of "
-                            + contentType + ".");
+                this.elementType = MarkupElementType.EndContent;
+                return true;
             }
+
+            // Pass it into the begin content.
+            return this.ProcessBeginContent();
         }
 
         /// <summary>
@@ -376,6 +417,9 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         private bool ProcessEndParagraph()
         {
+            // Clear the paragraph flag.
+            this.inParagraph = false;
+
             // If we don't have a current line.
             if (this.currentLine == null)
             {
@@ -434,9 +478,22 @@ namespace MfGames.Text.Markup.Markdown
 
                 if (isEndOfBuffer || this.Options.TreatNewLinesAsBreaks)
                 {
-                    // End the paragraph to get into our endgame.
+                    // End the paragraph or heading to get into our endgame.
                     this.currentLine = null;
-                    this.elementType = MarkupElementType.EndParagraph;
+
+                    if (this.inParagraph)
+                    {
+                        this.elementType = MarkupElementType.EndParagraph;
+                    }
+                    else if (this.inHeading)
+                    {
+                        this.elementType = MarkupElementType.EndHeading;
+                    }
+                    else
+                    {
+                        throw new Exception(
+                            "We are at the end of the text but in neither a heading or a paragraph.");
+                    }
                 }
                 else
                 {
