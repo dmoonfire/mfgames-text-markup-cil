@@ -114,7 +114,7 @@ namespace MfGames.Text.Markup
         /// <summary>
         /// Indicates a break or horizontal rule.
         /// </summary>
-        Break, 
+        HorizontalRule, 
 
         /// <summary>
         /// Indicates the beginning of a heading section.

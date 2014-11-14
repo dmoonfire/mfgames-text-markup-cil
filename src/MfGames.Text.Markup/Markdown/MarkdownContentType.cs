@@ -4,6 +4,8 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Markdown
 {
+    using System.Diagnostics.CodeAnalysis;
+
     /// <summary>
     /// Identifies the various types of content according to the parser.
     /// </summary>
@@ -17,16 +19,24 @@ namespace MfGames.Text.Markup.Markdown
         /// <summary>
         /// Indicates that the content type is whitespace.
         /// </summary>
-        Whitespace,
+        Whitespace, 
 
         /// <summary>
         /// Indicates that the content type is a ATX-style heading line.
         /// </summary>
-        AtxHeading,
+        AtxHeading, 
 
         /// <summary>
         /// Indicates that the content type is a setext heading line.
         /// </summary>
-        SetextHeading,
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", 
+            "SA1650:ElementDocumentationMustBeSpelledCorrectly", 
+            Justification = "Name comes from the CommonMark specfication.")]
+        SetextHeading, 
+
+        /// <summary>
+        /// Indicates that the content type is a horizontal rule.
+        /// </summary>
+        HorizontalRule, 
     }
 }

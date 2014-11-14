@@ -187,6 +187,7 @@ namespace MfGames.Text.Markup.Markdown
                     return true;
 
                 case MarkupElementType.BeginContent:
+                case MarkupElementType.HorizontalRule:
                     return this.ProcessBeginContent();
 
                 case MarkupElementType.BeginHeading:
@@ -258,8 +259,19 @@ namespace MfGames.Text.Markup.Markdown
                 return MarkdownContentType.Whitespace;
             }
 
+            // Check for a horizontal rule.
+            bool isRule =
+                CommonMarkSpecification.HorizontalRuleRegex.IsMatch(
+                    this.currentLine);
+
+            if (isRule)
+            {
+                return MarkdownContentType.HorizontalRule;
+            }
+
             // Check to see if this is an ATX header.
-            bool isAtxHeader = CommonMarkSpecification.AtxHeaderRegex.IsMatch(this.currentLine);
+            bool isAtxHeader =
+                CommonMarkSpecification.AtxHeaderRegex.IsMatch(this.currentLine);
 
             if (isAtxHeader)
             {
@@ -269,7 +281,8 @@ namespace MfGames.Text.Markup.Markdown
             // Check to see if this is a setext header.
             string nextLine = this.Reader.PeekLine(0);
 
-            if (nextLine != null && CommonMarkSpecification.SetextHeaderRegex.IsMatch(nextLine))
+            if (nextLine != null
+                && CommonMarkSpecification.SetextHeaderRegex.IsMatch(nextLine))
             {
                 // The next line appears to be a header, so check this line.
                 if (this.currentLine.Trim()
@@ -292,6 +305,14 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         private bool ProcessBeginContent()
         {
+            // Ignore blank lines at this point.
+            while (this.currentLine != null && this.currentLine.Trim()
+                .Length == 0)
+            {
+                this.originaLine = this.Reader.ReadLine();
+                this.currentLine = this.originaLine;
+            }
+
             // Figure out what the next line is.
             MarkdownContentType type = this.GetContentType();
 
@@ -318,6 +339,11 @@ namespace MfGames.Text.Markup.Markdown
                 case MarkdownContentType.SetextHeading:
                     this.elementType = MarkupElementType.BeginHeading;
                     this.inHeading = true;
+                    return true;
+
+                case MarkdownContentType.HorizontalRule:
+                    this.elementType = MarkupElementType.HorizontalRule;
+                    this.currentLine = null;
                     return true;
 
                 default:
@@ -426,6 +452,14 @@ namespace MfGames.Text.Markup.Markdown
             // Clear the paragraph flag.
             this.inParagraph = false;
 
+            // Advance to the next non-blank line.
+            while (this.currentLine != null && this.currentLine.Trim()
+                .Length == 0)
+            {
+                this.originaLine = this.Reader.ReadLine();
+                this.currentLine = this.originaLine;
+            }
+
             // If we don't have a current line.
             if (this.currentLine == null)
             {
@@ -481,8 +515,12 @@ namespace MfGames.Text.Markup.Markdown
                 // a line after this one or we have the Options.TreatNewlinesAsBreaks. Otherwise,
                 // we are just going to continue the paragraph.
                 bool isEndOfBuffer = this.Reader.PeekLine(0) == null;
+                bool isBlankLine = !isEndOfBuffer && this.Reader.PeekLine(0)
+                    .Trim()
+                    .Length == 0;
 
-                if (isEndOfBuffer || this.Options.TreatNewLinesAsBreaks)
+                if (isEndOfBuffer || isBlankLine
+                    || this.Options.TreatNewLinesAsBreaks)
                 {
                     // End the paragraph or heading to get into our endgame.
                     this.currentLine = null;
@@ -494,6 +532,10 @@ namespace MfGames.Text.Markup.Markdown
                     else if (this.inHeading)
                     {
                         this.elementType = MarkupElementType.EndHeading;
+                    }
+                    else if (isEndOfBuffer)
+                    {
+                        this.elementType = MarkupElementType.EndContent;
                     }
                     else
                     {

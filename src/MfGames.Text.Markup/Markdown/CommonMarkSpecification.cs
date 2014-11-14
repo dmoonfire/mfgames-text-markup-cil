@@ -39,6 +39,21 @@ namespace MfGames.Text.Markup.Markdown
 
         /// <summary>
         /// <para>
+        /// Contains the regular expression for identifying a break or horizontal rule.
+        /// </para><para>
+        /// CommonMark 0.12 § 4.1: A line consisting of 0-3 spaces of indentation, followed
+        /// by a sequence of three or more matching -, _, or * characters, each followed
+        /// optionally by any number of spaces, forms a horizontal rule.
+        /// </para>
+        /// </summary>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", 
+            "SA1650:ElementDocumentationMustBeSpelledCorrectly", 
+            Justification = "From CommonMark specification.")]
+        public static readonly Regex HorizontalRuleRegex =
+            new Regex(@"^ {0,3}([\*_-]\s*){3}([\*_-]|\s)*$");
+
+        /// <summary>
+        /// <para>
         /// Contains the regular expression for identifying an setext style header. The first
         /// matched group is either '=' or '-' based on the header.
         /// </para><para>
