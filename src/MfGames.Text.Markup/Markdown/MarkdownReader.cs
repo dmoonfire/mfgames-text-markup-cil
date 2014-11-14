@@ -167,6 +167,9 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         public override bool Read()
         {
+            // Reset the state.
+            ResetState();
+
             // If the current line is null, then load the next one.
             if (this.currentLine == null)
             {

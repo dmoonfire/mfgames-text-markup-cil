@@ -16,7 +16,7 @@ namespace MfGames.Text.Markup.Tests
 
         /// <summary>
         /// </summary>
-        protected List<MarkupReaderRecordedEvent> Events { get; private set; }
+        protected List<Event> Events { get; private set; }
 
         #endregion
 
@@ -30,11 +30,11 @@ namespace MfGames.Text.Markup.Tests
         /// </param>
         protected virtual void Record(MarkupReader reader)
         {
-            this.Events = new List<MarkupReaderRecordedEvent>();
+            this.Events = new List<Event>();
 
             while (reader.Read())
             {
-                var state = new MarkupReaderRecordedEvent(reader);
+                var state = new Event(reader);
 
                 this.Events.Add(state);
             }

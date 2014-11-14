@@ -4,6 +4,8 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests.Markdown
 {
+    using System;
+
     using MfGames.Text.Markup.Markdown;
 
     using NUnit.Framework;
@@ -30,17 +32,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "Four five six.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.HorizontalRule, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Four five six."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -52,13 +60,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("# Header");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginHeading, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndHeading, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header", 
+                        Level = 1
+                    }, 
+                new Event(MarkupElementType.EndHeading), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -70,13 +82,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("## Header");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginHeading, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndHeading, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header", 
+                        Level = 2
+                    }, 
+                new Event(MarkupElementType.EndHeading), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -88,13 +104,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("### Header");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginHeading, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndHeading, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header", 
+                        Level = 3
+                    }, 
+                new Event(MarkupElementType.EndHeading), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -106,13 +126,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("#### Header");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginHeading, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndHeading, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header", 
+                        Level = 4
+                    }, 
+                new Event(MarkupElementType.EndHeading), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -124,13 +148,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("##### Header");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginHeading, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndHeading, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header", 
+                        Level = 5
+                    }, 
+                new Event(MarkupElementType.EndHeading), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -142,13 +170,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("###### Header");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginHeading, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndHeading, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header", 
+                        Level = 6
+                    }, 
+                new Event(MarkupElementType.EndHeading), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -160,17 +192,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("One **two** three");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.BeginBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndBold, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.BeginBold), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.EndBold), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -182,17 +214,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("One `two` three");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.BeginCodeSpan, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndCodeSpan, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -209,17 +241,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "Four five six.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.HorizontalRule, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Four five six."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -234,18 +272,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "> Four five six.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginBlockquote, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndBlockquote, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginBlockquote), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndBlockquote), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -260,16 +298,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "Four five six.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Four five six."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -281,17 +325,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("One *two* three");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.BeginItalic, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndItalic, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.BeginItalic), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.EndItalic), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -305,17 +349,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "four five six.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginBlockquote, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.Whitespace, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndBlockquote, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginBlockquote), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Whitespace), 
+                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndBlockquote), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -329,13 +373,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "======");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginHeading, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndHeading, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header", 
+                        Level = 1
+                    }, 
+                new Event(MarkupElementType.EndHeading), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -349,13 +397,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "------");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginHeading, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndHeading, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header", 
+                        Level = 2
+                    }, 
+                new Event(MarkupElementType.EndHeading), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -373,15 +425,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "four five six.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.Whitespace, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three"
+                    }, 
+                new Event(MarkupElementType.Whitespace)
+                    {
+                        Text = Environment.NewLine
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "four five six."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -399,16 +460,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "four five six.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "four five six."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -420,15 +487,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("> One two three");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginBlockquote, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndBlockquote, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginBlockquote), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndBlockquote), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -440,13 +510,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup("One two three.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -476,17 +549,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "Four five six.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.HorizontalRule, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Four five six."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
@@ -502,16 +581,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "One two three.");
 
             this.AssertEventElementTypes(
-                MarkupElementType.BeginDocument, 
-                MarkupElementType.BeginMetadata, 
-                MarkupElementType.YamlMetadata, 
-                MarkupElementType.EndMetadata, 
-                MarkupElementType.BeginContent, 
-                MarkupElementType.BeginParagraph, 
-                MarkupElementType.Text, 
-                MarkupElementType.EndParagraph, 
-                MarkupElementType.EndContent, 
-                MarkupElementType.EndDocument);
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginMetadata), 
+                new Event(MarkupElementType.YamlMetadata)
+                    {
+                        Text = @"---
+meta: data
+---
+"
+                    }, 
+                new Event(MarkupElementType.EndMetadata), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
         }
 
         #endregion

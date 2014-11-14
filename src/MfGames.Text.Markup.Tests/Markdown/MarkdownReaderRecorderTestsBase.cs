@@ -5,6 +5,7 @@
 namespace MfGames.Text.Markup.Tests.Markdown
 {
     using System;
+    using System.Collections.Generic;
 
     using MfGames.Text.Markup.Markdown;
 
@@ -25,8 +26,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <param name="elementTypes">
         /// The element types.
         /// </param>
-        protected void AssertEventElementTypes(
-            params MarkupElementType[] elementTypes)
+        protected void AssertEventElementTypes(params Event[] elementTypes)
         {
             // First check the lenghts of the arrays.
             bool matches = this.Events.Count == elementTypes.Length;
@@ -44,19 +44,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
             {
                 for (int i = 0; i < this.Events.Count; i++)
                 {
-                    // Compare the item, if they are identical, then we don't report it.
-                    if (this.Events[i].ElementType == elementTypes[i])
+                    if (this.Events[i] != elementTypes[i])
                     {
-                        continue;
+                        matches = false;
                     }
-
-                    // Report an inconsistency.
-                    Console.WriteLine(
-                        "Element {0} does not match: Expected {1}, Recorded {2}", 
-                        i, 
-                        elementTypes[i], 
-                        this.Events[i].ElementType);
-                    matches = false;
                 }
             }
 
@@ -64,7 +55,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             if (!matches)
             {
                 // Add a little bit of a header.
-                const string FormatLine = "{3} {0} {2} {1}";
+                const string FormatLine = "{3} {0} {2} {1} {4}";
                 const int FormatWidth = 20;
 
                 Console.WriteLine();
@@ -75,7 +66,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     "Expected".PadRight(FormatWidth), 
                     "Actual".PadRight(FormatWidth), 
                     "  ", 
-                    "  #");
+                    "  #", 
+                    "Comparison");
                 Console.WriteLine(
                     FormatLine, 
                     new string(
@@ -85,7 +77,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                         '-', 
                         FormatWidth), 
                     "--", 
-                    "---");
+                    "---", 
+                    new string(
+                        '-', 
+                        30));
 
                 // Write out the lines.
                 int maxSize = Math.Max(
@@ -96,7 +91,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 {
                     // Figure out the element.
                     string expected = i < elementTypes.Length
-                        ? elementTypes[i].ToString()
+                        ? elementTypes[i].ElementType.ToString()
                         : string.Empty;
                     string actual = i < this.Events.Count
                         ? this.Events[i].ElementType.ToString()
@@ -109,7 +104,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                         actual.PadRight(FormatWidth), 
                         expected == actual ? "==" : "!=", 
                         i.ToString()
-                            .PadLeft(3));
+                            .PadLeft(3), 
+                        this.FormatDifferences(
+                            i < elementTypes.Length ? elementTypes[i] : null, 
+                            i < this.Events.Count ? this.Events[i] : null));
                 }
             }
 
@@ -155,6 +153,49 @@ namespace MfGames.Text.Markup.Tests.Markdown
             {
                 this.Record(reader);
             }
+        }
+
+        /// <summary>
+        /// Formats the differences between two events.
+        /// </summary>
+        /// <param name="expected">
+        /// The expected.
+        /// </param>
+        /// <param name="actual">
+        /// The actual.
+        /// </param>
+        /// <returns>
+        /// </returns>
+        /// <exception cref="System.NotImplementedException">
+        /// </exception>
+        private string FormatDifferences(
+            Event expected, 
+            Event actual)
+        {
+            // Build up a list of strings of differences.
+            var messages = new List<string>();
+
+            // If either are null, we can't compare.
+            if (expected == null || actual == null)
+            {
+                return string.Empty;
+            }
+
+            // Compare the elements.
+            if (expected.Text != actual.Text)
+            {
+                messages.Add(
+                    string.Format(
+                        "{0}: {1} != {2}", 
+                        "Text", 
+                        expected.Text ?? "<null>", 
+                        actual.Text ?? "<null>"));
+            }
+
+            // Combine everything together.
+            return string.Join(
+                "; ", 
+                messages.ToArray());
         }
 
         #endregion

@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Markdown\CommonMarkRegexTests.cs" />
     <Compile Include="Markdown\MarkdownReaderRecorderTestsBase.cs" />
-    <Compile Include="MarkupReaderRecordedEvent.cs" />
+    <Compile Include="Event.cs" />
     <Compile Include="MarkupReaderRecorder.cs" />
     <Compile Include="Markdown\SimpleMarkdownParsing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

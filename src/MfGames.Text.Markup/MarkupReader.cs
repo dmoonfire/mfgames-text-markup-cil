@@ -54,14 +54,14 @@ namespace MfGames.Text.Markup
         public abstract MarkupElementType ElementType { get; }
 
         /// <summary>
-        /// Gets or sets the text of the current state.
-        /// </summary>
-        public string Text { get; protected set; }
-
-        /// <summary>
         /// Gets the heading level of the current element.
         /// </summary>
         public int HeadingLevel { get; protected set; }
+
+        /// <summary>
+        /// Gets or sets the text of the current state.
+        /// </summary>
+        public string Text { get; protected set; }
 
         #endregion
 
@@ -81,6 +81,19 @@ namespace MfGames.Text.Markup
         /// </summary>
         /// <returns>True if there is another element available.</returns>
         public abstract bool Read();
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// Resets the internal state to a known value.
+        /// </summary>
+        protected void ResetState()
+        {
+            this.Text = null;
+            this.HeadingLevel = 0;
+        }
 
         #endregion
     }
