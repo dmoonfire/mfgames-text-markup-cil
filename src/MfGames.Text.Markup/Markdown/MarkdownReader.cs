@@ -27,9 +27,21 @@ namespace MfGames.Text.Markup.Markdown
         private MarkupElementType elementType;
 
         /// <summary>
+        /// </summary>
+        private bool inBold;
+
+        /// <summary>
+        /// </summary>
+        private bool inCodeSpan;
+
+        /// <summary>
         /// Internal state flag to determine if we are currently in a heading.
         /// </summary>
         private bool inHeading;
+
+        /// <summary>
+        /// </summary>
+        private bool inItalic;
 
         /// <summary>
         /// Internal state flag to determine if we are inside a paragraph.
@@ -146,6 +158,22 @@ namespace MfGames.Text.Markup.Markdown
                 if (line[index] == '\\')
                 {
                     index++;
+                    continue;
+                }
+
+                // Look for characters that indicate special processing.
+                switch (line[index])
+                {
+                    case '*':
+                    case '`':
+                    case '_':
+                        found = true;
+                        break;
+                }
+
+                if (found)
+                {
+                    break;
                 }
             }
 
@@ -155,8 +183,19 @@ namespace MfGames.Text.Markup.Markdown
                 return line;
             }
 
-            // Otherwise, blow up.
-            throw new Exception("I can't handle change.");
+            // If the index is 0, then the significant characters are immediate. Return null
+            // to indicate we have none.
+            if (index == 0)
+            {
+                return null;
+            }
+
+            // Break out the string until that point.
+            string fragment = this.currentLine.Substring(
+                0, 
+                index);
+
+            return fragment;
         }
 
         /// <summary>
@@ -168,7 +207,7 @@ namespace MfGames.Text.Markup.Markdown
         public override bool Read()
         {
             // Reset the state.
-            ResetState();
+            this.ResetState();
 
             // If the current line is null, then load the next one.
             if (this.currentLine == null)
@@ -185,7 +224,7 @@ namespace MfGames.Text.Markup.Markdown
                     return true;
 
                 case MarkupElementType.BeginMetadata:
-                    return ProcessBeginMetadata();
+                    return this.ProcessBeginMetadata();
 
                 case MarkupElementType.YamlMetadata:
                     this.elementType = MarkupElementType.EndMetadata;
@@ -227,37 +266,23 @@ namespace MfGames.Text.Markup.Markdown
 
                 case MarkupElementType.EndDocument:
                     return false;
+
+                case MarkupElementType.BeginBold:
+                    return this.ProcessBeginBold();
+                case MarkupElementType.EndBold:
+                    return this.ProcessEndBold();
+                case MarkupElementType.BeginItalic:
+                    return this.ProcessBeginItalic();
+                case MarkupElementType.EndItalic:
+                    return this.ProcessEndItalic();
+                case MarkupElementType.BeginCodeSpan:
+                    return this.ProcessBeginCodeSpan();
+                case MarkupElementType.EndCodeSpan:
+                    return this.ProcessEndCodeSpan();
             }
 
             // If we drop out, we are done processing.
             return false;
-        }
-
-        /// <summary>
-        /// Processes the state after the BeginMetadata.
-        /// </summary>
-        /// <returns></returns>
-        private bool ProcessBeginMetadata()
-        {
-            // Right now, we only support YAML headers. Grab the first "---" and then
-            // loop through until we find the last one.
-            StringBuilder buffer = new StringBuilder();
-
-            buffer.AppendLine(this.currentLine);
-
-            do
-            {
-                // Grab the next line.
-                this.currentLine = this.Reader.ReadLine();
-                buffer.AppendLine(this.currentLine);
-            }
-            while (this.currentLine != "---");
-
-            // Gather up the elements and set it.
-            this.currentLine = null;
-            this.elementType = MarkupElementType.YamlMetadata;
-            this.Text = buffer.ToString();
-            return true;
         }
 
         #endregion
@@ -345,6 +370,73 @@ namespace MfGames.Text.Markup.Markdown
 
             // Everything else is a paragraph.
             return MarkdownContentType.Paragraph;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="controlType">
+        /// </param>
+        /// <param name="controlText">
+        /// </param>
+        /// <param name="remainingText">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private bool GetTextControlType(
+            out MarkdownControlType controlType, 
+            out string controlText, 
+            out string remainingText)
+        {
+            if (this.currentLine.StartsWith("**"))
+            {
+                controlType = MarkdownControlType.Bold;
+                controlText = "**";
+                remainingText = this.currentLine.Substring(2);
+                return true;
+            }
+
+            if (this.currentLine.StartsWith("*")
+                || this.currentLine.StartsWith("_"))
+            {
+                controlType = MarkdownControlType.Italic;
+                controlText = this.currentLine[0].ToString();
+                remainingText = this.currentLine.Substring(1);
+                return true;
+            }
+
+            if (this.currentLine.StartsWith("`"))
+            {
+                controlType = MarkdownControlType.CodeSpan;
+                controlText = "`";
+                remainingText = this.currentLine.Substring(1);
+                return true;
+            }
+
+            // If we got this far, we can't handle it.
+            controlType = MarkdownControlType.Unknown;
+            controlText = null;
+            remainingText = null;
+            return false;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessBeginBold()
+        {
+            this.inBold = true;
+            return this.ProcessText();
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessBeginCodeSpan()
+        {
+            this.inCodeSpan = true;
+            return this.ProcessText();
         }
 
         /// <summary>
@@ -443,6 +535,44 @@ namespace MfGames.Text.Markup.Markdown
         }
 
         /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessBeginItalic()
+        {
+            this.inItalic = true;
+            return this.ProcessText();
+        }
+
+        /// <summary>
+        /// Processes the state after the BeginMetadata.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessBeginMetadata()
+        {
+            // Right now, we only support YAML headers. Grab the first "---" and then
+            // loop through until we find the last one.
+            var buffer = new StringBuilder();
+
+            buffer.AppendLine(this.currentLine);
+
+            do
+            {
+                // Grab the next line.
+                this.currentLine = this.Reader.ReadLine();
+                buffer.AppendLine(this.currentLine);
+            }
+            while (this.currentLine != "---");
+
+            // Gather up the elements and set it.
+            this.currentLine = null;
+            this.elementType = MarkupElementType.YamlMetadata;
+            this.Text = buffer.ToString();
+            return true;
+        }
+
+        /// <summary>
         /// Processes the buffer after the BeginParagraph event.
         /// </summary>
         /// <returns>
@@ -470,6 +600,26 @@ namespace MfGames.Text.Markup.Markdown
         }
 
         /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessEndBold()
+        {
+            this.inBold = false;
+            return this.ProcessText();
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessEndCodeSpan()
+        {
+            this.inCodeSpan = false;
+            return this.ProcessText();
+        }
+
+        /// <summary>
         /// Processes the input after a EndHeading element.
         /// </summary>
         /// <returns>
@@ -489,6 +639,16 @@ namespace MfGames.Text.Markup.Markdown
 
             // Pass it into the begin content.
             return this.ProcessBeginContent();
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessEndItalic()
+        {
+            this.inItalic = false;
+            return this.ProcessText();
         }
 
         /// <summary>
@@ -608,6 +768,45 @@ namespace MfGames.Text.Markup.Markdown
             // If we have non-significant characters, then process that.
             if (this.ProcessNonSignificant())
             {
+                return true;
+            }
+
+            // Anything left is significant control elements, so pull them out.
+            MarkdownControlType controlType;
+            string controlText;
+            string remainingText;
+            bool isControlText = this.GetTextControlType(
+                out controlType, 
+                out controlText, 
+                out remainingText);
+
+            if (isControlText)
+            {
+                this.currentLine = remainingText;
+
+                switch (controlType)
+                {
+                    case MarkdownControlType.Bold:
+                        this.elementType = this.inBold
+                            ? MarkupElementType.EndBold
+                            : MarkupElementType.BeginBold;
+                        break;
+                    case MarkdownControlType.Italic:
+                        this.elementType = this.inItalic
+                            ? MarkupElementType.EndItalic
+                            : MarkupElementType.BeginItalic;
+                        break;
+                    case MarkdownControlType.CodeSpan:
+                        this.elementType = this.inCodeSpan
+                            ? MarkupElementType.EndCodeSpan
+                            : MarkupElementType.BeginCodeSpan;
+                        break;
+                    default:
+                        throw new Exception(
+                            "Unknown control type: " + controlType);
+                }
+
+                // We are done processing this one.
                 return true;
             }
 

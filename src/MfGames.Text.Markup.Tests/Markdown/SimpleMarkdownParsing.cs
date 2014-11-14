@@ -195,11 +195,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
                 new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One "
+                    }, 
                 new Event(MarkupElementType.BeginBold), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "two"
+                    }, 
                 new Event(MarkupElementType.EndBold), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = " three"
+                    }, 
                 new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
@@ -217,11 +226,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
                 new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One "
+                    }, 
                 new Event(MarkupElementType.BeginCodeSpan), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "two"
+                    }, 
                 new Event(MarkupElementType.EndCodeSpan), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = " three"
+                    }, 
                 new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
@@ -328,11 +346,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
                 new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One "
+                    }, 
                 new Event(MarkupElementType.BeginItalic), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "two"
+                    }, 
                 new Event(MarkupElementType.EndItalic), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = " three"
+                    }, 
                 new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));

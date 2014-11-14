@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Markdown\CommonMarkSpecification.cs" />
     <Compile Include="Markdown\MarkdownContentType.cs" />
+    <Compile Include="Markdown\MarkdownControlType.cs" />
     <Compile Include="Markdown\MarkdownOptions.cs" />
     <Compile Include="Markdown\MarkdownReader.cs" />
     <Compile Include="MarkupElementType.cs" />

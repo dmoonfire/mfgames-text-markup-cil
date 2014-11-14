@@ -5,6 +5,7 @@
 namespace MfGames.Text.Markup.Tests
 {
     using System;
+    using System.Text;
 
     /// <summary>
     /// Represents a single recorded event from a reader.
@@ -49,14 +50,14 @@ namespace MfGames.Text.Markup.Tests
         public MarkupElementType ElementType { get; private set; }
 
         /// <summary>
-        /// Gets the text element at the point of the event.
-        /// </summary>
-        public string Text { get; set; }
-
-        /// <summary>
         /// Gets or sets the level of heading or bullet lists.
         /// </summary>
         public int Level { get; set; }
+
+        /// <summary>
+        /// Gets the text element at the point of the event.
+        /// </summary>
+        public string Text { get; set; }
 
         #endregion
 
@@ -163,6 +164,31 @@ namespace MfGames.Text.Markup.Tests
                 return ((int)this.ElementType * 397)
                     ^ (this.Text != null ? this.Text.GetHashCode() : 0);
             }
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            // Write out the event with default information.
+            var buffer = new StringBuilder();
+
+            buffer.Append(this.ElementType);
+
+            // Add the optional fields.
+            if (this.Text != null)
+            {
+                buffer.AppendFormat(
+                    ", Text: {0}", 
+                    this.Text);
+            }
+
+            // Return the resulting buffer.
+            return buffer.ToString();
         }
 
         #endregion
