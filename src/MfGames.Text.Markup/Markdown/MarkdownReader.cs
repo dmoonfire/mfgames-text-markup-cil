@@ -28,6 +28,10 @@ namespace MfGames.Text.Markup.Markdown
 
         /// <summary>
         /// </summary>
+        private bool inBlockquote;
+
+        /// <summary>
+        /// </summary>
         private bool inBold;
 
         /// <summary>
@@ -242,10 +246,16 @@ namespace MfGames.Text.Markup.Markdown
 
                 case MarkupElementType.BeginContent:
                 case MarkupElementType.HorizontalRule:
-                    return this.ProcessBeginContent();
+                    return this.ProcessBlock();
 
                 case MarkupElementType.BeginHeading:
                     return this.ProcessBeginHeading();
+
+                case MarkupElementType.BeginBlockquote:
+                    return this.ProcessBeginBlockquote();
+
+                case MarkupElementType.EndBlockquote:
+                    return this.ProcessEndBlockquote();
 
                 case MarkupElementType.BeginParagraph:
                     return this.ProcessBeginParagraph();
@@ -322,7 +332,7 @@ namespace MfGames.Text.Markup.Markdown
         /// <returns>
         /// The content type of the current line.
         /// </returns>
-        private MarkdownContentType GetContentType()
+        private MarkdownBlockType GetBlockType()
         {
             // If we have a blank line left, then this is just whitespace.
             int trimmedLength = this.currentLine.Trim()
@@ -331,7 +341,7 @@ namespace MfGames.Text.Markup.Markdown
             if (trimmedLength == 0)
             {
                 // Return that we are nothing but whitespace.
-                return MarkdownContentType.Whitespace;
+                return MarkdownBlockType.Whitespace;
             }
 
             // Check for a horizontal rule.
@@ -341,7 +351,7 @@ namespace MfGames.Text.Markup.Markdown
 
             if (isRule)
             {
-                return MarkdownContentType.HorizontalRule;
+                return MarkdownBlockType.HorizontalRule;
             }
 
             // Check to see if this is an ATX header.
@@ -350,7 +360,7 @@ namespace MfGames.Text.Markup.Markdown
 
             if (isAtxHeader)
             {
-                return MarkdownContentType.AtxHeading;
+                return MarkdownBlockType.AtxHeading;
             }
 
             // Check to see if this is a setext header.
@@ -364,12 +374,20 @@ namespace MfGames.Text.Markup.Markdown
                     .Length > 0)
                 {
                     // We have at least one line.
-                    return MarkdownContentType.SetextHeading;
+                    return MarkdownBlockType.SetextHeading;
                 }
             }
 
+            // If we are in the beginning of the line, then check for a block quote.
+            bool isBeginningOfLine = this.originaLine == this.currentLine;
+
+            if (isBeginningOfLine && this.currentLine.StartsWith(">"))
+            {
+                return MarkdownBlockType.Blockquote;
+            }
+
             // Everything else is a paragraph.
-            return MarkdownContentType.Paragraph;
+            return MarkdownBlockType.Paragraph;
         }
 
         /// <summary>
@@ -420,6 +438,18 @@ namespace MfGames.Text.Markup.Markdown
         }
 
         /// <summary>
+        /// Processes the buffer after the BeginBlockquote event.
+        /// </summary>
+        /// <returns>
+        /// True if this is successfully processed.
+        /// </returns>
+        private bool ProcessBeginBlockquote()
+        {
+            this.inBlockquote = true;
+            return this.ProcessBlock();
+        }
+
+        /// <summary>
         /// </summary>
         /// <returns>
         /// </returns>
@@ -440,60 +470,6 @@ namespace MfGames.Text.Markup.Markdown
         }
 
         /// <summary>
-        /// Processes the content and returns the resulting Markup type.
-        /// </summary>
-        /// <returns>
-        /// True if this is successfully processed.
-        /// </returns>
-        private bool ProcessBeginContent()
-        {
-            // Ignore blank lines at this point.
-            while (this.currentLine != null && this.currentLine.Trim()
-                .Length == 0)
-            {
-                this.originaLine = this.Reader.ReadLine();
-                this.currentLine = this.originaLine;
-            }
-
-            // Figure out what the next line is.
-            MarkdownContentType type = this.GetContentType();
-
-            switch (type)
-            {
-                case MarkdownContentType.Whitespace:
-
-                    // Set up the state for the whitespace.
-                    this.elementType = MarkupElementType.Whitespace;
-                    this.Text = this.currentLine;
-
-                    // Clear out the line so we read the next.
-                    this.currentLine = null;
-
-                    // Return true because we're done.
-                    return true;
-
-                case MarkdownContentType.Paragraph:
-                    this.elementType = MarkupElementType.BeginParagraph;
-                    this.inParagraph = true;
-                    return true;
-
-                case MarkdownContentType.AtxHeading:
-                case MarkdownContentType.SetextHeading:
-                    this.elementType = MarkupElementType.BeginHeading;
-                    this.inHeading = true;
-                    return true;
-
-                case MarkdownContentType.HorizontalRule:
-                    this.elementType = MarkupElementType.HorizontalRule;
-                    this.currentLine = null;
-                    return true;
-
-                default:
-                    return false;
-            }
-        }
-
-        /// <summary>
         /// Processes the buffer after the BeginHeading event.
         /// </summary>
         /// <returns>
@@ -501,12 +477,15 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         private bool ProcessBeginHeading()
         {
-            // Figure out the content type.
-            MarkdownContentType contentType = this.GetContentType();
+            // Save that we are in the heading.
+            this.inHeading = true;
 
-            switch (contentType)
+            // Figure out the content type.
+            MarkdownBlockType blockType = this.GetBlockType();
+
+            switch (blockType)
             {
-                case MarkdownContentType.AtxHeading:
+                case MarkdownBlockType.AtxHeading:
 
                     // Remove the leading and trail space and hash marks. But only in a
                     // specific order to prevent removing too much.
@@ -518,7 +497,7 @@ namespace MfGames.Text.Markup.Markdown
                         .TrimEnd(' ');
                     return this.ProcessContent();
 
-                case MarkdownContentType.SetextHeading:
+                case MarkdownBlockType.SetextHeading:
 
                     // Pop off the next line, which is the underline.
                     this.Reader.ReadLine();
@@ -530,7 +509,7 @@ namespace MfGames.Text.Markup.Markdown
                 default:
                     throw new InvalidOperationException(
                         "Cannot process BeginHeading with content type of "
-                            + contentType + ".");
+                            + blockType + ".");
             }
         }
 
@@ -580,7 +559,75 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         private bool ProcessBeginParagraph()
         {
+            this.inParagraph = true;
             return this.ProcessContent();
+        }
+
+        /// <summary>
+        /// Processes the content and returns the resulting Markup type.
+        /// </summary>
+        /// <returns>
+        /// True if this is successfully processed.
+        /// </returns>
+        private bool ProcessBlock()
+        {
+            // Ignore blank lines at this point.
+            while (this.currentLine != null && this.currentLine.Trim()
+                .Length == 0)
+            {
+                this.originaLine = this.Reader.ReadLine();
+                this.currentLine = this.originaLine;
+            }
+
+            // Figure out what the next line is.
+            MarkdownBlockType type = this.GetBlockType();
+
+            switch (type)
+            {
+                case MarkdownBlockType.Whitespace:
+
+                    // Set up the state for the whitespace.
+                    this.elementType = MarkupElementType.Whitespace;
+                    this.Text = this.currentLine;
+
+                    // Clear out the line so we read the next.
+                    this.currentLine = null;
+
+                    // Return true because we're done.
+                    return true;
+
+                case MarkdownBlockType.Blockquote:
+
+                    // Update our state at the moment.
+                    this.elementType = MarkupElementType.BeginBlockquote;
+                    this.currentLine = this.currentLine.Substring(1)
+                        .TrimStart();
+
+                    // If we are already in a blockquote, then skip it.
+                    if (this.inBlockquote)
+                    {
+                        return this.ProcessBlock();
+                    }
+
+                    return true;
+
+                case MarkdownBlockType.Paragraph:
+                    this.elementType = MarkupElementType.BeginParagraph;
+                    return true;
+
+                case MarkdownBlockType.AtxHeading:
+                case MarkdownBlockType.SetextHeading:
+                    this.elementType = MarkupElementType.BeginHeading;
+                    return true;
+
+                case MarkdownBlockType.HorizontalRule:
+                    this.elementType = MarkupElementType.HorizontalRule;
+                    this.currentLine = null;
+                    return true;
+
+                default:
+                    return false;
+            }
         }
 
         /// <summary>
@@ -597,6 +644,26 @@ namespace MfGames.Text.Markup.Markdown
 
             // No clue, throw an exception.
             throw new Exception("Panic");
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessEndBlockquote()
+        {
+            // Remove the blockquote indicator.
+            this.inBlockquote = false;
+
+            // If we have a blank line, then we're done.
+            if (this.currentLine == null)
+            {
+                this.elementType = MarkupElementType.EndContent;
+                return true;
+            }
+
+            // Otherwise, process it as a block.
+            return this.ProcessBlock();
         }
 
         /// <summary>
@@ -633,12 +700,20 @@ namespace MfGames.Text.Markup.Markdown
             // If we don't have a current line.
             if (this.currentLine == null)
             {
-                this.elementType = MarkupElementType.EndContent;
+                if (this.inBlockquote)
+                {
+                    this.elementType = MarkupElementType.EndBlockquote;
+                }
+                else
+                {
+                    this.elementType = MarkupElementType.EndContent;
+                }
+
                 return true;
             }
 
             // Pass it into the begin content.
-            return this.ProcessBeginContent();
+            return this.ProcessBlock();
         }
 
         /// <summary>
@@ -663,8 +738,8 @@ namespace MfGames.Text.Markup.Markdown
             this.inParagraph = false;
 
             // Advance to the next non-blank line.
-            while (this.currentLine != null && this.currentLine.Trim()
-                .Length == 0)
+            while (this.currentLine != null && (this.currentLine.Trim()
+                .Length == 0 || this.currentLine.Trim() == ">"))
             {
                 this.originaLine = this.Reader.ReadLine();
                 this.currentLine = this.originaLine;
@@ -673,12 +748,20 @@ namespace MfGames.Text.Markup.Markdown
             // If we don't have a current line.
             if (this.currentLine == null)
             {
-                this.elementType = MarkupElementType.EndContent;
+                if (this.inBlockquote)
+                {
+                    this.elementType = MarkupElementType.EndBlockquote;
+                }
+                else
+                {
+                    this.elementType = MarkupElementType.EndContent;
+                }
+
                 return true;
             }
 
             // Pass it into the begin content.
-            return this.ProcessBeginContent();
+            return this.ProcessBlock();
         }
 
         /// <summary>
@@ -728,8 +811,11 @@ namespace MfGames.Text.Markup.Markdown
                 bool isBlankLine = !isEndOfBuffer && this.Reader.PeekLine(0)
                     .Trim()
                     .Length == 0;
+                bool isBlankBlockquote = !isEndOfBuffer
+                    && this.Reader.PeekLine(0)
+                        .Trim() == ">";
 
-                if (isEndOfBuffer || isBlankLine
+                if (isEndOfBuffer || isBlankLine || isBlankBlockquote
                     || this.Options.TreatNewLinesAsBreaks)
                 {
                     // End the paragraph or heading to get into our endgame.

@@ -25,7 +25,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example023AtxHeader1()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("# foo");
+            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match(
+                "# foo");
 
             Assert.AreEqual(
                 true, 
@@ -51,7 +52,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example023AtxHeader2()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("## foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("## foo");
 
             Assert.AreEqual(
                 true, 
@@ -77,7 +79,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example023AtxHeader3()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("### foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("### foo");
 
             Assert.AreEqual(
                 true, 
@@ -103,7 +106,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example023AtxHeader4()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("#### foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("#### foo");
 
             Assert.AreEqual(
                 true, 
@@ -129,7 +133,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example023AtxHeader5()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("##### foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("##### foo");
 
             Assert.AreEqual(
                 true, 
@@ -155,7 +160,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example023AtxHeader6()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("###### foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("###### foo");
 
             Assert.AreEqual(
                 true, 
@@ -181,7 +187,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example024AtxHeader()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("####### foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("####### foo");
 
             Assert.AreEqual(
                 false, 
@@ -195,7 +202,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example025AtxHeader()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("#5 foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("#5 foo");
 
             Assert.AreEqual(
                 false, 
@@ -209,7 +217,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example026AtxHeader()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match(@"\## foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match(@"\## foo");
 
             Assert.AreEqual(
                 false, 
@@ -251,7 +260,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example029AtxHeader1()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match(" ### foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match(" ### foo");
 
             Assert.AreEqual(
                 true, 
@@ -275,7 +285,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example029AtxHeader2()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("  ## foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("  ## foo");
 
             Assert.AreEqual(
                 true, 
@@ -299,7 +310,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example029AtxHeader3()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("   # foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("   # foo");
 
             Assert.AreEqual(
                 true, 
@@ -323,7 +335,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example030AtxHeader()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("    # foo");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("    # foo");
 
             Assert.AreEqual(
                 false, 
@@ -335,7 +348,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example032AtxHeader1()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("## foo ##");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("## foo ##");
 
             Assert.AreEqual(
                 true, 
@@ -360,7 +374,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         public void Example032AtxHeader2()
         {
             Match matches =
-                CommonMarkSpecification.AtxHeaderRegex.Match("  ###   foo    ###");
+                CommonMarkSpecification.AtxHeaderRegex.Match(
+                    "  ###   foo    ###");
 
             Assert.AreEqual(
                 true, 
@@ -410,7 +425,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example033AtxHeader2()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("##### foo #");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("##### foo #");
 
             Assert.AreEqual(
                 true, 
@@ -434,8 +450,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example034AtxHeader()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match(
-                "### foo ###   ");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("### foo ###   ");
 
             Assert.AreEqual(
                 true, 
@@ -459,7 +475,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example035AtxHeader()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("### foo ### b");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("### foo ### b");
 
             Assert.AreEqual(
                 true, 
@@ -483,7 +500,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example036AtxHeader()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("# foo#");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("# foo#");
 
             Assert.AreEqual(
                 true, 
@@ -507,7 +525,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example037AtxHeader1()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match(@"### foo \###");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match(@"### foo \###");
 
             Assert.AreEqual(
                 true, 
@@ -531,7 +550,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example037AtxHeader2()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match(@"### foo #\##");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match(@"### foo #\##");
 
             Assert.AreEqual(
                 true, 
@@ -555,8 +575,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example037AtxHeader3()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match(
-                @"# foo \#");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match(@"# foo \#");
 
             Assert.AreEqual(
                 true, 
@@ -628,7 +648,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         [Test]
         public void Example040AtxHeader3()
         {
-            Match matches = CommonMarkSpecification.AtxHeaderRegex.Match("### ###");
+            Match matches =
+                CommonMarkSpecification.AtxHeaderRegex.Match("### ###");
 
             Assert.AreEqual(
                 true, 

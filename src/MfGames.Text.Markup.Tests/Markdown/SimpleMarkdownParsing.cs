@@ -294,10 +294,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent), 
                 new Event(MarkupElementType.BeginBlockquote), 
                 new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three"
+                    }, 
                 new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Four five six."
+                    }, 
                 new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndBlockquote), 
                 new Event(MarkupElementType.EndContent), 
@@ -380,9 +386,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent), 
                 new Event(MarkupElementType.BeginBlockquote), 
                 new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text), 
-                new Event(MarkupElementType.Whitespace), 
-                new Event(MarkupElementType.Text), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three"
+                    }, 
+                new Event(MarkupElementType.Whitespace)
+                    {
+                        Text = Environment.NewLine
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "four five six."
+                    }, 
                 new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndBlockquote), 
                 new Event(MarkupElementType.EndContent), 
