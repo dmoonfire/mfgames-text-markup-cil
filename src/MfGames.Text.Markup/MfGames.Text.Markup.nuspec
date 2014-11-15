@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>MfGames</id>
+    <id>MfGames.Text.Markup</id>
     <version>1.0.0.0</version>
     <title>MfGames Text Markup CIL (PCL)</title>
     <authors>Dylan R. E. Moonfire</authors>
