@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MfGames</id>
+    <version>1.0.0.0</version>
+    <title>MfGames Text Markup CIL (PCL)</title>
+    <authors>Dylan R. E. Moonfire</authors>
+    <owners>Dylan R. E. Moonfire</owners>
+    <licenseUrl>http://mfgames.com/mfgames-text-markup-cil/license</licenseUrl>
+    <projectUrl>http://mfgames.com/mfgames-text-markup-cil</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An event-based reader/writer library for markup formats.</description>
+    <copyright>Copyright 2014</copyright>
+  </metadata>
+</package>
