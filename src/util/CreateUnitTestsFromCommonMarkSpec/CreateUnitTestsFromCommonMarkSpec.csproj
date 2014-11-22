@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F2DC96E2-7F38-404D-8EE2-C2E806FDE4E5}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{6C1628BA-9610-4463-AC5B-52FE75A85941}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MfGames.Text.Markup.Tests</RootNamespace>
-    <AssemblyName>MfGames.Text.Markup.Tests</AssemblyName>
+    <RootNamespace>CreateUnitTestsFromCommonMarkSpec</RootNamespace>
+    <AssemblyName>CreateUnitTestsFromCommonMarkSpec</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -31,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,22 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Markdown\CommonMarkRegexTests.cs" />
-    <Compile Include="Markdown\CommonMarkSpecTests.cs" />
-    <Compile Include="Markdown\MarkdownReaderRecorderTestsBase.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="MarkupReaderRecorder.cs" />
-    <Compile Include="Markdown\SimpleMarkdownParsing.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MfGames.Text.Markup\MfGames.Text.Markup.csproj">
-      <Project>{04B44B8C-1621-4373-86B1-1844F41C6888}</Project>
-      <Name>MfGames.Text.Markup</Name>
-    </ProjectReference>
+    <Content Include="commonmark-spec-0.12.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

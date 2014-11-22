@@ -94,17 +94,27 @@ namespace MfGames.Text.Markup
         /// <summary>
         /// Indicates the end of a bold.
         /// </summary>
-        EndBold, 
+        EndBold,
 
         /// <summary>
         /// Indicates the beginning of a code span.
         /// </summary>
-        BeginCodeSpan, 
+        BeginCodeSpan,
 
         /// <summary>
         /// Indicates the end of a code span.
         /// </summary>
-        EndCodeSpan, 
+        EndCodeSpan,
+
+        /// <summary>
+        /// Indicates the beginning of a code block (or fence).
+        /// </summary>
+        BeginCodeBlock,
+
+        /// <summary>
+        /// Indicates the end of a code block.
+        /// </summary>
+        EndCodeBlock,
 
         /// <summary>
         /// Indicates a non-processed YAML configuration block.
