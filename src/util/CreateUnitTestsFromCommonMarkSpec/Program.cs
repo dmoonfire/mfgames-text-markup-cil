@@ -203,8 +203,12 @@ namespace CreateUnitTestsFromCommonMarkSpec
             StreamWriter writer, 
             string[] output)
         {
-            // Go through the output lines and process each one.
+            // Go through the output lines and process each one while generating a list
+            // of unit test event lines for the verification process. We also keep track
+            // of context because we need to know if we are inside a paragraph or not
+            // for handling newlines.
             var events = new List<string>();
+            var context = new HtmlMappingContext();
 
             foreach (string outputLine in output)
             {
@@ -213,48 +217,18 @@ namespace CreateUnitTestsFromCommonMarkSpec
 
                 while (line.Length > 0)
                 {
-                    // If we have a paragraph, then we need to add that item.
-                    var keywords = new[,]
-                        {
-                            {
-                               "<hr />", "HorizontalRule" 
-                            }, 
-                            {
-                               "<p>", "BeginParagraph" 
-                            }, 
-                            {
-                               "</p>", "EndParagraph" 
-                            }, 
-                            {
-                               "<pre><code>", "BeginCodeBlock" 
-                            }, 
-                            {
-                               "</code></pre>", "EndCodeBlock" 
-                            }, 
-                        };
+                    // Check to see if we have HTML elements that match. If we do, add
+                    // the events and try again.
+                    IEnumerable<string> contextEvents;
 
-                    bool foundKeyword = false;
-
-                    for (int index0 = 0;
-                        index0 < keywords.GetLength(0);
-                        index0++)
+                    if (context.MatchLine(ref line, out contextEvents))
                     {
-                        if (line.StartsWith(keywords[index0, 0]))
-                        {
-                            events.Add(keywords[index0, 1] + ")");
-                            line = line.Substring(keywords[index0, 0].Length);
-                            foundKeyword = true;
-                            break;
-                        }
-                    }
-
-                    if (foundKeyword)
-                    {
+                        events.AddRange(contextEvents);
                         continue;
                     }
 
                     // Look for a element tag.
-                    int index = line.IndexOf("<");
+                    int index = line.IndexOf("<", System.StringComparison.Ordinal);
                     string text = null;
 
                     if (index > 0)
@@ -288,6 +262,18 @@ namespace CreateUnitTestsFromCommonMarkSpec
                     }
 
                     break;
+                }
+
+                // When we get here, we've reached the end of the line. We need to
+                // see if we are reporting a newline or not.
+                if (context.Contains("Paragraph") || context.Contains("CodeBlock"))
+                {
+                    events.Add(
+                        string.Format(
+                            "Whitespace) {1} Text = \"{0}\" {2}",
+                            @"\r\n",
+                            "{",
+                            "}"));
                 }
             }
 
