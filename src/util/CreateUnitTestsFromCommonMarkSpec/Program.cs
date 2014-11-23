@@ -19,6 +19,25 @@ namespace CreateUnitTestsFromCommonMarkSpec
     /// </summary>
     public class Program
     {
+        #region Static Fields
+
+        /// <summary>
+        /// </summary>
+        private static readonly Regex AnchorRegex = new Regex("^<a ([^>]+)>");
+
+        /// <summary>
+        /// </summary>
+        private static readonly Regex AttributeRegex =
+            new Regex("^\\s*([\\w:]+)=(['\"])(.*?)\\2");
+
+        /// <summary>
+        /// </summary>
+        private static readonly Regex FenceOptionsRegex =
+            new Regex(
+                "^<pre><code class=\"language-([^\\s]+)\"(?: data-options=\"(.*?)\")?>");
+
+        #endregion
+
         #region Public Methods and Operators
 
         /// <summary>
@@ -59,6 +78,143 @@ namespace CreateUnitTestsFromCommonMarkSpec
         #endregion
 
         #region Methods
+
+        /// <summary>
+        /// </summary>
+        /// <param name="line">
+        /// </param>
+        /// <param name="context">
+        /// </param>
+        /// <param name="events">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private static bool CheckAnchor(
+            ref string line, 
+            HtmlMappingContext context, 
+            List<string> events)
+        {
+            // See if we have a match on the anchor tag.
+            Match match = AnchorRegex.Match(line);
+
+            if (!match.Success)
+            {
+                return false;
+            }
+
+            // Add the context for inside the anchor.
+            context.Add("Anchor");
+
+            // Create the event line with the language.
+            var buffer = new StringBuilder();
+
+            buffer.Append("BeginAnchor) {");
+
+            // Parse various elements of the anchor tag.
+            var args = new Dictionary<string, string>();
+            string attributes = match.Groups[1].Value;
+
+            while (true)
+            {
+                // Handle the inner match.
+                Match innerMatch = AttributeRegex.Match(attributes);
+
+                if (!innerMatch.Success)
+                {
+                    break;
+                }
+
+                // Trim it back.
+                attributes = attributes
+                    .Substring(innerMatch.Groups[0].Value.Length);
+
+                // Save the values in the object.
+                string key = innerMatch.Groups[1].Value;
+                string normalized = char.ToUpper(key[0]) + key.Substring(1);
+                string value = innerMatch.Groups[3].Value
+                    .Replace("\\", "\\\\");
+
+                args[normalized] = value;
+            }
+
+            // Process the variables.
+            List<string> keys = args.Keys.OrderBy(s => s).ToList();
+
+            for (int index = 0; index < keys.Count; index++)
+            {
+                // Add in the comma, if we need one.
+                if (index > 0)
+                {
+                    buffer.Append(",");
+                }
+
+                // Add in the key/value pair.
+                string key = keys[index];
+
+                buffer.AppendFormat(
+                    " {0}=\"{1}\"", 
+                    key, 
+                    args[key]);
+            }
+
+            // Finish up the event and add it.
+            buffer.Append(" }");
+            events.Add(buffer.ToString());
+
+            // Trim off the matched part and continue to avoid an error.
+            line = line.Substring(match.Groups[0].Value.Length);
+            return true;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="line">
+        /// </param>
+        /// <param name="context">
+        /// </param>
+        /// <param name="events">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private static bool CheckFence(
+            ref string line, 
+            HtmlMappingContext context, 
+            List<string> events)
+        {
+            // See if we have a match on the fence.
+            Match match = FenceOptionsRegex.Match(line);
+
+            if (!match.Success)
+            {
+                return false;
+            }
+
+            // Add the context.
+            context.Add("CodeBlock");
+
+            // Create the event line with the language.
+            var buffer = new StringBuilder();
+
+            buffer.Append("BeginCodeBlock) { Language = \"");
+            buffer.Append(match.Groups[1].Value);
+            buffer.Append("\"");
+
+            // Add the options, if we have one.
+            if (!string.IsNullOrWhiteSpace(match.Groups[2].Value))
+            {
+                buffer.Append(", Options = \"");
+                buffer.Append(match.Groups[2].Value);
+                buffer.Append("\"");
+            }
+
+            // Finish up the event and add it.
+            buffer.Append("}");
+            events.Add(buffer.ToString());
+
+            // Trim off the matched part and continue to avoid an error.
+            line = line.Substring(match.Groups[0].Value.Length);
+            return true;
+        }
 
         /// <summary>
         /// Converts the spec file into a NUnit test file.
@@ -229,7 +385,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
                     }
 
                     // Look for a element tag.
-                    int index = line.IndexOf("<", System.StringComparison.Ordinal);
+                    int index = line.IndexOf("<", StringComparison.Ordinal);
                     string text = null;
 
                     if (index > 0)
@@ -266,35 +422,14 @@ namespace CreateUnitTestsFromCommonMarkSpec
                         continue;
                     }
 
-                    // See if we have the code block regular expression.
-                    Match match = FenceOptionsRegex.Match(line);
-
-                    if (match.Success)
+                    // See if we have some special conditions.
+                    if (CheckFence(ref line, context, events))
                     {
-                        // Add the context.
-                        context.Add("CodeBlock");
+                        continue;
+                    }
 
-                        // Create the event line with the language.
-                        StringBuilder buffer = new StringBuilder();
-
-                        buffer.Append("CodeBlock) { Language = \"");
-                        buffer.Append(match.Groups[1].Value);
-                        buffer.Append("\"");
-
-                        // Add the options, if we have one.
-                        if (!string.IsNullOrWhiteSpace(match.Groups[2].Value))
-                        {
-                            buffer.Append(", Options = \"");
-                            buffer.Append(match.Groups[2].Value);
-                            buffer.Append("\"");
-                        }
-
-                        // Finish up the event and add it.
-                        buffer.Append("}");
-                        events.Add(buffer.ToString());
-
-                        // Trim off the matched part and continue to avoid an error.
-                        line = line.Substring(match.Groups[0].Value.Length);
+                    if (CheckAnchor(ref line, context, events))
+                    {
                         continue;
                     }
 
@@ -305,29 +440,32 @@ namespace CreateUnitTestsFromCommonMarkSpec
                     if (!context.Contains("Html"))
                     {
                         events.Add("BeginHtml)");
-                    context.Add("Html");
+                        context.Add("Html");
                     }
 
                     // Just grab the entire line.
-                    text = line;
+                    text = line
+                        .Replace("\\", "\\\\")
+                        .Replace("\"", "\\\"");
                     line = string.Empty;
                     events.Add(
                         string.Format(
-                            "Text) {1} Text = \"{0}\" {2}",
-                            text,
-                            "{",
+                            "Text) {1} Text = \"{0}\" {2}", 
+                            text, 
+                            "{", 
                             "}"));
                 }
 
                 // When we get here, we've reached the end of the line. We need to
                 // see if we are reporting a newline or not.
-                if (context.Contains("Paragraph") || context.Contains("CodeBlock") || context.Contains("Html"))
+                if (context.Contains("Paragraph")
+                    || context.Contains("CodeBlock") || context.Contains("Html"))
                 {
                     events.Add(
                         string.Format(
-                            "Whitespace) {1} Text = \"{0}\" {2}",
-                            @"\r\n",
-                            "{",
+                            "Whitespace) {1} Text = \"{0}\" {2}", 
+                            @"\r\n", 
+                            "{", 
                             "}"));
                 }
             }
@@ -346,10 +484,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
             }
         }
 
-        private static readonly Regex FenceOptionsRegex =
-            new Regex("^<pre><code class=\"language-([^\\s]+)\"(?: data-options=\"(.*?)\")?>");
-
-        //<pre><code class="language-ruby">
+        // <pre><code class="language-ruby">
         /// <summary>
         /// </summary>
         /// <param name="writer">

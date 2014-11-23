@@ -1,60 +1,109 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿// <copyright file="HtmlMappingContext.cs" company="Moonfire Games">
+//     Copyright (c) Moonfire Games. Some Rights Reserved.
+// </copyright>
+// MIT Licensed (http://opensource.org/licenses/MIT)
 namespace CreateUnitTestsFromCommonMarkSpec
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>
     /// Manages the contextual state of the HTML elements along with generating the
     /// textual lines for the unit test.
     /// </summary>
     public class HtmlMappingContext
     {
+        #region Fields
+
+        /// <summary>
+        /// </summary>
+        private readonly HashSet<string> context;
+
+        /// <summary>
+        /// </summary>
+        private readonly HtmlMapping[] mappings;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        /// <summary>
+        /// </summary>
         public HtmlMappingContext()
         {
-            mappings = new HtmlMapping[]
+            this.mappings = new[]
                 {
-                    HtmlMapping.CreateSingle("hr", "HorizontalRule"),
-                    HtmlMapping.CreatePair("p", "Paragraph"),
+                    HtmlMapping.CreateSingle("hr", "HorizontalRule"), 
+                    HtmlMapping.CreatePair("p", "Paragraph"), 
                     new HtmlMapping(
-                        "CodeBlock",
-                        "<pre><code>",
-                        "BeginCodeBlock",
-                        "</code></pre>",
-                        "EndCodeBlock", 0),
-                    HtmlMapping.CreatePair("code", "CodeSpan"),
-                    HtmlMapping.CreatePair("blockquote", "Blockquote"),
-                    HtmlMapping.CreatePair("em", "Italic"),
-                    HtmlMapping.CreatePair("bold", "Bold"),
-                    HtmlMapping.CreatePair("ol", "OrderedList"),
-                    HtmlMapping.CreatePair("ul", "UnorderedList"),
-                    HtmlMapping.CreatePair("li", "ListItem"),
-                    HtmlMapping.CreatePair("h1", "Heading", 1),
-                    HtmlMapping.CreatePair("h2", "Heading", 2),
-                    HtmlMapping.CreatePair("h3", "Heading", 3),
-                    HtmlMapping.CreatePair("h4", "Heading", 4),
-                    HtmlMapping.CreatePair("h5", "Heading", 5),
-                    HtmlMapping.CreatePair("h6", "Heading", 6),
+                        "CodeBlock", 
+                        "<pre><code>", 
+                        "BeginCodeBlock", 
+                        "</code></pre>", 
+                        "EndCodeBlock", 
+                        0), 
+                    HtmlMapping.CreatePair("code", "CodeSpan"), 
+                    HtmlMapping.CreatePair("blockquote", "Blockquote"), 
+                    HtmlMapping.CreatePair("em", "Italic"), 
+                    HtmlMapping.CreatePair("bold", "Bold"), 
+                    HtmlMapping.CreatePair("ol", "OrderedList"), 
+                    HtmlMapping.CreatePair("ul", "UnorderedList"), 
+                    HtmlMapping.CreatePair("li", "ListItem"), 
+                    HtmlMapping.CreatePair("h1", "Heading", 1), 
+                    HtmlMapping.CreatePair("h2", "Heading", 2), 
+                    HtmlMapping.CreatePair("h3", "Heading", 3), 
+                    HtmlMapping.CreatePair("h4", "Heading", 4), 
+                    HtmlMapping.CreatePair("h5", "Heading", 5), 
+                    HtmlMapping.CreatePair("h6", "Heading", 6), 
+                    HtmlMapping.CreatePair("a", "Anchor"), 
                 };
             this.context = new HashSet<string>();
         }
 
-        private HtmlMapping[] mappings;
+        #endregion
 
-        private HashSet<string> context;
+        #region Public Methods and Operators
 
-        public bool MatchLine(ref string line,
+        /// <summary>
+        /// </summary>
+        /// <param name="type">
+        /// </param>
+        public void Add(string type)
+        {
+            this.context.Add(type);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="type">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public bool Contains(string type)
+        {
+            return this.context.Contains(type);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="line">
+        /// </param>
+        /// <param name="events">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public bool MatchLine(
+            ref string line, 
             out IEnumerable<string> events)
         {
             // Go through our mapping and look for a match.
-            foreach (var mapping in mappings)
+            foreach (HtmlMapping mapping in this.mappings)
             {
                 bool isBegin;
                 string pairType;
 
-                if (mapping.MatchLine(ref line, out events, out pairType, out isBegin))
+                if (mapping.MatchLine(
+                    ref line, out events, out pairType, out isBegin))
                 {
                     // Paragraph has some special rules if we are in a HTML context and
                     // start a code block, heading, or paragraph.
@@ -65,7 +114,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
                             case "Paragraph":
                             case "Heading":
                             case "CodeBlock":
-                                var newEvents = events.ToList();
+                                List<string> newEvents = events.ToList();
                                 newEvents.Insert(0, "EndHtml)");
                                 this.Remove("Html");
                                 events = newEvents;
@@ -77,10 +126,12 @@ namespace CreateUnitTestsFromCommonMarkSpec
                     if (pairType != null)
                     {
                         if (isBegin)
-                            context.Add(pairType);
+                        {
+                            this.context.Add(pairType);
+                        }
                         else
                         {
-                            context.Remove(pairType);
+                            this.context.Remove(pairType);
                         }
                     }
 
@@ -94,19 +145,15 @@ namespace CreateUnitTestsFromCommonMarkSpec
             return false;
         }
 
-        public bool Contains(string type)
-        {
-            return this.context.Contains(type);
-        }
-
-        public void Add(string type)
-        {
-            this.context.Add(type);
-        }
-
+        /// <summary>
+        /// </summary>
+        /// <param name="type">
+        /// </param>
         public void Remove(string type)
         {
             this.context.Remove(type);
         }
+
+        #endregion
     }
 }

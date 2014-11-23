@@ -50,6 +50,15 @@ namespace MfGames.Text.Markup.Tests
         public MarkupElementType ElementType { get; private set; }
 
         /// <summary>
+        /// Gets or sets the href attribute of an anchor.
+        /// </summary>
+        public string Href { get; set; }
+
+        /// <summary>
+        /// </summary>
+        public string Language { get; set; }
+
+        /// <summary>
         /// Gets or sets the level of heading or bullet lists.
         /// </summary>
         public int Level { get; set; }
@@ -58,6 +67,11 @@ namespace MfGames.Text.Markup.Tests
         /// Gets the text element at the point of the event.
         /// </summary>
         public string Text { get; set; }
+
+        /// <summary>
+        /// Gets or sets the title attribute of an anchor.
+        /// </summary>
+        public string Title { get; set; }
 
         #endregion
 

@@ -62,9 +62,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeading) { Level = 1 }, 
-                new Event(MarkupElementType.Text) { Text = "Header" }, 
-                new Event(MarkupElementType.EndHeading) { Level = 1 }, 
+                new Event(MarkupElementType.BeginHeading)
+                    {
+                        Level = 1
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header"
+                    }, 
+                new Event(MarkupElementType.EndHeading)
+                    {
+                        Level = 1
+                    }, 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -79,10 +88,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginHeading) { Level = 2 },
-                new Event(MarkupElementType.Text) { Text = "Header" },
-                new Event(MarkupElementType.EndHeading) { Level = 2 },
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading)
+                    {
+                        Level = 2
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header"
+                    }, 
+                new Event(MarkupElementType.EndHeading)
+                    {
+                        Level = 2
+                    }, 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -97,10 +115,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginHeading) { Level = 3 },
-                new Event(MarkupElementType.Text) { Text = "Header" },
-                new Event(MarkupElementType.EndHeading) { Level = 3 },
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading)
+                    {
+                        Level = 3
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header"
+                    }, 
+                new Event(MarkupElementType.EndHeading)
+                    {
+                        Level = 3
+                    }, 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -115,10 +142,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginHeading) { Level = 4 },
-                new Event(MarkupElementType.Text) { Text = "Header" },
-                new Event(MarkupElementType.EndHeading) { Level = 4 },
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading)
+                    {
+                        Level = 4
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header"
+                    }, 
+                new Event(MarkupElementType.EndHeading)
+                    {
+                        Level = 4
+                    }, 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -133,10 +169,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginHeading) { Level = 5 },
-                new Event(MarkupElementType.Text) { Text = "Header" },
-                new Event(MarkupElementType.EndHeading) { Level = 5 },
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading)
+                    {
+                        Level = 5
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header"
+                    }, 
+                new Event(MarkupElementType.EndHeading)
+                    {
+                        Level = 5
+                    }, 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -151,10 +196,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginHeading) { Level = 6 },
-                new Event(MarkupElementType.Text) { Text = "Header" },
-                new Event(MarkupElementType.EndHeading) { Level = 6 },
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading)
+                    {
+                        Level = 6
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header"
+                    }, 
+                new Event(MarkupElementType.EndHeading)
+                    {
+                        Level = 6
+                    }, 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -392,10 +446,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginHeading) { Level = 1 },
-                new Event(MarkupElementType.Text) { Text = "Header" },
-                new Event(MarkupElementType.EndHeading) { Level = 1 },
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading)
+                    {
+                        Level = 1
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header"
+                    }, 
+                new Event(MarkupElementType.EndHeading)
+                    {
+                        Level = 1
+                    }, 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -412,10 +475,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginHeading) { Level = 2 },
-                new Event(MarkupElementType.Text) { Text = "Header" },
-                new Event(MarkupElementType.EndHeading) { Level = 2 },
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeading)
+                    {
+                        Level = 2
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Header"
+                    }, 
+                new Event(MarkupElementType.EndHeading)
+                    {
+                        Level = 2
+                    }, 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }

@@ -94,27 +94,27 @@ namespace MfGames.Text.Markup
         /// <summary>
         /// Indicates the end of a bold.
         /// </summary>
-        EndBold,
+        EndBold, 
 
         /// <summary>
         /// Indicates the beginning of a code span.
         /// </summary>
-        BeginCodeSpan,
+        BeginCodeSpan, 
 
         /// <summary>
         /// Indicates the end of a code span.
         /// </summary>
-        EndCodeSpan,
+        EndCodeSpan, 
 
         /// <summary>
         /// Indicates the beginning of a code block (or fence).
         /// </summary>
-        BeginCodeBlock,
+        BeginCodeBlock, 
 
         /// <summary>
         /// Indicates the end of a code block.
         /// </summary>
-        EndCodeBlock,
+        EndCodeBlock, 
 
         /// <summary>
         /// Indicates a non-processed YAML configuration block.
@@ -135,5 +135,49 @@ namespace MfGames.Text.Markup
         /// Indicates the end of a heading section.
         /// </summary>
         EndHeading, 
+
+        /// <summary>
+        /// Indicates the beginning of an anchor link.
+        /// </summary>
+        BeginAnchor, 
+
+        /// <summary>
+        /// Indicates the end of an anchor link.
+        /// </summary>
+        EndAnchor, 
+
+        /// <summary>
+        /// Indicates the beginning of an HTML section.
+        /// </summary>
+        BeginHtml, 
+
+        /// <summary>
+        /// Indicates the end of an HTML section.
+        /// </summary>
+        EndHtml, 
+
+        /// <summary>
+        /// </summary>
+        BeginOrderedList, 
+
+        /// <summary>
+        /// </summary>
+        EndOrderedList, 
+
+        /// <summary>
+        /// </summary>
+        BeginUnorderedList, 
+
+        /// <summary>
+        /// </summary>
+        EndUnorderedList, 
+
+        /// <summary>
+        /// </summary>
+        BeginListItem, 
+
+        /// <summary>
+        /// </summary>
+        EndListItem, 
     }
 }

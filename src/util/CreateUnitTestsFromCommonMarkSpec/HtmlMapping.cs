@@ -27,12 +27,14 @@ namespace CreateUnitTestsFromCommonMarkSpec
         /// </param>
         /// <param name="endType">
         /// </param>
-        /// <param name="level"></param>
-        public HtmlMapping(string pairType,
-            string startElement,
-            string startType,
-            string endElement,
-            string endType,
+        /// <param name="level">
+        /// </param>
+        public HtmlMapping(
+            string pairType, 
+            string startElement, 
+            string startType, 
+            string endElement, 
+            string endType, 
             int level)
         {
             this.PairType = pairType;
@@ -40,7 +42,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
             this.StartType = startType;
             this.EndElement = endElement;
             this.EndType = endType;
-            Level = level;
+            this.Level = level;
         }
 
         #endregion
@@ -55,6 +57,8 @@ namespace CreateUnitTestsFromCommonMarkSpec
         /// </summary>
         public string EndType { get; private set; }
 
+        /// <summary>
+        /// </summary>
         public int Level { get; private set; }
 
         /// <summary>
@@ -79,11 +83,13 @@ namespace CreateUnitTestsFromCommonMarkSpec
         /// </param>
         /// <param name="typeSuffix">
         /// </param>
+        /// <param name="level">
+        /// </param>
         /// <returns>
         /// </returns>
         public static HtmlMapping CreatePair(
             string element, 
-            string typeSuffix,
+            string typeSuffix, 
             int level = 0)
         {
             return new HtmlMapping(
@@ -91,7 +97,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
                 string.Format("<{0}>", element), 
                 "Begin" + typeSuffix, 
                 string.Format("</{0}>", element), 
-                "End" + typeSuffix,
+                "End" + typeSuffix, 
                 level);
         }
 
@@ -112,7 +118,8 @@ namespace CreateUnitTestsFromCommonMarkSpec
                 string.Format("<{0} />", element), 
                 type, 
                 null, 
-                null, 0);
+                null, 
+                0);
         }
 
         /// <summary>
@@ -137,7 +144,14 @@ namespace CreateUnitTestsFromCommonMarkSpec
             if (line.StartsWith(this.StartElement))
             {
                 // Add in the event description.
-                events = new[] { "Begin" + GetTypeLine() };
+                if (this.EndElement == null)
+                {
+                    events = new[] { this.GetTypeLine() };
+                }
+                else
+                {
+                    events = new[] { "Begin" + this.GetTypeLine() };
+                }
 
                 // Pull it off the line.
                 line = line.Substring(this.StartElement.Length);
@@ -150,7 +164,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
             if (this.EndElement != null && line.StartsWith(this.EndElement))
             {
                 // Add in the event description.
-                events = new[] { "End" + GetTypeLine() };
+                events = new[] { "End" + this.GetTypeLine() };
 
                 // Pull it off the line.
                 line = line.Substring(this.EndElement.Length);
@@ -166,18 +180,27 @@ namespace CreateUnitTestsFromCommonMarkSpec
             return false;
         }
 
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
         private string GetTypeLine()
         {
             // Start with the basic pair.
-            StringBuilder buffer = new StringBuilder();
+            var buffer = new StringBuilder();
 
-            buffer.Append(PairType);
+            buffer.Append(this.PairType);
+            buffer.Append(")");
 
             // If we have a level, then add it.
-            if (Level > 0)
+            if (this.Level > 0)
             {
                 buffer.Append(" { Level = ");
-                buffer.Append(Level);
+                buffer.Append(this.Level);
                 buffer.Append(" }");
             }
 
