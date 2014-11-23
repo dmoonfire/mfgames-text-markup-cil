@@ -3119,6 +3119,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.EndCodeSpan,
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "aaa" },
                 new Event(MarkupElementType.EndParagraph,
@@ -3285,8 +3287,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.CodeBlock) { Language = "ruby"},
+                new Event(MarkupElementType.Text) { Text = "def foo(x)" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  return 3" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "end" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndCodeBlock,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
@@ -3323,8 +3330,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.CodeBlock) { Language = "ruby"},
+                new Event(MarkupElementType.Text) { Text = "def foo(x)" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  return 3" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "end" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndCodeBlock,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
@@ -3352,6 +3364,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.CodeBlock) { Language = ";"},
+                new Event(MarkupElementType.EndCodeBlock,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3380,6 +3394,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "aa" },
+                new Event(MarkupElementType.EndCodeSpan,
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndParagraph,
@@ -3463,11 +3480,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<table>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  " },
+                new Event(MarkupElementType.Text) { Text = "<tr>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "    " },
+                new Event(MarkupElementType.Text) { Text = "<td>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "           hi" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "    " },
+                new Event(MarkupElementType.Text) { Text = "</td>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  " },
+                new Event(MarkupElementType.Text) { Text = "</tr>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "</table>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "okay." },
                 new Event(MarkupElementType.EndParagraph,
@@ -3502,8 +3534,15 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.Text) { Text = " " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  *hello*" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "         " },
+                new Event(MarkupElementType.Text) { Text = "<foo><a>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3538,11 +3577,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<DIV CLASS="foo">" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "Markdown" },
                 new Event(MarkupElementType.EndItalic,
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "</DIV>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3576,9 +3623,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<div></div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "``` c" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "int x = 33;" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "```" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3609,8 +3663,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<!-- Foo" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "   baz -->" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3641,8 +3701,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<?php" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  echo '>';" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "?>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3703,18 +3769,35 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<![CDATA[" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "function matchwo(a,b)" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "{" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "if (a " },
+                new Event(MarkupElementType.Text) { Text = "< b && a < 0) then" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  {" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  return 1;" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  }" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "else" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  {" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  return 0;" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "  }" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "}" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "]]>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3746,6 +3829,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.Text) { Text = "  " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<!-- foo -->" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.BeginCodeBlock,
                 new Event(MarkupElementType.Text) { Text = "<!-- foo -->" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
@@ -3786,7 +3873,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "Foo" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "</div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3820,8 +3914,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "</div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "*foo*" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3849,7 +3951,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<div class" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3884,12 +3991,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "Emphasized" },
                 new Event(MarkupElementType.EndItalic,
                 new Event(MarkupElementType.Text) { Text = " text." },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "</div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3920,7 +4035,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "*Emphasized* text." },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "</div>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -3971,7 +4093,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<table>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "<tr>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "<td>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "Hi" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "</td>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "</tr>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "</table>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4001,7 +4138,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4035,7 +4175,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="the title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4065,7 +4208,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="my_(url)" title="title (with parens)">Foo*bar]</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4099,7 +4245,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="my%20url" title="title">Foo bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4131,7 +4280,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4196,7 +4348,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="url">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4228,7 +4383,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="first">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4258,7 +4416,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">Foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4288,7 +4449,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/%CF%86%CE%BF%CF%85">αγω</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4489,7 +4653,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginHeading { Level = 1 },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">Foo</a></h1>" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginBlockquote,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph,
@@ -4535,9 +4704,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/foo-url" title="foo">foo</a>," },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "<a href="/bar-url" title="bar">bar</a>," },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "<a href="/baz-url">baz</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4569,11 +4743,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginBlockquote,
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndBlockquote,
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -4856,9 +5033,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "aaa" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bbb" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -6487,7 +6668,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<ol start="10">" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndParagraph,
@@ -7330,15 +7516,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<ol start="10">" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginListItem,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginUnorderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginListItem,
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndUnorderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndOrderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -7370,15 +7566,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<ol start="10">" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginListItem,
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndOrderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginUnorderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginListItem,
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndUnorderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -7456,14 +7661,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginListItem,
                 new Event(MarkupElementType.BeginUnorderedList,
                 new Event(MarkupElementType.BeginListItem,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<ol start="2">" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginListItem,
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndOrderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndUnorderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndOrderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -7678,10 +7893,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndListItem,
                 new Event(MarkupElementType.EndOrderedList,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<ol start="3">" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginListItem,
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndOrderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -7757,10 +7978,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "The number of windows in my house is" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<ol start="14">" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.BeginListItem,
                 new Event(MarkupElementType.Text) { Text = "The number of doors is 6." },
                 new Event(MarkupElementType.EndListItem,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndOrderedList,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -8821,7 +9048,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "hi" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "lo`" },
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -8997,9 +9228,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9025,7 +9260,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "\\[\\`" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9113,7 +9351,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="http://example.com?find=%5C*">http://example.com?find=\*</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9139,7 +9380,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/bar\/)"></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9165,7 +9409,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/bar*" title="ti*tle">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9195,7 +9442,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/bar*" title="ti*tle">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9225,6 +9475,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.CodeBlock) { Language = "foo+bar"},
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndCodeBlock,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
@@ -9413,7 +9666,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="&ouml;&ouml;.html"></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9439,7 +9695,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/f%C3%B6%C3%B6" title="föö">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9469,7 +9728,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/f%C3%B6%C3%B6" title="föö">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9499,6 +9761,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.CodeBlock) { Language = "föö"},
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.EndCodeBlock,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
@@ -9525,7 +9790,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "f&ouml;&ouml;" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9580,7 +9848,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9606,7 +9877,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "foo ` bar" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9632,7 +9906,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "``" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9662,7 +9939,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9690,7 +9970,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "foo bar baz" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9716,7 +9999,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "foo `` bar" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9742,7 +10028,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "foo\\" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "bar`" },
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9769,7 +10059,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "*foo" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "*" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9796,7 +10089,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[not a " },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "link](/foo" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.Text) { Text = ")" },
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9822,7 +10119,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="http://foo.bar.%60baz">http://foo.bar.`baz</a>`</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -9848,7 +10148,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="`">`</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10355,7 +10658,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo bar</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10409,7 +10715,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>bar</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10435,7 +10744,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo bar</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10543,7 +10855,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "пристаням" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>стремятся</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10569,7 +10884,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo, <strong>bar</strong>, baz</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10622,7 +10940,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong>bar</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10702,7 +11023,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>пристаням</strong>стремятся</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10728,7 +11052,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo__bar__baz</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10756,7 +11083,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">bar</a></em></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10818,7 +11148,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>bar</strong> baz</em></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -10943,7 +11276,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>bar</strong> baz</em></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11005,7 +11341,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong> bar</em></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11033,7 +11372,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>bar</strong></em></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11094,7 +11436,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>bar <em>baz</em> bim</strong> bop</em></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11122,7 +11467,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url"><em>bar</em></a></em></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11202,7 +11550,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo <a href="/url">bar</a></strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11231,9 +11582,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.Text) { Text = "</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11259,7 +11614,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo <em>bar</em> baz</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11285,7 +11643,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo <strong>bar</strong> baz</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11311,7 +11672,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong><strong>foo</strong> bar</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11337,7 +11701,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo <strong>bar</strong></strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11363,7 +11730,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo <em>bar</em> baz</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11422,7 +11792,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong><em>foo</em> bar</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11448,7 +11821,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo <em>bar</em></strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11477,11 +11853,15 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo <em>bar <strong>baz</strong>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bim" },
                 new Event(MarkupElementType.EndItalic,
                 new Event(MarkupElementType.Text) { Text = " bop" },
+                new Event(MarkupElementType.Text) { Text = "</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11507,7 +11887,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo <a href="/url"><em>bar</em></a></strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11702,7 +12085,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>*</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11729,7 +12115,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>_</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11816,7 +12205,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "*" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -11872,7 +12264,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong>*</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12043,7 +12438,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>_</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12070,7 +12468,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>*</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12157,7 +12558,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "_" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12213,7 +12617,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong>_</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12269,7 +12676,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12326,7 +12736,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12383,7 +12796,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong><strong>foo</strong></strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12409,7 +12825,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong><strong>foo</strong></strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12435,7 +12854,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong><strong><strong>foo</strong></strong></strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12461,7 +12883,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong><em>foo</em></strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12487,7 +12912,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong><strong><em>foo</em></strong></strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12577,7 +13005,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "**foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>bar baz</strong></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12634,7 +13065,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "*" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">bar*</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12661,7 +13095,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "_foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">bar_</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12688,7 +13125,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "*" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="foo" title="*"/></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12715,7 +13155,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "**" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="**"></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12742,7 +13185,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "__" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="__"></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12770,7 +13216,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "a " },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "*" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndItalic,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12798,7 +13248,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "a " },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "_" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndItalic,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12825,7 +13279,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "**a" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="http://foo.bar?q=**">http://foo.bar?q=**</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12852,7 +13309,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "__a" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="http://foo.bar?q=__">http://foo.bar?q=__</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12878,7 +13338,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri" title="title">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12904,7 +13367,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12930,7 +13396,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -12956,7 +13425,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13009,7 +13481,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/my%20uri">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13067,7 +13542,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="(foo)and(bar)">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13120,7 +13598,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="foo(and(bar))">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13146,7 +13627,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="foo(and(bar))">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13172,7 +13656,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="foo):">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13198,7 +13685,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="foo%20b%C3%A4">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13224,7 +13714,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="%22title%22">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13256,9 +13749,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">link</a>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">link</a>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13284,7 +13782,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title &quot;&quot;">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13337,7 +13838,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title &quot;and&quot; title">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13365,7 +13869,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri" title="title">link</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13418,7 +13925,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">link [foo [bar]]</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13472,7 +13982,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[link " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13498,7 +14011,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">link [bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13524,7 +14040,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13550,7 +14069,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13577,7 +14099,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">bar</a>](/uri)</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13606,7 +14131,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "[foo " },
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "[bar " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">baz</a>](/uri)</em>](/uri)</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13633,7 +14161,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "*" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">foo*</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13659,7 +14190,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="baz*">foo *bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13686,7 +14220,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<bar attr="](baz)"></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13713,7 +14250,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "](/uri)" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13740,7 +14280,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="http://example.com?search=%5D(uri)">http://example.com?search=](uri)</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13770,7 +14313,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13800,7 +14346,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">link [foo [bar]]</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13830,7 +14379,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">link [bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13860,7 +14412,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13890,7 +14445,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13921,7 +14479,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">bar</a>]<a href="/uri">ref</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13954,7 +14515,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "[foo " },
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "bar " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">baz</a></em>]<a href="/uri">ref</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -13985,7 +14549,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "*" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">foo*</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14015,7 +14582,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">foo *bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14046,7 +14616,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<bar attr="][ref]"></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14077,7 +14650,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "][ref]" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14108,7 +14684,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="http://example.com?search=%5D%5Bref%5D">http://example.com?search=][ref]</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14138,7 +14717,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14168,7 +14750,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">Толпой</a> is a Russian word.</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14200,7 +14785,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">Baz</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14230,7 +14818,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14262,7 +14853,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14296,7 +14890,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url1">bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14462,7 +15059,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/uri">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14492,7 +15092,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14522,7 +15125,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title"><em>foo</em> bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14552,7 +15158,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">Foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14584,7 +15193,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14614,7 +15226,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14644,7 +15259,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title"><em>foo</em> bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14675,7 +15293,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title"><em>foo</em> bar</a>]</p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14705,7 +15326,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">Foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14767,7 +15391,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "*" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">foo*</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14798,7 +15425,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "]" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14830,7 +15460,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url2">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14861,7 +15494,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo]" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url">bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14893,7 +15529,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url2">foo</a><a href="/url1">baz</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14926,7 +15565,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "[foo]" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url1">bar</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14952,7 +15594,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="foo" title="title" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -14982,7 +15627,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15008,7 +15656,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url2" alt="foo bar" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15034,7 +15685,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url2" alt="foo bar" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15064,7 +15718,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15094,7 +15751,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15120,7 +15780,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="train.jpg" alt="foo" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15147,7 +15810,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "My " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/path/to/train.jpg" alt="foo bar" title="title" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15173,7 +15839,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="url" alt="foo" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15199,7 +15868,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15229,7 +15901,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="foo" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15259,7 +15934,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="foo" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15289,7 +15967,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="foo" title="title" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15319,7 +16000,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="foo bar" title="title" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15349,7 +16033,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="Foo" title="title" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15381,7 +16068,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="foo" title="title" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15411,7 +16101,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="foo" title="title" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15441,7 +16134,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="foo bar" title="title" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15506,7 +16202,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src="/url" alt="Foo" title="title" /></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15568,7 +16267,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "!" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="/url" title="title">foo</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15594,7 +16296,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="http://foo.bar.baz">http://foo.bar.baz</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15620,7 +16325,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="http://foo.bar.baz?q=hello&amp;id=22&amp;boolean">http://foo.bar.baz?q=hello&amp;id=22&amp;boolean</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15646,7 +16354,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="irc://foo.bar:2233/baz">irc://foo.bar:2233/baz</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15672,7 +16383,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="MAILTO:FOO@BAR.BAZ">MAILTO:FOO@BAR.BAZ</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15725,7 +16439,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="mailto:foo@bar.example.com">foo@bar.example.com</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15751,7 +16468,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="mailto:foo+special@Bar.baz-bar0.com">foo+special@Bar.baz-bar0.com</a></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15966,7 +16686,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a><bab><c2c></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -15992,7 +16715,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a/><b2/></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16021,9 +16747,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a  /><b2" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "data=\"foo\" >" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16052,9 +16782,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a foo="bar" bam = 'baz <em>"</em>'" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "_boolean zoop:33=zoop:33 />" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16223,8 +16957,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "</a>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "</foo ></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16281,9 +17019,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<!-- this is a" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "comment - with hyphen -->" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16337,7 +17079,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<?php echo $a; ?></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16364,7 +17109,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<!ELEMENT br EMPTY></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16391,7 +17139,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo " },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<![CDATA[>&<]]></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16417,7 +17168,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="&ouml;"></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16443,7 +17197,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="\*"></p>" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16500,9 +17257,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16532,9 +17293,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16564,9 +17329,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16596,9 +17365,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16628,9 +17401,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16661,10 +17438,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndItalic,
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16695,10 +17476,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph,
                 new Event(MarkupElementType.BeginItalic,
                 new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndItalic,
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16726,7 +17511,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "code span" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16754,7 +17542,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.BeginCodeSpan,
+                new Event(MarkupElementType.Text) { Text = "code\\ span" },
+                new Event(MarkupElementType.EndCodeSpan,
+                new Event(MarkupElementType.EndParagraph,
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16783,9 +17574,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="foo  " },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar\">" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -16814,9 +17609,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph,
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href="foo\" },
                 new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
                 new Event(MarkupElementType.Text) { Text = "bar\">" },
                 new Event(MarkupElementType.EndParagraph,
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }

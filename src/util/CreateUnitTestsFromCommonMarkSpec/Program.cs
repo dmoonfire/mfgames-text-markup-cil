@@ -9,6 +9,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
     using System.IO;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// A command-line utility for creating a unit tests from the CommonMark
@@ -265,12 +266,62 @@ namespace CreateUnitTestsFromCommonMarkSpec
                         continue;
                     }
 
-                    break;
+                    // See if we have the code block regular expression.
+                    Match match = FenceOptionsRegex.Match(line);
+
+                    if (match.Success)
+                    {
+                        // Add the context.
+                        context.Add("CodeBlock");
+
+                        // Create the event line with the language.
+                        StringBuilder buffer = new StringBuilder();
+
+                        buffer.Append("CodeBlock) { Language = \"");
+                        buffer.Append(match.Groups[1].Value);
+                        buffer.Append("\"");
+
+                        // Add the options, if we have one.
+                        if (!string.IsNullOrWhiteSpace(match.Groups[2].Value))
+                        {
+                            buffer.Append(", Options = \"");
+                            buffer.Append(match.Groups[2].Value);
+                            buffer.Append("\"");
+                        }
+
+                        // Finish up the event and add it.
+                        buffer.Append("}");
+                        events.Add(buffer.ToString());
+
+                        // Trim off the matched part and continue to avoid an error.
+                        line = line.Substring(match.Groups[0].Value.Length);
+                        continue;
+                    }
+
+                    // For everything else, we think it is a HTML tag.
+                    Console.WriteLine("  {0}: Cannot handle element: " + line);
+
+                    // Add the event, if we have one.
+                    if (!context.Contains("Html"))
+                    {
+                        events.Add("BeginHtml)");
+                    context.Add("Html");
+                    }
+
+                    // Just grab the entire line.
+                    text = line;
+                    line = string.Empty;
+                    events.Add(
+                        string.Format(
+                            "Text) {1} Text = \"{0}\" {2}",
+                            text,
+                            "{",
+                            "}"));
                 }
 
                 // When we get here, we've reached the end of the line. We need to
                 // see if we are reporting a newline or not.
-                if (context.Contains("Paragraph") || context.Contains("CodeBlock"))
+                if (context.Contains("Paragraph") || context.Contains("CodeBlock") || context.Contains("Html"))
                 {
                     events.Add(
                         string.Format(
@@ -281,6 +332,12 @@ namespace CreateUnitTestsFromCommonMarkSpec
                 }
             }
 
+            // If we still have an HTML context, then add that.
+            if (context.Contains("Html"))
+            {
+                events.Add("EndHtml)");
+            }
+
             // Write out the events.
             foreach (string e in events)
             {
@@ -289,6 +346,10 @@ namespace CreateUnitTestsFromCommonMarkSpec
             }
         }
 
+        private static readonly Regex FenceOptionsRegex =
+            new Regex("^<pre><code class=\"language-([^\\s]+)\"(?: data-options=\"(.*?)\")?>");
+
+        //<pre><code class="language-ruby">
         /// <summary>
         /// </summary>
         /// <param name="writer">

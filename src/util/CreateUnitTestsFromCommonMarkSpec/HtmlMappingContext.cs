@@ -24,6 +24,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
                         "BeginCodeBlock",
                         "</code></pre>",
                         "EndCodeBlock", 0),
+                    HtmlMapping.CreatePair("code", "CodeSpan"),
                     HtmlMapping.CreatePair("blockquote", "Blockquote"),
                     HtmlMapping.CreatePair("em", "Italic"),
                     HtmlMapping.CreatePair("bold", "Bold"),
@@ -55,6 +56,23 @@ namespace CreateUnitTestsFromCommonMarkSpec
 
                 if (mapping.MatchLine(ref line, out events, out pairType, out isBegin))
                 {
+                    // Paragraph has some special rules if we are in a HTML context and
+                    // start a code block, heading, or paragraph.
+                    if (isBegin && this.Contains("Html"))
+                    {
+                        switch (pairType)
+                        {
+                            case "Paragraph":
+                            case "Heading":
+                            case "CodeBlock":
+                                var newEvents = events.ToList();
+                                newEvents.Insert(0, "EndHtml)");
+                                this.Remove("Html");
+                                events = newEvents;
+                                break;
+                        }
+                    }
+
                     // If we have a pair type, then add or remove it.
                     if (pairType != null)
                     {
@@ -79,6 +97,16 @@ namespace CreateUnitTestsFromCommonMarkSpec
         public bool Contains(string type)
         {
             return this.context.Contains(type);
+        }
+
+        public void Add(string type)
+        {
+            this.context.Add(type);
+        }
+
+        public void Remove(string type)
+        {
+            this.context.Remove(type);
         }
     }
 }
