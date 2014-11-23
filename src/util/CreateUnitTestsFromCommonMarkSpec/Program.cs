@@ -249,7 +249,11 @@ namespace CreateUnitTestsFromCommonMarkSpec
                         // Normalize the text.
                         text = text
                             .Replace("\\", "\\\\")
-                            .Replace("\"", "\\\"");
+                            .Replace("\"", "\\\"")
+                            .Replace("&lt;", "<")
+                            .Replace("&gt;", ">")
+                            .Replace("&quot;", "\\\"")
+                            .Replace("&amp;", "&");
 
                         // Write out the text line.
                         events.Add(

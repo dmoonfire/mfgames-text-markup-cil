@@ -24,6 +24,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
                         "BeginCodeBlock",
                         "</code></pre>",
                         "EndCodeBlock", 0),
+                    HtmlMapping.CreatePair("blockquote", "Blockquote"),
                     HtmlMapping.CreatePair("em", "Italic"),
                     HtmlMapping.CreatePair("bold", "Bold"),
                     HtmlMapping.CreatePair("ol", "OrderedList"),
