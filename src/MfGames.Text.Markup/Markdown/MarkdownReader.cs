@@ -335,8 +335,7 @@ namespace MfGames.Text.Markup.Markdown
         private MarkdownBlockType GetBlockType()
         {
             // If we have a blank line left, then this is just whitespace.
-            int trimmedLength = this.currentLine.Trim()
-                .Length;
+            int trimmedLength = this.currentLine.Trim().Length;
 
             if (trimmedLength == 0)
             {
@@ -345,23 +344,16 @@ namespace MfGames.Text.Markup.Markdown
             }
 
             // Check for a horizontal rule.
-            bool isRule =
-                CommonMarkSpecification.HorizontalRuleRegex.IsMatch(
-                    this.currentLine);
+            bool isRule = CommonMarkSpecification.HorizontalRuleRegex
+                .IsMatch(this.currentLine);
 
             if (isRule)
             {
                 return MarkdownBlockType.HorizontalRule;
             }
 
-            // Check to see if this is an ATX header.
-            bool isAtxHeader =
-                CommonMarkSpecification.AtxHeaderRegex.IsMatch(this.currentLine);
-
-            if (isAtxHeader)
-            {
+            if (this.IsAtxHeader(this.currentLine))
                 return MarkdownBlockType.AtxHeading;
-            }
 
             // Check to see if this is a setext header.
             string nextLine = this.Reader.PeekLine(0);
@@ -388,6 +380,21 @@ namespace MfGames.Text.Markup.Markdown
 
             // Everything else is a paragraph.
             return MarkdownBlockType.Paragraph;
+        }
+
+        private bool IsAtxHeader(string line)
+        {
+            // If we have a null, then it isn't.
+            if (string.IsNullOrEmpty(line))
+            {
+                return false;
+            }
+
+            // Check to see if this is an ATX header.
+            bool isAtxHeader = CommonMarkSpecification.AtxHeaderRegex
+                .IsMatch(line);
+
+            return isAtxHeader;
         }
 
         /// <summary>
@@ -577,6 +584,12 @@ namespace MfGames.Text.Markup.Markdown
             {
                 this.originaLine = this.Reader.ReadLine();
                 this.currentLine = this.originaLine;
+            }
+
+            // If the line is a null, then we can't do anything.
+            if (this.currentLine == null)
+            {
+                return false;
             }
 
             // Figure out what the next line is.
@@ -814,8 +827,9 @@ namespace MfGames.Text.Markup.Markdown
                 bool isBlankBlockquote = !isEndOfBuffer
                     && this.Reader.PeekLine(0)
                         .Trim() == ">";
+                bool isNextHeader = this.IsAtxHeader(this.Reader.PeekLine(0));
 
-                if (isEndOfBuffer || isBlankLine || isBlankBlockquote
+                if (isEndOfBuffer || isBlankLine || isBlankBlockquote || isNextHeader
                     || this.Options.TreatNewLinesAsBreaks)
                 {
                     // End the paragraph or heading to get into our endgame.
@@ -838,14 +852,15 @@ namespace MfGames.Text.Markup.Markdown
                         throw new Exception(
                             "We are at the end of the text but in neither a heading or a paragraph.");
                     }
+
+                    // Finish processing.
+                    return true;
                 }
-                else
-                {
-                    // Record it as whitespace and move on.
-                    this.Text = Environment.NewLine;
-                    this.currentLine = null;
-                    this.elementType = MarkupElementType.Whitespace;
-                }
+
+                // Record it as whitespace and move on.
+                this.Text = Environment.NewLine;
+                this.currentLine = null;
+                this.elementType = MarkupElementType.Whitespace;
 
                 // We are done processing this one.
                 return true;
