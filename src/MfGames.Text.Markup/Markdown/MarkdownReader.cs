@@ -792,7 +792,7 @@ namespace MfGames.Text.Markup.Markdown
             {
                 // Set up the state elements.
                 this.elementType = MarkupElementType.Text;
-                this.Text = nonSignificant;
+                this.Text = UnescapeString(nonSignificant);
 
                 // Remove the text we just added, but keep a blank line so we can
                 // process the next element.
@@ -804,6 +804,23 @@ namespace MfGames.Text.Markup.Markdown
             }
 
             return false;
+        }
+
+        private string UnescapeString(string input)
+        {
+            StringBuilder buffer = new StringBuilder();
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                char c = input[i];
+
+                if (c != '\\')
+                {
+                    buffer.Append(c);
+                }
+            }
+
+            return buffer.ToString();
         }
 
         /// <summary>
