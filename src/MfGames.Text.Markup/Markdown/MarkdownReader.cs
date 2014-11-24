@@ -589,7 +589,8 @@ namespace MfGames.Text.Markup.Markdown
             // If the line is a null, then we can't do anything.
             if (this.currentLine == null)
             {
-                return false;
+                this.elementType = MarkupElementType.EndContent;
+                return true;
             }
 
             // Figure out what the next line is.
@@ -792,7 +793,8 @@ namespace MfGames.Text.Markup.Markdown
             {
                 // Set up the state elements.
                 this.elementType = MarkupElementType.Text;
-                this.Text = UnescapeString(nonSignificant);
+                this.Text = UnescapeString(nonSignificant,
+                    this.currentLine == this.originaLine);
 
                 // Remove the text we just added, but keep a blank line so we can
                 // process the next element.
@@ -806,8 +808,16 @@ namespace MfGames.Text.Markup.Markdown
             return false;
         }
 
-        private string UnescapeString(string input)
+        private string UnescapeString(string input,
+            bool isLineBeginning)
         {
+            // See if we need to trim the beginning.
+            if (isLineBeginning)
+            {
+                input = input.TrimStart();
+            }
+
+            // Pull out the escaped characters.
             StringBuilder buffer = new StringBuilder();
 
             for (int i = 0; i < input.Length; i++)
@@ -820,6 +830,7 @@ namespace MfGames.Text.Markup.Markdown
                 }
             }
 
+            // Return the resulting string.
             return buffer.ToString();
         }
 
