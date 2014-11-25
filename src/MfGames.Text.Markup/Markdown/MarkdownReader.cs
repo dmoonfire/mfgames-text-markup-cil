@@ -7,6 +7,7 @@ namespace MfGames.Text.Markup.Markdown
     using System;
     using System.IO;
     using System.Text;
+    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Implements a Markdown reader that parses various flavors of Markdown based
@@ -504,12 +505,13 @@ namespace MfGames.Text.Markup.Markdown
 
                     // Remove the leading and trail space and hash marks. But only in a
                     // specific order to prevent removing too much.
-                    this.currentLine = this.currentLine.TrimStart(' ')
-                        .TrimStart('#')
-                        .TrimStart(' ')
-                        .TrimEnd(' ')
-                        .TrimEnd('#')
-                        .TrimEnd(' ');
+                    Regex removeLeader = new Regex(@"^\s*\#+\s*");
+                    Regex removeTrailing = new Regex(@"(?:\s+\#+)\s*$");
+
+                    this.currentLine = removeLeader.Replace(
+                        this.currentLine, "");
+                    this.currentLine = removeTrailing.Replace(
+                        this.currentLine, "");
                     return this.ProcessContent();
 
                 case MarkdownBlockType.SetextHeading:
