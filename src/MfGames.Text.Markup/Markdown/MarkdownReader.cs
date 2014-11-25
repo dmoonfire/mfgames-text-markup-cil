@@ -344,10 +344,7 @@ namespace MfGames.Text.Markup.Markdown
             }
 
             // Check for a horizontal rule.
-            bool isRule = CommonMarkSpecification.HorizontalRuleRegex
-                .IsMatch(this.currentLine);
-
-            if (isRule)
+            if (this.IsHorizontalRule(this.currentLine))
             {
                 return MarkdownBlockType.HorizontalRule;
             }
@@ -380,6 +377,17 @@ namespace MfGames.Text.Markup.Markdown
 
             // Everything else is a paragraph.
             return MarkdownBlockType.Paragraph;
+        }
+
+        private bool IsHorizontalRule(string input)
+        {
+            // If we are blank, then it is never a rule.
+            if (string.IsNullOrEmpty(input))
+                return false;
+
+            // Use the regular expression to determine if we have a rule.
+            bool isRule = CommonMarkSpecification.HorizontalRuleRegex.IsMatch(input);
+            return isRule;
         }
 
         private bool IsAtxHeader(string line)
@@ -856,8 +864,9 @@ namespace MfGames.Text.Markup.Markdown
                     && this.Reader.PeekLine(0)
                         .Trim() == ">";
                 bool isNextHeader = this.IsAtxHeader(this.Reader.PeekLine(0));
+                bool isNextBreak = this.IsHorizontalRule(this.Reader.PeekLine(0));
 
-                if (isEndOfBuffer || isBlankLine || isBlankBlockquote || isNextHeader
+                if (isEndOfBuffer || isBlankLine || isBlankBlockquote || isNextHeader || isNextBreak
                     || this.Options.TreatNewLinesAsBreaks)
                 {
                     // End the paragraph or heading to get into our endgame.
