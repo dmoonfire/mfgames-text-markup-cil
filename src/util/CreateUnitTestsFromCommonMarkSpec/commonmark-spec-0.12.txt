@@ -6445,17 +6445,12 @@ data="foo" ></p>
 With attributes:
 
 .
-a
-.
-<p>a</p>
-.
-. DREM EXAMPLE DISABLED
 <a foo="bar" bam = 'baz <em>"</em>'
 _boolean zoop:33=zoop:33 />
-. DREM EXAMPLE DISABLED
+.
 <p><a foo="bar" bam = 'baz <em>"</em>'
 _boolean zoop:33=zoop:33 /></p>
-. DREM EXAMPLE DISABLED
+.
 
 Illegal tag names, not parsed as HTML:
 

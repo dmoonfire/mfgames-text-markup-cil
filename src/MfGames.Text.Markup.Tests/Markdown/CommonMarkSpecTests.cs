@@ -6,6 +6,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
 {
     using NUnit.Framework;
 
+#region Designer generated code
+
     /// <summary>
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
@@ -479,9 +481,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "_ _ _ _ a",
-                "",
+                string.Empty,
                 "a------",
-                "",
+                string.Empty,
                 "---a---");
 
             this.AssertEventElementTypes(
@@ -1343,7 +1345,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "Foo *bar*",
                 "=========",
-                "",
+                string.Empty,
                 "Foo *bar*",
                 "---------");
 
@@ -1388,7 +1390,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "Foo",
                 "-------------------------",
-                "",
+                string.Empty,
                 "Foo",
                 "=");
 
@@ -1431,10 +1433,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "   Foo",
                 "---",
-                "",
+                string.Empty,
                 "  Foo",
                 "-----",
-                "",
+                string.Empty,
                 "  Foo",
                 "  ===");
 
@@ -1480,7 +1482,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "    Foo",
                 "    ---",
-                "",
+                string.Empty,
                 "    Foo",
                 "---");
 
@@ -1586,7 +1588,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "Foo",
                 "= =",
-                "",
+                string.Empty,
                 "Foo",
                 "--- -");
 
@@ -1691,7 +1693,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "`Foo",
                 "----",
                 "`",
-                "",
+                string.Empty,
                 "<a title=\"a lot",
                 "---",
                 "of dashes\"/>");
@@ -1814,7 +1816,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "Foo",
                 "Bar",
                 "---",
-                "",
+                string.Empty,
                 "Foo",
                 "Bar",
                 "===");
@@ -1902,7 +1904,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             */
 
             this.Setup(
-                "",
+                string.Empty,
                 "====");
 
             this.AssertEventElementTypes(
@@ -2134,7 +2136,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "    <a/>",
                 "    *hi*",
-                "",
+                string.Empty,
                 "    - one");
 
             this.AssertEventElementTypes(
@@ -2182,7 +2184,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "    chunk1",
-                "",
+                string.Empty,
                 "    chunk2",
                 "  ",
                 " ",
@@ -2267,7 +2269,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "Foo",
                 "    bar",
-                "");
+                string.Empty);
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
@@ -2425,11 +2427,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
             */
 
             this.Setup(
-                "",
+                string.Empty,
                 "    ",
                 "    foo",
                 "    ",
-                "");
+                string.Empty);
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
@@ -2747,7 +2749,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "`````",
-                "",
+                string.Empty,
                 "```",
                 "aaa");
 
@@ -2786,7 +2788,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "```",
-                "",
+                string.Empty,
                 "  ",
                 "```");
 
@@ -3474,7 +3476,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "    </td>",
                 "  </tr>",
                 "</table>",
-                "",
+                string.Empty,
                 "okay.");
 
             this.AssertEventElementTypes(
@@ -3569,9 +3571,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "<DIV CLASS=\"foo\">",
-                "",
+                string.Empty,
                 "*Markdown*",
-                "",
+                string.Empty,
                 "</DIV>");
 
             this.AssertEventElementTypes(
@@ -3822,7 +3824,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "  <!-- foo -->",
-                "",
+                string.Empty,
                 "    <!-- foo -->");
 
             this.AssertEventElementTypes(
@@ -3983,9 +3985,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "<div>",
-                "",
+                string.Empty,
                 "*Emphasized* text.",
-                "",
+                string.Empty,
                 "</div>");
 
             this.AssertEventElementTypes(
@@ -4079,15 +4081,15 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "<table>",
-                "",
+                string.Empty,
                 "<tr>",
-                "",
+                string.Empty,
                 "<td>",
                 "Hi",
                 "</td>",
-                "",
+                string.Empty,
                 "</tr>",
-                "",
+                string.Empty,
                 "</table>");
 
             this.AssertEventElementTypes(
@@ -4131,7 +4133,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo]: /url \"title\"",
-                "",
+                string.Empty,
                 "[foo]");
 
             this.AssertEventElementTypes(
@@ -4168,7 +4170,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "   [foo]: ",
                 "      /url  ",
                 "           'the title'  ",
-                "",
+                string.Empty,
                 "[foo]");
 
             this.AssertEventElementTypes(
@@ -4201,7 +4203,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[Foo*bar\\]]:my_(url) 'title (with parens)'",
-                "",
+                string.Empty,
                 "[Foo*bar\\]]");
 
             this.AssertEventElementTypes(
@@ -4238,7 +4240,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "[Foo bar]:",
                 "<my url>",
                 "'title'",
-                "",
+                string.Empty,
                 "[Foo bar]");
 
             this.AssertEventElementTypes(
@@ -4273,7 +4275,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "[foo]:",
                 "/url",
-                "",
+                string.Empty,
                 "[foo]");
 
             this.AssertEventElementTypes(
@@ -4307,7 +4309,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo]:",
-                "",
+                string.Empty,
                 "[foo]");
 
             this.AssertEventElementTypes(
@@ -4341,7 +4343,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo]",
-                "",
+                string.Empty,
                 "[foo]: url");
 
             this.AssertEventElementTypes(
@@ -4375,7 +4377,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo]",
-                "",
+                string.Empty,
                 "[foo]: first",
                 "[foo]: second");
 
@@ -4409,7 +4411,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[FOO]: /url",
-                "",
+                string.Empty,
                 "[Foo]");
 
             this.AssertEventElementTypes(
@@ -4442,7 +4444,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[ΑΓΩ]: /φου",
-                "",
+                string.Empty,
                 "[αγω]");
 
             this.AssertEventElementTypes(
@@ -4527,7 +4529,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "    [foo]: /url \"title\"",
-                "",
+                string.Empty,
                 "[foo]");
 
             this.AssertEventElementTypes(
@@ -4568,7 +4570,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "```",
                 "[foo]: /url",
                 "```",
-                "",
+                string.Empty,
                 "[foo]");
 
             this.AssertEventElementTypes(
@@ -4607,7 +4609,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "Foo",
                 "[bar]: /baz",
-                "",
+                string.Empty,
                 "[bar]");
 
             this.AssertEventElementTypes(
@@ -4694,7 +4696,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "[bar]: /bar-url",
                 "  \"bar\"",
                 "[baz]: /baz-url",
-                "",
+                string.Empty,
                 "[foo],",
                 "[bar],",
                 "[baz]");
@@ -4741,7 +4743,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo]",
-                "",
+                string.Empty,
                 "> [foo]: /url");
 
             this.AssertEventElementTypes(
@@ -4777,7 +4779,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "aaa",
-                "",
+                string.Empty,
                 "bbb");
 
             this.AssertEventElementTypes(
@@ -4817,7 +4819,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "aaa",
                 "bbb",
-                "",
+                string.Empty,
                 "ccc",
                 "ddd");
 
@@ -4858,8 +4860,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "aaa",
-                "",
-                "",
+                string.Empty,
+                string.Empty,
                 "bbb");
 
             this.AssertEventElementTypes(
@@ -5071,12 +5073,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "  ",
-                "",
+                string.Empty,
                 "aaa",
                 "  ",
-                "",
+                string.Empty,
                 "# aaa",
-                "",
+                string.Empty,
                 "  ");
 
             this.AssertEventElementTypes(
@@ -5618,7 +5620,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "> foo",
-                "",
+                string.Empty,
                 "> bar");
 
             this.AssertEventElementTypes(
@@ -5852,7 +5854,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "> bar",
-                "",
+                string.Empty,
                 "baz");
 
             this.AssertEventElementTypes(
@@ -6026,7 +6028,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 ">     code",
-                "",
+                string.Empty,
                 ">    not code");
 
             this.AssertEventElementTypes(
@@ -6075,9 +6077,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "A paragraph",
                 "with two lines.",
-                "",
+                string.Empty,
                 "    indented code",
-                "",
+                string.Empty,
                 "> A block quote.");
 
             this.AssertEventElementTypes(
@@ -6133,9 +6135,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "1.  A paragraph",
                 "    with two lines.",
-                "",
+                string.Empty,
                 "        indented code",
-                "",
+                string.Empty,
                 "    > A block quote.");
 
             this.AssertEventElementTypes(
@@ -6184,7 +6186,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "- one",
-                "",
+                string.Empty,
                 " two");
 
             this.AssertEventElementTypes(
@@ -6225,7 +6227,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "- one",
-                "",
+                string.Empty,
                 "  two");
 
             this.AssertEventElementTypes(
@@ -6267,7 +6269,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 " -    one",
-                "",
+                string.Empty,
                 "     two");
 
             this.AssertEventElementTypes(
@@ -6309,7 +6311,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 " -    one",
-                "",
+                string.Empty,
                 "      two");
 
             this.AssertEventElementTypes(
@@ -6475,18 +6477,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "- foo",
-                "",
+                string.Empty,
                 "  bar",
-                "",
+                string.Empty,
                 "- foo",
-                "",
-                "",
+                string.Empty,
+                string.Empty,
                 "  bar",
-                "",
+                string.Empty,
                 "- ```",
                 "  foo",
-                "",
-                "",
+                string.Empty,
+                string.Empty,
                 "  bar",
                 "  ```");
 
@@ -6561,13 +6563,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "1.  foo",
-                "",
+                string.Empty,
                 "    ```",
                 "    bar",
                 "    ```",
-                "",
+                string.Empty,
                 "    baz",
-                "",
+                string.Empty,
                 "    > bam");
 
             this.AssertEventElementTypes(
@@ -6620,7 +6622,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "- foo",
-                "",
+                string.Empty,
                 "      bar");
 
             this.AssertEventElementTypes(
@@ -6665,7 +6667,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "  10.  foo",
-                "",
+                string.Empty,
                 "           bar");
 
             this.AssertEventElementTypes(
@@ -6714,9 +6716,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "    indented code",
-                "",
+                string.Empty,
                 "paragraph",
-                "",
+                string.Empty,
                 "    more code");
 
             this.AssertEventElementTypes(
@@ -6765,9 +6767,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "1.     indented code",
-                "",
+                string.Empty,
                 "   paragraph",
-                "",
+                string.Empty,
                 "       more code");
 
             this.AssertEventElementTypes(
@@ -6820,9 +6822,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "1.      indented code",
-                "",
+                string.Empty,
                 "   paragraph",
-                "",
+                string.Empty,
                 "       more code");
 
             this.AssertEventElementTypes(
@@ -6866,7 +6868,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "   foo",
-                "",
+                string.Empty,
                 "bar");
 
             this.AssertEventElementTypes(
@@ -6903,7 +6905,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "-    foo",
-                "",
+                string.Empty,
                 "  bar");
 
             this.AssertEventElementTypes(
@@ -6944,7 +6946,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "-  foo",
-                "",
+                string.Empty,
                 "   bar");
 
             this.AssertEventElementTypes(
@@ -6996,9 +6998,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 " 1.  A paragraph",
                 "     with two lines.",
-                "",
+                string.Empty,
                 "         indented code",
-                "",
+                string.Empty,
                 "     > A block quote.");
 
             this.AssertEventElementTypes(
@@ -7058,9 +7060,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "  1.  A paragraph",
                 "      with two lines.",
-                "",
+                string.Empty,
                 "          indented code",
-                "",
+                string.Empty,
                 "      > A block quote.");
 
             this.AssertEventElementTypes(
@@ -7120,9 +7122,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "   1.  A paragraph",
                 "       with two lines.",
-                "",
+                string.Empty,
                 "           indented code",
-                "",
+                string.Empty,
                 "       > A block quote.");
 
             this.AssertEventElementTypes(
@@ -7178,9 +7180,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "    1.  A paragraph",
                 "        with two lines.",
-                "",
+                string.Empty,
                 "            indented code",
-                "",
+                string.Empty,
                 "        > A block quote.");
 
             this.AssertEventElementTypes(
@@ -7234,9 +7236,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "  1.  A paragraph",
                 "with two lines.",
-                "",
+                string.Empty,
                 "          indented code",
-                "",
+                string.Empty,
                 "      > A block quote.");
 
             this.AssertEventElementTypes(
@@ -8026,10 +8028,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "- foo",
-                "",
+                string.Empty,
                 "- bar",
-                "",
-                "",
+                string.Empty,
+                string.Empty,
                 "- baz");
 
             this.AssertEventElementTypes(
@@ -8082,8 +8084,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "- foo",
-                "",
-                "",
+                string.Empty,
+                string.Empty,
                 "  bar",
                 "- baz");
 
@@ -8142,8 +8144,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "- foo",
                 "  - bar",
                 "    - baz",
-                "",
-                "",
+                string.Empty,
+                string.Empty,
                 "      bim");
 
             this.AssertEventElementTypes(
@@ -8201,8 +8203,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "- foo",
                 "- bar",
-                "",
-                "",
+                string.Empty,
+                string.Empty,
                 "- baz",
                 "- bim");
 
@@ -8262,12 +8264,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "-   foo",
-                "",
+                string.Empty,
                 "    notcode",
-                "",
+                string.Empty,
                 "-   foo",
-                "",
-                "",
+                string.Empty,
+                string.Empty,
                 "    code");
 
             this.AssertEventElementTypes(
@@ -8393,7 +8395,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "- a",
                 "- b",
-                "",
+                string.Empty,
                 "- c");
 
             this.AssertEventElementTypes(
@@ -8448,7 +8450,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "* a",
                 "*",
-                "",
+                string.Empty,
                 "* c");
 
             this.AssertEventElementTypes(
@@ -8504,7 +8506,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "- a",
                 "- b",
-                "",
+                string.Empty,
                 "  c",
                 "- d");
 
@@ -8566,7 +8568,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "- a",
                 "- b",
-                "",
+                string.Empty,
                 "  [ref]: /url",
                 "- d");
 
@@ -8627,8 +8629,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "- a",
                 "- ```",
                 "  b",
-                "",
-                "",
+                string.Empty,
+                string.Empty,
                 "  ```",
                 "- c");
 
@@ -8686,7 +8688,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "- a",
                 "  - b",
-                "",
+                string.Empty,
                 "    c",
                 "- d");
 
@@ -8926,7 +8928,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "* foo",
                 "  * bar",
-                "",
+                string.Empty,
                 "  baz");
 
             this.AssertEventElementTypes(
@@ -8990,7 +8992,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 "- a",
                 "  - b",
                 "  - c",
-                "",
+                string.Empty,
                 "- d",
                 "  - e",
                 "  - f");
@@ -9436,7 +9438,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo]",
-                "",
+                string.Empty,
                 "[foo]: /bar\\* \"ti\\*tle\"");
 
             this.AssertEventElementTypes(
@@ -9720,7 +9722,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo]",
-                "",
+                string.Empty,
                 "[foo]: /f&ouml;&ouml; \"f&ouml;&ouml;\"");
 
             this.AssertEventElementTypes(
@@ -14318,7 +14320,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][bar]",
-                "",
+                string.Empty,
                 "[bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -14351,7 +14353,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[link [foo [bar]]][ref]",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14384,7 +14386,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[link \\[bar][ref]",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14417,7 +14419,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[link *foo **bar** `#`*][ref]",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14454,7 +14456,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[![moon](moon.jpg)][ref]",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14488,7 +14490,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo [bar](/uri)][ref]",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14526,7 +14528,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo *bar [baz][ref]*][ref]",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14567,7 +14569,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "*[foo*][ref]",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14601,7 +14603,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo *bar][ref]",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14634,7 +14636,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo <bar attr=\"][ref]\">",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14668,7 +14670,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo`][ref]`",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14702,7 +14704,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo<http://example.com?search=][ref]>",
-                "",
+                string.Empty,
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
@@ -14736,7 +14738,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][BaR]",
-                "",
+                string.Empty,
                 "[bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -14769,7 +14771,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[Толпой][Толпой] is a Russian word.",
-                "",
+                string.Empty,
                 "[ТОЛПОЙ]: /url");
 
             this.AssertEventElementTypes(
@@ -14805,7 +14807,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "[Foo",
                 "  bar]: /url",
-                "",
+                string.Empty,
                 "[Baz][Foo bar]");
 
             this.AssertEventElementTypes(
@@ -14838,7 +14840,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo] [bar]",
-                "",
+                string.Empty,
                 "[bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -14873,7 +14875,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "[foo]",
                 "[bar]",
-                "",
+                string.Empty,
                 "[bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -14908,9 +14910,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo]: /url1",
-                "",
+                string.Empty,
                 "[foo]: /url2",
-                "",
+                string.Empty,
                 "[bar][foo]");
 
             this.AssertEventElementTypes(
@@ -14943,7 +14945,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[bar][foo\\!]",
-                "",
+                string.Empty,
                 "[foo!]: /url");
 
             this.AssertEventElementTypes(
@@ -14975,7 +14977,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][ref[]",
-                "",
+                string.Empty,
                 "[ref[]: /uri");
 
             this.AssertEventElementTypes(
@@ -15010,7 +15012,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][ref[bar]]",
-                "",
+                string.Empty,
                 "[ref[bar]]: /uri");
 
             this.AssertEventElementTypes(
@@ -15045,7 +15047,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[[[foo]]]",
-                "",
+                string.Empty,
                 "[[[foo]]]: /url");
 
             this.AssertEventElementTypes(
@@ -15079,7 +15081,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][ref\\[]",
-                "",
+                string.Empty,
                 "[ref\\[]: /uri");
 
             this.AssertEventElementTypes(
@@ -15112,7 +15114,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -15145,7 +15147,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[*foo* bar][]",
-                "",
+                string.Empty,
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -15181,7 +15183,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[Foo][]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -15216,7 +15218,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "[foo] ",
                 "[]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -15249,7 +15251,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -15282,7 +15284,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[*foo* bar]",
-                "",
+                string.Empty,
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -15318,7 +15320,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[[*foo* bar]]",
-                "",
+                string.Empty,
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -15356,7 +15358,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[Foo]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -15389,7 +15391,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "\\[foo]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -15420,7 +15422,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo*]: /url",
-                "",
+                string.Empty,
                 "*[foo*]");
 
             this.AssertEventElementTypes(
@@ -15454,7 +15456,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo`]: /url",
-                "",
+                string.Empty,
                 "[foo`]`");
 
             this.AssertEventElementTypes(
@@ -15489,7 +15491,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][bar]",
-                "",
+                string.Empty,
                 "[foo]: /url1",
                 "[bar]: /url2");
 
@@ -15523,7 +15525,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][bar][baz]",
-                "",
+                string.Empty,
                 "[baz]: /url");
 
             this.AssertEventElementTypes(
@@ -15558,7 +15560,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][bar][baz]",
-                "",
+                string.Empty,
                 "[baz]: /url1",
                 "[bar]: /url2");
 
@@ -15596,7 +15598,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "[foo][bar][baz]",
-                "",
+                string.Empty,
                 "[baz]: /url1",
                 "[foo]: /url2");
 
@@ -15660,7 +15662,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![foo *bar*]",
-                "",
+                string.Empty,
                 "[foo *bar*]: train.jpg \"train & tracks\"");
 
             this.AssertEventElementTypes(
@@ -15751,7 +15753,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![foo *bar*][]",
-                "",
+                string.Empty,
                 "[foo *bar*]: train.jpg \"train & tracks\"");
 
             this.AssertEventElementTypes(
@@ -15784,7 +15786,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![foo *bar*][foobar]",
-                "",
+                string.Empty,
                 "[FOOBAR]: train.jpg \"train & tracks\"");
 
             this.AssertEventElementTypes(
@@ -15934,7 +15936,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![foo] [bar]",
-                "",
+                string.Empty,
                 "[bar]: /url");
 
             this.AssertEventElementTypes(
@@ -15967,7 +15969,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![foo] [bar]",
-                "",
+                string.Empty,
                 "[BAR]: /url");
 
             this.AssertEventElementTypes(
@@ -16000,7 +16002,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![foo][]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16033,7 +16035,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![*foo* bar][]",
-                "",
+                string.Empty,
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16066,7 +16068,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![Foo][]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16101,7 +16103,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.Setup(
                 "![foo] ",
                 "[]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16134,7 +16136,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![foo]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16167,7 +16169,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![*foo* bar]",
-                "",
+                string.Empty,
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16201,7 +16203,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![[foo]]",
-                "",
+                string.Empty,
                 "[[foo]]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16235,7 +16237,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "![Foo]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16268,7 +16270,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "\\!\\[foo]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16299,7 +16301,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "\\![foo]",
-                "",
+                string.Empty,
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
@@ -16808,21 +16810,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
         {
             /* Specification Example:
                 .
-                a
+                <a foo="bar" bam = 'baz <em>"</em>'
+                _boolean zoop:33=zoop:33 />
                 .
-                <p>a</p>
+                <p><a foo="bar" bam = 'baz <em>"</em>'
+                _boolean zoop:33=zoop:33 /></p>
                 .
             */
 
             this.Setup(
-                "a");
+                "<a foo=\"bar\" bam = 'baz <em>\"</em>'",
+                "_boolean zoop:33=zoop:33 />");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "a" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a foo=\"bar\" bam = 'baz <em>\"</em>'" },
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.Text) { Text = "_boolean zoop:33=zoop:33 />" },
                 new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -17905,4 +17915,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
         #endregion
     }
+
+#endregion
+
 }

@@ -23,7 +23,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
 
         /// <summary>
         /// </summary>
-        private static readonly Regex AnchorRegex = new Regex("^<a ([^>]+)>");
+        private static readonly Regex AnchorRegex = new Regex("^<a ([^><]+)>");
 
         /// <summary>
         /// </summary>
@@ -493,6 +493,9 @@ namespace CreateUnitTestsFromCommonMarkSpec
         {
             writer.WriteLine("        #endregion");
             writer.WriteLine("    }");
+            writer.WriteLine(string.Empty);
+            writer.WriteLine("#endregion");
+            writer.WriteLine(string.Empty);
             writer.WriteLine("}");
         }
 
@@ -512,11 +515,9 @@ namespace CreateUnitTestsFromCommonMarkSpec
             writer.WriteLine("namespace MfGames.Text.Markup.Tests.Markdown");
             writer.WriteLine("{");
 
-            // writer.WriteLine("    using System;");
-            // writer.WriteLine(string.Empty);
-            // writer.WriteLine("    using MfGames.Text.Markup.Markdown;");
-            // writer.WriteLine(string.Empty);
             writer.WriteLine("    using NUnit.Framework;");
+            writer.WriteLine(string.Empty);
+            writer.WriteLine("#region Designer generated code");
             writer.WriteLine(string.Empty);
             writer.WriteLine("    /// <summary>");
             writer.WriteLine(
@@ -605,8 +606,17 @@ namespace CreateUnitTestsFromCommonMarkSpec
                     .Replace("\"", "\\\"")
                     .Replace("→", "\\t");
 
+                if (normalized.Length == 0)
+                {
+                    normalized = "string.Empty";
+                }
+                else
+                {
+                    normalized = "\"" + normalized + "\"";
+                }
+
                 writer.WriteLine(
-                    "                \"{0}\"{1}", 
+                    "                {0}{1}", 
                     normalized, 
                     i + 1 == input.Length ? ");" : ",");
             }

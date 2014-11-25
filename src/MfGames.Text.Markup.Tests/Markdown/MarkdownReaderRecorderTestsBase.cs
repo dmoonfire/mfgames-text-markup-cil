@@ -146,6 +146,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
             MarkdownOptions options, 
             params string[] buffer)
         {
+            // Report the input lines.
+            Console.WriteLine("Input:");
+
+            foreach (string line in buffer)
+                Console.WriteLine("  {0}", line);
+
+            Console.WriteLine();
+
             // Create the Markdown reader using the given strings as a source.
             using (var reader = new MarkdownReader(
                 buffer, 
