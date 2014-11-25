@@ -351,7 +351,9 @@ namespace MfGames.Text.Markup.Markdown
             }
 
             if (this.IsAtxHeader(this.currentLine))
+            {
                 return MarkdownBlockType.AtxHeading;
+            }
 
             // Check to see if this is a setext header.
             string nextLine = this.Reader.PeekLine(0);
@@ -378,32 +380,6 @@ namespace MfGames.Text.Markup.Markdown
 
             // Everything else is a paragraph.
             return MarkdownBlockType.Paragraph;
-        }
-
-        private bool IsHorizontalRule(string input)
-        {
-            // If we are blank, then it is never a rule.
-            if (string.IsNullOrEmpty(input))
-                return false;
-
-            // Use the regular expression to determine if we have a rule.
-            bool isRule = CommonMarkSpecification.HorizontalRuleRegex.IsMatch(input);
-            return isRule;
-        }
-
-        private bool IsAtxHeader(string line)
-        {
-            // If we have a null, then it isn't.
-            if (string.IsNullOrEmpty(line))
-            {
-                return false;
-            }
-
-            // Check to see if this is an ATX header.
-            bool isAtxHeader = CommonMarkSpecification.AtxHeaderRegex
-                .IsMatch(line);
-
-            return isAtxHeader;
         }
 
         /// <summary>
@@ -451,6 +427,47 @@ namespace MfGames.Text.Markup.Markdown
             controlText = null;
             remainingText = null;
             return false;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="line">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private bool IsAtxHeader(string line)
+        {
+            // If we have a null, then it isn't.
+            if (string.IsNullOrEmpty(line))
+            {
+                return false;
+            }
+
+            // Check to see if this is an ATX header.
+            bool isAtxHeader = CommonMarkSpecification.AtxHeaderRegex
+                .IsMatch(line);
+
+            return isAtxHeader;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="input">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private bool IsHorizontalRule(string input)
+        {
+            // If we are blank, then it is never a rule.
+            if (string.IsNullOrEmpty(input))
+            {
+                return false;
+            }
+
+            // Use the regular expression to determine if we have a rule.
+            bool isRule =
+                CommonMarkSpecification.HorizontalRuleRegex.IsMatch(input);
+            return isRule;
         }
 
         /// <summary>
@@ -505,13 +522,13 @@ namespace MfGames.Text.Markup.Markdown
 
                     // Remove the leading and trail space and hash marks. But only in a
                     // specific order to prevent removing too much.
-                    Regex removeLeader = new Regex(@"^\s*\#+\s*");
-                    Regex removeTrailing = new Regex(@"(?:\s+\#+)\s*$");
+                    var removeLeader = new Regex(@"^\s*\#+\s*");
+                    var removeTrailing = new Regex(@"(?:\s+\#+)\s*$");
 
                     this.currentLine = removeLeader.Replace(
-                        this.currentLine, "");
+                        this.currentLine, string.Empty);
                     this.currentLine = removeTrailing.Replace(
-                        this.currentLine, "");
+                        this.currentLine, string.Empty);
                     return this.ProcessContent();
 
                 case MarkdownBlockType.SetextHeading:
@@ -803,7 +820,8 @@ namespace MfGames.Text.Markup.Markdown
             {
                 // Set up the state elements.
                 this.elementType = MarkupElementType.Text;
-                this.Text = UnescapeString(nonSignificant,
+                this.Text = this.UnescapeString(
+                    nonSignificant, 
                     this.currentLine == this.originaLine);
 
                 // Remove the text we just added, but keep a blank line so we can
@@ -816,32 +834,6 @@ namespace MfGames.Text.Markup.Markdown
             }
 
             return false;
-        }
-
-        private string UnescapeString(string input,
-            bool isLineBeginning)
-        {
-            // See if we need to trim the beginning.
-            if (isLineBeginning)
-            {
-                input = input.TrimStart();
-            }
-
-            // Pull out the escaped characters.
-            StringBuilder buffer = new StringBuilder();
-
-            for (int i = 0; i < input.Length; i++)
-            {
-                char c = input[i];
-
-                if (c != '\\')
-                {
-                    buffer.Append(c);
-                }
-            }
-
-            // Return the resulting string.
-            return buffer.ToString();
         }
 
         /// <summary>
@@ -866,9 +858,11 @@ namespace MfGames.Text.Markup.Markdown
                     && this.Reader.PeekLine(0)
                         .Trim() == ">";
                 bool isNextHeader = this.IsAtxHeader(this.Reader.PeekLine(0));
-                bool isNextBreak = this.IsHorizontalRule(this.Reader.PeekLine(0));
+                bool isNextBreak = this.IsHorizontalRule(
+                    this.Reader.PeekLine(0));
 
-                if (isEndOfBuffer || isBlankLine || isBlankBlockquote || isNextHeader || isNextBreak
+                if (isEndOfBuffer || isBlankLine || isBlankBlockquote
+                    || isNextHeader || isNextBreak
                     || this.Options.TreatNewLinesAsBreaks)
                 {
                     // End the paragraph or heading to get into our endgame.
@@ -893,6 +887,14 @@ namespace MfGames.Text.Markup.Markdown
                     }
 
                     // Finish processing.
+                    return true;
+                }
+
+                // If we have a blank line and we are in a heading, then
+                // stop the header.
+                if (this.inHeading)
+                {
+                    this.elementType = MarkupElementType.EndHeading;
                     return true;
                 }
 
@@ -952,6 +954,41 @@ namespace MfGames.Text.Markup.Markdown
 
             // No clue, throw an exception.
             throw new Exception("Panic some more.");
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="input">
+        /// </param>
+        /// <param name="isLineBeginning">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private string UnescapeString(
+            string input, 
+            bool isLineBeginning)
+        {
+            // See if we need to trim the beginning.
+            if (isLineBeginning)
+            {
+                input = input.TrimStart();
+            }
+
+            // Pull out the escaped characters.
+            var buffer = new StringBuilder();
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                char c = input[i];
+
+                if (c != '\\')
+                {
+                    buffer.Append(c);
+                }
+            }
+
+            // Return the resulting string.
+            return buffer.ToString();
         }
 
         #endregion
