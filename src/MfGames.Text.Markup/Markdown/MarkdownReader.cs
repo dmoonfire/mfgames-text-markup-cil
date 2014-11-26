@@ -833,6 +833,12 @@ namespace MfGames.Text.Markup.Markdown
                 this.currentLine =
                     this.currentLine.Substring(nonSignificant.Length);
 
+                // If the current line is blank, then we trim the end of our output.
+                if (this.currentLine.Length == 0)
+                {
+                    this.Text = this.Text.TrimEnd();
+                }
+
                 // Indicate we have successful processed it.
                 return true;
             }
