@@ -316,11 +316,15 @@ namespace MfGames.Text.Markup.Markdown
         /// <returns>Returns true if there is metadata, otherwise false.</returns>
         private bool CheckMetadata()
         {
-            // Check the first line for a YAML header.
-            if (this.currentLine == "---")
+            // Make sure we allow metadata in the first place.
+            if (Options.AllowMetadata)
             {
-                // We are in a YAML header.
-                return true;
+                // Check the first line for a YAML header.
+                if (this.currentLine == "---")
+                {
+                    // We are in a YAML header.
+                    return true;
+                }
             }
 
             // Otherwise, go directly to content.

@@ -128,7 +128,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         protected void Setup(params string[] buffer)
         {
             this.Setup(
-                MarkdownOptions.DefaultOptions, 
+                MarkdownOptions.DefaultOptions,
                 buffer);
         }
 

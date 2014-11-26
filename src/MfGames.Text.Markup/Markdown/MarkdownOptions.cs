@@ -30,6 +30,11 @@ namespace MfGames.Text.Markup.Markdown
         public static MarkdownOptions DefaultOptions { get; private set; }
 
         /// <summary>
+        /// Gets or sets a flag whether metadata can be included in the input file.
+        /// </summary>
+        public bool AllowMetadata { get; set; }
+
+        /// <summary>
         /// Gets or sets whether newline are treated as breaks or just continuation
         /// characters of the same block.
         /// </summary>
