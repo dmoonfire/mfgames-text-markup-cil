@@ -657,9 +657,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
         public void VerifyYamlMetadataEvents()
         {
             this.Setup(
-                "---", 
-                "meta: data", 
-                "---", 
+                new MarkdownOptions()
+                    {
+                        AllowMetadata = true
+                    },
+                "---",
+                "meta: data",
+                "---",
                 "One two three.");
 
             this.AssertEventElementTypes(

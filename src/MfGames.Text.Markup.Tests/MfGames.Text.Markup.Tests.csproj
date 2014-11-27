@@ -44,7 +44,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Markdown\CommonMarkRegexTests.cs" />
-    <Compile Include="Markdown\CommonMarkSpecTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec02PreprocessingTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec03BlocksAndInlines01PrecedenceTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec04LeafBlocks01HorizontalRulesTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec04LeafBlocks02ATXHeadersTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec04LeafBlocks03SetextHeadersTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec04LeafBlocks04IndentedCodeBlocksTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec04LeafBlocks05FencedCodeBlocksTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec04LeafBlocks06HTMLBlocksTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec04LeafBlocks07LinkReferenceDefinitionsTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec04LeafBlocks08ParagraphsTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec04LeafBlocks09BlankLinesTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec05ContainerBlocks01BlockQuotesTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec05ContainerBlocks02ListItemsTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec05ContainerBlocks03ListsTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines01BackslashEscapesTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines02EntitiesTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines03CodeSpanTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines04EmphasisAndStrongEmphasisTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines05LinksTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines06ImagesTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines07AutolinksTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines08RawHTMLTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines09HardLineBreaksTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines10SoftLineBreaksTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06Inlines11StringsTests.cs" />
+    <Compile Include="Markdown\CommonMarkSpec06InlinesTests.cs" />
     <Compile Include="Markdown\MarkdownReaderRecorderTestsBase.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="MarkupReaderRecorder.cs" />

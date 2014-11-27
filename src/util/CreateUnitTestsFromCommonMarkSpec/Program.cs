@@ -55,17 +55,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
             using (
                 StreamReader reader = File.OpenText("commonmark-spec-0.12.txt"))
             {
-                const string OutputFile =
-                    @"..\..\..\..\..\src\MfGames.Text.Markup.Tests\Markdown\CommonMarkSpecTests.cs";
-
-                using (
-                    FileStream stream = File.Open(OutputFile, FileMode.Create))
-                using (var writer = new StreamWriter(stream, Encoding.UTF8))
-                {
-                    WriteHeader(writer);
-                    ConvertSpec(reader, writer);
-                    WriteFooter(writer);
-                }
+                ConvertSpec(reader);
             }
 
             // Pause a little so we can see it run.
@@ -223,14 +213,10 @@ namespace CreateUnitTestsFromCommonMarkSpec
         /// <param name="reader">
         /// The reader.
         /// </param>
-        /// <param name="writer">
-        /// The writer.
-        /// </param>
-        private static void ConvertSpec(
-            StreamReader reader, 
-            StreamWriter writer)
+        private static void ConvertSpec(StreamReader reader)
         {
             // Loop through all the lines.
+            TextWriter writer = null;
             int sectionNumber = 0;
             int subSectionNumber = 0;
             int exampleNumber = 0;
@@ -250,6 +236,15 @@ namespace CreateUnitTestsFromCommonMarkSpec
                 // If the line starts with "# ", then it is a header section.
                 if (line.StartsWith("# "))
                 {
+                    // If we have a writer, then close it off so we can write a
+                    // new one if needed.
+                    if (writer != null)
+                    {
+                        WriteFooter(writer);
+                        writer.Close();
+                        writer = null;
+                    }
+
                     // Pull out the parts so we can use them later.
                     string[] parts = line
                         .Substring(2)
@@ -272,6 +267,15 @@ namespace CreateUnitTestsFromCommonMarkSpec
 
                 if (line.StartsWith("## "))
                 {
+                    // If we have a writer, then close it off so we can write a
+                    // new one if needed.
+                    if (writer != null)
+                    {
+                        WriteFooter(writer);
+                        writer.Close();
+                        writer = null;
+                    }
+
                     // Pull out the parts so we can use them later.
                     string[] parts = line
                         .Substring(3)
@@ -295,6 +299,34 @@ namespace CreateUnitTestsFromCommonMarkSpec
                 // following this.
                 if (line == ".")
                 {
+                    // We have an example, so see if we have a unit test file
+                    // to write them into. If we don't, then create it.
+                    if (writer == null)
+                    {
+                        // Open up the writer name.
+                        string className = subSectionNumber > 0
+                            ? string.Format(
+                                "CommonMarkSpec{0}{1}{2}{3}Tests",
+                                sectionNumber.ToString().PadLeft(2, '0'),
+                                sectionTitle,
+                                subSectionNumber.ToString().PadLeft(2, '0'),
+                                subSectionTitle)
+                            : string.Format(
+                                "CommonMarkSpec{0}{1}Tests",
+                                sectionNumber.ToString().PadLeft(2, '0'),
+                                sectionTitle);
+                        string outputFilename = string.Format(
+                            @"{0}\MfGames.Text.Markup.Tests\Markdown\{1}.cs",
+                            @"..\..\..\..\..\src",
+                            className);
+                        var stream = File.Open(outputFilename, FileMode.Create);
+
+                        writer = new StreamWriter(stream, Encoding.UTF8);
+                         
+                        // Write out the header for this file.
+                        WriteHeader(writer, className);
+                    }
+
                     // Increment the example counter.
                     exampleNumber++;
 
@@ -313,6 +345,13 @@ namespace CreateUnitTestsFromCommonMarkSpec
                         input, 
                         output);
                 }
+            }
+
+            // Finish off the writer if we have one open.
+            if (writer != null)
+            {
+                WriteFooter(writer);
+                writer.Close();
             }
         }
 
@@ -358,7 +397,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
         /// <param name="output">
         /// </param>
         private static void WriteExpectedOutput(
-            StreamWriter writer, 
+            TextWriter writer, 
             string[] output)
         {
             // Go through the output lines and process each one while generating a list
@@ -485,7 +524,6 @@ namespace CreateUnitTestsFromCommonMarkSpec
             }
         }
 
-        // <pre><code class="language-ruby">
         /// <summary>
         /// </summary>
         /// <param name="writer">
@@ -495,7 +533,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
             writer.WriteLine("        #endregion");
             writer.WriteLine("    }");
             writer.WriteLine(string.Empty);
-            writer.WriteLine("#endregion");
+            writer.WriteLine("    #endregion");
             writer.WriteLine(string.Empty);
             writer.WriteLine("}");
         }
@@ -504,10 +542,10 @@ namespace CreateUnitTestsFromCommonMarkSpec
         /// </summary>
         /// <param name="writer">
         /// </param>
-        private static void WriteHeader(StreamWriter writer)
+        private static void WriteHeader(TextWriter writer, string className)
         {
             writer.WriteLine(
-                "// <copyright file=\"CommonMarkSpecTests.cs\" company=\"Moonfire Games\">");
+                "// <copyright file=\"{0}.cs\" company=\"Moonfire Games\">", className);
             writer.WriteLine(
                 "//     Copyright (c) Moonfire Games. Some Rights Reserved.");
             writer.WriteLine("// </copyright>");
@@ -518,7 +556,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
 
             writer.WriteLine("    using NUnit.Framework;");
             writer.WriteLine(string.Empty);
-            writer.WriteLine("#region Designer generated code");
+            writer.WriteLine("    #region Designer generated code");
             writer.WriteLine(string.Empty);
             writer.WriteLine("    /// <summary>");
             writer.WriteLine(
@@ -526,7 +564,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
             writer.WriteLine("    /// </summary>");
             writer.WriteLine("    [TestFixture]");
             writer.WriteLine(
-                "    public class CommonMarkSpecTests : MarkdownReaderRecorderTestsBase");
+                "    public class {0} : MarkdownReaderRecorderTestsBase", className);
             writer.WriteLine("    {");
             writer.WriteLine("        #region Public Methods and Operators");
             writer.WriteLine(string.Empty);
@@ -551,7 +589,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
         /// <param name="output">
         /// </param>
         private static void WriteUnitTest(
-            StreamWriter writer, 
+            TextWriter writer, 
             int sectionNumber, 
             string sectionTitle, 
             int subSectionNumber, 
