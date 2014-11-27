@@ -172,6 +172,7 @@ namespace MfGames.Text.Markup.Markdown
                     case '*':
                     case '`':
                     case '_':
+                    case '<':
                         found = true;
                         break;
                 }
@@ -263,6 +264,8 @@ namespace MfGames.Text.Markup.Markdown
 
                 case MarkupElementType.Text:
                 case MarkupElementType.Whitespace:
+                case MarkupElementType.BeginAnchor:
+                case MarkupElementType.EndAnchor:
                     return this.ProcessText();
 
                 case MarkupElementType.EndParagraph:
@@ -681,14 +684,7 @@ namespace MfGames.Text.Markup.Markdown
         /// <returns>True if we've processed the paragraph properly.</returns>
         private bool ProcessContent()
         {
-            // If we have non-significant characters, then process that.
-            if (this.ProcessNonSignificant())
-            {
-                return true;
-            }
-
-            // No clue, throw an exception.
-            throw new Exception("Panic");
+            return this.ProcessText();
         }
 
         /// <summary>
@@ -962,8 +958,48 @@ namespace MfGames.Text.Markup.Markdown
                 return true;
             }
 
+            // See if we have an anchor.
+            bool anchorMatches = this.ProcessAnchor();
+
+            if (anchorMatches)
+            {
+                return true;
+            }
+
             // No clue, throw an exception.
             throw new Exception("Panic some more.");
+        }
+
+        /// <summary>
+        /// Attempts to process an anchor .
+        /// </summary>
+        /// <returns></returns>
+        private bool ProcessAnchor()
+        {
+            // Check to see if we start with an end anchor.
+            if (this.currentLine.StartsWith("</a>"))
+            {
+                this.elementType = MarkupElementType.EndAnchor;
+                this.currentLine = this.currentLine.Substring(4);
+                return true;
+            }
+
+            // If we don't have a match, then we don't do anything.
+            var match =
+                CommonMarkSpecification.AnchorRegex.Match(this.currentLine);
+
+            if (!match.Success)
+            {
+                return false;
+            }
+            
+            // We need to trim off the current line and then process the anchor.
+            string value = match.Groups[0].Value;
+            this.currentLine = this.currentLine.Substring(value.Length);
+
+            // We have a match, so indicate that so we can recurse.
+            this.elementType = MarkupElementType.BeginAnchor;
+            return true;
         }
 
         /// <summary>

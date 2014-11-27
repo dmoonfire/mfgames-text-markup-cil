@@ -38,6 +38,11 @@ namespace MfGames.Text.Markup.Markdown
             new Regex(@"^ {0,3}(#{1,6})(?:\s+\#+|\s+(.+?)(?:\s+\#+)?)?\s*$");
 
         /// <summary>
+        /// Contains the regular expression for identifying an anchor tag.
+        /// </summary>
+        public static readonly Regex AnchorRegex = new Regex("^<a ([^><]+)>");
+
+        /// <summary>
         /// <para>
         /// Contains the regular expression for identifying a break or horizontal rule.
         /// </para><para>

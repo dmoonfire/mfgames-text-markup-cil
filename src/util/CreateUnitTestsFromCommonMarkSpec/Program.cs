@@ -22,6 +22,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
         #region Static Fields
 
         /// <summary>
+        /// Contains the regular expression for identifying an anchor tag.
         /// </summary>
         private static readonly Regex AnchorRegex = new Regex("^<a ([^><]+)>");
 
