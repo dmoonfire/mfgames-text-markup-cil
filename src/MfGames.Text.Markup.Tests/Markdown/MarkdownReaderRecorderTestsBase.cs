@@ -128,7 +128,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         protected void Setup(params string[] buffer)
         {
             this.Setup(
-                MarkdownOptions.DefaultOptions,
+                MarkdownOptions.DefaultOptions, 
                 buffer);
         }
 
@@ -150,7 +150,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             Console.WriteLine("Input:");
 
             foreach (string line in buffer)
+            {
                 Console.WriteLine("  {0}", line);
+            }
 
             Console.WriteLine();
 
@@ -160,6 +162,43 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 options))
             {
                 this.Record(reader);
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="name">
+        /// </param>
+        /// <param name="expected">
+        /// </param>
+        /// <param name="actual">
+        /// </param>
+        /// <param name="messages">
+        /// </param>
+        /// <typeparam name="TCompare">
+        /// </typeparam>
+        private static void AppendDifference<TCompare>(
+            string name, 
+            TCompare expected, 
+            TCompare actual, 
+            List<string> messages)
+        {
+            var expectedObject = (object)expected;
+            var actualObject = (object)actual;
+
+            bool compareNulls = expectedObject == null && actualObject != null;
+            bool compareObjects = expectedObject != null
+                && !expected.Equals(actual);
+
+            if (compareNulls ||
+                compareObjects)
+            {
+                messages.Add(
+                    string.Format(
+                        "{0}: {1} != {2}", 
+                        name, 
+                        expectedObject ?? "<null>", 
+                        actualObject ?? "<null>"));
             }
         }
 
@@ -190,15 +229,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
             }
 
             // Compare the elements.
-            if (expected.Text != actual.Text)
-            {
-                messages.Add(
-                    string.Format(
-                        "{0}: {1} != {2}", 
-                        "Text", 
-                        expected.Text ?? "<null>", 
-                        actual.Text ?? "<null>"));
-            }
+            AppendDifference("Text", expected.Text, actual.Text, messages);
+            AppendDifference("Href", expected.Href, actual.Href, messages);
+            AppendDifference(
+                "Language", expected.Language, actual.Language, messages);
+            AppendDifference("Level", expected.Level, actual.Level, messages);
+            AppendDifference("Title", expected.Title, actual.Title, messages);
 
             // Combine everything together.
             return string.Join(

@@ -35,6 +35,7 @@ namespace MfGames.Text.Markup.Tests
         {
             this.ElementType = reader.ElementType;
             this.Text = reader.Text;
+            this.Level = reader.HeadingLevel;
         }
 
         #endregion
@@ -88,9 +89,7 @@ namespace MfGames.Text.Markup.Tests
         public static bool operator ==(Event left, 
             Event right)
         {
-            return Equals(
-                left, 
-                right);
+            return Equals(left, right);
         }
 
         /// <summary>
@@ -104,9 +103,7 @@ namespace MfGames.Text.Markup.Tests
         public static bool operator !=(Event left, 
             Event right)
         {
-            return !Equals(
-                left, 
-                right);
+            return !Equals(left, right);
         }
 
         /// <summary>
@@ -117,24 +114,22 @@ namespace MfGames.Text.Markup.Tests
         /// </returns>
         public bool Equals(Event other)
         {
-            if (ReferenceEquals(
-                null, 
-                other))
+            if (ReferenceEquals(null, other))
             {
                 return false;
             }
 
-            if (ReferenceEquals(
-                this, 
-                other))
+            if (ReferenceEquals(this, other))
             {
                 return true;
             }
 
             return this.ElementType == other.ElementType
-                && string.Equals(
-                    this.Text, 
-                    other.Text);
+                && string.Equals(this.Href, other.Href)
+                && string.Equals(this.Language, other.Language)
+                && this.Level == other.Level
+                && string.Equals(this.Text, other.Text)
+                && string.Equals(this.Title, other.Title);
         }
 
         /// <summary>
@@ -145,16 +140,12 @@ namespace MfGames.Text.Markup.Tests
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(
-                null, 
-                obj))
+            if (ReferenceEquals(null, obj))
             {
                 return false;
             }
 
-            if (ReferenceEquals(
-                this, 
-                obj))
+            if (ReferenceEquals(this, obj))
             {
                 return true;
             }
@@ -175,8 +166,17 @@ namespace MfGames.Text.Markup.Tests
         {
             unchecked
             {
-                return ((int)this.ElementType * 397)
+                var hashCode = (int)this.ElementType;
+                hashCode = (hashCode * 397)
+                    ^ (this.Href != null ? this.Href.GetHashCode() : 0);
+                hashCode = (hashCode * 397)
+                    ^ (this.Language != null ? this.Language.GetHashCode() : 0);
+                hashCode = (hashCode * 397) ^ this.Level;
+                hashCode = (hashCode * 397)
                     ^ (this.Text != null ? this.Text.GetHashCode() : 0);
+                hashCode = (hashCode * 397)
+                    ^ (this.Title != null ? this.Title.GetHashCode() : 0);
+                return hashCode;
             }
         }
 
