@@ -618,8 +618,11 @@ namespace MfGames.Text.Markup.Markdown
                     // specific order to prevent removing too much.
                     var removeLeader = new Regex(@"^\s*\#+\s*");
                     var removeTrailing = new Regex(@"(?:\s+\#+)\s*$");
+                    var removeEntire = new Regex(@"^\s*\#+\s*$");
 
                     this.currentLine = removeLeader.Replace(
+                        this.currentLine, string.Empty);
+                    this.currentLine = removeEntire.Replace(
                         this.currentLine, string.Empty);
                     this.currentLine = removeTrailing.Replace(
                         this.currentLine, string.Empty);
