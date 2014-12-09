@@ -54,9 +54,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "aaa" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginHeading) { Level = 1 },
+                new Event(MarkupElementType.BeginHeader) { Level = 1 },
                 new Event(MarkupElementType.Text) { Text = "aaa" },
-                new Event(MarkupElementType.EndHeading) { Level = 1 },
+                new Event(MarkupElementType.EndHeader) { Level = 1 },
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }

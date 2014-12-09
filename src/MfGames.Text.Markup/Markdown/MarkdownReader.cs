@@ -256,8 +256,8 @@ namespace MfGames.Text.Markup.Markdown
                 case MarkupElementType.HorizontalRule:
                     return this.ProcessBlock();
 
-                case MarkupElementType.BeginHeading:
-                    return this.ProcessBeginHeading();
+                case MarkupElementType.BeginHeader:
+                    return this.ProcessBeginHeader();
 
                 case MarkupElementType.BeginBlockquote:
                     return this.ProcessBeginBlockquote();
@@ -277,8 +277,8 @@ namespace MfGames.Text.Markup.Markdown
                 case MarkupElementType.EndParagraph:
                     return this.ProcessEndParagraph();
 
-                case MarkupElementType.EndHeading:
-                    return this.ProcessEndHeading();
+                case MarkupElementType.EndHeader:
+                    return this.ProcessEndHeader();
 
                 case MarkupElementType.EndContent:
                     this.elementType = MarkupElementType.EndDocument;
@@ -597,12 +597,12 @@ namespace MfGames.Text.Markup.Markdown
         }
 
         /// <summary>
-        /// Processes the buffer after the BeginHeading event.
+        /// Processes the buffer after the BeginHeader event.
         /// </summary>
         /// <returns>
         /// True if this is successfully processed.
         /// </returns>
-        private bool ProcessBeginHeading()
+        private bool ProcessBeginHeader()
         {
             // Save that we are in the heading.
             this.inHeading = true;
@@ -636,7 +636,7 @@ namespace MfGames.Text.Markup.Markdown
 
                 default:
                     throw new InvalidOperationException(
-                        "Cannot process BeginHeading with content type of "
+                        "Cannot process BeginHeader with content type of "
                             + blockType + ".");
             }
         }
@@ -751,13 +751,13 @@ namespace MfGames.Text.Markup.Markdown
                     return true;
 
                 case MarkdownBlockType.AtxHeading:
-                    this.elementType = MarkupElementType.BeginHeading;
+                    this.elementType = MarkupElementType.BeginHeader;
                     this.HeadingLevel = this.GetAtxHeadingLevel();
                     this.currentHeadingLevel = this.HeadingLevel;
                     return true;
 
                 case MarkdownBlockType.SetextHeading:
-                    this.elementType = MarkupElementType.BeginHeading;
+                    this.elementType = MarkupElementType.BeginHeader;
                     this.HeadingLevel = this.GetSetextHeadingLevel();
                     this.currentHeadingLevel = this.HeadingLevel;
                     return true;
@@ -822,12 +822,12 @@ namespace MfGames.Text.Markup.Markdown
         }
 
         /// <summary>
-        /// Processes the input after a EndHeading element.
+        /// Processes the input after a EndHeader element.
         /// </summary>
         /// <returns>
         /// True if this is successfully processed.
         /// </returns>
-        private bool ProcessEndHeading()
+        private bool ProcessEndHeader()
         {
             // Clear the paragraph flag.
             this.inHeading = false;
@@ -974,7 +974,7 @@ namespace MfGames.Text.Markup.Markdown
                     }
                     else if (this.inHeading)
                     {
-                        this.elementType = MarkupElementType.EndHeading;
+                        this.elementType = MarkupElementType.EndHeader;
                         this.HeadingLevel = this.currentHeadingLevel;
                     }
                     else if (isEndOfBuffer)
@@ -995,7 +995,7 @@ namespace MfGames.Text.Markup.Markdown
                 // stop the header.
                 if (this.inHeading)
                 {
-                    this.elementType = MarkupElementType.EndHeading;
+                    this.elementType = MarkupElementType.EndHeader;
                     this.HeadingLevel = this.currentHeadingLevel;
                     return true;
                 }

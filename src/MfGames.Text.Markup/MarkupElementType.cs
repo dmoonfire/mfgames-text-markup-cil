@@ -129,12 +129,12 @@ namespace MfGames.Text.Markup
         /// <summary>
         /// Indicates the beginning of a heading section.
         /// </summary>
-        BeginHeading, 
+        BeginHeader, 
 
         /// <summary>
         /// Indicates the end of a heading section.
         /// </summary>
-        EndHeading, 
+        EndHeader, 
 
         /// <summary>
         /// Indicates the beginning of an anchor link.

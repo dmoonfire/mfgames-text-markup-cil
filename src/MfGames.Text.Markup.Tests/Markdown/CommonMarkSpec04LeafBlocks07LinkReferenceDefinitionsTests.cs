@@ -555,11 +555,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginHeading) { Level = 1 },
+                new Event(MarkupElementType.BeginHeader) { Level = 1 },
                 new Event(MarkupElementType.BeginAnchor) { Href="/url" },
                 new Event(MarkupElementType.Text) { Text = "Foo" },
                 new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndHeading) { Level = 1 },
+                new Event(MarkupElementType.EndHeader) { Level = 1 },
                 new Event(MarkupElementType.BeginBlockquote),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bar" },

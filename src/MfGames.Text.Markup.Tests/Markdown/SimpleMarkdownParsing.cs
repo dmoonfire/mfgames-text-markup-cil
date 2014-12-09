@@ -62,7 +62,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeading)
+                new Event(MarkupElementType.BeginHeader)
                     {
                         Level = 1
                     }, 
@@ -70,7 +70,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "Header"
                     }, 
-                new Event(MarkupElementType.EndHeading)
+                new Event(MarkupElementType.EndHeader)
                     {
                         Level = 1
                     }, 
@@ -89,7 +89,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeading)
+                new Event(MarkupElementType.BeginHeader)
                     {
                         Level = 2
                     }, 
@@ -97,7 +97,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "Header"
                     }, 
-                new Event(MarkupElementType.EndHeading)
+                new Event(MarkupElementType.EndHeader)
                     {
                         Level = 2
                     }, 
@@ -116,7 +116,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeading)
+                new Event(MarkupElementType.BeginHeader)
                     {
                         Level = 3
                     }, 
@@ -124,7 +124,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "Header"
                     }, 
-                new Event(MarkupElementType.EndHeading)
+                new Event(MarkupElementType.EndHeader)
                     {
                         Level = 3
                     }, 
@@ -143,7 +143,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeading)
+                new Event(MarkupElementType.BeginHeader)
                     {
                         Level = 4
                     }, 
@@ -151,7 +151,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "Header"
                     }, 
-                new Event(MarkupElementType.EndHeading)
+                new Event(MarkupElementType.EndHeader)
                     {
                         Level = 4
                     }, 
@@ -170,7 +170,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeading)
+                new Event(MarkupElementType.BeginHeader)
                     {
                         Level = 5
                     }, 
@@ -178,7 +178,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "Header"
                     }, 
-                new Event(MarkupElementType.EndHeading)
+                new Event(MarkupElementType.EndHeader)
                     {
                         Level = 5
                     }, 
@@ -197,7 +197,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeading)
+                new Event(MarkupElementType.BeginHeader)
                     {
                         Level = 6
                     }, 
@@ -205,7 +205,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "Header"
                     }, 
-                new Event(MarkupElementType.EndHeading)
+                new Event(MarkupElementType.EndHeader)
                     {
                         Level = 6
                     }, 
@@ -447,7 +447,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeading)
+                new Event(MarkupElementType.BeginHeader)
                     {
                         Level = 1
                     }, 
@@ -455,7 +455,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "Header"
                     }, 
-                new Event(MarkupElementType.EndHeading)
+                new Event(MarkupElementType.EndHeader)
                     {
                         Level = 1
                     }, 
@@ -476,7 +476,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument), 
                 new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeading)
+                new Event(MarkupElementType.BeginHeader)
                     {
                         Level = 2
                     }, 
@@ -484,7 +484,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "Header"
                     }, 
-                new Event(MarkupElementType.EndHeading)
+                new Event(MarkupElementType.EndHeader)
                     {
                         Level = 2
                     }, 
