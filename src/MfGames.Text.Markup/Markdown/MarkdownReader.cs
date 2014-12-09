@@ -19,6 +19,12 @@ namespace MfGames.Text.Markup.Markdown
         #region Fields
 
         /// <summary>
+        /// Contains the current heading level being processed. Since headings cannot be
+        /// nested, this is used to report the end of the heading.
+        /// </summary>
+        private int currentHeadingLevel;
+
+        /// <summary>
         /// </summary>
         private string currentLine;
 
@@ -320,7 +326,7 @@ namespace MfGames.Text.Markup.Markdown
         private bool CheckMetadata()
         {
             // Make sure we allow metadata in the first place.
-            if (Options.AllowMetadata)
+            if (this.Options.AllowMetadata)
             {
                 // Check the first line for a YAML header.
                 if (this.currentLine == "---")
@@ -332,6 +338,29 @@ namespace MfGames.Text.Markup.Markdown
 
             // Otherwise, go directly to content.
             return false;
+        }
+
+        /// <summary>
+        /// Retrieves the heading level for the ATX header.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private int GetAtxHeadingLevel()
+        {
+            // Parse the current line.
+            string line = this.currentLine.Trim();
+
+            for (int index = 0; index < line.Length; index++)
+            {
+                if (line[index] != '#')
+                {
+                    return index;
+                }
+            }
+
+            // If we got this far, then there are non-ATX-header elements, so it is simply
+            // the length of the line.
+            return line.Length;
         }
 
         /// <summary>
@@ -387,6 +416,31 @@ namespace MfGames.Text.Markup.Markdown
 
             // Everything else is a paragraph.
             return MarkdownBlockType.Paragraph;
+        }
+
+        /// <summary>
+        /// Retrieves the heading level for the Setext header.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private int GetSetextHeadingLevel()
+        {
+            // Parse the current line.
+            string line = this.Reader.PeekLine(0).Trim();
+
+            switch (line[0])
+            {
+                case '=':
+                    return 1;
+
+                case '-':
+                    return 2;
+
+                default:
+                    throw new Exception(
+                        "Could not identify setext header level from: "
+                            + line);
+            }
         }
 
         /// <summary>
@@ -475,6 +529,39 @@ namespace MfGames.Text.Markup.Markdown
             bool isRule =
                 CommonMarkSpecification.HorizontalRuleRegex.IsMatch(input);
             return isRule;
+        }
+
+        /// <summary>
+        /// Attempts to process an anchor .
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessAnchor()
+        {
+            // Check to see if we start with an end anchor.
+            if (this.currentLine.StartsWith("</a>"))
+            {
+                this.elementType = MarkupElementType.EndAnchor;
+                this.currentLine = this.currentLine.Substring(4);
+                return true;
+            }
+
+            // If we don't have a match, then we don't do anything.
+            Match match =
+                CommonMarkSpecification.AnchorRegex.Match(this.currentLine);
+
+            if (!match.Success)
+            {
+                return false;
+            }
+
+            // We need to trim off the current line and then process the anchor.
+            string value = match.Groups[0].Value;
+            this.currentLine = this.currentLine.Substring(value.Length);
+
+            // We have a match, so indicate that so we can recurse.
+            this.elementType = MarkupElementType.BeginAnchor;
+            return true;
         }
 
         /// <summary>
@@ -664,8 +751,15 @@ namespace MfGames.Text.Markup.Markdown
                     return true;
 
                 case MarkdownBlockType.AtxHeading:
+                    this.elementType = MarkupElementType.BeginHeading;
+                    this.HeadingLevel = this.GetAtxHeadingLevel();
+                    this.currentHeadingLevel = this.HeadingLevel;
+                    return true;
+
                 case MarkdownBlockType.SetextHeading:
                     this.elementType = MarkupElementType.BeginHeading;
+                    this.HeadingLevel = this.GetSetextHeadingLevel();
+                    this.currentHeadingLevel = this.HeadingLevel;
                     return true;
 
                 case MarkdownBlockType.HorizontalRule:
@@ -881,6 +975,7 @@ namespace MfGames.Text.Markup.Markdown
                     else if (this.inHeading)
                     {
                         this.elementType = MarkupElementType.EndHeading;
+                        this.HeadingLevel = this.currentHeadingLevel;
                     }
                     else if (isEndOfBuffer)
                     {
@@ -901,6 +996,7 @@ namespace MfGames.Text.Markup.Markdown
                 if (this.inHeading)
                 {
                     this.elementType = MarkupElementType.EndHeading;
+                    this.HeadingLevel = this.currentHeadingLevel;
                     return true;
                 }
 
@@ -968,38 +1064,6 @@ namespace MfGames.Text.Markup.Markdown
 
             // No clue, throw an exception.
             throw new Exception("Panic some more.");
-        }
-
-        /// <summary>
-        /// Attempts to process an anchor .
-        /// </summary>
-        /// <returns></returns>
-        private bool ProcessAnchor()
-        {
-            // Check to see if we start with an end anchor.
-            if (this.currentLine.StartsWith("</a>"))
-            {
-                this.elementType = MarkupElementType.EndAnchor;
-                this.currentLine = this.currentLine.Substring(4);
-                return true;
-            }
-
-            // If we don't have a match, then we don't do anything.
-            var match =
-                CommonMarkSpecification.AnchorRegex.Match(this.currentLine);
-
-            if (!match.Success)
-            {
-                return false;
-            }
-            
-            // We need to trim off the current line and then process the anchor.
-            string value = match.Groups[0].Value;
-            this.currentLine = this.currentLine.Substring(value.Length);
-
-            // We have a match, so indicate that so we can recurse.
-            this.elementType = MarkupElementType.BeginAnchor;
-            return true;
         }
 
         /// <summary>
