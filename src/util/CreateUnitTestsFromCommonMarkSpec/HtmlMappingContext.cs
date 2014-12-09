@@ -49,12 +49,12 @@ namespace CreateUnitTestsFromCommonMarkSpec
                     HtmlMapping.CreatePair("ol", "OrderedList"), 
                     HtmlMapping.CreatePair("ul", "UnorderedList"), 
                     HtmlMapping.CreatePair("li", "ListItem"), 
-                    HtmlMapping.CreatePair("h1", "Heading", 1), 
-                    HtmlMapping.CreatePair("h2", "Heading", 2), 
-                    HtmlMapping.CreatePair("h3", "Heading", 3), 
-                    HtmlMapping.CreatePair("h4", "Heading", 4), 
-                    HtmlMapping.CreatePair("h5", "Heading", 5), 
-                    HtmlMapping.CreatePair("h6", "Heading", 6), 
+                    HtmlMapping.CreatePair("h1", "Header", 1), 
+                    HtmlMapping.CreatePair("h2", "Header", 2), 
+                    HtmlMapping.CreatePair("h3", "Header", 3), 
+                    HtmlMapping.CreatePair("h4", "Header", 4), 
+                    HtmlMapping.CreatePair("h5", "Header", 5), 
+                    HtmlMapping.CreatePair("h6", "Header", 6), 
                     HtmlMapping.CreatePair("a", "Anchor"), 
                 };
             this.context = new HashSet<string>();
