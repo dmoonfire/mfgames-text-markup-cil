@@ -19,6 +19,10 @@ namespace MfGames.Text.Markup.Markdown
         #region Fields
 
         /// <summary>
+        /// </summary>
+        private string codeBlockPrefix;
+
+        /// <summary>
         /// Contains the current heading level being processed. Since headings cannot be
         /// nested, this is used to report the end of the heading.
         /// </summary>
@@ -40,6 +44,10 @@ namespace MfGames.Text.Markup.Markdown
         /// <summary>
         /// </summary>
         private bool inBold;
+
+        /// <summary>
+        /// </summary>
+        private bool inCodeBlock;
 
         /// <summary>
         /// </summary>
@@ -268,8 +276,10 @@ namespace MfGames.Text.Markup.Markdown
                 case MarkupElementType.BeginParagraph:
                     return this.ProcessBeginParagraph();
 
-                case MarkupElementType.Text:
                 case MarkupElementType.Whitespace:
+                    return this.ProcessWhitespace();
+
+                case MarkupElementType.Text:
                 case MarkupElementType.BeginAnchor:
                 case MarkupElementType.EndAnchor:
                     return this.ProcessText();
@@ -286,6 +296,11 @@ namespace MfGames.Text.Markup.Markdown
 
                 case MarkupElementType.EndDocument:
                     return false;
+
+                case MarkupElementType.BeginCodeBlock:
+                    return this.ProcessBeginCodeBlock();
+                case MarkupElementType.EndCodeBlock:
+                    return this.ProcessEndCodeBlock();
 
                 case MarkupElementType.BeginBold:
                     return this.ProcessBeginBold();
@@ -371,8 +386,26 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         private MarkdownBlockType GetBlockType()
         {
+            bool isBeginningOfLine = this.originaLine == this.currentLine;
+            return this.GetBlockType(this.currentLine, isBeginningOfLine);
+        }
+
+        /// <summary>
+        /// Identifies the current type of content of the line.
+        /// </summary>
+        /// <param name="line">
+        /// </param>
+        /// <param name="isBeginningOfLine">
+        /// </param>
+        /// <returns>
+        /// The content type of the current line.
+        /// </returns>
+        private MarkdownBlockType GetBlockType(
+            string line, 
+            bool isBeginningOfLine)
+        {
             // If we have a blank line left, then this is just whitespace.
-            int trimmedLength = this.currentLine.Trim().Length;
+            int trimmedLength = line.Trim().Length;
 
             if (trimmedLength == 0)
             {
@@ -398,24 +431,54 @@ namespace MfGames.Text.Markup.Markdown
                 && CommonMarkSpecification.SetextHeaderRegex.IsMatch(nextLine))
             {
                 // The next line appears to be a header, so check this line.
-                if (this.currentLine.Trim()
-                    .Length > 0)
+                if (line.Trim().Length > 0)
                 {
                     // We have at least one line.
                     return MarkdownBlockType.SetextHeading;
                 }
             }
 
-            // If we are in the beginning of the line, then check for a block quote.
-            bool isBeginningOfLine = this.originaLine == this.currentLine;
-
-            if (isBeginningOfLine && this.currentLine.StartsWith(">"))
+            // If we are in the beginning of the line, then we have some additional checks.
+            if (isBeginningOfLine)
             {
-                return MarkdownBlockType.Blockquote;
+                // Check for blockquotes.
+                if (line.StartsWith(">"))
+                {
+                    return MarkdownBlockType.Blockquote;
+                }
+
+                // Check to see if this is an indented region.
+                if (line.StartsWith("    ") ||
+                    line.StartsWith("\t"))
+                {
+                    return MarkdownBlockType.IndentedCodeBlock;
+                }
             }
 
             // Everything else is a paragraph.
             return MarkdownBlockType.Paragraph;
+        }
+
+        /// <summary>
+        /// Retrieves the prefix for the code block, either tabs or spaces.
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private string GetIndentedCodeBlockPrefix()
+        {
+            if (this.currentLine.StartsWith("    "))
+            {
+                return "    ";
+            }
+
+            if (this.currentLine.StartsWith("\t"))
+            {
+                return "\t";
+            }
+
+            throw new Exception(
+                "Cannot identify indent code block prefix: " + this.currentLine
+                    + ".");
         }
 
         /// <summary>
@@ -583,6 +646,19 @@ namespace MfGames.Text.Markup.Markdown
         private bool ProcessBeginBold()
         {
             this.inBold = true;
+            return this.ProcessText();
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessBeginCodeBlock()
+        {
+            // Set that we are in a codeblock.
+            this.inCodeBlock = true;
+
+            // We have no clue at this point.
             return this.ProcessText();
         }
 
@@ -770,6 +846,16 @@ namespace MfGames.Text.Markup.Markdown
                     this.currentLine = null;
                     return true;
 
+                case MarkdownBlockType.IndentedCodeBlock:
+                    this.elementType = MarkupElementType.BeginCodeBlock;
+                    this.codeBlockPrefix = this.GetIndentedCodeBlockPrefix();
+                    this.currentLine =
+                        this.currentLine.Substring(this.codeBlockPrefix.Length);
+                    return true;
+
+                case MarkdownBlockType.FencedCodeBlock:
+                    throw new Exception("Cannto handle fenced code blocks.");
+
                 default:
                     return false;
             }
@@ -812,6 +898,16 @@ namespace MfGames.Text.Markup.Markdown
         {
             this.inBold = false;
             return this.ProcessText();
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessEndCodeBlock()
+        {
+            this.inCodeBlock = false;
+            return this.ProcessBlock();
         }
 
         /// <summary>
@@ -927,7 +1023,7 @@ namespace MfGames.Text.Markup.Markdown
                     this.currentLine.Substring(nonSignificant.Length);
 
                 // If the current line is blank, then we trim the end of our output.
-                if (this.currentLine.Length == 0)
+                if (this.currentLine.Length == 0 && !this.inCodeBlock)
                 {
                     this.Text = this.Text.TrimEnd();
                 }
@@ -966,7 +1062,8 @@ namespace MfGames.Text.Markup.Markdown
 
                 if (isEndOfBuffer || isBlankLine || isBlankBlockquote
                     || isNextHeader || isNextBreak
-                    || this.Options.TreatNewLinesAsBreaks)
+                    || this.Options.TreatNewLinesAsBreaks
+                    || this.inCodeBlock)
                 {
                     // End the paragraph or heading to get into our endgame.
                     this.currentLine = null;
@@ -979,6 +1076,14 @@ namespace MfGames.Text.Markup.Markdown
                     {
                         this.elementType = MarkupElementType.EndHeader;
                         this.HeadingLevel = this.currentHeadingLevel;
+                    }
+                    else if (this.inCodeBlock)
+                    {
+                        // Record it as whitespace and move on since code blocks always
+                        // end with a newline.
+                        this.Text = Environment.NewLine;
+                        this.currentLine = null;
+                        this.elementType = MarkupElementType.Whitespace;
                     }
                     else if (isEndOfBuffer)
                     {
@@ -1071,6 +1176,41 @@ namespace MfGames.Text.Markup.Markdown
 
         /// <summary>
         /// </summary>
+        /// <returns>
+        /// </returns>
+        private bool ProcessWhitespace()
+        {
+            // If we are in a code block, we have some special rules.
+            if (this.inCodeBlock)
+            {
+                // If we have a null line, we have to end the code block.
+                if (this.currentLine == null)
+                {
+                    this.elementType = MarkupElementType.EndCodeBlock;
+                    return true;
+                }
+
+                // Otherwise, determine if we are still in a code block.
+                if (this.currentLine.StartsWith(this.codeBlockPrefix))
+                {
+                    this.currentLine =
+                        this.currentLine.Substring(this.codeBlockPrefix.Length);
+                }
+            }
+
+            // If we have a null, then we are done processing.
+            if (this.currentLine == null)
+            {
+                this.elementType = MarkupElementType.EndContent;
+                return true;
+            }
+
+            // Process the rest of the text.
+            return this.ProcessText();
+        }
+
+        /// <summary>
+        /// </summary>
         /// <param name="input">
         /// </param>
         /// <param name="isLineBeginning">
@@ -1082,7 +1222,7 @@ namespace MfGames.Text.Markup.Markdown
             bool isLineBeginning)
         {
             // See if we need to trim the beginning.
-            if (isLineBeginning)
+            if (!this.inCodeBlock && isLineBeginning)
             {
                 input = input.TrimStart();
             }

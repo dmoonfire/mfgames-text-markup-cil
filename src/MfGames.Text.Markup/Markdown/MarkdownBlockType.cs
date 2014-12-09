@@ -42,6 +42,20 @@ namespace MfGames.Text.Markup.Markdown
         /// <summary>
         /// Indicates the content type is a blockquote.
         /// </summary>
-        Blockquote
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules",
+            "SA1650:ElementDocumentationMustBeSpelledCorrectly",
+            Justification = "Name comes from the CommonMark specfication.")]
+        Blockquote,
+
+        /// <summary>
+        /// Indicates a fenced code block or one that is framed with ``` characters.
+        /// </summary>
+        FencedCodeBlock,
+
+        /// <summary>
+        /// Indicates an indented code block or one that has four spaces or a tab
+        /// leading the lines.
+        /// </summary>
+        IndentedCodeBlock,
     }
 }
