@@ -58,6 +58,15 @@ namespace MfGames.Text.Markup.Markdown
                     reader.SetState(MarkupElementType.EndParagraph);
                     return BlockReadStatus.Continue;
                 }
+
+                // Regardless of what we do, we need to advance the line here
+                // because we are done with the current.
+                input.ReadNext();
+
+                // Otherwise, we have a blank line. If we are reporting these,
+                // then send in the newline.
+                reader.SetState(MarkupElementType.NewLine);
+                return BlockReadStatus.Continue;
             }
 
             // Grab the entire line.

@@ -420,10 +420,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "One two three"
                     }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = Environment.NewLine
-                    }, 
+                new Event(MarkupElementType.NewLine), 
                 new Event(MarkupElementType.Text)
                     {
                         Text = "four five six."
@@ -514,10 +511,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "One two three"
                     }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = Environment.NewLine
-                    }, 
+                new Event(MarkupElementType.NewLine), 
                 new Event(MarkupElementType.Text)
                     {
                         Text = "four five six."
