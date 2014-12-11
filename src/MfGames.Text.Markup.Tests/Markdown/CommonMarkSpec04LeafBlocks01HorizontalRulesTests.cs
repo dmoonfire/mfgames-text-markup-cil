@@ -12,7 +12,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
     [TestFixture]
-    public class CommonMarkSpec04LeafBlocks01HorizontalRulesTests : MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec04LeafBlocks01HorizontalRulesTests :
+        MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
@@ -33,18 +34,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
-
             this.Setup(
-                "***",
-                "---",
+                "***", 
+                "---", 
                 "___");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.HorizontalRule),
-                new Event(MarkupElementType.HorizontalRule),
-                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.HorizontalRule), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -62,16 +62,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>+++</p>
                 .
             */
-
             this.Setup(
                 "+++");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "+++" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "+++"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -89,16 +91,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>===</p>
                 .
             */
-
             this.Setup(
                 "===");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "===" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "==="
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -120,22 +124,36 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 __</p>
                 .
             */
-
             this.Setup(
-                "--",
-                "**",
+                "--", 
+                "**", 
                 "__");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "--" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.Text) { Text = "**" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.Text) { Text = "__" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "--"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "**"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "__"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -157,18 +175,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
-
             this.Setup(
-                " ***",
-                "  ***",
+                " ***", 
+                "  ***", 
                 "   ***");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.HorizontalRule),
-                new Event(MarkupElementType.HorizontalRule),
-                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.HorizontalRule), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -187,17 +204,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
-
             this.Setup(
                 "    ***");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginCodeBlock),
-                new Event(MarkupElementType.Text) { Text = "***" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndCodeBlock),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginCodeBlock), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "***"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndCodeBlock), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -217,19 +239,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 ***</p>
                 .
             */
-
             this.Setup(
-                "Foo",
+                "Foo", 
                 "    ***");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "Foo" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.Text) { Text = "***" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Foo"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "***"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -247,14 +277,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
-
             this.Setup(
                 "_____________________________________");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.HorizontalRule), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -272,14 +301,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
-
             this.Setup(
                 " - - -");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.HorizontalRule), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -297,14 +325,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
-
             this.Setup(
                 " **  * ** * ** * **");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.HorizontalRule), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -322,14 +349,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
-
             this.Setup(
                 "-     -      -      -");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.HorizontalRule), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -347,14 +373,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
-
             this.Setup(
                 "- - - -    ");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.HorizontalRule), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -378,26 +403,34 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>---a---</p>
                 .
             */
-
             this.Setup(
-                "_ _ _ _ a",
-                string.Empty,
-                "a------",
-                string.Empty,
+                "_ _ _ _ a", 
+                string.Empty, 
+                "a------", 
+                string.Empty, 
                 "---a---");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "_ _ _ _ a" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "a------" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "---a---" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "_ _ _ _ a"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a------"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "---a---"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -415,18 +448,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><em>-</em></p>
                 .
             */
-
             this.Setup(
                 " *-*");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "-" },
-                new Event(MarkupElementType.EndItalic),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "-"
+                    }, 
+                new Event(MarkupElementType.EndItalic), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -452,26 +487,31 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- foo",
-                "***",
+                "- foo", 
+                "***", 
                 "- bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.HorizontalRule),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -493,22 +533,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>bar</p>
                 .
             */
-
             this.Setup(
-                "Foo",
-                "***",
+                "Foo", 
+                "***", 
                 "bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "Foo" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.HorizontalRule),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Foo"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -529,21 +574,32 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>bar</p>
                 .
             */
-
             this.Setup(
-                "Foo",
-                "---",
+                "Foo", 
+                "---", 
                 "bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginHeader) { Level = 2 },
-                new Event(MarkupElementType.Text) { Text = "Foo" },
-                new Event(MarkupElementType.EndHeader) { Level = 2 },
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginHeader)
+                    {
+                        Level = 2
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Foo"
+                    }, 
+                new Event(MarkupElementType.EndHeader)
+                    {
+                        Level = 2
+                    }, 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -569,26 +625,31 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "* Foo",
-                "* * *",
+                "* Foo", 
+                "* * *", 
                 "* Bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "Foo" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.HorizontalRule),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "Bar" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Foo"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Bar"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -611,22 +672,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- Foo",
+                "- Foo", 
                 "- * * *");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "Foo" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.HorizontalRule),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Foo"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -635,5 +698,4 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
-
 }

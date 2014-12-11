@@ -7,7 +7,7 @@ namespace MfGames.Text.Markup
     using System;
     using System.IO;
 
-    using MfGames.IO;
+    using MfGames.Text.Markup.Markdown;
 
     /// <summary>
     /// Common base class for all markup readers.
@@ -24,7 +24,7 @@ namespace MfGames.Text.Markup
         /// </param>
         protected MarkupReader(TextReader reader)
         {
-            this.Reader = new PeekableTextReaderAdapter(reader);
+            this.Input = new InputBuffer(reader);
         }
 
         /// <summary>
@@ -68,9 +68,8 @@ namespace MfGames.Text.Markup
         #region Properties
 
         /// <summary>
-        /// Gets the text reader associated with the reader.
         /// </summary>
-        protected PeekableTextReaderAdapter Reader { get; private set; }
+        protected InputBuffer Input { get; private set; }
 
         #endregion
 

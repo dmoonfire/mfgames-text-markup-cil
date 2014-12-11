@@ -15,6 +15,11 @@ namespace MfGames.Text.Markup.Markdown
         #region Static Fields
 
         /// <summary>
+        /// Contains the regular expression for identifying an anchor tag.
+        /// </summary>
+        public static readonly Regex AnchorRegex = new Regex("^<a ([^><]+)>");
+
+        /// <summary>
         /// <para>
         /// Contains the regular expression for identifying an ATX-style header. The first
         /// matched group is the series of # characters. The second is the header contents
@@ -36,11 +41,6 @@ namespace MfGames.Text.Markup.Markdown
             Justification = "From CommonMark specification.")]
         public static readonly Regex AtxHeaderRegex =
             new Regex(@"^ {0,3}(#{1,6})(?:\s+\#+|\s+(.+?)(?:\s+\#+)?)?\s*$");
-
-        /// <summary>
-        /// Contains the regular expression for identifying an anchor tag.
-        /// </summary>
-        public static readonly Regex AnchorRegex = new Regex("^<a ([^><]+)>");
 
         /// <summary>
         /// <para>

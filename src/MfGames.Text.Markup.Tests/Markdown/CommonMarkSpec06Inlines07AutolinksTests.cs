@@ -12,7 +12,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
     [TestFixture]
-    public class CommonMarkSpec06Inlines07AutolinksTests : MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec06Inlines07AutolinksTests :
+        MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
@@ -29,18 +30,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="http://foo.bar.baz">http://foo.bar.baz</a></p>
                 .
             */
-
             this.Setup(
                 "<http://foo.bar.baz>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="http://foo.bar.baz" },
-                new Event(MarkupElementType.Text) { Text = "http://foo.bar.baz" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "http://foo.bar.baz"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "http://foo.bar.baz"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -58,18 +64,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="http://foo.bar.baz?q=hello&amp;id=22&amp;boolean">http://foo.bar.baz?q=hello&amp;id=22&amp;boolean</a></p>
                 .
             */
-
             this.Setup(
                 "<http://foo.bar.baz?q=hello&id=22&boolean>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="http://foo.bar.baz?q=hello&amp;id=22&amp;boolean" },
-                new Event(MarkupElementType.Text) { Text = "http://foo.bar.baz?q=hello&id=22&boolean" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href =
+                            "http://foo.bar.baz?q=hello&amp;id=22&amp;boolean"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "http://foo.bar.baz?q=hello&id=22&boolean"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -87,18 +99,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="irc://foo.bar:2233/baz">irc://foo.bar:2233/baz</a></p>
                 .
             */
-
             this.Setup(
                 "<irc://foo.bar:2233/baz>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="irc://foo.bar:2233/baz" },
-                new Event(MarkupElementType.Text) { Text = "irc://foo.bar:2233/baz" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "irc://foo.bar:2233/baz"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "irc://foo.bar:2233/baz"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -116,18 +133,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="MAILTO:FOO@BAR.BAZ">MAILTO:FOO@BAR.BAZ</a></p>
                 .
             */
-
             this.Setup(
                 "<MAILTO:FOO@BAR.BAZ>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="MAILTO:FOO@BAR.BAZ" },
-                new Event(MarkupElementType.Text) { Text = "MAILTO:FOO@BAR.BAZ" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "MAILTO:FOO@BAR.BAZ"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "MAILTO:FOO@BAR.BAZ"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -145,16 +167,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>&lt;http://foo.bar/baz bim&gt;</p>
                 .
             */
-
             this.Setup(
                 "<http://foo.bar/baz bim>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "<http://foo.bar/baz bim>" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<http://foo.bar/baz bim>"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -172,18 +196,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="mailto:foo@bar.example.com">foo@bar.example.com</a></p>
                 .
             */
-
             this.Setup(
                 "<foo@bar.example.com>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="mailto:foo@bar.example.com" },
-                new Event(MarkupElementType.Text) { Text = "foo@bar.example.com" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "mailto:foo@bar.example.com"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo@bar.example.com"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -201,18 +230,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="mailto:foo+special@Bar.baz-bar0.com">foo+special@Bar.baz-bar0.com</a></p>
                 .
             */
-
             this.Setup(
                 "<foo+special@Bar.baz-bar0.com>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="mailto:foo+special@Bar.baz-bar0.com" },
-                new Event(MarkupElementType.Text) { Text = "foo+special@Bar.baz-bar0.com" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "mailto:foo+special@Bar.baz-bar0.com"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo+special@Bar.baz-bar0.com"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -230,16 +264,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>&lt;&gt;</p>
                 .
             */
-
             this.Setup(
                 "<>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "<>" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<>"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -257,16 +293,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>&lt;heck://bing.bong&gt;</p>
                 .
             */
-
             this.Setup(
                 "<heck://bing.bong>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "<heck://bing.bong>" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<heck://bing.bong>"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -284,16 +322,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>&lt; http://foo.bar &gt;</p>
                 .
             */
-
             this.Setup(
                 "< http://foo.bar >");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "< http://foo.bar >" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "< http://foo.bar >"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -311,16 +351,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>&lt;foo.bar.baz&gt;</p>
                 .
             */
-
             this.Setup(
                 "<foo.bar.baz>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "<foo.bar.baz>" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<foo.bar.baz>"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -338,16 +380,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>&lt;localhost:5001/foo&gt;</p>
                 .
             */
-
             this.Setup(
                 "<localhost:5001/foo>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "<localhost:5001/foo>" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<localhost:5001/foo>"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -365,16 +409,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>http://example.com</p>
                 .
             */
-
             this.Setup(
                 "http://example.com");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "http://example.com" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "http://example.com"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -392,16 +438,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>foo@bar.example.com</p>
                 .
             */
-
             this.Setup(
                 "foo@bar.example.com");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "foo@bar.example.com" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo@bar.example.com"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -410,5 +458,4 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
-
 }

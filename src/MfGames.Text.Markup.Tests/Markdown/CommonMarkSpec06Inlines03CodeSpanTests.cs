@@ -12,7 +12,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
     [TestFixture]
-    public class CommonMarkSpec06Inlines03CodeSpanTests : MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec06Inlines03CodeSpanTests :
+        MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
@@ -29,18 +30,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>foo</code></p>
                 .
             */
-
             this.Setup(
                 "`foo`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -58,18 +61,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>foo ` bar</code></p>
                 .
             */
-
             this.Setup(
                 "`` foo ` bar  ``");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "foo ` bar" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo ` bar"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -87,18 +92,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>``</code></p>
                 .
             */
-
             this.Setup(
                 "` `` `");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "``" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "``"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -118,20 +125,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>foo</code></p>
                 .
             */
-
             this.Setup(
-                "``",
-                "foo",
+                "``", 
+                "foo", 
                 "``");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -150,19 +159,21 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>foo bar baz</code></p>
                 .
             */
-
             this.Setup(
-                "`foo   bar",
+                "`foo   bar", 
                 "  baz`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "foo bar baz" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo bar baz"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -180,18 +191,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>foo `` bar</code></p>
                 .
             */
-
             this.Setup(
                 "`foo `` bar`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "foo `` bar" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo `` bar"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -209,19 +222,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>foo\</code>bar`</p>
                 .
             */
-
             this.Setup(
                 "`foo\\`bar`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "foo\\" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "bar`" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo\\"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar`"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -239,19 +257,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>*foo<code>*</code></p>
                 .
             */
-
             this.Setup(
                 "*foo`*`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "*foo" },
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "*" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "*foo"
+                    }, 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "*"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -269,20 +292,28 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[not a <code>link](/foo</code>)</p>
                 .
             */
-
             this.Setup(
                 "[not a `link](/foo`)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[not a " },
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "link](/foo" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.Text) { Text = ")" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[not a "
+                    }, 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link](/foo"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = ")"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -300,19 +331,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="http://foo.bar.%60baz">http://foo.bar.`baz</a>`</p>
                 .
             */
-
             this.Setup(
                 "<http://foo.bar.`baz>`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="http://foo.bar.%60baz" },
-                new Event(MarkupElementType.Text) { Text = "http://foo.bar.`baz" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.Text) { Text = "`" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "http://foo.bar.%60baz"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "http://foo.bar.`baz"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "`"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -330,17 +369,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="`">`</p>
                 .
             */
-
             this.Setup(
                 "<a href=\"`\">`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="`" },
-                new Event(MarkupElementType.Text) { Text = "`" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "`"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "`"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -358,16 +402,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>```foo``</p>
                 .
             */
-
             this.Setup(
                 "```foo``");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "```foo``" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "```foo``"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -385,16 +431,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>`foo</p>
                 .
             */
-
             this.Setup(
                 "`foo");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "`foo" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "`foo"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -403,5 +451,4 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
-
 }

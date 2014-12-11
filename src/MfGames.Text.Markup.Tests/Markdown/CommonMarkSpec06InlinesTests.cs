@@ -29,19 +29,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>hi</code>lo`</p>
                 .
             */
-
             this.Setup(
                 "`hi`lo`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "hi" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "lo`" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "hi"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "lo`"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -50,5 +55,4 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
-
 }

@@ -12,7 +12,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
     [TestFixture]
-    public class CommonMarkSpec06Inlines06ImagesTests : MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec06Inlines06ImagesTests :
+        MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
@@ -29,18 +30,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="foo" title="title" /></p>
                 .
             */
-
             this.Setup(
                 "![foo](/url \"title\")");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"foo\" title=\"title\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"/url\" alt=\"foo\" title=\"title\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -60,20 +67,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
                 .
             */
-
             this.Setup(
-                "![foo *bar*]",
-                string.Empty,
+                "![foo *bar*]", 
+                string.Empty, 
                 "[foo *bar*]: train.jpg \"train & tracks\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -91,18 +104,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url2" alt="foo bar" /></p>
                 .
             */
-
             this.Setup(
                 "![foo ![bar](/url)](/url2)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url2\" alt=\"foo bar\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<img src=\"/url2\" alt=\"foo bar\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -120,18 +138,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url2" alt="foo bar" /></p>
                 .
             */
-
             this.Setup(
                 "![foo [bar](/url)](/url2)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url2\" alt=\"foo bar\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<img src=\"/url2\" alt=\"foo bar\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -151,20 +174,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
                 .
             */
-
             this.Setup(
-                "![foo *bar*][]",
-                string.Empty,
+                "![foo *bar*][]", 
+                string.Empty, 
                 "[foo *bar*]: train.jpg \"train & tracks\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -184,20 +213,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
                 .
             */
-
             this.Setup(
-                "![foo *bar*][foobar]",
-                string.Empty,
+                "![foo *bar*][foobar]", 
+                string.Empty, 
                 "[FOOBAR]: train.jpg \"train & tracks\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"train.jpg\" alt=\"foo bar\" title=\"train &amp; tracks\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -215,18 +250,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="train.jpg" alt="foo" /></p>
                 .
             */
-
             this.Setup(
                 "![foo](train.jpg)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"train.jpg\" alt=\"foo\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<img src=\"train.jpg\" alt=\"foo\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -244,19 +284,28 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>My <img src="/path/to/train.jpg" alt="foo bar" title="title" /></p>
                 .
             */
-
             this.Setup(
                 "My ![foo bar](/path/to/train.jpg  \"title\"   )");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "My " },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/path/to/train.jpg\" alt=\"foo bar\" title=\"title\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "My "
+                    }, 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"/path/to/train.jpg\" alt=\"foo bar\" title=\"title\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -274,18 +323,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="url" alt="foo" /></p>
                 .
             */
-
             this.Setup(
                 "![foo](<url>)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"url\" alt=\"foo\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<img src=\"url\" alt=\"foo\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -303,18 +357,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="" /></p>
                 .
             */
-
             this.Setup(
                 "![](/url)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<img src=\"/url\" alt=\"\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -334,20 +393,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="foo" /></p>
                 .
             */
-
             this.Setup(
-                "![foo] [bar]",
-                string.Empty,
+                "![foo] [bar]", 
+                string.Empty, 
                 "[bar]: /url");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"foo\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<img src=\"/url\" alt=\"foo\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -367,20 +431,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="foo" /></p>
                 .
             */
-
             this.Setup(
-                "![foo] [bar]",
-                string.Empty,
+                "![foo] [bar]", 
+                string.Empty, 
                 "[BAR]: /url");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"foo\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<img src=\"/url\" alt=\"foo\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -400,20 +469,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="foo" title="title" /></p>
                 .
             */
-
             this.Setup(
-                "![foo][]",
-                string.Empty,
+                "![foo][]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"foo\" title=\"title\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"/url\" alt=\"foo\" title=\"title\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -433,20 +508,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="foo bar" title="title" /></p>
                 .
             */
-
             this.Setup(
-                "![*foo* bar][]",
-                string.Empty,
+                "![*foo* bar][]", 
+                string.Empty, 
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -466,20 +547,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="Foo" title="title" /></p>
                 .
             */
-
             this.Setup(
-                "![Foo][]",
-                string.Empty,
+                "![Foo][]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -500,21 +587,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="foo" title="title" /></p>
                 .
             */
-
             this.Setup(
-                "![foo] ",
-                "[]",
-                string.Empty,
+                "![foo] ", 
+                "[]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"foo\" title=\"title\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"/url\" alt=\"foo\" title=\"title\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -534,20 +627,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="foo" title="title" /></p>
                 .
             */
-
             this.Setup(
-                "![foo]",
-                string.Empty,
+                "![foo]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"foo\" title=\"title\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"/url\" alt=\"foo\" title=\"title\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -567,20 +666,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="foo bar" title="title" /></p>
                 .
             */
-
             this.Setup(
-                "![*foo* bar]",
-                string.Empty,
+                "![*foo* bar]", 
+                string.Empty, 
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"/url\" alt=\"foo bar\" title=\"title\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -601,21 +706,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[[foo]]: /url &quot;title&quot;</p>
                 .
             */
-
             this.Setup(
-                "![[foo]]",
-                string.Empty,
+                "![[foo]]", 
+                string.Empty, 
                 "[[foo]]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "![[foo]]" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[[foo]]: /url \"title\"" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "![[foo]]"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[[foo]]: /url \"title\""
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -635,20 +745,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><img src="/url" alt="Foo" title="title" /></p>
                 .
             */
-
             this.Setup(
-                "![Foo]",
-                string.Empty,
+                "![Foo]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<img src=\"/url\" alt=\"Foo\" title=\"title\" /></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -668,18 +784,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>![foo]</p>
                 .
             */
-
             this.Setup(
-                "\\!\\[foo]",
-                string.Empty,
+                "\\!\\[foo]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "![foo]" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "![foo]"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -699,21 +817,30 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>!<a href="/url" title="title">foo</a></p>
                 .
             */
-
             this.Setup(
-                "\\![foo]",
-                string.Empty,
+                "\\![foo]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "!" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "!"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -722,5 +849,4 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
-
 }

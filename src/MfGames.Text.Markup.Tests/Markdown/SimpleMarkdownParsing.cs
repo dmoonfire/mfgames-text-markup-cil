@@ -420,7 +420,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "One two three"
                     }, 
-                new Event(MarkupElementType.Whitespace)
+                new Event(MarkupElementType.NewLine)
                     {
                         Text = Environment.NewLine
                     }, 
@@ -514,7 +514,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                     {
                         Text = "One two three"
                     }, 
-                new Event(MarkupElementType.Whitespace)
+                new Event(MarkupElementType.NewLine)
                     {
                         Text = Environment.NewLine
                     }, 
@@ -657,13 +657,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
         public void VerifyYamlMetadataEvents()
         {
             this.Setup(
-                new MarkdownOptions()
+                new MarkdownOptions
                     {
                         AllowMetadata = true
-                    },
-                "---",
-                "meta: data",
-                "---",
+                    }, 
+                "---", 
+                "meta: data", 
+                "---", 
                 "One two three.");
 
             this.AssertEventElementTypes(

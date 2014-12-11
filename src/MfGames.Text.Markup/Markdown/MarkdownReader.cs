@@ -5,9 +5,8 @@
 namespace MfGames.Text.Markup.Markdown
 {
     using System;
+    using System.Collections.Generic;
     using System.IO;
-    using System.Text;
-    using System.Text.RegularExpressions;
 
     /// <summary>
     /// Implements a Markdown reader that parses various flavors of Markdown based
@@ -17,6 +16,10 @@ namespace MfGames.Text.Markup.Markdown
         IDisposable
     {
         #region Fields
+
+        /// <summary>
+        /// </summary>
+        private readonly List<BlockReaderBase> blockReaders;
 
         /// <summary>
         /// </summary>
@@ -71,6 +74,10 @@ namespace MfGames.Text.Markup.Markdown
         /// </summary>
         private string originaLine;
 
+        /// <summary>
+        /// </summary>
+        private bool inContent;
+
         #endregion
 
         #region Constructors and Destructors
@@ -90,6 +97,7 @@ namespace MfGames.Text.Markup.Markdown
             : base(lines)
         {
             this.Options = options ?? MarkdownOptions.DefaultOptions;
+            this.blockReaders = new List<BlockReaderBase>();
         }
 
         /// <summary>
@@ -107,6 +115,7 @@ namespace MfGames.Text.Markup.Markdown
             : base(reader)
         {
             this.Options = options ?? MarkdownOptions.DefaultOptions;
+            this.blockReaders = new List<BlockReaderBase>();
         }
 
         #endregion
@@ -128,9 +137,56 @@ namespace MfGames.Text.Markup.Markdown
         }
 
         /// <summary>
+        /// </summary>
+        /// <param name="newElementType">
+        /// </param>
+        internal void SetState(MarkupElementType newElementType)
+        {
+            this.elementType = newElementType;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="newElementType">
+        /// </param>
+        /// <param name="newText">
+        /// </param>
+        internal void SetState(
+            MarkupElementType newElementType, 
+            string newText)
+        {
+            this.SetState(newElementType);
+            this.Text = newText;
+        }
+
+        /// <summary>
         /// Gets the options associated with the reader.
         /// </summary>
         public MarkdownOptions Options { get; private set; }
+
+        #endregion
+
+        #region Properties
+
+        /// <summary>
+        /// </summary>
+        protected BlockReaderBase CurrentBlockReader
+        {
+            get
+            {
+                return this.blockReaders[0];
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        protected bool HasCurrentBlockReader
+        {
+            get
+            {
+                return this.blockReaders.Count > 0;
+            }
+        }
 
         #endregion
 
@@ -229,95 +285,99 @@ namespace MfGames.Text.Markup.Markdown
             // Reset the state.
             this.ResetState();
 
-            // If the current line is null, then load the next one.
-            if (this.currentLine == null)
+            // If we have an unknown state, we have to start with the document.
+            if (this.ElementType == MarkupElementType.Unknown)
             {
-                this.originaLine = this.Reader.ReadLine();
-                this.currentLine = this.originaLine;
+                this.elementType = MarkupElementType.BeginDocument;
+                return true;
             }
 
-            // Our processing is based on our current state.
-            switch (this.ElementType)
+            // Figure out if we already have a block reader current parsing the line.
+            // If we do, then just pass it into that block reader.
+            while (this.HasCurrentBlockReader)
             {
-                case MarkupElementType.Unknown:
-                    this.elementType = MarkupElementType.BeginDocument;
+                // Pull out the current block reader and read it.
+                BlockReaderBase currentBlockReader = this.CurrentBlockReader;
+                BlockReadStatus status = currentBlockReader.Read(
+                    this, this.Input);
+
+                if (status == BlockReadStatus.Continue)
+                {
+                    // The reader is still processing the line, so return
+                    // true to say the reader has been updated and we'll go
+                    // back into this reader with the next loop.
                     return true;
+                }
 
-                case MarkupElementType.BeginMetadata:
-                    return this.ProcessBeginMetadata();
+                // If we got this far, then the block reader is done. We
+                // remove it from the stack and try again.
+                this.blockReaders.RemoveAt(0);
+            }
 
-                case MarkupElementType.YamlMetadata:
-                    this.elementType = MarkupElementType.EndMetadata;
-                    return true;
+            // If we got this far and we are at the end of the buffer,
+            // we go into our end file pattern.
+            if (this.Input.IsEndOfBuffer)
+            {
+                switch (this.elementType)
+                {
+                    case MarkupElementType.EndContent:
+                        this.elementType = MarkupElementType.EndDocument;
+                        return true;
 
-                case MarkupElementType.EndMetadata:
+                    case MarkupElementType.EndDocument:
+                        return false;
+
+                    default:
+                        this.elementType = MarkupElementType.EndContent;
+                        return true;
+                }
+            }
+
+            // We ran out of block readers, so we need to find a new one.
+            // To process the text.
+            BlockReaderBase blockReader = this.GetNextBlockReader();
+
+            if (blockReader != null)
+            {
+                // Add it to the current list.
+                this.blockReaders.Insert(0, blockReader);
+
+                // Check to see if we need the begin content element.
+                if (!this.inContent)
+                {
+                    this.inContent = true;
                     this.elementType = MarkupElementType.BeginContent;
                     return true;
+                }
 
-                case MarkupElementType.BeginDocument:
-                    this.elementType = this.CheckMetadata()
-                        ? MarkupElementType.BeginMetadata
-                        : MarkupElementType.BeginContent;
+                // Parse the results.
+                BlockReadStatus status = blockReader.Read(this, this.Input);
+
+                if (status == BlockReadStatus.Continue)
+                {
                     return true;
+                }
 
-                case MarkupElementType.BeginContent:
-                case MarkupElementType.HorizontalRule:
-                    return this.ProcessBlock();
-
-                case MarkupElementType.BeginHeader:
-                    return this.ProcessBeginHeader();
-
-                case MarkupElementType.BeginBlockquote:
-                    return this.ProcessBeginBlockquote();
-
-                case MarkupElementType.EndBlockquote:
-                    return this.ProcessEndBlockquote();
-
-                case MarkupElementType.BeginParagraph:
-                    return this.ProcessBeginParagraph();
-
-                case MarkupElementType.Whitespace:
-                    return this.ProcessWhitespace();
-
-                case MarkupElementType.Text:
-                case MarkupElementType.BeginAnchor:
-                case MarkupElementType.EndAnchor:
-                    return this.ProcessText();
-
-                case MarkupElementType.EndParagraph:
-                    return this.ProcessEndParagraph();
-
-                case MarkupElementType.EndHeader:
-                    return this.ProcessEndHeader();
-
-                case MarkupElementType.EndContent:
-                    this.elementType = MarkupElementType.EndDocument;
-                    return true;
-
-                case MarkupElementType.EndDocument:
-                    return false;
-
-                case MarkupElementType.BeginCodeBlock:
-                    return this.ProcessBeginCodeBlock();
-                case MarkupElementType.EndCodeBlock:
-                    return this.ProcessEndCodeBlock();
-
-                case MarkupElementType.BeginBold:
-                    return this.ProcessBeginBold();
-                case MarkupElementType.EndBold:
-                    return this.ProcessEndBold();
-                case MarkupElementType.BeginItalic:
-                    return this.ProcessBeginItalic();
-                case MarkupElementType.EndItalic:
-                    return this.ProcessEndItalic();
-                case MarkupElementType.BeginCodeSpan:
-                    return this.ProcessBeginCodeSpan();
-                case MarkupElementType.EndCodeSpan:
-                    return this.ProcessEndCodeSpan();
+                // If we go here, something is seriously wrong with the
+                // system. We just identified the block that needs to be
+                // read and it won't read anything.
+                throw new Exception("Block reader cannot read initial block.");
             }
 
-            // If we drop out, we are done processing.
+            // If all else fails, we've hit the end of the document to
+            // just stop processing.
             return false;
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <returns>
+        /// </returns>
+        private BlockReaderBase GetNextBlockReader()
+        {
+            var blockReader = new ParagraphBlockReader();
+            blockReader.Reset();
+            return blockReader;
         }
 
         #endregion
@@ -334,10 +394,12 @@ namespace MfGames.Text.Markup.Markdown
         {
         }
 
-        /// <summary>
-        /// Checks for metadata in the input stream.
-        /// </summary>
-        /// <returns>Returns true if there is metadata, otherwise false.</returns>
+#if REMOVED
+    
+    // <summary>
+    /// Checks for metadata in the input stream.
+    /// </summary>
+    /// <returns>Returns true if there is metadata, otherwise false.</returns>
         private bool CheckMetadata()
         {
             // Make sure we allow metadata in the first place.
@@ -801,7 +863,7 @@ namespace MfGames.Text.Markup.Markdown
                 case MarkdownBlockType.Whitespace:
 
                     // Set up the state for the whitespace.
-                    this.elementType = MarkupElementType.Whitespace;
+                    this.elementType = MarkupElementType.NewLine;
                     this.Text = this.currentLine;
 
                     // Clear out the line so we read the next.
@@ -1083,7 +1145,7 @@ namespace MfGames.Text.Markup.Markdown
                         // end with a newline.
                         this.Text = Environment.NewLine;
                         this.currentLine = null;
-                        this.elementType = MarkupElementType.Whitespace;
+                        this.elementType = MarkupElementType.NewLine;
                     }
                     else if (isEndOfBuffer)
                     {
@@ -1111,7 +1173,7 @@ namespace MfGames.Text.Markup.Markdown
                 // Record it as whitespace and move on.
                 this.Text = Environment.NewLine;
                 this.currentLine = null;
-                this.elementType = MarkupElementType.Whitespace;
+                this.elementType = MarkupElementType.NewLine;
 
                 // We are done processing this one.
                 return true;
@@ -1243,6 +1305,8 @@ namespace MfGames.Text.Markup.Markdown
             // Return the resulting string.
             return buffer.ToString();
         }
+
+#endif
 
         #endregion
     }

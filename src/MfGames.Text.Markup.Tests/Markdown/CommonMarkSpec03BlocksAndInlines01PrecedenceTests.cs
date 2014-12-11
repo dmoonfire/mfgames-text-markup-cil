@@ -12,7 +12,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
     [TestFixture]
-    public class CommonMarkSpec03BlocksAndInlines01PrecedenceTests : MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec03BlocksAndInlines01PrecedenceTests :
+        MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
@@ -33,22 +34,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- `one",
+                "- `one", 
                 "- two`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "`one" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "two`" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "`one"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "two`"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -57,5 +63,4 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
-
 }

@@ -62,9 +62,9 @@ namespace MfGames.Text.Markup
         Text, 
 
         /// <summary>
-        /// Indicates a block of insignificant whitespace.
+        /// Indicates a newline was found in the input.
         /// </summary>
-        Whitespace, 
+        NewLine, 
 
         /// <summary>
         /// Indicates the beginning of a blockquote.

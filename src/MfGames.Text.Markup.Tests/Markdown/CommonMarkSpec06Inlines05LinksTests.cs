@@ -12,7 +12,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
     [TestFixture]
-    public class CommonMarkSpec06Inlines05LinksTests : MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec06Inlines05LinksTests :
+        MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
@@ -29,18 +30,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri" title="title">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](/uri \"title\")");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -58,18 +65,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -87,18 +99,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link]()");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = string.Empty
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -116,18 +133,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](<>)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = string.Empty
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -145,16 +167,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[link](/my uri)</p>
                 .
             */
-
             this.Setup(
                 "[link](/my uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[link](/my uri)" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[link](/my uri)"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -172,18 +196,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/my%20uri">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](</my uri>)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/my%20uri" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/my%20uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -203,19 +232,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 bar)</p>
                 .
             */
-
             this.Setup(
-                "[link](foo",
+                "[link](foo", 
                 "bar)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[link](foo" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.Text) { Text = "bar)" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[link](foo"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar)"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -233,18 +270,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="(foo)and(bar)">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link]((foo)and(bar))");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="(foo)and(bar)" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "(foo)and(bar)"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -262,16 +304,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[link](foo(and(bar)))</p>
                 .
             */
-
             this.Setup(
                 "[link](foo(and(bar)))");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[link](foo(and(bar)))" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[link](foo(and(bar)))"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -289,18 +333,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="foo(and(bar))">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](foo(and\\(bar\\)))");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="foo(and(bar))" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "foo(and(bar))"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -318,18 +367,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="foo(and(bar))">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](<foo(and(bar))>)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="foo(and(bar))" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "foo(and(bar))"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -347,18 +401,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="foo):">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](foo\\)\\:)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="foo):" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "foo):"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -376,18 +435,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="foo%20b%C3%A4">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](foo%20b&auml;)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="foo%20b%C3%A4" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "foo%20b%C3%A4"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -405,18 +469,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="%22title%22">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](\"title\")");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="%22title%22" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "%22title%22"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -438,28 +507,54 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <a href="/url" title="title">link</a></p>
                 .
             */
-
             this.Setup(
-                "[link](/url \"title\")",
-                "[link](/url 'title')",
+                "[link](/url \"title\")", 
+                "[link](/url 'title')", 
                 "[link](/url (title))");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -477,18 +572,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title &quot;&quot;">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](/url \"title \\\"&quot;\")");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title &quot;&quot;" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title &quot;&quot;"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -506,16 +607,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[link](/url &quot;title &quot;and&quot; title&quot;)</p>
                 .
             */
-
             this.Setup(
                 "[link](/url \"title \"and\" title\")");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[link](/url \"title \"and\" title\")" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[link](/url \"title \"and\" title\")"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -533,18 +636,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title &quot;and&quot; title">link</a></p>
                 .
             */
-
             this.Setup(
                 "[link](/url 'title \"and\" title')");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title &quot;and&quot; title" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title &quot;and&quot; title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -563,19 +672,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri" title="title">link</a></p>
                 .
             */
-
             this.Setup(
-                "[link](   /uri",
+                "[link](   /uri", 
                 "  \"title\"  )");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "link" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -593,16 +708,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[link] (/uri)</p>
                 .
             */
-
             this.Setup(
                 "[link] (/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[link] (/uri)" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[link] (/uri)"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -620,18 +737,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri">link [foo [bar]]</a></p>
                 .
             */
-
             this.Setup(
                 "[link [foo [bar]]](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "link [foo [bar]]" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link [foo [bar]]"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -649,16 +771,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[link] bar](/uri)</p>
                 .
             */
-
             this.Setup(
                 "[link] bar](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[link] bar](/uri)" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[link] bar](/uri)"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -676,19 +800,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[link <a href="/uri">bar</a></p>
                 .
             */
-
             this.Setup(
                 "[link [bar](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[link " },
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[link "
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -706,18 +838,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri">link [bar</a></p>
                 .
             */
-
             this.Setup(
                 "[link \\[bar](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "link [bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link [bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -735,22 +872,37 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
                 .
             */
-
             this.Setup(
                 "[link *foo **bar** `#`*](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "link " },
-                new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "foo " },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<strong>bar</strong> <code>#</code></em></a></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link "
+                    }, 
+                new Event(MarkupElementType.BeginItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo "
+                    }, 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<strong>bar</strong> <code>#</code></em></a></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -768,19 +920,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>
                 .
             */
-
             this.Setup(
                 "[![moon](moon.jpg)](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"moon.jpg\" alt=\"moon\" /></a></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<img src=\"moon.jpg\" alt=\"moon\" /></a></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -798,20 +958,31 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo <a href="/uri">bar</a>](/uri)</p>
                 .
             */
-
             this.Setup(
                 "[foo [bar](/uri)](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo " },
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.Text) { Text = "](/uri)" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo "
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "](/uri)"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -829,24 +1000,41 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo <em>[bar <a href="/uri">baz</a>](/uri)</em>](/uri)</p>
                 .
             */
-
             this.Setup(
                 "[foo *[bar [baz](/uri)](/uri)*](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo " },
-                new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "[bar " },
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.Text) { Text = "](/uri)" },
-                new Event(MarkupElementType.EndItalic),
-                new Event(MarkupElementType.Text) { Text = "](/uri)" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo "
+                    }, 
+                new Event(MarkupElementType.BeginItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[bar "
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "](/uri)"
+                    }, 
+                new Event(MarkupElementType.EndItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "](/uri)"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -864,19 +1052,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>*<a href="/uri">foo*</a></p>
                 .
             */
-
             this.Setup(
                 "*[foo*](/uri)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "*" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "foo*" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "*"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo*"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -894,18 +1090,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="baz*">foo *bar</a></p>
                 .
             */
-
             this.Setup(
                 "[foo *bar](baz*)");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="baz*" },
-                new Event(MarkupElementType.Text) { Text = "foo *bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "baz*"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo *bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -923,19 +1124,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo <bar attr="](baz)"></p>
                 .
             */
-
             this.Setup(
                 "[foo <bar attr=\"](baz)\">");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo " },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<bar attr=\"](baz)\"></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo "
+                    }, 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<bar attr=\"](baz)\"></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -953,19 +1162,24 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo<code>](/uri)</code></p>
                 .
             */
-
             this.Setup(
                 "[foo`](/uri)`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "](/uri)" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo"
+                    }, 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "](/uri)"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -983,19 +1197,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo<a href="http://example.com?search=%5D(uri)">http://example.com?search=](uri)</a></p>
                 .
             */
-
             this.Setup(
                 "[foo<http://example.com?search=](uri)>");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.BeginAnchor) { Href="http://example.com?search=%5D(uri)" },
-                new Event(MarkupElementType.Text) { Text = "http://example.com?search=](uri)" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "http://example.com?search=%5D(uri)"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "http://example.com?search=](uri)"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1015,20 +1237,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title">foo</a></p>
                 .
             */
-
             this.Setup(
-                "[foo][bar]",
-                string.Empty,
+                "[foo][bar]", 
+                string.Empty, 
                 "[bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1048,20 +1276,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri">link [foo [bar]]</a></p>
                 .
             */
-
             this.Setup(
-                "[link [foo [bar]]][ref]",
-                string.Empty,
+                "[link [foo [bar]]][ref]", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "link [foo [bar]]" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link [foo [bar]]"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1081,20 +1314,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri">link [bar</a></p>
                 .
             */
-
             this.Setup(
-                "[link \\[bar][ref]",
-                string.Empty,
+                "[link \\[bar][ref]", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "link [bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link [bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1114,24 +1352,39 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri">link <em>foo <strong>bar</strong> <code>#</code></em></a></p>
                 .
             */
-
             this.Setup(
-                "[link *foo **bar** `#`*][ref]",
-                string.Empty,
+                "[link *foo **bar** `#`*][ref]", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "link " },
-                new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "foo " },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<strong>bar</strong> <code>#</code></em></a></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "link "
+                    }, 
+                new Event(MarkupElementType.BeginItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo "
+                    }, 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text =
+                            "<strong>bar</strong> <code>#</code></em></a></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1151,21 +1404,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri"><img src="moon.jpg" alt="moon" /></a></p>
                 .
             */
-
             this.Setup(
-                "[![moon](moon.jpg)][ref]",
-                string.Empty,
+                "[![moon](moon.jpg)][ref]", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<img src=\"moon.jpg\" alt=\"moon\" /></a></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<img src=\"moon.jpg\" alt=\"moon\" /></a></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1185,25 +1446,42 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo <a href="/uri">bar</a>]<a href="/uri">ref</a></p>
                 .
             */
-
             this.Setup(
-                "[foo [bar](/uri)][ref]",
-                string.Empty,
+                "[foo [bar](/uri)][ref]", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo " },
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.Text) { Text = "]" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "ref" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo "
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "]"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "ref"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1223,28 +1501,48 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo <em>bar <a href="/uri">baz</a></em>]<a href="/uri">ref</a></p>
                 .
             */
-
             this.Setup(
-                "[foo *bar [baz][ref]*][ref]",
-                string.Empty,
+                "[foo *bar [baz][ref]*][ref]", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo " },
-                new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "bar " },
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndItalic),
-                new Event(MarkupElementType.Text) { Text = "]" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "ref" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo "
+                    }, 
+                new Event(MarkupElementType.BeginItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar "
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "]"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "ref"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1264,21 +1562,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>*<a href="/uri">foo*</a></p>
                 .
             */
-
             this.Setup(
-                "*[foo*][ref]",
-                string.Empty,
+                "*[foo*][ref]", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "*" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "foo*" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "*"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo*"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1298,20 +1604,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri">foo *bar</a></p>
                 .
             */
-
             this.Setup(
-                "[foo *bar][ref]",
-                string.Empty,
+                "[foo *bar][ref]", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "foo *bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo *bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1331,21 +1642,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo <bar attr="][ref]"></p>
                 .
             */
-
             this.Setup(
-                "[foo <bar attr=\"][ref]\">",
-                string.Empty,
+                "[foo <bar attr=\"][ref]\">", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo " },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<bar attr=\"][ref]\"></p>" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo "
+                    }, 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<bar attr=\"][ref]\"></p>"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1365,21 +1684,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo<code>][ref]</code></p>
                 .
             */
-
             this.Setup(
-                "[foo`][ref]`",
-                string.Empty,
+                "[foo`][ref]`", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "][ref]" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo"
+                    }, 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "][ref]"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1399,21 +1723,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo<a href="http://example.com?search=%5D%5Bref%5D">http://example.com?search=][ref]</a></p>
                 .
             */
-
             this.Setup(
-                "[foo<http://example.com?search=][ref]>",
-                string.Empty,
+                "[foo<http://example.com?search=][ref]>", 
+                string.Empty, 
                 "[ref]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.BeginAnchor) { Href="http://example.com?search=%5D%5Bref%5D" },
-                new Event(MarkupElementType.Text) { Text = "http://example.com?search=][ref]" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "http://example.com?search=%5D%5Bref%5D"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "http://example.com?search=][ref]"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1433,20 +1765,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title">foo</a></p>
                 .
             */
-
             this.Setup(
-                "[foo][BaR]",
-                string.Empty,
+                "[foo][BaR]", 
+                string.Empty, 
                 "[bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1466,21 +1804,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url">Толпой</a> is a Russian word.</p>
                 .
             */
-
             this.Setup(
-                "[Толпой][Толпой] is a Russian word.",
-                string.Empty,
+                "[Толпой][Толпой] is a Russian word.", 
+                string.Empty, 
                 "[ТОЛПОЙ]: /url");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url" },
-                new Event(MarkupElementType.Text) { Text = "Толпой" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.Text) { Text = " is a Russian word." },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Толпой"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = " is a Russian word."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1501,21 +1847,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url">Baz</a></p>
                 .
             */
-
             this.Setup(
-                "[Foo",
-                "  bar]: /url",
-                string.Empty,
+                "[Foo", 
+                "  bar]: /url", 
+                string.Empty, 
                 "[Baz][Foo bar]");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url" },
-                new Event(MarkupElementType.Text) { Text = "Baz" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Baz"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1535,20 +1886,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title">foo</a></p>
                 .
             */
-
             this.Setup(
-                "[foo] [bar]",
-                string.Empty,
+                "[foo] [bar]", 
+                string.Empty, 
                 "[bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1569,21 +1926,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title">foo</a></p>
                 .
             */
-
             this.Setup(
-                "[foo]",
-                "[bar]",
-                string.Empty,
+                "[foo]", 
+                "[bar]", 
+                string.Empty, 
                 "[bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1605,22 +1968,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url1">bar</a></p>
                 .
             */
-
             this.Setup(
-                "[foo]: /url1",
-                string.Empty,
-                "[foo]: /url2",
-                string.Empty,
+                "[foo]: /url1", 
+                string.Empty, 
+                "[foo]: /url2", 
+                string.Empty, 
                 "[bar][foo]");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url1" },
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url1"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1640,18 +2008,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[bar][foo!]</p>
                 .
             */
-
             this.Setup(
-                "[bar][foo\\!]",
-                string.Empty,
+                "[bar][foo\\!]", 
+                string.Empty, 
                 "[foo!]: /url");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[bar][foo!]" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[bar][foo!]"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1672,21 +2042,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[ref[]: /uri</p>
                 .
             */
-
             this.Setup(
-                "[foo][ref[]",
-                string.Empty,
+                "[foo][ref[]", 
+                string.Empty, 
                 "[ref[]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo][ref[]" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[ref[]: /uri" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo][ref[]"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[ref[]: /uri"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1707,21 +2082,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[ref[bar]]: /uri</p>
                 .
             */
-
             this.Setup(
-                "[foo][ref[bar]]",
-                string.Empty,
+                "[foo][ref[bar]]", 
+                string.Empty, 
                 "[ref[bar]]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo][ref[bar]]" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[ref[bar]]: /uri" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo][ref[bar]]"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[ref[bar]]: /uri"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1742,21 +2122,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[[[foo]]]: /url</p>
                 .
             */
-
             this.Setup(
-                "[[[foo]]]",
-                string.Empty,
+                "[[[foo]]]", 
+                string.Empty, 
                 "[[[foo]]]: /url");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[[[foo]]]" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[[[foo]]]: /url" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[[[foo]]]"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[[[foo]]]: /url"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1776,20 +2161,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/uri">foo</a></p>
                 .
             */
-
             this.Setup(
-                "[foo][ref\\[]",
-                string.Empty,
+                "[foo][ref\\[]", 
+                string.Empty, 
                 "[ref\\[]: /uri");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/uri" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/uri"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1809,20 +2199,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title">foo</a></p>
                 .
             */
-
             this.Setup(
-                "[foo][]",
-                string.Empty,
+                "[foo][]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1842,23 +2238,32 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title"><em>foo</em> bar</a></p>
                 .
             */
-
             this.Setup(
-                "[*foo* bar][]",
-                string.Empty,
+                "[*foo* bar][]", 
+                string.Empty, 
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndItalic),
-                new Event(MarkupElementType.Text) { Text = " bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.BeginItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = " bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1878,20 +2283,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title">Foo</a></p>
                 .
             */
-
             this.Setup(
-                "[Foo][]",
-                string.Empty,
+                "[Foo][]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "Foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1912,21 +2323,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title">foo</a></p>
                 .
             */
-
             this.Setup(
-                "[foo] ",
-                "[]",
-                string.Empty,
+                "[foo] ", 
+                "[]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1946,20 +2363,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title">foo</a></p>
                 .
             */
-
             this.Setup(
-                "[foo]",
-                string.Empty,
+                "[foo]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1979,23 +2402,32 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title"><em>foo</em> bar</a></p>
                 .
             */
-
             this.Setup(
-                "[*foo* bar]",
-                string.Empty,
+                "[*foo* bar]", 
+                string.Empty, 
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndItalic),
-                new Event(MarkupElementType.Text) { Text = " bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.BeginItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = " bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2015,25 +2447,40 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[<a href="/url" title="title"><em>foo</em> bar</a>]</p>
                 .
             */
-
             this.Setup(
-                "[[*foo* bar]]",
-                string.Empty,
+                "[[*foo* bar]]", 
+                string.Empty, 
                 "[*foo* bar]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndItalic),
-                new Event(MarkupElementType.Text) { Text = " bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.Text) { Text = "]" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "["
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.BeginItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndItalic), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = " bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "]"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2053,20 +2500,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url" title="title">Foo</a></p>
                 .
             */
-
             this.Setup(
-                "[Foo]",
-                string.Empty,
+                "[Foo]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url", Title="title" },
-                new Event(MarkupElementType.Text) { Text = "Foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url", 
+                        Title = "title"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2086,18 +2539,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo]</p>
                 .
             */
-
             this.Setup(
-                "\\[foo]",
-                string.Empty,
+                "\\[foo]", 
+                string.Empty, 
                 "[foo]: /url \"title\"");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo]" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo]"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2117,21 +2572,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>*<a href="/url">foo*</a></p>
                 .
             */
-
             this.Setup(
-                "[foo*]: /url",
-                string.Empty,
+                "[foo*]: /url", 
+                string.Empty, 
                 "*[foo*]");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "*" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/url" },
-                new Event(MarkupElementType.Text) { Text = "foo*" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "*"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo*"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2151,21 +2614,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo<code>]</code></p>
                 .
             */
-
             this.Setup(
-                "[foo`]: /url",
-                string.Empty,
+                "[foo`]: /url", 
+                string.Empty, 
                 "[foo`]`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "]" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo"
+                    }, 
+                new Event(MarkupElementType.BeginCodeSpan), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "]"
+                    }, 
+                new Event(MarkupElementType.EndCodeSpan), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2186,21 +2654,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url2">foo</a></p>
                 .
             */
-
             this.Setup(
-                "[foo][bar]",
-                string.Empty,
-                "[foo]: /url1",
+                "[foo][bar]", 
+                string.Empty, 
+                "[foo]: /url1", 
                 "[bar]: /url2");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url2" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url2"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2220,21 +2693,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo]<a href="/url">bar</a></p>
                 .
             */
-
             this.Setup(
-                "[foo][bar][baz]",
-                string.Empty,
+                "[foo][bar][baz]", 
+                string.Empty, 
                 "[baz]: /url");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo]" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/url" },
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo]"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2255,24 +2736,35 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><a href="/url2">foo</a><a href="/url1">baz</a></p>
                 .
             */
-
             this.Setup(
-                "[foo][bar][baz]",
-                string.Empty,
-                "[baz]: /url1",
+                "[foo][bar][baz]", 
+                string.Empty, 
+                "[baz]: /url1", 
                 "[bar]: /url2");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url2" },
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.BeginAnchor) { Href="/url1" },
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url2"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url1"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2293,22 +2785,30 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>[foo]<a href="/url1">bar</a></p>
                 .
             */
-
             this.Setup(
-                "[foo][bar][baz]",
-                string.Empty,
-                "[baz]: /url1",
+                "[foo][bar][baz]", 
+                string.Empty, 
+                "[baz]: /url1", 
                 "[foo]: /url2");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo]" },
-                new Event(MarkupElementType.BeginAnchor) { Href="/url1" },
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndAnchor),
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "[foo]"
+                    }, 
+                new Event(MarkupElementType.BeginAnchor)
+                    {
+                        Href = "/url1"
+                    }, 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndAnchor), 
+                new Event(MarkupElementType.EndParagraph), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -2317,5 +2817,4 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
-
 }

@@ -12,7 +12,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
     [TestFixture]
-    public class CommonMarkSpec05ContainerBlocks03ListsTests : MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec05ContainerBlocks03ListsTests :
+        MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
@@ -37,28 +38,36 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- foo",
-                "- bar",
+                "- foo", 
+                "- bar", 
                 "+ baz");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -84,33 +93,53 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ol>
                 .
             */
-
             this.Setup(
-                "1. foo",
-                "2. bar",
+                "1. foo", 
+                "2. bar", 
                 "3) baz");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginOrderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndOrderedList),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<ol start=\"3\">" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndOrderedList),
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginOrderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndOrderedList), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<ol start=\"3\">"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndOrderedList), 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -134,26 +163,34 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "Foo",
-                "- bar",
+                "Foo", 
+                "- bar", 
                 "- baz");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "Foo" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Foo"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -175,27 +212,44 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ol>
                 .
             */
-
             this.Setup(
-                "The number of windows in my house is",
+                "The number of windows in my house is", 
                 "14.  The number of doors is 6.");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "The number of windows in my house is" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<ol start=\"14\">" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "The number of doors is 6." },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndOrderedList),
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "The number of windows in my house is"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginHtml), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "<ol start=\"14\">"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "The number of doors is 6."
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndOrderedList), 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndHtml), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -228,35 +282,43 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- foo",
-                string.Empty,
-                "- bar",
-                string.Empty,
-                string.Empty,
+                "- foo", 
+                string.Empty, 
+                "- bar", 
+                string.Empty, 
+                string.Empty, 
                 "- baz");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -284,30 +346,38 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- foo",
-                string.Empty,
-                string.Empty,
-                "  bar",
+                "- foo", 
+                string.Empty, 
+                string.Empty, 
+                "  bar", 
                 "- baz");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -342,37 +412,51 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
-
             this.Setup(
-                "- foo",
-                "  - bar",
-                "    - baz",
-                string.Empty,
-                string.Empty,
+                "- foo", 
+                "  - bar", 
+                "    - baz", 
+                string.Empty, 
+                string.Empty, 
                 "      bim");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.BeginCodeBlock),
-                new Event(MarkupElementType.Text) { Text = "  bim" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndCodeBlock),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginCodeBlock), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "  bim"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndCodeBlock), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -402,34 +486,45 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- foo",
-                "- bar",
-                string.Empty,
-                string.Empty,
-                "- baz",
+                "- foo", 
+                "- bar", 
+                string.Empty, 
+                string.Empty, 
+                "- baz", 
                 "- bim");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "bim" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bim"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -464,39 +559,53 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
-
             this.Setup(
-                "-   foo",
-                string.Empty,
-                "    notcode",
-                string.Empty,
-                "-   foo",
-                string.Empty,
-                string.Empty,
+                "-   foo", 
+                string.Empty, 
+                "    notcode", 
+                string.Empty, 
+                "-   foo", 
+                string.Empty, 
+                string.Empty, 
                 "    code");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "notcode" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.BeginCodeBlock),
-                new Event(MarkupElementType.Text) { Text = "code" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndCodeBlock),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "notcode"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginCodeBlock), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "code"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndCodeBlock), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -528,42 +637,62 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- a",
-                " - b",
-                "  - c",
-                "   - d",
-                "  - e",
-                " - f",
+                "- a", 
+                " - b", 
+                "  - c", 
+                "   - d", 
+                "  - e", 
+                " - f", 
                 "- g");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "c" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "d" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "e" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "f" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "g" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "c"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "d"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "e"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "f"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "g"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -594,33 +723,41 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- a",
-                "- b",
-                string.Empty,
+                "- a", 
+                "- b", 
+                string.Empty, 
                 "- c");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "c" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "c"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -649,30 +786,35 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "* a",
-                "*",
-                string.Empty,
+                "* a", 
+                "*", 
+                string.Empty, 
                 "* c");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "c" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "c"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -705,37 +847,48 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- a",
-                "- b",
-                string.Empty,
-                "  c",
+                "- a", 
+                "- b", 
+                string.Empty, 
+                "  c", 
                 "- d");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "c" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "d" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "c"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "d"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -767,34 +920,42 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- a",
-                "- b",
-                string.Empty,
-                "  [ref]: /url",
+                "- a", 
+                "- b", 
+                string.Empty, 
+                "  [ref]: /url", 
                 "- d");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "d" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "d"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -827,35 +988,52 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- a",
-                "- ```",
-                "  b",
-                string.Empty,
-                string.Empty,
-                "  ```",
+                "- a", 
+                "- ```", 
+                "  b", 
+                string.Empty, 
+                string.Empty, 
+                "  ```", 
                 "- c");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginCodeBlock),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "c" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginCodeBlock), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "c"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -887,35 +1065,46 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- a",
-                "  - b",
-                string.Empty,
-                "    c",
+                "- a", 
+                "  - b", 
+                string.Empty, 
+                "    c", 
                 "- d");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "c" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "d" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "c"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "d"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -943,29 +1132,37 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "* a",
-                "  > b",
-                "  >",
+                "* a", 
+                "  > b", 
+                "  >", 
                 "* c");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "c" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.BeginBlockquote), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndBlockquote), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "c"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -997,35 +1194,49 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- a",
-                "  > b",
-                "  ```",
-                "  c",
-                "  ```",
+                "- a", 
+                "  > b", 
+                "  ```", 
+                "  c", 
+                "  ```", 
                 "- d");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.BeginCodeBlock),
-                new Event(MarkupElementType.Text) { Text = "c" },
-                new Event(MarkupElementType.Whitespace) { Text = "\r\n" },
-                new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "d" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.BeginBlockquote), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndBlockquote), 
+                new Event(MarkupElementType.BeginCodeBlock), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "c"
+                    }, 
+                new Event(MarkupElementType.NewLine)
+                    {
+                        Text = "\r\n"
+                    }, 
+                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "d"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1045,18 +1256,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
                 "- a");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1081,24 +1294,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- a",
+                "- a", 
                 "  - b");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1127,31 +1345,39 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "* foo",
-                "  * bar",
-                string.Empty,
+                "* foo", 
+                "  * bar", 
+                string.Empty, 
                 "  baz");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "bar" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "foo"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "bar"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "baz"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1190,47 +1416,64 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
-
             this.Setup(
-                "- a",
-                "  - b",
-                "  - c",
-                string.Empty,
-                "- d",
-                "  - e",
+                "- a", 
+                "  - b", 
+                "  - c", 
+                string.Empty, 
+                "- d", 
+                "  - e", 
                 "  - f");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "a" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "b" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "c" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "d" },
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginUnorderedList),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "e" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.Text) { Text = "f" },
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.EndListItem),
-                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "a"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "b"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "c"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "d"
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginUnorderedList), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "e"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.BeginListItem), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "f"
+                    }, 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.EndListItem), 
+                new Event(MarkupElementType.EndUnorderedList), 
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1239,5 +1482,4 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
-
 }

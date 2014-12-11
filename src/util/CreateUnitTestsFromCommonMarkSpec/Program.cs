@@ -306,23 +306,24 @@ namespace CreateUnitTestsFromCommonMarkSpec
                         // Open up the writer name.
                         string className = subSectionNumber > 0
                             ? string.Format(
-                                "CommonMarkSpec{0}{1}{2}{3}Tests",
-                                sectionNumber.ToString().PadLeft(2, '0'),
-                                sectionTitle,
-                                subSectionNumber.ToString().PadLeft(2, '0'),
+                                "CommonMarkSpec{0}{1}{2}{3}Tests", 
+                                sectionNumber.ToString().PadLeft(2, '0'), 
+                                sectionTitle, 
+                                subSectionNumber.ToString().PadLeft(2, '0'), 
                                 subSectionTitle)
                             : string.Format(
-                                "CommonMarkSpec{0}{1}Tests",
-                                sectionNumber.ToString().PadLeft(2, '0'),
+                                "CommonMarkSpec{0}{1}Tests", 
+                                sectionNumber.ToString().PadLeft(2, '0'), 
                                 sectionTitle);
                         string outputFilename = string.Format(
-                            @"{0}\MfGames.Text.Markup.Tests\Markdown\{1}.cs",
-                            @"..\..\..\..\..\src",
+                            @"{0}\MfGames.Text.Markup.Tests\Markdown\{1}.cs", 
+                            @"..\..\..\..\..\src", 
                             className);
-                        var stream = File.Open(outputFilename, FileMode.Create);
+                        FileStream stream = File.Open(
+                            outputFilename, FileMode.Create);
 
                         writer = new StreamWriter(stream, Encoding.UTF8);
-                         
+
                         // Write out the header for this file.
                         WriteHeader(writer, className);
                     }
@@ -501,12 +502,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
                 if (context.Contains("Paragraph")
                     || context.Contains("CodeBlock") || context.Contains("Html"))
                 {
-                    events.Add(
-                        string.Format(
-                            "Whitespace) {1} Text = \"{0}\" {2}", 
-                            @"\r\n", 
-                            "{", 
-                            "}"));
+                    events.Add("NewLine)");
                 }
             }
 
@@ -542,10 +538,15 @@ namespace CreateUnitTestsFromCommonMarkSpec
         /// </summary>
         /// <param name="writer">
         /// </param>
-        private static void WriteHeader(TextWriter writer, string className)
+        /// <param name="className">
+        /// </param>
+        private static void WriteHeader(
+            TextWriter writer, 
+            string className)
         {
             writer.WriteLine(
-                "// <copyright file=\"{0}.cs\" company=\"Moonfire Games\">", className);
+                "// <copyright file=\"{0}.cs\" company=\"Moonfire Games\">", 
+                className);
             writer.WriteLine(
                 "//     Copyright (c) Moonfire Games. Some Rights Reserved.");
             writer.WriteLine("// </copyright>");
@@ -564,7 +565,8 @@ namespace CreateUnitTestsFromCommonMarkSpec
             writer.WriteLine("    /// </summary>");
             writer.WriteLine("    [TestFixture]");
             writer.WriteLine(
-                "    public class {0} : MarkdownReaderRecorderTestsBase", className);
+                "    public class {0} : MarkdownReaderRecorderTestsBase", 
+                className);
             writer.WriteLine("    {");
             writer.WriteLine("        #region Public Methods and Operators");
             writer.WriteLine(string.Empty);
