@@ -136,6 +136,7 @@ namespace MfGames.Text.Markup.Markdown
             this.availableBlockReaders = new List<BlockReaderBase>
                 {
                     new HorizontalRuleReaderBase(), 
+                    new AtxHeaderBlockReader(), 
                     new BlockquoteBlockReader(), 
                     new ParagraphBlockReader(), 
                 };
@@ -433,10 +434,11 @@ namespace MfGames.Text.Markup.Markdown
     
     
     
+    
     // <summary>
     // Checks for metadata in the input stream.
     // </summary>
-    /// <returns>Returns true if there is metadata, otherwise false.</returns>
+    // <returns>Returns true if there is metadata, otherwise false.</returns>
         private bool CheckMetadata()
         {
             // Make sure we allow metadata in the first place.
@@ -1346,5 +1348,19 @@ namespace MfGames.Text.Markup.Markdown
 #endif
 
         #endregion
+
+        /// <summary>
+        /// </summary>
+        /// <param name="newElementType">
+        /// </param>
+        /// <param name="newLevel">
+        /// </param>
+        public void SetState(
+            MarkupElementType newElementType, 
+            int newLevel)
+        {
+            this.SetState(newElementType);
+            this.Level = newLevel;
+        }
     }
 }
