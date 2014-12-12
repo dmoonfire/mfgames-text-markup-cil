@@ -401,11 +401,9 @@ namespace MfGames.Text.Markup.Markdown
         {
             // Go through the list of block readers until we find one that
             // can be used.
-            string line = this.Input.CurrentLine;
-
             foreach (BlockReaderBase blockReader in this.availableBlockReaders)
             {
-                if (blockReader.CanRead(line))
+                if (blockReader.CanRead(this.Input))
                 {
                     blockReader.Reset();
                     return blockReader;

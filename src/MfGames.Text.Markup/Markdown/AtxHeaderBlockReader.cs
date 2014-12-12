@@ -22,12 +22,13 @@ namespace MfGames.Text.Markup.Markdown
 
         /// <summary>
         /// </summary>
-        /// <param name="line">
+        /// <param name="input">
         /// </param>
         /// <returns>
         /// </returns>
-        public override bool CanRead(string line)
+        public override bool CanRead(InputBuffer input)
         {
+            string line = input.CurrentLine;
             bool results = CommonMarkSpecification.AtxHeaderRegex.IsMatch(line);
             return results;
         }

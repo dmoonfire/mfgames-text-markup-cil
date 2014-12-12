@@ -22,11 +22,11 @@ namespace MfGames.Text.Markup.Markdown
 
         /// <summary>
         /// </summary>
-        /// <param name="line">
+        /// <param name="input">
         /// </param>
         /// <returns>
         /// </returns>
-        public virtual bool CanRead(string line)
+        public virtual bool CanRead(InputBuffer input)
         {
             return false;
         }

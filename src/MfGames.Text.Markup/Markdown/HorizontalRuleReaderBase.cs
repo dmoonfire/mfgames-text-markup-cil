@@ -13,14 +13,14 @@ namespace MfGames.Text.Markup.Markdown
 
         /// <summary>
         /// </summary>
-        /// <param name="line">
+        /// <param name="input">
         /// </param>
         /// <returns>
         /// </returns>
-        public override bool CanRead(string line)
+        public override bool CanRead(InputBuffer input)
         {
-            bool isMatch =
-                CommonMarkSpecification.HorizontalRuleRegex.IsMatch(line);
+            string line = input.CurrentLine;
+            bool isMatch = CommonMarkSpecification.HorizontalRuleRegex.IsMatch(line);
             return isMatch;
         }
 
