@@ -26,9 +26,16 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         public override bool CanRead(InputBuffer input)
         {
-            string line = input.NextLine ?? string.Empty;
+            string currentLine = input.CurrentLine ?? string.Empty;
+
+            if (string.IsNullOrEmpty(currentLine.Trim()))
+            {
+                return false;
+            }
+
+            string nextLine = input.NextLine ?? string.Empty;
             bool results =
-                CommonMarkSpecification.SetextHeaderRegex.IsMatch(line);
+                CommonMarkSpecification.SetextHeaderRegex.IsMatch(nextLine);
             return results;
         }
 
