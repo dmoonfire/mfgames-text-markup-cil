@@ -4,8 +4,6 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests.Markdown
 {
-    using System;
-
     using MfGames.Text.Markup.Markdown;
 
     using NUnit.Framework;
@@ -512,39 +510,6 @@ namespace MfGames.Text.Markup.Tests.Markdown
                         Text = "One two three"
                     }, 
                 new Event(MarkupElementType.NewLine), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "four five six."
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.EndContent), 
-                new Event(MarkupElementType.EndDocument));
-        }
-
-        /// <summary>
-        /// Verifies the element types of the recorded events.
-        /// </summary>
-        [Test]
-        public void VerifySingleBlockWithBreaksEvents()
-        {
-            this.Setup(
-                new MarkdownOptions
-                    {
-                        TreatNewLinesAsBreaks = true, 
-                    }, 
-                "One two three", 
-                "four five six.");
-
-            this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "One two three"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.BeginParagraph), 
                 new Event(MarkupElementType.Text)
                     {
                         Text = "four five six."

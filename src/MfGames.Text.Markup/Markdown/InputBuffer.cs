@@ -23,6 +23,7 @@ namespace MfGames.Text.Markup.Markdown
         {
             this.Reader = new PeekableTextReaderAdapter(reader);
             this.CurrentLine = this.Reader.ReadLine();
+            this.LineIndex++;
         }
 
         #endregion
@@ -56,6 +57,10 @@ namespace MfGames.Text.Markup.Markdown
 
         /// <summary>
         /// </summary>
+        public int LineIndex { get; private set; }
+
+        /// <summary>
+        /// </summary>
         public string NextLine
         {
             get
@@ -64,10 +69,14 @@ namespace MfGames.Text.Markup.Markdown
             }
         }
 
+        #endregion
+
+        #region Properties
+
         /// <summary>
         /// Gets the text reader associated with the reader.
         /// </summary>
-        public PeekableTextReaderAdapter Reader { get; private set; }
+        private PeekableTextReaderAdapter Reader { get; set; }
 
         #endregion
 
@@ -78,6 +87,7 @@ namespace MfGames.Text.Markup.Markdown
         public void ReadNext()
         {
             this.CurrentLine = this.Reader.ReadLine();
+            this.LineIndex++;
         }
 
         /// <summary>

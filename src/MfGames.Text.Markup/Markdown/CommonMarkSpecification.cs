@@ -58,6 +58,11 @@ namespace MfGames.Text.Markup.Markdown
             new Regex(@"^ {0,3}([\*_-]\s*){3}([\*_-]|\s)*$");
 
         /// <summary>
+        /// </summary>
+        public static readonly Regex ParagraphTerminatorRegex = new Regex(
+            @"^( {0,3}([\*_-]\s*){3}([\*_-]|\s)*|[\s>]+)$");
+
+        /// <summary>
         /// <para>
         /// Contains the regular expression for identifying an setext style header. The first
         /// matched group is either '=' or '-' based on the header.

@@ -54,9 +54,9 @@ namespace MfGames.Text.Markup
         public abstract MarkupElementType ElementType { get; }
 
         /// <summary>
-        /// Gets the heading level of the current element.
+        /// Gets the element-specific level of the current element.
         /// </summary>
-        public int HeadingLevel { get; protected set; }
+        public int Level { get; protected set; }
 
         /// <summary>
         /// Gets or sets the text of the current state.
@@ -91,7 +91,7 @@ namespace MfGames.Text.Markup
         protected void ResetState()
         {
             this.Text = null;
-            this.HeadingLevel = 0;
+            this.Level = 0;
         }
 
         #endregion

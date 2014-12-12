@@ -35,7 +35,7 @@ namespace MfGames.Text.Markup.Tests
         {
             this.ElementType = reader.ElementType;
             this.Text = reader.Text;
-            this.Level = reader.HeadingLevel;
+            this.Level = reader.Level;
         }
 
         #endregion

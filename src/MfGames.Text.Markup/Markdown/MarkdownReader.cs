@@ -78,6 +78,10 @@ namespace MfGames.Text.Markup.Markdown
         /// </summary>
         private bool inContent;
 
+        /// <summary>
+        /// </summary>
+        private List<BlockReaderBase> availableBlockReaders;
+
         #endregion
 
         #region Constructors and Destructors
@@ -98,6 +102,7 @@ namespace MfGames.Text.Markup.Markdown
         {
             this.Options = options ?? MarkdownOptions.DefaultOptions;
             this.blockReaders = new List<BlockReaderBase>();
+            this.CreateAvailableBlockReaders();
         }
 
         /// <summary>
@@ -116,6 +121,23 @@ namespace MfGames.Text.Markup.Markdown
         {
             this.Options = options ?? MarkdownOptions.DefaultOptions;
             this.blockReaders = new List<BlockReaderBase>();
+            this.CreateAvailableBlockReaders();
+        }
+
+        /// <summary>
+        /// Constructs the internal list of block readers we use. This is done
+        /// to avoid memory pressure of processing a large number of paragraphs
+        /// since most of the data can be reused from call to call.
+        /// </summary>
+        private void CreateAvailableBlockReaders()
+        {
+            // The order this is created is important for precedence. The 
+            // first item that applies to a given block type will be used.
+            this.availableBlockReaders = new List<BlockReaderBase>
+                {
+                    new BlockquoteBlockReader(), 
+                    new ParagraphBlockReader(), 
+                };
         }
 
         #endregion
@@ -375,9 +397,21 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         private BlockReaderBase GetNextBlockReader()
         {
-            var blockReader = new ParagraphBlockReader();
-            blockReader.Reset();
-            return blockReader;
+            // Go through the list of block readers until we find one that
+            // can be used.
+            string line = this.Input.CurrentLine;
+
+            foreach (BlockReaderBase blockReader in this.availableBlockReaders)
+            {
+                if (blockReader.CanRead(line))
+                {
+                    blockReader.Reset();
+                    return blockReader;
+                }
+            }
+
+            // If we go this far and we can't find out, there is a problem.
+            return null;
         }
 
         #endregion
@@ -396,8 +430,9 @@ namespace MfGames.Text.Markup.Markdown
 
 #if REMOVED
     
+    
     // <summary>
-    /// Checks for metadata in the input stream.
+    // Checks for metadata in the input stream.
     /// </summary>
     /// <returns>Returns true if there is metadata, otherwise false.</returns>
         private bool CheckMetadata()
@@ -893,14 +928,14 @@ namespace MfGames.Text.Markup.Markdown
 
                 case MarkdownBlockType.AtxHeading:
                     this.elementType = MarkupElementType.BeginHeader;
-                    this.HeadingLevel = this.GetAtxHeadingLevel();
-                    this.currentHeadingLevel = this.HeadingLevel;
+                    this.Level = this.GetAtxHeadingLevel();
+                    this.currentHeadingLevel = this.Level;
                     return true;
 
                 case MarkdownBlockType.SetextHeading:
                     this.elementType = MarkupElementType.BeginHeader;
-                    this.HeadingLevel = this.GetSetextHeadingLevel();
-                    this.currentHeadingLevel = this.HeadingLevel;
+                    this.Level = this.GetSetextHeadingLevel();
+                    this.currentHeadingLevel = this.Level;
                     return true;
 
                 case MarkdownBlockType.HorizontalRule:
@@ -1137,7 +1172,7 @@ namespace MfGames.Text.Markup.Markdown
                     else if (this.inHeading)
                     {
                         this.elementType = MarkupElementType.EndHeader;
-                        this.HeadingLevel = this.currentHeadingLevel;
+                        this.Level = this.currentHeadingLevel;
                     }
                     else if (this.inCodeBlock)
                     {
@@ -1166,7 +1201,7 @@ namespace MfGames.Text.Markup.Markdown
                 if (this.inHeading)
                 {
                     this.elementType = MarkupElementType.EndHeader;
-                    this.HeadingLevel = this.currentHeadingLevel;
+                    this.Level = this.currentHeadingLevel;
                     return true;
                 }
 

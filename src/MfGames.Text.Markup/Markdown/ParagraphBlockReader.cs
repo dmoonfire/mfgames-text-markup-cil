@@ -11,7 +11,26 @@ namespace MfGames.Text.Markup.Markdown
     /// </summary>
     public class ParagraphBlockReader : BlockReaderBase
     {
+        #region Public Properties
+
+        /// <summary>
+        /// </summary>
+        public bool KeepFinalLine { get; set; }
+
+        #endregion
+
         #region Public Methods and Operators
+
+        /// <summary>
+        /// </summary>
+        /// <param name="line">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public override bool CanRead(string line)
+        {
+            return true;
+        }
 
         /// <summary>
         /// </summary>
@@ -36,7 +55,11 @@ namespace MfGames.Text.Markup.Markdown
             // If we are at the end of the buffer, just finish up our block.
             if (reader.ElementType == MarkupElementType.EndParagraph)
             {
-                input.ReadNext();
+                if (!this.KeepFinalLine)
+                {
+                    input.ReadNext();
+                }
+
                 return BlockReadStatus.Finished;
             }
 
@@ -51,10 +74,19 @@ namespace MfGames.Text.Markup.Markdown
             {
                 // Check to see if the next line is at the end of the buffer or blank.
                 // Either case will terminate a string.
-                string nextLine = input.NextLine;
+                string nextLine = input.NextLine ?? string.Empty;
+                bool isParagraphTerminator =
+                    CommonMarkSpecification.ParagraphTerminatorRegex.IsMatch(
+                        nextLine);
 
-                if (string.IsNullOrEmpty(nextLine))
+                if (nextLine.Length == 0 ||
+                    isParagraphTerminator)
                 {
+                    if (!this.KeepFinalLine)
+                    {
+                        input.ReadNext();
+                    }
+
                     reader.SetState(MarkupElementType.EndParagraph);
                     return BlockReadStatus.Continue;
                 }

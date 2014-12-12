@@ -41,6 +41,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Markdown\AtxHeaderBlockReader.cs" />
+    <Compile Include="Markdown\BlockquoteBlockReader.cs" />
     <Compile Include="Markdown\BlockReaderBase.cs" />
     <Compile Include="Markdown\BlockReadStatus.cs" />
     <Compile Include="Markdown\CommonMarkSpecification.cs" />
