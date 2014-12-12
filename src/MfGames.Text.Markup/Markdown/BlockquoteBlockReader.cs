@@ -31,7 +31,6 @@ namespace MfGames.Text.Markup.Markdown
         public BlockquoteBlockReader()
         {
             this.paragraphBlockReader = new ParagraphBlockReader();
-            this.paragraphBlockReader.KeepFinalLine = true;
         }
 
         #endregion

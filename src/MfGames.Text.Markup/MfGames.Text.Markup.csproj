@@ -46,6 +46,7 @@
     <Compile Include="Markdown\BlockReadStatus.cs" />
     <Compile Include="Markdown\CommonMarkSpecification.cs" />
     <Compile Include="Markdown\FencedCodeBlockReader.cs" />
+    <Compile Include="Markdown\HorizontalRuleReaderBase.cs" />
     <Compile Include="Markdown\IndentedCodeBlockReader.cs" />
     <Compile Include="Markdown\InputBuffer.cs" />
     <Compile Include="Markdown\MarkdownBlockType.cs" />

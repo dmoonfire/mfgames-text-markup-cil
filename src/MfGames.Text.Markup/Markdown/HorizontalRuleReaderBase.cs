@@ -1,23 +1,14 @@
-﻿// <copyright file="BlockReaderBase.cs" company="Moonfire Games">
+﻿// <copyright file="HorizontalRuleReaderBase.cs" company="Moonfire Games">
 //     Copyright (c) Moonfire Games. Some Rights Reserved.
 // </copyright>
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Markdown
 {
     /// <summary>
-    /// Base implementation for a block reader, a reader designed to parse the
-    /// high-level blocks inside Markdown.
+    /// Implements a block reader that handles horizontal breaks.
     /// </summary>
-    public abstract class BlockReaderBase
+    public class HorizontalRuleReaderBase : BlockReaderBase
     {
-        #region Properties
-
-        /// <summary>
-        /// </summary>
-        protected bool Initialized { get; set; }
-
-        #endregion
-
         #region Public Methods and Operators
 
         /// <summary>
@@ -26,9 +17,11 @@ namespace MfGames.Text.Markup.Markdown
         /// </param>
         /// <returns>
         /// </returns>
-        public virtual bool CanRead(string line)
+        public override bool CanRead(string line)
         {
-            return false;
+            bool isMatch =
+                CommonMarkSpecification.HorizontalRuleRegex.IsMatch(line);
+            return isMatch;
         }
 
         /// <summary>
@@ -39,18 +32,19 @@ namespace MfGames.Text.Markup.Markdown
         /// </param>
         /// <returns>
         /// </returns>
-        public virtual BlockReadStatus Read(
+        public override BlockReadStatus Read(
             MarkdownReader reader, 
             InputBuffer input)
         {
-            return BlockReadStatus.Finished;
-        }
+            if (this.Initialized)
+            {
+                return BlockReadStatus.Finished;
+            }
 
-        /// <summary>
-        /// </summary>
-        public virtual void Reset()
-        {
-            this.Initialized = false;
+            this.Initialized = true;
+            reader.SetState(MarkupElementType.HorizontalRule);
+            input.ReadNext();
+            return BlockReadStatus.Continue;
         }
 
         #endregion

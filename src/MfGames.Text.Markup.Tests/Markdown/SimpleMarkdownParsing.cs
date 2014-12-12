@@ -53,6 +53,37 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// Verifies the element types of the recorded events.
         /// </summary>
         [Test]
+        public void VerifyAsterixBreakEventsNoBlanks()
+        {
+            this.Setup(
+                "One two three.", 
+                "***", 
+                "Four five six.");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument), 
+                new Event(MarkupElementType.BeginContent), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "One two three."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginParagraph), 
+                new Event(MarkupElementType.Text)
+                    {
+                        Text = "Four five six."
+                    }, 
+                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies the element types of the recorded events.
+        /// </summary>
+        [Test]
         public void VerifyAtxHeader1Events()
         {
             this.Setup("# Header");

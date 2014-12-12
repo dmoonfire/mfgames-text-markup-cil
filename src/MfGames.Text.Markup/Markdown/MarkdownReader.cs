@@ -135,6 +135,7 @@ namespace MfGames.Text.Markup.Markdown
             // first item that applies to a given block type will be used.
             this.availableBlockReaders = new List<BlockReaderBase>
                 {
+                    new HorizontalRuleReaderBase(), 
                     new BlockquoteBlockReader(), 
                     new ParagraphBlockReader(), 
                 };
@@ -386,9 +387,9 @@ namespace MfGames.Text.Markup.Markdown
                 throw new Exception("Block reader cannot read initial block.");
             }
 
-            // If all else fails, we've hit the end of the document to
-            // just stop processing.
-            return false;
+            // If all else fails, advance the line until we find something.
+            this.Input.ReadNext();
+            return this.Read();
         }
 
         /// <summary>
@@ -431,9 +432,10 @@ namespace MfGames.Text.Markup.Markdown
 #if REMOVED
     
     
+    
     // <summary>
     // Checks for metadata in the input stream.
-    /// </summary>
+    // </summary>
     /// <returns>Returns true if there is metadata, otherwise false.</returns>
         private bool CheckMetadata()
         {
