@@ -20,7 +20,8 @@ namespace MfGames.Text.Markup.Markdown
         public override bool CanRead(InputBuffer input)
         {
             string line = input.CurrentLine;
-            bool isMatch = CommonMarkSpecification.HorizontalRuleRegex.IsMatch(line);
+            bool isMatch =
+                CommonMarkSpecification.HorizontalRuleRegex.IsMatch(line);
             return isMatch;
         }
 

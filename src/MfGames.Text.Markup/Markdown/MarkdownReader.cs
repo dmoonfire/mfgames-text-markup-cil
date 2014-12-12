@@ -137,6 +137,7 @@ namespace MfGames.Text.Markup.Markdown
                 {
                     new HorizontalRuleReaderBase(), 
                     new AtxHeaderBlockReader(), 
+                    new SetextHeaderBlockReader(), 
                     new BlockquoteBlockReader(), 
                     new ParagraphBlockReader(), 
                 };
@@ -433,6 +434,7 @@ namespace MfGames.Text.Markup.Markdown
     
     
     
+    
     // <summary>
     // Checks for metadata in the input stream.
     // </summary>
@@ -454,7 +456,7 @@ namespace MfGames.Text.Markup.Markdown
             return false;
         }
 
-        /// <summary>
+        // <summary>
         /// Retrieves the heading level for the ATX header.
         /// </summary>
         /// <returns>

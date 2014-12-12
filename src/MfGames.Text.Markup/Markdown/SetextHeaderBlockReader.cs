@@ -4,8 +4,6 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Markdown
 {
-    using System.Text.RegularExpressions;
-
     /// <summary>
     /// </summary>
     public class SetextHeaderBlockReader : BlockReaderBase
@@ -28,8 +26,9 @@ namespace MfGames.Text.Markup.Markdown
         /// </returns>
         public override bool CanRead(InputBuffer input)
         {
-            string line = input.CurrentLine;
-            bool results = CommonMarkSpecification.AtxHeaderRegex.IsMatch(line);
+            string line = input.NextLine ?? string.Empty;
+            bool results =
+                CommonMarkSpecification.SetextHeaderRegex.IsMatch(line);
             return results;
         }
 
@@ -42,24 +41,14 @@ namespace MfGames.Text.Markup.Markdown
         /// <returns>
         /// </returns>
         public override BlockReadStatus Read(
-            MarkdownReader reader,
+            MarkdownReader reader, 
             InputBuffer input)
         {
             // Check to see if we need to be initialized.
             if (!this.Initialized)
             {
-                // Parse the ATX header and put the title back.
-                Match matches =
-                    CommonMarkSpecification.AtxHeaderRegex.Match(
-                        input.CurrentLine);
-                string level = matches.Groups[1].Value;
-                string title = matches.Groups[2].Value;
-
-                input.CurrentLine = title;
-
-                // Clean up the header.
                 this.Initialized = true;
-                this.Level = level.Length;
+                this.Level = this.GetLevel(input.NextLine);
                 reader.SetState(MarkupElementType.BeginHeader, this.Level);
                 return BlockReadStatus.Continue;
             }
@@ -70,6 +59,8 @@ namespace MfGames.Text.Markup.Markdown
                 // If we already sent the end header, then finish up.
                 if (reader.ElementType == MarkupElementType.EndHeader)
                 {
+                    input.ReadNext();
+                    input.ReadNext();
                     return BlockReadStatus.Finished;
                 }
 
@@ -91,6 +82,23 @@ namespace MfGames.Text.Markup.Markdown
         {
             this.Level = 0;
             base.Reset();
+        }
+
+        #endregion
+
+        #region Methods
+
+        /// <summary>
+        /// </summary>
+        /// <param name="line">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private int GetLevel(string line)
+        {
+            char c = line.Trim()[0];
+
+            return c == '=' ? 1 : 2;
         }
 
         #endregion
