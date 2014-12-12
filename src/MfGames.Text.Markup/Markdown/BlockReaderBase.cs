@@ -10,6 +10,20 @@ namespace MfGames.Text.Markup.Markdown
     /// </summary>
     public abstract class BlockReaderBase
     {
+        #region Public Properties
+
+        /// <summary>
+        /// </summary>
+        public virtual MarkdownBlockType BlockType
+        {
+            get
+            {
+                return MarkdownBlockType.Content;
+            }
+        }
+
+        #endregion
+
         #region Properties
 
         /// <summary>
@@ -22,11 +36,15 @@ namespace MfGames.Text.Markup.Markdown
 
         /// <summary>
         /// </summary>
+        /// <param name="markdownReader">
+        /// </param>
         /// <param name="input">
         /// </param>
         /// <returns>
         /// </returns>
-        public virtual bool CanRead(InputBuffer input)
+        public virtual bool CanRead(
+            MarkdownReader markdownReader, 
+            InputBuffer input)
         {
             return false;
         }

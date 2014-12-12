@@ -20,11 +20,15 @@ namespace MfGames.Text.Markup.Markdown
 
         /// <summary>
         /// </summary>
+        /// <param name="markdownReader">
+        /// </param>
         /// <param name="input">
         /// </param>
         /// <returns>
         /// </returns>
-        public override bool CanRead(InputBuffer input)
+        public override bool CanRead(
+            MarkdownReader markdownReader, 
+            InputBuffer input)
         {
             string currentLine = input.CurrentLine ?? string.Empty;
 
