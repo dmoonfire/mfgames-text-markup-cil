@@ -25,7 +25,7 @@ namespace MfGames.Text.Markup.Markdown
 				// Nothing to read, so nothing to parse.
 				nextState = new EndDocumentState();
 			}
-			else if (text.StartsWith("---"))
+			else if (markdown.Options.AllowMetadata && text.StartsWith("---"))
 			{
 				// This is a YAML metadata block.
 				nextState = new YamlMetadataState();

@@ -19,6 +19,7 @@ namespace MfGames.Text.Markup.Markdown
 
 		protected abstract MarkupElementType BeginElementType { get; }
 		protected abstract MarkupElementType EndElementType { get; }
+		protected int Level { get; set; }
 
 		#endregion
 
@@ -31,6 +32,7 @@ namespace MfGames.Text.Markup.Markdown
 			{
 				sentBegin = true;
 				PrepareContents(markdown);
+				markdown.SetLevel(Level);
 				markdown.SetState(BeginElementType, this);
 				return;
 			}
@@ -46,6 +48,7 @@ namespace MfGames.Text.Markup.Markdown
 			// Read in the next line and figure out the state.
 			MarkdownState nextState = markdown.GetNextBlockState();
 
+			markdown.SetLevel(Level);
 			markdown.SetState(EndElementType, nextState);
 		}
 
@@ -53,7 +56,9 @@ namespace MfGames.Text.Markup.Markdown
 
 		#region Methods
 
-		protected abstract void PrepareContents(MarkdownReader markdown);
+		protected virtual void PrepareContents(MarkdownReader markdown)
+		{
+		}
 
 		protected abstract bool ProcessContents(MarkdownReader markdown);
 

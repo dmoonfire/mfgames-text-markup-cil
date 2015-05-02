@@ -34,14 +34,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyAsterixBreakEvents()
 		{
-			this.Setup(
+			Setup(
 				"One two three.",
 				string.Empty,
 				"***",
 				string.Empty,
 				"Four five six.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -67,12 +67,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyAsterixBreakEventsNoBlanks()
 		{
-			this.Setup(
+			Setup(
 				"One two three.",
 				"***",
 				"Four five six.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -98,9 +98,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyAtxHeader1Events()
 		{
-			this.Setup("# Header");
+			Setup("# Header");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginHeader)
@@ -125,9 +125,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyAtxHeader2Events()
 		{
-			this.Setup("## Header");
+			Setup("## Header");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginHeader)
@@ -152,9 +152,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyAtxHeader3Events()
 		{
-			this.Setup("### Header");
+			Setup("### Header");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginHeader)
@@ -179,9 +179,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyAtxHeader4Events()
 		{
-			this.Setup("#### Header");
+			Setup("#### Header");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginHeader)
@@ -206,9 +206,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyAtxHeader5Events()
 		{
-			this.Setup("##### Header");
+			Setup("##### Header");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginHeader)
@@ -233,9 +233,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyAtxHeader6Events()
 		{
-			this.Setup("###### Header");
+			Setup("###### Header");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginHeader)
@@ -260,9 +260,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyBoldEvents()
 		{
-			this.Setup("One **two** three");
+			Setup("One **two** three");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -291,9 +291,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyCodeSpanEvents()
 		{
-			this.Setup("One `two` three");
+			Setup("One `two` three");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -322,14 +322,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyDashBreakEvents()
 		{
-			this.Setup(
+			Setup(
 				"One two three.",
 				string.Empty,
 				"---",
 				string.Empty,
 				"Four five six.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -355,12 +355,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyDoubleBlockquoteEvents()
 		{
-			this.Setup(
+			Setup(
 				"> One two three",
 				">",
 				"> Four five six.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginBlockquote),
@@ -387,12 +387,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyDoubleParagraphEvents()
 		{
-			this.Setup(
+			Setup(
 				"One two three.",
 				string.Empty,
 				"Four five six.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -417,9 +417,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyItalicEvents()
 		{
-			this.Setup("One *two* three");
+			Setup("One *two* three");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -448,11 +448,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyLazyBlockquoteEvents()
 		{
-			this.Setup(
+			Setup(
 				"> One two three",
 				"four five six.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginBlockquote),
@@ -478,11 +478,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifySetextHeader1Events()
 		{
-			this.Setup(
+			Setup(
 				"Header",
 				"======");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginHeader)
@@ -507,11 +507,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifySetextHeader2Events()
 		{
-			this.Setup(
+			Setup(
 				"Header",
 				"------");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginHeader)
@@ -536,15 +536,15 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifySingleBlockEvents()
 		{
-			this.Setup(
+			Setup(
 				new MarkdownOptions
 				{
-					TreatNewLinesAsBreaks = false,
+					TreatNewLinesAsBreaks = false
 				},
 				"One two three",
 				"four five six.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -568,9 +568,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifySingleBlockquoteEvents()
 		{
-			this.Setup("> One two three");
+			Setup("> One two three");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginBlockquote),
@@ -591,9 +591,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifySingleLineEvents()
 		{
-			this.Setup("One two three.");
+			Setup("One two three.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -612,11 +612,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifySingleLineText()
 		{
-			this.Setup("One two three.");
+			Setup("One two three.");
 
 			Assert.Equal(
 				"One two three.",
-				this.Events[3].Text);
+				Events[3].Text);
 		}
 
 		/// <summary>
@@ -625,14 +625,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyUnderscoreBreakEvents()
 		{
-			this.Setup(
+			Setup(
 				"One two three.",
 				string.Empty,
 				"___",
 				string.Empty,
 				"Four five six.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
 				new Event(MarkupElementType.BeginParagraph),
@@ -658,7 +658,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		[Fact]
 		public void VerifyYamlMetadataEvents()
 		{
-			this.Setup(
+			Setup(
 				new MarkdownOptions
 				{
 					AllowMetadata = true
@@ -668,7 +668,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 				"---",
 				"One two three.");
 
-			this.AssertEventElementTypes(
+			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginMetadata),
 				new Event(MarkupElementType.YamlMetadata)

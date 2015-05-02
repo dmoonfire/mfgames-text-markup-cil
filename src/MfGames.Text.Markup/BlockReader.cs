@@ -132,14 +132,14 @@ namespace MfGames.Text.Markup
 			if (!IsSingleLineBlock(line))
 			{
 				// Read until we get a blank or null.
-				int index = 1;
+				var index = 1;
 
 				line = UnderlyingReader.ReadLine();
 
 				while (!string.IsNullOrEmpty(line))
 				{
 					// See if this is the first line of a new block.
-					if (IsNewBlockLine(index, line))
+					if (IsBlockStart(buffer, index, line))
 					{
 						nextLine = line;
 						break;
@@ -147,6 +147,14 @@ namespace MfGames.Text.Markup
 
 					// It isn't, so add it to the line.
 					buffer.AppendFormat("\n{0}", line);
+
+					// If we are the end of the block, then stop.
+					if (IsBlockEnd(index, line))
+					{
+						break;
+					}
+
+					// Otherwise, load the next line.
 					line = UnderlyingReader.ReadLine();
 					index++;
 				}
@@ -177,7 +185,15 @@ namespace MfGames.Text.Markup
 
 		#region Methods
 
-		protected virtual bool IsNewBlockLine(int index, string line)
+		protected virtual bool IsBlockEnd(int index, string line)
+		{
+			return false;
+		}
+
+		protected virtual bool IsBlockStart(
+			StringBuilder buffer,
+			int index,
+			string line)
 		{
 			return false;
 		}

@@ -63,7 +63,13 @@ namespace MfGames.Text.Markup.Markdown
 			MarkdownOptions options = null)
 			: base(new MarkdownBlockReader(reader))
 		{
+			// Set up the options for the class.
+			var blockReader = (MarkdownBlockReader)Input;
+
 			Options = options ?? MarkdownOptions.DefaultOptions;
+			blockReader.HasYaml = Options.AllowMetadata;
+
+			// Prepare our initial state.
 			state = new BeginDocumentState();
 		}
 
@@ -77,10 +83,7 @@ namespace MfGames.Text.Markup.Markdown
 		/// <value>
 		/// The type of the element.
 		/// </value>
-		public override MarkupElementType ElementType
-		{
-			get { return this.elementType; }
-		}
+		public override MarkupElementType ElementType { get { return elementType; } }
 
 		/// <summary>
 		/// Gets the options associated with the reader.
@@ -127,6 +130,11 @@ namespace MfGames.Text.Markup.Markdown
 			return true;
 		}
 
+		public void SetLevel(int level)
+		{
+			Level = level;
+		}
+
 		#endregion
 
 		#region Methods
@@ -151,6 +159,10 @@ namespace MfGames.Text.Markup.Markdown
 			else if (MarkdownRegex.CodeBlock.IsMatch(text))
 			{
 				nextState = new CodeBlockState();
+			}
+			else if (IsSetextHeader(text))
+			{
+				nextState = new SetextHeaderState();
 			}
 			else if (MarkdownRegex.HorizontalRule.IsMatch(text))
 			{
@@ -187,6 +199,19 @@ namespace MfGames.Text.Markup.Markdown
 		{
 			base.Reset();
 			state = null;
+		}
+
+		private bool IsSetextHeader(string text)
+		{
+			string[] parts = text.Split('\n');
+
+			if (parts.Length == 2 &&
+				MarkdownRegex.SetextHeader.IsMatch(parts[1]))
+			{
+				return true;
+			}
+
+			return false;
 		}
 
 		#endregion

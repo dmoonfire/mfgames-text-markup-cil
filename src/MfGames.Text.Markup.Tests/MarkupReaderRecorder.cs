@@ -48,17 +48,17 @@ namespace MfGames.Text.Markup.Tests
 		protected virtual void Record(MarkupReader reader)
 		{
 			// Create a new list of events and go through them.
-			this.Events = new List<Event>();
+			Events = new List<Event>();
 
 			while (reader.Read())
 			{
 				// Record the event.
 				var state = new Event(reader);
 
-				this.Events.Add(state);
+				Events.Add(state);
 
 				// If we have more than a thousand events, we are probably in a loop.
-				if (this.Events.Count > 1000)
+				if (Events.Count > 1000)
 				{
 					throw new IndexOutOfRangeException(
 						"Exceeded 1,000 events, possible loop.");

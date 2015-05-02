@@ -1,4 +1,4 @@
-﻿// <copyright file="BlockReaderTests.cs" company="Moonfire Games">
+﻿// <copyright file="MarkdownBlockReaderTests.cs" company="Moonfire Games">
 //   Copyright (c) Moonfire Games. Some Rights Reserved.
 // </copyright>
 // <license>
@@ -34,7 +34,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		{
 			var input = new[]
 			{
-				"",
+				""
 			};
 
 			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
@@ -82,7 +82,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 				"",
 				"---",
 				"title: Title",
-				"---",
+				"---"
 			};
 
 			using (MarkdownBlockReader markdownBlockReader = CreateYamlReader(input))
@@ -125,7 +125,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			var input = new[]
 			{
 				"Line 1",
-				"continues here.",
+				"continues here."
 			};
 
 			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
@@ -145,7 +145,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		{
 			var input = new[]
 			{
-				"Line 1.",
+				"Line 1."
 			};
 
 			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
@@ -166,7 +166,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			var input = new[]
 			{
 				"Line 1.",
-				"",
+				""
 			};
 
 			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
@@ -187,7 +187,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			var input = new[]
 			{
 				"",
-				"Line 1.",
+				"Line 1."
 			};
 
 			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))

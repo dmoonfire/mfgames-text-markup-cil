@@ -65,6 +65,12 @@ namespace MfGames.Text.Markup.Markdown
 		public static readonly Regex HorizontalRule =
 			new Regex(@"^ {0,3}([\*_-] *){3}([\*_-]| )*$");
 
+		public static readonly Regex NonHeaderDashHorizontalRule =
+			new Regex(@"^ {0,3}-+ +-+ *$");
+
+		public static readonly Regex NonHeaderHorizontalRule =
+			new Regex(@"^ {0,3}([\*_] *){3}([\*_]| )*$");
+
 		/// <summary>
 		/// </summary>
 		public static readonly Regex ParagraphTerminator = new Regex(

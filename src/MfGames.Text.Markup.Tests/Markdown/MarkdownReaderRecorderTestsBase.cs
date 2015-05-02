@@ -41,22 +41,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		protected void AssertEventElementTypes(params Event[] elementTypes)
 		{
 			// First check the lenghts of the arrays.
-			bool matches = this.Events.Count == elementTypes.Length;
+			bool matches = Events.Count == elementTypes.Length;
 
 			if (!matches)
 			{
 				Output.WriteLine(
 					"Recorded events had {0:N0} items but expected {1:N0}",
-					this.Events.Count,
+					Events.Count,
 					elementTypes.Length);
 			}
 
 			// If they still match, then compare each item.
 			if (matches)
 			{
-				for (var i = 0; i < this.Events.Count; i++)
+				for (var i = 0; i < Events.Count; i++)
 				{
-					if (this.Events[i] != elementTypes[i])
+					if (Events[i] != elementTypes[i])
 					{
 						matches = false;
 					}
@@ -96,7 +96,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
 				// Write out the lines.
 				int maxSize = Math.Max(
-					this.Events.Count,
+					Events.Count,
 					elementTypes.Length);
 
 				for (var i = 0; i < maxSize; i++)
@@ -105,8 +105,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
 					string expected = i < elementTypes.Length
 						? elementTypes[i].ElementType.ToString()
 						: string.Empty;
-					string actual = i < this.Events.Count
-						? this.Events[i].ElementType.ToString()
+					string actual = i < Events.Count
+						? Events[i].ElementType.ToString()
 						: string.Empty;
 
 					// Write out the elements.
@@ -117,9 +117,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 						expected == actual ? "==" : "!=",
 						i.ToString()
 							.PadLeft(3),
-						this.FormatDifferences(
+						FormatDifferences(
 							i < elementTypes.Length ? elementTypes[i] : null,
-							i < this.Events.Count ? this.Events[i] : null));
+							i < Events.Count ? Events[i] : null));
 				}
 			}
 
@@ -139,7 +139,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		/// </param>
 		protected void Setup(params string[] buffer)
 		{
-			this.Setup(
+			Setup(
 				MarkdownOptions.DefaultOptions,
 				buffer);
 		}
@@ -173,7 +173,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 				buffer,
 				options))
 			{
-				this.Record(reader);
+				Record(reader);
 			}
 		}
 
