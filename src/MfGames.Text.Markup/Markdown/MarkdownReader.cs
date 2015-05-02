@@ -41,11 +41,12 @@ namespace MfGames.Text.Markup.Markdown
 		public MarkdownReader(
 			string[] lines,
 			MarkdownOptions options = null)
-			: base(lines)
+			: this(new StringReader(
+				string.Join(
+					Environment.NewLine,
+					lines)),
+				options)
 		{
-			this.Options = options ?? MarkdownOptions.DefaultOptions;
-			state = new BeginDocumentState();
-			Input.IsSingleLineFunc = IsSingleLineElement;
 		}
 
 		/// <summary>
@@ -60,11 +61,10 @@ namespace MfGames.Text.Markup.Markdown
 		public MarkdownReader(
 			TextReader reader,
 			MarkdownOptions options = null)
-			: base(reader)
+			: base(new MarkdownBlockReader(reader))
 		{
-			this.Options = options ?? MarkdownOptions.DefaultOptions;
+			Options = options ?? MarkdownOptions.DefaultOptions;
 			state = new BeginDocumentState();
-			Input.IsSingleLineFunc = IsSingleLineElement;
 		}
 
 		#endregion
@@ -187,21 +187,6 @@ namespace MfGames.Text.Markup.Markdown
 		{
 			base.Reset();
 			state = null;
-		}
-
-		private bool IsSingleLineElement(string line)
-		{
-			if (line == null)
-			{
-				return false;
-			}
-
-			if (MarkdownRegex.HorizontalRule.IsMatch(line))
-			{
-				return true;
-			}
-
-			return false;
 		}
 
 		#endregion

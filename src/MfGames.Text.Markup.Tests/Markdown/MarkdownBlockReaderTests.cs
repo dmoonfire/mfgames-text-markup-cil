@@ -10,23 +10,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using MfGames.Text.Markup.IO;
+using MfGames.Text.Markup.Markdown;
 
 using Xunit;
 
-namespace MfGames.Text.Markup.Tests.IO
+namespace MfGames.Text.Markup.Tests.Markdown
 {
 	/// <summary>
 	/// Verifies the processing of text readers.
 	/// </summary>
-	public class BlockReaderTests
+	public class MarkdownBlockReaderTests
 	{
 		#region Public Methods and Operators
 
 		[Fact]
 		public void CreateWithNull()
 		{
-			Assert.Throws<ArgumentNullException>(() => new BlockReader(null));
+			Assert.Throws<ArgumentNullException>(() => new MarkdownBlockReader(null));
 		}
 
 		[Fact]
@@ -37,9 +37,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"",
 			};
 
-			using (BlockReader blockReader = CreateBlockReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new string[]
 					{
@@ -60,13 +60,14 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 1"
 			};
 
-			using (BlockReader blockReader = CreateYamlReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateYamlReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
-						"---\ntitle: Title\n---\nLine 1"
+						"---",
+						"title: Title\n---\nLine 1"
 					},
 					blocks);
 			}
@@ -84,14 +85,15 @@ namespace MfGames.Text.Markup.Tests.IO
 				"---",
 			};
 
-			using (BlockReader blockReader = CreateYamlReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateYamlReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
 						"Line 1",
-						"---\ntitle: Title\n---"
+						"---",
+						"title: Title\n---"
 					},
 					blocks);
 			}
@@ -105,9 +107,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 1"
 			};
 
-			using (BlockReader blockReader = CreateYamlReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateYamlReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -126,9 +128,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"continues here.",
 			};
 
-			using (BlockReader blockReader = CreateBlockReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -146,9 +148,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 1.",
 			};
 
-			using (BlockReader blockReader = CreateBlockReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -167,9 +169,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"",
 			};
 
-			using (BlockReader blockReader = CreateBlockReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -188,9 +190,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 1.",
 			};
 
-			using (BlockReader blockReader = CreateBlockReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -210,9 +212,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"---"
 			};
 
-			using (BlockReader blockReader = CreateYamlReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateYamlReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -235,9 +237,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"---"
 			};
 
-			using (BlockReader blockReader = CreateYamlReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateYamlReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -257,9 +259,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 2."
 			};
 
-			using (BlockReader blockReader = CreateBlockReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -281,9 +283,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 2."
 			};
 
-			using (BlockReader blockReader = CreateBlockReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -306,9 +308,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 1"
 			};
 
-			using (BlockReader blockReader = CreateYamlReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateYamlReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -330,9 +332,9 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 1"
 			};
 
-			using (BlockReader blockReader = CreateYamlReader(input))
+			using (MarkdownBlockReader markdownBlockReader = CreateYamlReader(input))
 			{
-				List<string> blocks = blockReader.ReadBlocks().ToList();
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
@@ -347,19 +349,19 @@ namespace MfGames.Text.Markup.Tests.IO
 
 		#region Methods
 
-		private BlockReader CreateBlockReader(params string[] input)
+		private MarkdownBlockReader CreateBlockReader(params string[] input)
 		{
 			string combined = string.Join(Environment.NewLine, input);
 			var textReader = new StringReader(combined);
-			var blockReader = new BlockReader(textReader);
+			var blockReader = new MarkdownBlockReader(textReader);
 			return blockReader;
 		}
 
-		private BlockReader CreateYamlReader(params string[] input)
+		private MarkdownBlockReader CreateYamlReader(params string[] input)
 		{
 			string combined = string.Join(Environment.NewLine, input);
 			var textReader = new StringReader(combined);
-			var blockReader = new BlockReader(textReader) { HasYaml = true };
+			var blockReader = new MarkdownBlockReader(textReader) { HasYaml = true };
 			return blockReader;
 		}
 

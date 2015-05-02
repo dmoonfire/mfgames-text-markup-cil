@@ -5,11 +5,6 @@
 //   MIT License (MIT)
 // </license>
 
-using System;
-using System.IO;
-
-using MfGames.Text.Markup.IO;
-
 namespace MfGames.Text.Markup
 {
 	/// <summary>
@@ -25,23 +20,9 @@ namespace MfGames.Text.Markup
 		/// <param name="reader">
 		/// The reader.
 		/// </param>
-		protected MarkupReader(TextReader reader)
+		protected MarkupReader(BlockReader reader)
 		{
-			Input = new BlockReader(reader);
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="MarkupReader"/> class.
-		/// </summary>
-		/// <param name="lines">
-		/// The lines.
-		/// </param>
-		protected MarkupReader(string[] lines)
-			: this(new StringReader(
-				string.Join(
-					Environment.NewLine,
-					lines)))
-		{
+			Input = reader;
 		}
 
 		#endregion

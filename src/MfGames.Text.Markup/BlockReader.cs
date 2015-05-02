@@ -1,4 +1,4 @@
-﻿// <copyright file="BlockReader.cs" company="Moonfire Games">
+// <copyright file="BlockReader.cs" company="Moonfire Games">
 //   Copyright (c) Moonfire Games. Some Rights Reserved.
 // </copyright>
 // <license>
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace MfGames.Text.Markup.IO
+namespace MfGames.Text.Markup
 {
 	/// <summary>
 	/// A specialized reader that wraps around a TextReader and reads data
@@ -22,6 +22,8 @@ namespace MfGames.Text.Markup.IO
 		#region Fields
 
 		private bool firstLine;
+
+		private string nextLine;
 
 		#endregion
 
@@ -77,8 +79,10 @@ namespace MfGames.Text.Markup.IO
 			firstLine = false;
 
 			// Grab the next line and see if we have special processing for it.
-			string line = UnderlyingReader.ReadLine();
+			string line = nextLine ?? UnderlyingReader.ReadLine();
 			var buffer = new StringBuilder();
+
+			nextLine = null;
 
 			if (line != null && startedAtFirstLine && HasYaml)
 			{
@@ -125,15 +129,26 @@ namespace MfGames.Text.Markup.IO
 
 			// Check to see if this is a single line element. If it is, then we
 			// stop reading the line.
-			if (!IsSingleLineElement(line))
+			if (!IsSingleLineBlock(line))
 			{
 				// Read until we get a blank or null.
+				int index = 1;
+
 				line = UnderlyingReader.ReadLine();
 
 				while (!string.IsNullOrEmpty(line))
 				{
+					// See if this is the first line of a new block.
+					if (IsNewBlockLine(index, line))
+					{
+						nextLine = line;
+						break;
+					}
+
+					// It isn't, so add it to the line.
 					buffer.AppendFormat("\n{0}", line);
 					line = UnderlyingReader.ReadLine();
+					index++;
 				}
 			}
 
@@ -162,15 +177,14 @@ namespace MfGames.Text.Markup.IO
 
 		#region Methods
 
-		private bool IsSingleLineElement(string line)
+		protected virtual bool IsNewBlockLine(int index, string line)
 		{
-			if (IsSingleLineFunc == null)
-			{
-				return false;
-			}
+			return false;
+		}
 
-			bool results = IsSingleLineFunc(line);
-			return results;
+		protected virtual bool IsSingleLineBlock(string line)
+		{
+			return false;
 		}
 
 		#endregion

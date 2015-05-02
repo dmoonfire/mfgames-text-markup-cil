@@ -51,7 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IO\BlockReaderTests.cs" />
+    <Compile Include="Markdown\MarkdownBlockReaderTests.cs" />
     <Compile Include="Markdown\CommonMarkRegexTests.cs" />
     <Compile Include="Markdown\CommonMarkSpec02PreprocessingTests.cs" />
     <Compile Include="Markdown\CommonMarkSpec03BlocksAndInlines01PrecedenceTests.cs" />

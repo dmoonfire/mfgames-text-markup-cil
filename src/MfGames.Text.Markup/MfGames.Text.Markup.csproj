@@ -40,11 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Markdown\BeginContentState.cs" />
+    <Compile Include="BlockReader.cs" />
     <Compile Include="Markdown\CodeBlockState.cs" />
     <Compile Include="Markdown\ContainerMarkdownState.cs" />
     <Compile Include="Markdown\HorizontalRuleState.cs" />
     <Compile Include="Markdown\MarkdownRegex.cs" />
-    <Compile Include="IO\BlockReader.cs" />
+    <Compile Include="Markdown\MarkdownBlockReader.cs" />
     <Compile Include="Markdown\BeginDocumentState.cs" />
     <Compile Include="Markdown\EndContentState.cs" />
     <Compile Include="Markdown\EndDocumentState.cs" />
