@@ -48,7 +48,7 @@ namespace MfGames.Text.Markup.Markdown
 		/// <summary>
 		/// Contains the regular expression that identifies an indented block.
 		/// </summary>
-		public static readonly Regex CodeBlock = new Regex("^(\\t| {4})");
+		public static readonly Regex CodeBlock = new Regex("^(?:\t| {4})");
 
 		/// <summary>
 		/// <para>

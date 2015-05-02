@@ -44,7 +44,7 @@ namespace MfGames.Text.Markup.Markdown
 			}
 
 			// Read in the next line and figure out the state.
-			var nextState = markdown.GetNextBlockState();
+			MarkdownState nextState = markdown.GetNextBlockState();
 
 			markdown.SetState(EndElementType, nextState);
 		}

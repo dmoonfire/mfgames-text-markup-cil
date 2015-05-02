@@ -73,6 +73,7 @@ namespace MfGames.Text.Markup.Markdown
 			// Set the Markdown, remove the prefix, and send it on. In code
 			// blocks, we always have a trailing newline.
 			line = MarkdownRegex.CodeBlock.Replace(line, "");
+			line = line.ExpandTabStops();
 
 			needNewline = true;
 			markdown.SetText(line);

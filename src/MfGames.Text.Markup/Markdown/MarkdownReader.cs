@@ -160,13 +160,7 @@ namespace MfGames.Text.Markup.Markdown
 
 		internal string ReadNextBlock()
 		{
-			// Read the raw text and do the initial formatting.
-			string text = Input.ReadBlock();
-
-			text = text.ExpandTabStops();
-
-			// Save the block text and return it.
-			BlockText = text;
+			BlockText = Input.ReadBlock();
 			return BlockText;
 		}
 
