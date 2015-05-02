@@ -63,7 +63,7 @@ namespace MfGames.Text.Markup.Markdown
 			"SA1650:ElementDocumentationMustBeSpelledCorrectly",
 			Justification = "From CommonMark specification.")]
 		public static readonly Regex HorizontalRule =
-			new Regex(@"^ {0,3}([\*_-] *){3}([\*_-]| )*$");
+			new Regex(@"^ {0,3}([\*_-]) *(?:\1 *){2}(\1| )*$");
 
 		public static readonly Regex NonHeaderDashHorizontalRule =
 			new Regex(@"^ {0,3}-+ +-+ *$");
