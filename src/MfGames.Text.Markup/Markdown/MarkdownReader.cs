@@ -91,7 +91,7 @@ namespace MfGames.Text.Markup.Markdown
 		/// </summary>
 		public void Dispose()
 		{
-			this.Dispose(true);
+			Dispose(true);
 		}
 
 		/// <summary>
