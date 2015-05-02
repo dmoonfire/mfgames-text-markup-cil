@@ -5,6 +5,8 @@
 //   MIT License (MIT)
 // </license>
 
+using System;
+
 namespace MfGames.Text.Markup.Markdown
 {
 	internal class YamlMetadataState : MarkdownState
@@ -30,8 +32,15 @@ namespace MfGames.Text.Markup.Markdown
 
 			if (!sentMetadata)
 			{
+				// Normalize the YAML.
+				string yaml = markdown.BlockText
+					.Replace("\r\n", "\n")
+					.Replace("\n", Environment.NewLine)
+					+ Environment.NewLine;
+
+				// Send the metadata for reading.
 				sentMetadata = true;
-				markdown.SetText(markdown.BlockText);
+				markdown.SetText(yaml);
 				markdown.ReadNextBlock();
 				markdown.SetState(MarkupElementType.YamlMetadata, this);
 				return;

@@ -67,7 +67,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
 					new[]
 					{
 						"---",
-						"title: Title\n---\nLine 1"
+						"title: Title\n---",
+						"Line 1"
 					},
 					blocks);
 			}
