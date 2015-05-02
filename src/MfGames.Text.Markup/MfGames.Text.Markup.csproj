@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Markdown\BeginContentState.cs" />
     <Compile Include="Markdown\CodeBlockState.cs" />
+    <Compile Include="Markdown\ContainerMarkdownState.cs" />
     <Compile Include="Markdown\MarkdownRegex.cs" />
     <Compile Include="IO\BlockReader.cs" />
     <Compile Include="Markdown\BeginDocumentState.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Markdown\MarkdownOptions.cs" />
     <Compile Include="Markdown\MarkdownReader.cs" />
     <Compile Include="Markdown\MarkdownState.cs" />
+    <Compile Include="Markdown\StringExtensions.cs" />
     <Compile Include="Markdown\YamlMetadataState.cs" />
     <Compile Include="MarkupElementType.cs" />
     <Compile Include="MarkupReader.cs" />

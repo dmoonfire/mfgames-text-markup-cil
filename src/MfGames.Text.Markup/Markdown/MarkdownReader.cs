@@ -125,19 +125,48 @@ namespace MfGames.Text.Markup.Markdown
 			return true;
 		}
 
-		public void SetText(string nextText)
-		{
-			Text = nextText;
-		}
-
 		#endregion
 
 		#region Methods
 
+		internal MarkdownState GetNextBlockState(bool readNextBlock = true)
+		{
+			// See if we need to read the next block.
+			if (readNextBlock)
+			{
+				ReadNextBlock();
+			}
+
+			// Figure out what our next state based on the contents. The text
+			// is already loaded into the Markdown.
+			string text = BlockText;
+			MarkdownState nextState;
+
+			if (text == null)
+			{
+				nextState = new EndContentState();
+			}
+			else if (MarkdownRegex.CodeBlock.IsMatch(text))
+			{
+				nextState = new CodeBlockState();
+			}
+			else
+			{
+				throw new InvalidOperationException("Still noep!");
+			}
+
+			return nextState;
+		}
+
 		internal string ReadNextBlock()
 		{
-			BlockText = Input.ReadBlock();
+			// Read the raw text and do the initial formatting.
+			string text = Input.ReadBlock();
 
+			text = text.ExpandTabStops();
+
+			// Save the block text and return it.
+			BlockText = text;
 			return BlockText;
 		}
 
@@ -147,6 +176,11 @@ namespace MfGames.Text.Markup.Markdown
 		{
 			elementType = nextElementType;
 			state = nextState;
+		}
+
+		internal void SetText(string nextText)
+		{
+			Text = nextText;
 		}
 
 		protected override void Reset()

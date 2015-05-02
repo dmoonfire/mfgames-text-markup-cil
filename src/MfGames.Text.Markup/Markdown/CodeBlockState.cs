@@ -5,10 +5,29 @@
 //   MIT License (MIT)
 // </license>
 
+using System.Collections.Generic;
+
 namespace MfGames.Text.Markup.Markdown
 {
 	internal class CodeBlockState : ContainerMarkdownState
 	{
+		#region Fields
+
+		private List<string> lines;
+
+		private bool needNewline;
+
+		#endregion
+
+		#region Constructors and Destructors
+
+		public CodeBlockState()
+		{
+			lines = new List<string>();
+		}
+
+		#endregion
+
 		#region Properties
 
 		protected override MarkupElementType BeginElementType
@@ -22,48 +41,44 @@ namespace MfGames.Text.Markup.Markdown
 		}
 
 		#endregion
-	}
 
-	internal abstract class ContainerMarkdownState : MarkdownState
-	{
-		#region Fields
+		#region Methods
 
-		private bool sentBegin;
-
-		private bool sentContents;
-
-		#endregion
-
-		#region Properties
-
-		protected abstract MarkupElementType BeginElementType { get; }
-		protected abstract MarkupElementType EndElementType { get; }
-
-		#endregion
-
-		#region Public Methods and Operators
-
-		public override void Process(MarkdownReader markdown)
+		protected override void PrepareContents(MarkdownReader markdown)
 		{
-			if (!sentBegin)
+			lines = new List<string>(markdown.BlockText.Split('\n'));
+		}
+
+		protected override bool ProcessContents(MarkdownReader markdown)
+		{
+			// If we need a newline, then send that out.
+			if (needNewline)
 			{
-				sentBegin = true;
-				markdown.SetState(BeginElementType, this);
-				return;
+				needNewline = false;
+				markdown.SetState(MarkupElementType.NewLine, this);
+				return true;
 			}
 
-			if (!sentContents)
+			// If we have no more lines, we're done.
+			if (lines.Count == 0)
 			{
-				//sentContents = true;
-				//markdown.SetText(markdown.BlockText);
-				//markdown.ReadNextBlock();
-				//markdown.SetState(MarkupElementType.YamlMetadata, this);
-				//return;
+				return false;
 			}
 
-			markdown.SetState(
-				EndElementType,
-				new EndContentState());
+			// Otherwise, grab the first line.
+			string line = lines[0];
+
+			lines.RemoveAt(0);
+
+			// Set the Markdown, remove the prefix, and send it on. In code
+			// blocks, we always have a trailing newline.
+			line = MarkdownRegex.CodeBlock.Replace(line, "");
+
+			needNewline = true;
+			markdown.SetText(line);
+			markdown.SetState(MarkupElementType.Text, this);
+
+			return true;
 		}
 
 		#endregion
