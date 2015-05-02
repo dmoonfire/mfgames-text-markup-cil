@@ -24,7 +24,7 @@ namespace MfGames.Text.Markup
         /// </param>
         protected MarkupReader(TextReader reader)
         {
-            this.Input = new InputBuffer(reader);
+            this.Input = new BlockTextReader(reader);
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace MfGames.Text.Markup
 
         /// <summary>
         /// </summary>
-        protected InputBuffer Input { get; private set; }
+        protected BlockTextReader Input { get; private set; }
 
         #endregion
 

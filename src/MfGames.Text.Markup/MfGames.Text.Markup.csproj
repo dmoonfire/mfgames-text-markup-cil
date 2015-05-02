@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MfGames">
-      <HintPath>..\packages\MfGames.4.1.1.0\lib\net45\MfGames.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -42,22 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Markdown\AtxHeaderBlockReader.cs" />
-    <Compile Include="Markdown\BlockquoteBlockReader.cs" />
-    <Compile Include="Markdown\BlockReaderBase.cs" />
-    <Compile Include="Markdown\BlockReadStatus.cs" />
     <Compile Include="Markdown\CommonMarkSpecification.cs" />
-    <Compile Include="Markdown\FencedCodeBlockReader.cs" />
-    <Compile Include="Markdown\HorizontalRuleReaderBase.cs" />
-    <Compile Include="Markdown\IndentedCodeBlockReader.cs" />
-    <Compile Include="Markdown\InputBuffer.cs" />
+    <Compile Include="Markdown\BlockTextReader.cs" />
     <Compile Include="Markdown\MarkdownBlockType.cs" />
-    <Compile Include="Markdown\MarkdownControlType.cs" />
     <Compile Include="Markdown\MarkdownOptions.cs" />
     <Compile Include="Markdown\MarkdownReader.cs" />
-    <Compile Include="Markdown\ParagraphBlockReader.cs" />
-    <Compile Include="Markdown\SetextHeaderBlockReader.cs" />
-    <Compile Include="Markdown\YamlConfigurationBlockReader.cs" />
     <Compile Include="MarkupElementType.cs" />
     <Compile Include="MarkupReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,7 +51,6 @@
   <ItemGroup>
     <None Include="MfGames.Text.Markup.nuspec" />
     <None Include="MfGames.Text.Markup.snk" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
