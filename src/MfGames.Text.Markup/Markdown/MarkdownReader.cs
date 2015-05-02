@@ -45,6 +45,7 @@ namespace MfGames.Text.Markup.Markdown
 		{
 			this.Options = options ?? MarkdownOptions.DefaultOptions;
 			state = new BeginDocumentState();
+			Input.IsSingleLineFunc = IsSingleLineElement;
 		}
 
 		/// <summary>
@@ -63,6 +64,7 @@ namespace MfGames.Text.Markup.Markdown
 		{
 			this.Options = options ?? MarkdownOptions.DefaultOptions;
 			state = new BeginDocumentState();
+			Input.IsSingleLineFunc = IsSingleLineElement;
 		}
 
 		#endregion
@@ -139,7 +141,7 @@ namespace MfGames.Text.Markup.Markdown
 
 			// Figure out what our next state based on the contents. The text
 			// is already loaded into the Markdown.
-			string text = BlockText;
+			string text = BlockText.ExpandTabStops();
 			MarkdownState nextState;
 
 			if (text == null)
@@ -150,9 +152,13 @@ namespace MfGames.Text.Markup.Markdown
 			{
 				nextState = new CodeBlockState();
 			}
+			else if (MarkdownRegex.HorizontalRule.IsMatch(text))
+			{
+				nextState = new HorizontalRuleState();
+			}
 			else
 			{
-				throw new InvalidOperationException("Still noep!");
+				nextState = new ParagraphState();
 			}
 
 			return nextState;
@@ -181,6 +187,21 @@ namespace MfGames.Text.Markup.Markdown
 		{
 			base.Reset();
 			state = null;
+		}
+
+		private bool IsSingleLineElement(string line)
+		{
+			if (line == null)
+			{
+				return false;
+			}
+
+			if (MarkdownRegex.HorizontalRule.IsMatch(line))
+			{
+				return true;
+			}
+
+			return false;
 		}
 
 		#endregion

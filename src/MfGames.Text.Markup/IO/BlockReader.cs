@@ -53,6 +53,7 @@ namespace MfGames.Text.Markup.IO
 		/// </summary>
 		public bool HasYaml { get; set; }
 
+		public Func<string, bool> IsSingleLineFunc { get; set; }
 		public int LineIndex { get; private set; }
 		public TextReader UnderlyingReader { get; set; }
 
@@ -122,13 +123,18 @@ namespace MfGames.Text.Markup.IO
 			// additional line.
 			buffer.Append(line);
 
-			// Read until we get a blank or null.
-			line = UnderlyingReader.ReadLine();
-
-			while (!string.IsNullOrEmpty(line))
+			// Check to see if this is a single line element. If it is, then we
+			// stop reading the line.
+			if (!IsSingleLineElement(line))
 			{
-				buffer.AppendFormat("\n{0}", line);
+				// Read until we get a blank or null.
 				line = UnderlyingReader.ReadLine();
+
+				while (!string.IsNullOrEmpty(line))
+				{
+					buffer.AppendFormat("\n{0}", line);
+					line = UnderlyingReader.ReadLine();
+				}
 			}
 
 			// Return the results. This also means that the reader is on the
@@ -150,6 +156,21 @@ namespace MfGames.Text.Markup.IO
 
 				yield return block;
 			}
+		}
+
+		#endregion
+
+		#region Methods
+
+		private bool IsSingleLineElement(string line)
+		{
+			if (IsSingleLineFunc == null)
+			{
+				return false;
+			}
+
+			bool results = IsSingleLineFunc(line);
+			return results;
 		}
 
 		#endregion

@@ -1,17 +1,18 @@
 ﻿// <copyright file="CommonMarkRegexTests.cs" company="Moonfire Games">
-//     Copyright (c) Moonfire Games. Some Rights Reserved.
+//   Copyright (c) Moonfire Games. Some Rights Reserved.
 // </copyright>
-// 
-// MIT Licensed (http://opensource.org/licenses/MIT)
+// <license>
+//   MIT License (MIT)
+// </license>
+
+using System.Text.RegularExpressions;
+
+using MfGames.Text.Markup.Markdown;
+
+using Xunit;
 
 namespace MfGames.Text.Markup.Tests.Markdown
 {
-	using System.Text.RegularExpressions;
-
-	using MfGames.Text.Markup.Markdown;
-
-	using Xunit;
-
 	/// <summary>
 	/// Tests the various regular expressions against the CommonMark specification
 	/// examples.
@@ -572,6 +573,30 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				string.Empty,
 				matches.Groups[2].Value);
+		}
+
+		[Fact]
+		public void HorizontalBreak()
+		{
+			Match matches = MarkdownRegex.HorizontalRule.Match("***");
+
+			Assert.Equal(true, matches.Success);
+		}
+
+		[Fact]
+		public void TooShortHorizontalBreak()
+		{
+			Match matches = MarkdownRegex.HorizontalRule.Match("**");
+
+			Assert.Equal(false, matches.Success);
+		}
+
+		[Fact]
+		public void TooShortHorizontalBreakWithNewlines()
+		{
+			Match matches = MarkdownRegex.HorizontalRule.Match("**\n**");
+
+			Assert.Equal(false, matches.Success);
 		}
 
 		#endregion
