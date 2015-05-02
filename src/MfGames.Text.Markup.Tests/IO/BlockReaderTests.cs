@@ -37,13 +37,81 @@ namespace MfGames.Text.Markup.Tests.IO
 				"",
 			};
 
-			using (BlockReader blockReader = CreateBlockTextReader(input))
+			using (BlockReader blockReader = CreateBlockReader(input))
+			{
+				List<string> blocks = blockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new string[]
+					{
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
+		public void ReadInvalidYamlWithPreceedingBlank()
+		{
+			var input = new[]
+			{
+				"",
+				"---",
+				"title: Title",
+				"---",
+				"Line 1"
+			};
+
+			using (BlockReader blockReader = CreateYamlReader(input))
 			{
 				List<string> blocks = blockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
-						(string)null
+						"---\ntitle: Title\n---\nLine 1"
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
+		public void ReadInvalidYamlWithPreceedingText()
+		{
+			var input = new[]
+			{
+				"Line 1",
+				"",
+				"---",
+				"title: Title",
+				"---",
+			};
+
+			using (BlockReader blockReader = CreateYamlReader(input))
+			{
+				List<string> blocks = blockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new[]
+					{
+						"Line 1",
+						"---\ntitle: Title\n---"
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
+		public void ReadMissingYaml()
+		{
+			var input = new[]
+			{
+				"Line 1"
+			};
+
+			using (BlockReader blockReader = CreateYamlReader(input))
+			{
+				List<string> blocks = blockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new[]
+					{
+						"Line 1"
 					},
 					blocks);
 			}
@@ -58,14 +126,13 @@ namespace MfGames.Text.Markup.Tests.IO
 				"continues here.",
 			};
 
-			using (BlockReader blockReader = CreateBlockTextReader(input))
+			using (BlockReader blockReader = CreateBlockReader(input))
 			{
 				List<string> blocks = blockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
-						"Line 1\ncontinues here.",
-						null
+						"Line 1\ncontinues here."
 					},
 					blocks);
 			}
@@ -79,14 +146,13 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 1.",
 			};
 
-			using (BlockReader blockReader = CreateBlockTextReader(input))
+			using (BlockReader blockReader = CreateBlockReader(input))
 			{
 				List<string> blocks = blockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
-						"Line 1.",
-						null
+						"Line 1."
 					},
 					blocks);
 			}
@@ -101,14 +167,13 @@ namespace MfGames.Text.Markup.Tests.IO
 				"",
 			};
 
-			using (BlockReader blockReader = CreateBlockTextReader(input))
+			using (BlockReader blockReader = CreateBlockReader(input))
 			{
 				List<string> blocks = blockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
-						"Line 1.",
-						null
+						"Line 1."
 					},
 					blocks);
 			}
@@ -123,14 +188,60 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 1.",
 			};
 
-			using (BlockReader blockReader = CreateBlockTextReader(input))
+			using (BlockReader blockReader = CreateBlockReader(input))
 			{
 				List<string> blocks = blockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
-						"Line 1.",
-						null
+						"Line 1."
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
+		public void ReadStandaloneYaml()
+		{
+			var input = new[]
+			{
+				"---",
+				"title: Title",
+				"---"
+			};
+
+			using (BlockReader blockReader = CreateYamlReader(input))
+			{
+				List<string> blocks = blockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new[]
+					{
+						"---\ntitle: Title\n---"
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
+		public void ReadStandaloneYamlWithNewline()
+		{
+			var input = new[]
+			{
+				"---",
+				"text: >",
+				"  line 1.",
+				"",
+				"  line 2.",
+				"---"
+			};
+
+			using (BlockReader blockReader = CreateYamlReader(input))
+			{
+				List<string> blocks = blockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new[]
+					{
+						"---\ntext: >\n  line 1.\n\n  line 2.\n---"
 					},
 					blocks);
 			}
@@ -146,15 +257,14 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 2."
 			};
 
-			using (BlockReader blockReader = CreateBlockTextReader(input))
+			using (BlockReader blockReader = CreateBlockReader(input))
 			{
 				List<string> blocks = blockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
 						"Line 1.",
-						"Line 2.",
-						null
+						"Line 2."
 					},
 					blocks);
 			}
@@ -171,15 +281,63 @@ namespace MfGames.Text.Markup.Tests.IO
 				"Line 2."
 			};
 
-			using (BlockReader blockReader = CreateBlockTextReader(input))
+			using (BlockReader blockReader = CreateBlockReader(input))
 			{
 				List<string> blocks = blockReader.ReadBlocks().ToList();
 				Assert.Equal(
 					new[]
 					{
 						"Line 1.",
-						"Line 2.",
-						null
+						"Line 2."
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
+		public void ReadYaml()
+		{
+			var input = new[]
+			{
+				"---",
+				"title: Title",
+				"---",
+				"",
+				"Line 1"
+			};
+
+			using (BlockReader blockReader = CreateYamlReader(input))
+			{
+				List<string> blocks = blockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new[]
+					{
+						"---\ntitle: Title\n---",
+						"Line 1"
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
+		public void ReadYamlWithoutBlank()
+		{
+			var input = new[]
+			{
+				"---",
+				"title: Title",
+				"---",
+				"Line 1"
+			};
+
+			using (BlockReader blockReader = CreateYamlReader(input))
+			{
+				List<string> blocks = blockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new[]
+					{
+						"---\ntitle: Title\n---",
+						"Line 1"
 					},
 					blocks);
 			}
@@ -189,11 +347,19 @@ namespace MfGames.Text.Markup.Tests.IO
 
 		#region Methods
 
-		private BlockReader CreateBlockTextReader(params string[] input)
+		private BlockReader CreateBlockReader(params string[] input)
 		{
 			string combined = string.Join(Environment.NewLine, input);
 			var textReader = new StringReader(combined);
 			var blockReader = new BlockReader(textReader);
+			return blockReader;
+		}
+
+		private BlockReader CreateYamlReader(params string[] input)
+		{
+			string combined = string.Join(Environment.NewLine, input);
+			var textReader = new StringReader(combined);
+			var blockReader = new BlockReader(textReader) { HasYaml = true };
 			return blockReader;
 		}
 

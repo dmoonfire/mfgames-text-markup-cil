@@ -19,6 +19,12 @@ namespace MfGames.Text.Markup.IO
 	/// </summary>
 	public class BlockReader : IDisposable
 	{
+		#region Fields
+
+		private bool firstLine;
+
+		#endregion
+
 		#region Constructors and Destructors
 
 		/// <summary>
@@ -32,13 +38,20 @@ namespace MfGames.Text.Markup.IO
 				throw new ArgumentNullException("reader");
 			}
 
-			this.UnderlyingReader = reader;
-			this.LineIndex++;
+			UnderlyingReader = reader;
+			LineIndex++;
+			firstLine = true;
 		}
 
 		#endregion
 
 		#region Public Properties
+
+		/// <summary>
+		/// Gets or sets a flag whether the reader should read a YAML block
+		/// as a single line.
+		/// </summary>
+		public bool HasYaml { get; set; }
 
 		public int LineIndex { get; private set; }
 		public TextReader UnderlyingReader { get; set; }
@@ -58,19 +71,43 @@ namespace MfGames.Text.Markup.IO
 
 		public string ReadBlock()
 		{
-			// Read until the end of the buffer or the first non-blank line.
-			string line;
+			// Clear flags so we don't do additional processing.
+			bool startedAtFirstLine = firstLine;
+			firstLine = false;
 
-			while (true)
+			// Grab the next line and see if we have special processing for it.
+			string line = UnderlyingReader.ReadLine();
+			var buffer = new StringBuilder();
+
+			if (line != null && startedAtFirstLine && HasYaml)
+			{
+				// If the first line has a "---", then we read the entire YAML
+				// block into memory and return that.
+				if (line.StartsWith("---"))
+				{
+					buffer.Append(line);
+					line = UnderlyingReader.ReadLine();
+
+					while (line != null && line != "---")
+					{
+						buffer.AppendFormat("\n{0}", line);
+						line = UnderlyingReader.ReadLine();
+					}
+
+					if (line != null)
+					{
+						buffer.AppendFormat("\n{0}", line);
+					}
+
+					string yamlResults = buffer.ToString();
+					return yamlResults;
+				}
+			}
+
+			// Read until the end of the buffer or the first non-blank line.
+			while (line != null && line == "")
 			{
 				line = UnderlyingReader.ReadLine();
-
-				if (line != null && line == "")
-				{
-					continue;
-				}
-
-				break;
 			}
 
 			// If we have a null line, then we are done reading entirely.
@@ -83,8 +120,6 @@ namespace MfGames.Text.Markup.IO
 			// the multiple lines. We will normalize the line endings to "\n"
 			// in the process of reading, but we only do that for each
 			// additional line.
-			var buffer = new StringBuilder();
-
 			buffer.Append(line);
 
 			// Read until we get a blank or null.
@@ -108,12 +143,12 @@ namespace MfGames.Text.Markup.IO
 			{
 				string block = ReadBlock();
 
-				yield return block;
-
 				if (block == null)
 				{
 					break;
 				}
+
+				yield return block;
 			}
 		}
 
