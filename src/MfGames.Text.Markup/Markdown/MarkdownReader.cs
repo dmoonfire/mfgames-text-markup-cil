@@ -14,8 +14,7 @@ namespace MfGames.Text.Markup.Markdown
 	/// Implements a Markdown reader that parses various flavors of Markdown based
 	/// on configuration settings.
 	/// </summary>
-	public class MarkdownReader : MarkupReader,
-		IDisposable
+	public class MarkdownReader : MarkupReader, IDisposable
 	{
 		#region Fields
 
@@ -23,6 +22,8 @@ namespace MfGames.Text.Markup.Markdown
 		/// Contains the internal state.
 		/// </summary>
 		private MarkupElementType elementType;
+
+		private MarkdownState state;
 
 		#endregion
 
@@ -43,6 +44,7 @@ namespace MfGames.Text.Markup.Markdown
 			: base(lines)
 		{
 			this.Options = options ?? MarkdownOptions.DefaultOptions;
+			state = new BeginDocumentState();
 		}
 
 		/// <summary>
@@ -60,6 +62,7 @@ namespace MfGames.Text.Markup.Markdown
 			: base(reader)
 		{
 			this.Options = options ?? MarkdownOptions.DefaultOptions;
+			state = new BeginDocumentState();
 		}
 
 		#endregion
@@ -87,14 +90,6 @@ namespace MfGames.Text.Markup.Markdown
 		#region Public Methods and Operators
 
 		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-		/// </summary>
-		public void Dispose()
-		{
-			Dispose(true);
-		}
-
-		/// <summary>
 		/// Reads the next significant element from the marked-up file.
 		/// </summary>
 		/// <returns>
@@ -102,21 +97,44 @@ namespace MfGames.Text.Markup.Markdown
 		/// </returns>
 		public override bool Read()
 		{
-			return false;
+			// This entire process is based on an internal state machine. We
+			// need this because there are a number of states that don't touch
+			// the underlying buffer. If we don't have a current state, then we
+			// are done processing.
+			if (state == null)
+			{
+				return false;
+			}
+
+			MarkdownState currentState = state;
+
+			// Reset our internal values. This also erases the current state
+			// but we expect currentState to replace it.
+			Reset();
+
+			// Process the current state.
+			currentState.Process(this);
+
+			// We assume that if we have a state, then we are still reading.
+			return true;
 		}
 
 		#endregion
 
 		#region Methods
 
-		/// <summary>
-		/// Releases unmanaged and - optionally - managed resources.
-		/// </summary>
-		/// <param name="isDisposing">
-		/// <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.
-		/// </param>
-		protected virtual void Dispose(bool isDisposing)
+		internal void SetState(
+			MarkupElementType nextElementType,
+			MarkdownState nextState)
 		{
+			elementType = nextElementType;
+			state = nextState;
+		}
+
+		protected override void Reset()
+		{
+			base.Reset();
+			state = null;
 		}
 
 		#endregion

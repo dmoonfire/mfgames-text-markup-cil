@@ -534,44 +534,54 @@ namespace CreateUnitTestsFromCommonMarkSpec
             writer.WriteLine("}");
         }
 
-        /// <summary>
-        /// </summary>
-        /// <param name="writer">
-        /// </param>
-        /// <param name="className">
-        /// </param>
-        private static void WriteHeader(
-            TextWriter writer, 
-            string className)
-        {
-            writer.WriteLine(
-                "// <copyright file=\"{0}.cs\" company=\"Moonfire Games\">", 
-                className);
-            writer.WriteLine(
-                "//     Copyright (c) Moonfire Games. Some Rights Reserved.");
-            writer.WriteLine("// </copyright>");
-            writer.WriteLine(
-                "// MIT Licensed (http://opensource.org/licenses/MIT)");
-            writer.WriteLine("namespace MfGames.Text.Markup.Tests.Markdown");
-            writer.WriteLine("{");
+	    /// <summary>
+	    /// </summary>
+	    /// <param name="writer">
+	    /// </param>
+	    /// <param name="className">
+	    /// </param>
+	    private static void WriteHeader(
+		    TextWriter writer,
+			    string className)
+	    {
+		    writer.WriteLine(
+			    "// <copyright file=\"{0}.cs\" company=\"Moonfire Games\">",
+			    className);
+		    writer.WriteLine(
+			    "//     Copyright (c) Moonfire Games. Some Rights Reserved.");
+		    writer.WriteLine("// </copyright>");
+		    writer.WriteLine(
+			    "// MIT Licensed (http://opensource.org/licenses/MIT)");
+		    writer.WriteLine("namespace MfGames.Text.Markup.Tests.Markdown");
+		    writer.WriteLine("{");
 
-            writer.WriteLine("    using Xunit;");
-            writer.WriteLine(string.Empty);
-            writer.WriteLine("    #region Designer generated code");
-            writer.WriteLine(string.Empty);
-            writer.WriteLine("    /// <summary>");
-            writer.WriteLine(
-                "    /// Tests various examples from the CommonMark specifiction.");
-            writer.WriteLine("    /// </summary>");
-            writer.WriteLine(
-                "    public class {0} : MarkdownReaderRecorderTestsBase", 
-                className);
-            writer.WriteLine("    {");
-            writer.WriteLine("        #region Public Methods and Operators");
-            writer.WriteLine(string.Empty);
-        }
+		    writer.WriteLine("    using Xunit;");
+		    writer.WriteLine("    using Xunit.Abstractions;");
+		    writer.WriteLine();
+		    writer.WriteLine("    #region Designer generated code");
+		    writer.WriteLine();
+		    writer.WriteLine("    /// <summary>");
+		    writer.WriteLine(
+			    "    /// Tests various examples from the CommonMark specifiction.");
+		    writer.WriteLine("    /// </summary>");
+		    writer.WriteLine(
+			    "    public class {0} : MarkdownReaderRecorderTestsBase",
+			    className);
+		    writer.WriteLine("    {");
+			writer.WriteLine("        #region Constructors and Destructors");
+			writer.WriteLine("        ");
+			writer.WriteLine("        public {0}(ITestOutputHelper output)", className);
+			writer.WriteLine("        	: base(output)");
+			writer.WriteLine("        {");
+			writer.WriteLine("        }");
+		    writer.WriteLine();
+		    writer.WriteLine("        #endregion");
+		    writer.WriteLine();
+		    writer.WriteLine("        #region Public Methods and Operators");
+		    writer.WriteLine();
+	    }
 
-        /// <summary>
+	    /// <summary>
         /// </summary>
         /// <param name="writer">
         /// </param>

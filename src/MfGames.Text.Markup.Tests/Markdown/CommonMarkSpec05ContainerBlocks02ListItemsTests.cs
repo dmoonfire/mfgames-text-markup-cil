@@ -5,6 +5,7 @@
 namespace MfGames.Text.Markup.Tests.Markdown
 {
     using Xunit;
+    using Xunit.Abstractions;
 
     #region Designer generated code
 
@@ -13,6 +14,15 @@ namespace MfGames.Text.Markup.Tests.Markdown
     /// </summary>
     public class CommonMarkSpec05ContainerBlocks02ListItemsTests : MarkdownReaderRecorderTestsBase
     {
+        #region Constructors and Destructors
+        
+        public CommonMarkSpec05ContainerBlocks02ListItemsTests(ITestOutputHelper output)
+        	: base(output)
+        {
+        }
+
+        #endregion
+
         #region Public Methods and Operators
 
         /// <summary>

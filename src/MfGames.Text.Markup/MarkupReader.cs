@@ -1,102 +1,117 @@
 ﻿// <copyright file="MarkupReader.cs" company="Moonfire Games">
-//     Copyright (c) Moonfire Games. Some Rights Reserved.
+//   Copyright (c) Moonfire Games. Some Rights Reserved.
 // </copyright>
-// MIT Licensed (http://opensource.org/licenses/MIT)
+// <license>
+//   MIT License (MIT)
+// </license>
+
+using System;
+using System.IO;
 
 using MfGames.Text.Markup.IO;
 
 namespace MfGames.Text.Markup
 {
-    using System;
-    using System.IO;
+	/// <summary>
+	/// Common base class for all markup readers.
+	/// </summary>
+	public abstract class MarkupReader
+	{
+		#region Constructors and Destructors
 
-    using MfGames.Text.Markup.Markdown;
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MarkupReader"/> class.
+		/// </summary>
+		/// <param name="reader">
+		/// The reader.
+		/// </param>
+		protected MarkupReader(TextReader reader)
+		{
+			this.Input = new BlockReader(reader);
+		}
 
-    /// <summary>
-    /// Common base class for all markup readers.
-    /// </summary>
-    public abstract class MarkupReader
-    {
-        #region Constructors and Destructors
+		/// <summary>
+		/// Initializes a new instance of the <see cref="MarkupReader"/> class.
+		/// </summary>
+		/// <param name="lines">
+		/// The lines.
+		/// </param>
+		protected MarkupReader(string[] lines)
+			: this(new StringReader(
+				string.Join(
+					Environment.NewLine,
+					lines)))
+		{
+		}
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MarkupReader"/> class.
-        /// </summary>
-        /// <param name="reader">
-        /// The reader.
-        /// </param>
-        protected MarkupReader(TextReader reader)
-        {
-            this.Input = new BlockReader(reader);
-        }
+		#endregion
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MarkupReader"/> class.
-        /// </summary>
-        /// <param name="lines">
-        /// The lines.
-        /// </param>
-        protected MarkupReader(string[] lines)
-            : this(new StringReader(
-                string.Join(
-                    Environment.NewLine, 
-                    lines)))
-        {
-        }
+		#region Public Properties
 
-        #endregion
+		/// <summary>
+		/// Gets the type of the element of the current state.
+		/// </summary>
+		/// <value>
+		/// The type of the element.
+		/// </value>
+		public abstract MarkupElementType ElementType { get; }
 
-        #region Public Properties
+		/// <summary>
+		/// Gets the element-specific level of the current element.
+		/// </summary>
+		public int Level { get; protected set; }
 
-        /// <summary>
-        /// Gets the type of the element of the current state.
-        /// </summary>
-        /// <value>
-        /// The type of the element.
-        /// </value>
-        public abstract MarkupElementType ElementType { get; }
+		/// <summary>
+		/// Gets or sets the text of the current state.
+		/// </summary>
+		public string Text { get; protected set; }
 
-        /// <summary>
-        /// Gets the element-specific level of the current element.
-        /// </summary>
-        public int Level { get; protected set; }
+		#endregion
 
-        /// <summary>
-        /// Gets or sets the text of the current state.
-        /// </summary>
-        public string Text { get; protected set; }
+		#region Properties
 
-        #endregion
+		/// <summary>
+		/// </summary>
+		protected BlockReader Input { get; private set; }
 
-        #region Properties
+		#endregion
 
-        /// <summary>
-        /// </summary>
-        protected BlockReader Input { get; private set; }
+		#region Public Methods and Operators
 
-        #endregion
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+		/// </summary>
+		public void Dispose()
+		{
+			Dispose(true);
+		}
 
-        #region Public Methods and Operators
+		/// <summary>
+		/// Reads the next significant element from the marked-up file.
+		/// </summary>
+		/// <returns>True if there is another element available.</returns>
+		public abstract bool Read();
 
-        /// <summary>
-        /// Reads the next significant element from the marked-up file.
-        /// </summary>
-        /// <returns>True if there is another element available.</returns>
-        public abstract bool Read();
+		#endregion
 
-        #endregion
+		#region Methods
 
-        #region Methods
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+		/// </summary>
+		protected virtual void Dispose(bool isDisposing)
+		{
+		}
 
-        /// <summary>
-        /// Resets the internal state to a known value.
-        /// </summary>
-        protected void ResetState()
-        {
-            this.Text = null;
-            this.Level = 0;
-        }
+		/// <summary>
+		/// Resets the internal state to a known value.
+		/// </summary>
+		protected virtual void Reset()
+		{
+			Text = null;
+			Level = 0;
+		}
 
-        #endregion
-    }
+		#endregion
+	}
 }
