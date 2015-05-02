@@ -303,13 +303,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "aaa" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.LineBreak),
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "bbb" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }

@@ -34,6 +34,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
             this.mappings = new[]
                 {
                     HtmlMapping.CreateSingle("hr", "HorizontalRule"), 
+                    HtmlMapping.CreateSingle("br", "LineBreak"), 
                     HtmlMapping.CreatePair("p", "Paragraph"), 
                     new HtmlMapping(
                         "CodeBlock", 

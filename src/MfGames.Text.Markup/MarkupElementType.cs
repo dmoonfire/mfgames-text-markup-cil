@@ -181,6 +181,11 @@ namespace MfGames.Text.Markup
 
 		/// <summary>
 		/// </summary>
-		EndListItem
+		EndListItem,
+
+		/// <summary>
+		/// Indicates an explict line break.
+		/// </summary>
+		LineBreak
 	}
 }

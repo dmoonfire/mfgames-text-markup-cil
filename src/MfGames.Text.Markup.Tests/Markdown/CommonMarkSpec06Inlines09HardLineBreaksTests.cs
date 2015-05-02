@@ -50,13 +50,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.LineBreak),
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -86,13 +83,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.LineBreak),
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -122,13 +116,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.LineBreak),
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -158,13 +149,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.LineBreak),
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -194,13 +182,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.LineBreak),
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -231,14 +216,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.BeginItalic),
                 new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.LineBreak),
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndItalic),
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -269,14 +251,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.BeginItalic),
                 new Event(MarkupElementType.Text) { Text = "foo" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.LineBreak),
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndItalic),
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }

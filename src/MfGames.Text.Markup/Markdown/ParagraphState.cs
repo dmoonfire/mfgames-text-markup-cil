@@ -15,6 +15,8 @@ namespace MfGames.Text.Markup.Markdown
 
 		private List<string> lines;
 
+		private bool needLineBreak;
+
 		private bool needNewline;
 
 		#endregion
@@ -51,6 +53,14 @@ namespace MfGames.Text.Markup.Markdown
 
 		protected override bool ProcessContents(MarkdownReader markdown)
 		{
+			// If we need a line break, then send that out.
+			if (needLineBreak)
+			{
+				needLineBreak = false;
+				markdown.SetState(MarkupElementType.LineBreak, this);
+				return true;
+			}
+
 			// If we need a newline, then send that out.
 			if (needNewline)
 			{
@@ -70,11 +80,15 @@ namespace MfGames.Text.Markup.Markdown
 
 			lines.RemoveAt(0);
 
+			// We have an explict line break if the line has two or more spaces
+			// and we aren't the last line.
+			needLineBreak = line.EndsWith("  ") && lines.Count > 0;
+
 			// We only have newlines if we still have more lines.
 			needNewline = lines.Count > 0;
 
 			// Set the state and indicate we have more to parse.
-			markdown.SetText(line);
+			markdown.SetText(line.TrimEnd());
 			markdown.SetState(MarkupElementType.Text, this);
 
 			return true;

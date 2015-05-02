@@ -48,11 +48,11 @@ namespace MfGames.Text.Markup.Markdown
 				return !existingIsIndented;
 			}
 
-			// If the scope of an indent block is different than the beginning,
-			// then we treat them as a block barrier.
+			// If we have an indented existing line and switch to a non-indented,
+			// it is a break.
 			bool lineIsIndented = line.StartsWith("    ");
 
-			if (existingIsIndented != lineIsIndented)
+			if (existingIsIndented && !lineIsIndented)
 			{
 				return true;
 			}
@@ -94,6 +94,11 @@ namespace MfGames.Text.Markup.Markdown
 		protected override bool IsSingleLineBlock(string line)
 		{
 			if (MarkdownRegex.HorizontalRule.IsMatch(line))
+			{
+				return true;
+			}
+
+			if (MarkdownRegex.AtxHeader.IsMatch(line))
 			{
 				return true;
 			}

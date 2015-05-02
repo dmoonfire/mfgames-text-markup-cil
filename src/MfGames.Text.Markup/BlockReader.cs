@@ -110,7 +110,7 @@ namespace MfGames.Text.Markup
 			}
 
 			// Read until the end of the buffer or the first non-blank line.
-			while (line != null && line == "")
+			while (line != null && line.Trim() == "")
 			{
 				line = UnderlyingReader.ReadLine();
 			}
