@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MfGames, Version=4.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MfGames.4.1.1.0\lib\net45\MfGames.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -81,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MfGames.Text.Markup\MfGames.Text.Markup.csproj">
-      <Project>{04B44B8C-1621-4373-86B1-1844F41C6888}</Project>
+      <Project>{340f0649-1205-4771-82a6-7b3788cc9c1e}</Project>
       <Name>MfGames.Text.Markup</Name>
     </ProjectReference>
   </ItemGroup>
