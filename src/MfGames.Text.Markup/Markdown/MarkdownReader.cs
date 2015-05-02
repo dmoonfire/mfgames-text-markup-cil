@@ -87,6 +87,12 @@ namespace MfGames.Text.Markup.Markdown
 
 		#endregion
 
+		#region Properties
+
+		internal string BlockText { get; private set; }
+
+		#endregion
+
 		#region Public Methods and Operators
 
 		/// <summary>
@@ -119,9 +125,21 @@ namespace MfGames.Text.Markup.Markdown
 			return true;
 		}
 
+		public void SetText(string nextText)
+		{
+			Text = nextText;
+		}
+
 		#endregion
 
 		#region Methods
+
+		internal string ReadNextBlock()
+		{
+			BlockText = Input.ReadBlock();
+
+			return BlockText;
+		}
 
 		internal void SetState(
 			MarkupElementType nextElementType,

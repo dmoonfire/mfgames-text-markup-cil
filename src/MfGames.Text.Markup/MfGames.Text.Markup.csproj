@@ -39,14 +39,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Markdown\CommonMarkSpecification.cs" />
+    <Compile Include="Markdown\BeginContentState.cs" />
+    <Compile Include="Markdown\CodeBlockState.cs" />
+    <Compile Include="Markdown\MarkdownRegex.cs" />
     <Compile Include="IO\BlockReader.cs" />
     <Compile Include="Markdown\BeginDocumentState.cs" />
+    <Compile Include="Markdown\EndContentState.cs" />
     <Compile Include="Markdown\EndDocumentState.cs" />
     <Compile Include="Markdown\MarkdownBlockType.cs" />
     <Compile Include="Markdown\MarkdownOptions.cs" />
     <Compile Include="Markdown\MarkdownReader.cs" />
     <Compile Include="Markdown\MarkdownState.cs" />
+    <Compile Include="Markdown\YamlMetadataState.cs" />
     <Compile Include="MarkupElementType.cs" />
     <Compile Include="MarkupReader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
