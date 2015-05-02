@@ -38,6 +38,12 @@ namespace MfGames.Text.Markup.Markdown
 			int index,
 			string line)
 		{
+			// Atx headers are always breaks.
+			if (MarkdownRegex.AtxHeader.IsMatch(line))
+			{
+				return true;
+			}
+
 			// If the buffer starts with an indented block, we treat the first
 			// line as the second. This is because a rule will break a code
 			// span.
@@ -45,6 +51,7 @@ namespace MfGames.Text.Markup.Markdown
 			{
 				index++;
 			}
+
 			// The "---" can be used for both a header and a break. However, on
 			// the second line of a block, it can only be a heading, which is
 			// the end of a block, so we skip it.

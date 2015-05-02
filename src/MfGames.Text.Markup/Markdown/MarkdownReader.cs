@@ -164,6 +164,10 @@ namespace MfGames.Text.Markup.Markdown
 			{
 				nextState = new SetextHeaderState();
 			}
+			else if (MarkdownRegex.AtxHeader.IsMatch(text))
+			{
+				nextState = new AtxHeaderState();
+			}
 			else if (MarkdownRegex.HorizontalRule.IsMatch(text))
 			{
 				nextState = new HorizontalRuleState();
