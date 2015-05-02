@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 129 of the CommonMark specification.
+        /// Verifies example 132 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks08ParagraphsExample129()
+        public void VerifyCommonMark04LeafBlocks08ParagraphsExample132()
         {
             /* Specification Example:
                 .
@@ -61,10 +61,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 130 of the CommonMark specification.
+        /// Verifies example 133 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks08ParagraphsExample130()
+        public void VerifyCommonMark04LeafBlocks08ParagraphsExample133()
         {
             /* Specification Example:
                 .
@@ -106,10 +106,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 131 of the CommonMark specification.
+        /// Verifies example 134 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks08ParagraphsExample131()
+        public void VerifyCommonMark04LeafBlocks08ParagraphsExample134()
         {
             /* Specification Example:
                 .
@@ -143,10 +143,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 132 of the CommonMark specification.
+        /// Verifies example 135 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks08ParagraphsExample132()
+        public void VerifyCommonMark04LeafBlocks08ParagraphsExample135()
         {
             /* Specification Example:
                 .
@@ -175,10 +175,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 133 of the CommonMark specification.
+        /// Verifies example 136 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks08ParagraphsExample133()
+        public void VerifyCommonMark04LeafBlocks08ParagraphsExample136()
         {
             /* Specification Example:
                 .
@@ -212,10 +212,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 134 of the CommonMark specification.
+        /// Verifies example 137 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks08ParagraphsExample134()
+        public void VerifyCommonMark04LeafBlocks08ParagraphsExample137()
         {
             /* Specification Example:
                 .
@@ -244,10 +244,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 135 of the CommonMark specification.
+        /// Verifies example 138 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks08ParagraphsExample135()
+        public void VerifyCommonMark04LeafBlocks08ParagraphsExample138()
         {
             /* Specification Example:
                 .
@@ -279,10 +279,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 136 of the CommonMark specification.
+        /// Verifies example 139 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks08ParagraphsExample136()
+        public void VerifyCommonMark04LeafBlocks08ParagraphsExample139()
         {
             /* Specification Example:
                 .

@@ -53,7 +53,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
             // needs from the input file and writes out a unit test that
             // is mostly in the correct format.
             using (
-                StreamReader reader = File.OpenText("commonmark-spec-0.12.txt"))
+                StreamReader reader = File.OpenText("commonmark-spec.txt"))
             {
                 ConvertSpec(reader);
             }

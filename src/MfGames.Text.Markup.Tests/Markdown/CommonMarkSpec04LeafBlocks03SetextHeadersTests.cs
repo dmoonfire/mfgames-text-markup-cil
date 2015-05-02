@@ -243,7 +243,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             /* Specification Example:
                 .
                 Foo
-                     ---
+                    ---
                 .
                 <p>Foo
                 ---</p>
@@ -252,7 +252,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 
             this.Setup(
                 "Foo",
-                "     ---");
+                "    ---");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),

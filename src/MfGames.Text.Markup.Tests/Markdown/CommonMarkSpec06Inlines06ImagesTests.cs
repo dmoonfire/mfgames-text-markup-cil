@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 434 of the CommonMark specification.
+        /// Verifies example 471 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample434()
+        public void VerifyCommonMark06Inlines06ImagesExample471()
         {
             /* Specification Example:
                 .
@@ -55,10 +55,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 435 of the CommonMark specification.
+        /// Verifies example 472 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample435()
+        public void VerifyCommonMark06Inlines06ImagesExample472()
         {
             /* Specification Example:
                 .
@@ -88,10 +88,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 436 of the CommonMark specification.
+        /// Verifies example 473 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample436()
+        public void VerifyCommonMark06Inlines06ImagesExample473()
         {
             /* Specification Example:
                 .
@@ -117,10 +117,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 437 of the CommonMark specification.
+        /// Verifies example 474 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample437()
+        public void VerifyCommonMark06Inlines06ImagesExample474()
         {
             /* Specification Example:
                 .
@@ -146,10 +146,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 438 of the CommonMark specification.
+        /// Verifies example 475 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample438()
+        public void VerifyCommonMark06Inlines06ImagesExample475()
         {
             /* Specification Example:
                 .
@@ -179,10 +179,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 439 of the CommonMark specification.
+        /// Verifies example 476 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample439()
+        public void VerifyCommonMark06Inlines06ImagesExample476()
         {
             /* Specification Example:
                 .
@@ -212,10 +212,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 440 of the CommonMark specification.
+        /// Verifies example 477 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample440()
+        public void VerifyCommonMark06Inlines06ImagesExample477()
         {
             /* Specification Example:
                 .
@@ -241,10 +241,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 441 of the CommonMark specification.
+        /// Verifies example 478 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample441()
+        public void VerifyCommonMark06Inlines06ImagesExample478()
         {
             /* Specification Example:
                 .
@@ -271,10 +271,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 442 of the CommonMark specification.
+        /// Verifies example 479 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample442()
+        public void VerifyCommonMark06Inlines06ImagesExample479()
         {
             /* Specification Example:
                 .
@@ -300,10 +300,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 443 of the CommonMark specification.
+        /// Verifies example 480 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample443()
+        public void VerifyCommonMark06Inlines06ImagesExample480()
         {
             /* Specification Example:
                 .
@@ -329,10 +329,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 444 of the CommonMark specification.
+        /// Verifies example 481 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample444()
+        public void VerifyCommonMark06Inlines06ImagesExample481()
         {
             /* Specification Example:
                 .
@@ -362,10 +362,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 445 of the CommonMark specification.
+        /// Verifies example 482 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample445()
+        public void VerifyCommonMark06Inlines06ImagesExample482()
         {
             /* Specification Example:
                 .
@@ -395,10 +395,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 446 of the CommonMark specification.
+        /// Verifies example 483 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample446()
+        public void VerifyCommonMark06Inlines06ImagesExample483()
         {
             /* Specification Example:
                 .
@@ -428,10 +428,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 447 of the CommonMark specification.
+        /// Verifies example 484 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample447()
+        public void VerifyCommonMark06Inlines06ImagesExample484()
         {
             /* Specification Example:
                 .
@@ -461,10 +461,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 448 of the CommonMark specification.
+        /// Verifies example 485 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample448()
+        public void VerifyCommonMark06Inlines06ImagesExample485()
         {
             /* Specification Example:
                 .
@@ -494,10 +494,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 449 of the CommonMark specification.
+        /// Verifies example 486 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample449()
+        public void VerifyCommonMark06Inlines06ImagesExample486()
         {
             /* Specification Example:
                 .
@@ -529,10 +529,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 450 of the CommonMark specification.
+        /// Verifies example 487 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample450()
+        public void VerifyCommonMark06Inlines06ImagesExample487()
         {
             /* Specification Example:
                 .
@@ -562,10 +562,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 451 of the CommonMark specification.
+        /// Verifies example 488 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample451()
+        public void VerifyCommonMark06Inlines06ImagesExample488()
         {
             /* Specification Example:
                 .
@@ -595,10 +595,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 452 of the CommonMark specification.
+        /// Verifies example 489 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample452()
+        public void VerifyCommonMark06Inlines06ImagesExample489()
         {
             /* Specification Example:
                 .
@@ -630,10 +630,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 453 of the CommonMark specification.
+        /// Verifies example 490 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample453()
+        public void VerifyCommonMark06Inlines06ImagesExample490()
         {
             /* Specification Example:
                 .
@@ -663,10 +663,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 454 of the CommonMark specification.
+        /// Verifies example 491 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample454()
+        public void VerifyCommonMark06Inlines06ImagesExample491()
         {
             /* Specification Example:
                 .
@@ -694,10 +694,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 455 of the CommonMark specification.
+        /// Verifies example 492 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines06ImagesExample455()
+        public void VerifyCommonMark06Inlines06ImagesExample492()
         {
             /* Specification Example:
                 .

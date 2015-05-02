@@ -1,4 +1,4 @@
-﻿// <copyright file="CommonMarkSpec06Inlines10SoftLineBreaksTests.cs" company="Moonfire Games">
+﻿// <copyright file="CommonMarkSpec02Preliminaries02TabExpansionTests.cs" company="Moonfire Games">
 //     Copyright (c) Moonfire Games. Some Rights Reserved.
 // </copyright>
 // MIT Licensed (http://opensource.org/licenses/MIT)
@@ -12,11 +12,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
     /// <summary>
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
-    public class CommonMarkSpec06Inlines10SoftLineBreaksTests : MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec02Preliminaries02TabExpansionTests : MarkdownReaderRecorderTestsBase
     {
         #region Constructors and Destructors
         
-        public CommonMarkSpec06Inlines10SoftLineBreaksTests(ITestOutputHelper output)
+        public CommonMarkSpec02Preliminaries02TabExpansionTests(ITestOutputHelper output)
         	: base(output)
         {
         }
@@ -26,65 +26,64 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 544 of the CommonMark specification.
+        /// Verifies example 1 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines10SoftLineBreaksExample544()
+        public void VerifyCommonMark02Preliminaries02TabExpansionExample001()
         {
             /* Specification Example:
                 .
-                foo
-                baz
+                →foo→baz→→bim
                 .
-                <p>foo
-                baz</p>
+                <pre><code>foo baz     bim
+                </code></pre>
                 .
             */
 
             this.Setup(
-                "foo",
-                "baz");
+                "\tfoo\tbaz\t\tbim");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "foo baz     bim" },
                 new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
-        /// Verifies example 545 of the CommonMark specification.
+        /// Verifies example 2 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines10SoftLineBreaksExample545()
+        public void VerifyCommonMark02Preliminaries02TabExpansionExample002()
         {
             /* Specification Example:
                 .
-                foo 
-                 baz
+                    a→a
+                    ὐ→a
                 .
-                <p>foo
-                baz</p>
+                <pre><code>a   a
+                ὐ   a
+                </code></pre>
                 .
             */
 
             this.Setup(
-                "foo ",
-                " baz");
+                "    a\ta",
+                "    ὐ\ta");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "a   a" },
                 new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.Text) { Text = "baz" },
-                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.Text) { Text = "ὐ   a" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }

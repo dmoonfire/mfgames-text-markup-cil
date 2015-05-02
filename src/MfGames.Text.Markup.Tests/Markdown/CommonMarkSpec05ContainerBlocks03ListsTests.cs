@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 197 of the CommonMark specification.
+        /// Verifies example 204 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample197()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample204()
         {
             /* Specification Example:
                 .
@@ -73,10 +73,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 198 of the CommonMark specification.
+        /// Verifies example 205 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample198()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample205()
         {
             /* Specification Example:
                 .
@@ -125,10 +125,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 199 of the CommonMark specification.
+        /// Verifies example 206 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample199()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample206()
         {
             /* Specification Example:
                 .
@@ -168,10 +168,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 200 of the CommonMark specification.
+        /// Verifies example 207 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample200()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample207()
         {
             /* Specification Example:
                 .
@@ -210,10 +210,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 201 of the CommonMark specification.
+        /// Verifies example 208 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample201()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample208()
         {
             /* Specification Example:
                 .
@@ -271,10 +271,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 202 of the CommonMark specification.
+        /// Verifies example 209 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample202()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample209()
         {
             /* Specification Example:
                 .
@@ -322,10 +322,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 203 of the CommonMark specification.
+        /// Verifies example 210 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample203()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample210()
         {
             /* Specification Example:
                 .
@@ -387,10 +387,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 204 of the CommonMark specification.
+        /// Verifies example 211 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample204()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample211()
         {
             /* Specification Example:
                 .
@@ -444,10 +444,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 205 of the CommonMark specification.
+        /// Verifies example 212 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample205()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample212()
         {
             /* Specification Example:
                 .
@@ -511,10 +511,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 206 of the CommonMark specification.
+        /// Verifies example 213 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample206()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample213()
         {
             /* Specification Example:
                 .
@@ -578,10 +578,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 207 of the CommonMark specification.
+        /// Verifies example 214 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample207()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample214()
         {
             /* Specification Example:
                 .
@@ -635,10 +635,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 208 of the CommonMark specification.
+        /// Verifies example 215 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample208()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample215()
         {
             /* Specification Example:
                 .
@@ -687,10 +687,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 209 of the CommonMark specification.
+        /// Verifies example 216 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample209()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample216()
         {
             /* Specification Example:
                 .
@@ -750,10 +750,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 210 of the CommonMark specification.
+        /// Verifies example 217 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample210()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample217()
         {
             /* Specification Example:
                 .
@@ -809,10 +809,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 211 of the CommonMark specification.
+        /// Verifies example 218 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample211()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample218()
         {
             /* Specification Example:
                 .
@@ -870,10 +870,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 212 of the CommonMark specification.
+        /// Verifies example 219 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample212()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample219()
         {
             /* Specification Example:
                 .
@@ -930,10 +930,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 213 of the CommonMark specification.
+        /// Verifies example 220 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample213()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample220()
         {
             /* Specification Example:
                 .
@@ -980,10 +980,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 214 of the CommonMark specification.
+        /// Verifies example 221 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample214()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample221()
         {
             /* Specification Example:
                 .
@@ -1040,10 +1040,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 215 of the CommonMark specification.
+        /// Verifies example 222 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample215()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample222()
         {
             /* Specification Example:
                 .
@@ -1071,10 +1071,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 216 of the CommonMark specification.
+        /// Verifies example 223 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample216()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample223()
         {
             /* Specification Example:
                 .
@@ -1113,10 +1113,59 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 217 of the CommonMark specification.
+        /// Verifies example 224 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample217()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample224()
+        {
+            /* Specification Example:
+                .
+                1. ```
+                   foo
+                   ```
+                
+                   bar
+                .
+                <ol>
+                <li>
+                <pre><code>foo
+                </code></pre>
+                <p>bar</p>
+                </li>
+                </ol>
+                .
+            */
+
+            this.Setup(
+                "1. ```",
+                "   foo",
+                "   ```",
+                string.Empty,
+                "   bar");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginOrderedList),
+                new Event(MarkupElementType.BeginListItem),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndListItem),
+                new Event(MarkupElementType.EndOrderedList),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 225 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark05ContainerBlocks03ListsExample225()
         {
             /* Specification Example:
                 .
@@ -1166,10 +1215,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 218 of the CommonMark specification.
+        /// Verifies example 226 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks03ListsExample218()
+        public void VerifyCommonMark05ContainerBlocks03ListsExample226()
         {
             /* Specification Example:
                 .

@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 137 of the CommonMark specification.
+        /// Verifies example 140 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks09BlankLinesExample137()
+        public void VerifyCommonMark04LeafBlocks09BlankLinesExample140()
         {
             /* Specification Example:
                 .

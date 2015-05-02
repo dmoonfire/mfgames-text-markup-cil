@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 138 of the CommonMark specification.
+        /// Verifies example 141 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample138()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample141()
         {
             /* Specification Example:
                 .
@@ -68,10 +68,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 139 of the CommonMark specification.
+        /// Verifies example 142 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample139()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample142()
         {
             /* Specification Example:
                 .
@@ -110,10 +110,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 140 of the CommonMark specification.
+        /// Verifies example 143 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample140()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample143()
         {
             /* Specification Example:
                 .
@@ -152,10 +152,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 141 of the CommonMark specification.
+        /// Verifies example 144 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample141()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample144()
         {
             /* Specification Example:
                 .
@@ -191,10 +191,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 142 of the CommonMark specification.
+        /// Verifies example 145 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample142()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample145()
         {
             /* Specification Example:
                 .
@@ -233,10 +233,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 143 of the CommonMark specification.
+        /// Verifies example 146 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample143()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample146()
         {
             /* Specification Example:
                 .
@@ -274,10 +274,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 144 of the CommonMark specification.
+        /// Verifies example 147 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample144()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample147()
         {
             /* Specification Example:
                 .
@@ -309,10 +309,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 145 of the CommonMark specification.
+        /// Verifies example 148 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample145()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample148()
         {
             /* Specification Example:
                 .
@@ -354,10 +354,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 146 of the CommonMark specification.
+        /// Verifies example 149 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample146()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample149()
         {
             /* Specification Example:
                 .
@@ -395,10 +395,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 147 of the CommonMark specification.
+        /// Verifies example 150 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample147()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample150()
         {
             /* Specification Example:
                 .
@@ -436,10 +436,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 148 of the CommonMark specification.
+        /// Verifies example 151 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample148()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample151()
         {
             /* Specification Example:
                 .
@@ -463,10 +463,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 149 of the CommonMark specification.
+        /// Verifies example 152 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample149()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample152()
         {
             /* Specification Example:
                 .
@@ -494,10 +494,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 150 of the CommonMark specification.
+        /// Verifies example 153 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample150()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample153()
         {
             /* Specification Example:
                 .
@@ -529,10 +529,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 151 of the CommonMark specification.
+        /// Verifies example 154 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample151()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample154()
         {
             /* Specification Example:
                 .
@@ -572,10 +572,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 152 of the CommonMark specification.
+        /// Verifies example 155 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample152()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample155()
         {
             /* Specification Example:
                 .
@@ -608,10 +608,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 153 of the CommonMark specification.
+        /// Verifies example 156 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample153()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample156()
         {
             /* Specification Example:
                 .
@@ -647,10 +647,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 154 of the CommonMark specification.
+        /// Verifies example 157 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample154()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample157()
         {
             /* Specification Example:
                 .
@@ -684,10 +684,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 155 of the CommonMark specification.
+        /// Verifies example 158 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample155()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample158()
         {
             /* Specification Example:
                 .
@@ -729,10 +729,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 156 of the CommonMark specification.
+        /// Verifies example 159 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample156()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample159()
         {
             /* Specification Example:
                 .
@@ -765,10 +765,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 157 of the CommonMark specification.
+        /// Verifies example 160 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample157()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample160()
         {
             /* Specification Example:
                 .
@@ -804,10 +804,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 158 of the CommonMark specification.
+        /// Verifies example 161 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample158()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample161()
         {
             /* Specification Example:
                 .
@@ -843,10 +843,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 159 of the CommonMark specification.
+        /// Verifies example 162 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample159()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample162()
         {
             /* Specification Example:
                 .
@@ -887,10 +887,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 160 of the CommonMark specification.
+        /// Verifies example 163 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample160()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample163()
         {
             /* Specification Example:
                 .
@@ -936,10 +936,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 161 of the CommonMark specification.
+        /// Verifies example 164 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample161()
+        public void VerifyCommonMark05ContainerBlocks01BlockQuotesExample164()
         {
             /* Specification Example:
                 .

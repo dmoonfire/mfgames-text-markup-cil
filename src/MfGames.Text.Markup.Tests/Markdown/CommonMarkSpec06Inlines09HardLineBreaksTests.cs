@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 489 of the CommonMark specification.
+        /// Verifies example 529 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample489()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample529()
         {
             /* Specification Example:
                 .
@@ -62,10 +62,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 490 of the CommonMark specification.
+        /// Verifies example 530 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample490()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample530()
         {
             /* Specification Example:
                 .
@@ -98,10 +98,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 491 of the CommonMark specification.
+        /// Verifies example 531 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample491()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample531()
         {
             /* Specification Example:
                 .
@@ -134,10 +134,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 492 of the CommonMark specification.
+        /// Verifies example 532 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample492()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample532()
         {
             /* Specification Example:
                 .
@@ -170,10 +170,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 493 of the CommonMark specification.
+        /// Verifies example 533 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample493()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample533()
         {
             /* Specification Example:
                 .
@@ -206,10 +206,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 494 of the CommonMark specification.
+        /// Verifies example 534 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample494()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample534()
         {
             /* Specification Example:
                 .
@@ -244,10 +244,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 495 of the CommonMark specification.
+        /// Verifies example 535 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample495()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample535()
         {
             /* Specification Example:
                 .
@@ -282,10 +282,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 496 of the CommonMark specification.
+        /// Verifies example 536 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample496()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample536()
         {
             /* Specification Example:
                 .
@@ -313,10 +313,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 497 of the CommonMark specification.
+        /// Verifies example 537 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample497()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample537()
         {
             /* Specification Example:
                 .
@@ -344,10 +344,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 498 of the CommonMark specification.
+        /// Verifies example 538 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample498()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample538()
         {
             /* Specification Example:
                 .
@@ -379,10 +379,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 499 of the CommonMark specification.
+        /// Verifies example 539 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample499()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample539()
         {
             /* Specification Example:
                 .
@@ -414,10 +414,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 500 of the CommonMark specification.
+        /// Verifies example 540 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample500()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample540()
         {
             /* Specification Example:
                 .
@@ -441,21 +441,21 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 501 of the CommonMark specification.
+        /// Verifies example 541 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample501()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample541()
         {
             /* Specification Example:
                 .
-                foo
+                foo  
                 .
                 <p>foo</p>
                 .
             */
 
             this.Setup(
-                "foo");
+                "foo  ");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
@@ -468,10 +468,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 502 of the CommonMark specification.
+        /// Verifies example 542 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample502()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample542()
         {
             /* Specification Example:
                 .
@@ -495,21 +495,21 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 503 of the CommonMark specification.
+        /// Verifies example 543 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines09HardLineBreaksExample503()
+        public void VerifyCommonMark06Inlines09HardLineBreaksExample543()
         {
             /* Specification Example:
                 .
-                ### foo
+                ### foo  
                 .
                 <h3>foo</h3>
                 .
             */
 
             this.Setup(
-                "### foo");
+                "### foo  ");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),

@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 220 of the CommonMark specification.
+        /// Verifies example 228 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample220()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample228()
         {
             /* Specification Example:
                 .
@@ -53,10 +53,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 221 of the CommonMark specification.
+        /// Verifies example 229 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample221()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample229()
         {
             /* Specification Example:
                 .
@@ -80,10 +80,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 222 of the CommonMark specification.
+        /// Verifies example 230 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample222()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample230()
         {
             /* Specification Example:
                 .
@@ -142,10 +142,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 223 of the CommonMark specification.
+        /// Verifies example 231 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample223()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample231()
         {
             /* Specification Example:
                 .
@@ -172,10 +172,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 224 of the CommonMark specification.
+        /// Verifies example 232 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample224()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample232()
         {
             /* Specification Example:
                 .
@@ -208,10 +208,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 225 of the CommonMark specification.
+        /// Verifies example 233 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample225()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample233()
         {
             /* Specification Example:
                 .
@@ -237,10 +237,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 226 of the CommonMark specification.
+        /// Verifies example 234 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample226()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample234()
         {
             /* Specification Example:
                 .
@@ -266,10 +266,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 227 of the CommonMark specification.
+        /// Verifies example 235 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample227()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample235()
         {
             /* Specification Example:
                 .
@@ -299,10 +299,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 228 of the CommonMark specification.
+        /// Verifies example 236 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample228()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample236()
         {
             /* Specification Example:
                 .
@@ -328,10 +328,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 229 of the CommonMark specification.
+        /// Verifies example 237 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample229()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample237()
         {
             /* Specification Example:
                 .
@@ -355,10 +355,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 230 of the CommonMark specification.
+        /// Verifies example 238 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample230()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample238()
         {
             /* Specification Example:
                 .
@@ -384,10 +384,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 231 of the CommonMark specification.
+        /// Verifies example 239 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample231()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample239()
         {
             /* Specification Example:
                 .
@@ -417,10 +417,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 232 of the CommonMark specification.
+        /// Verifies example 240 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines01BackslashEscapesExample232()
+        public void VerifyCommonMark06Inlines01BackslashEscapesExample240()
         {
             /* Specification Example:
                 .

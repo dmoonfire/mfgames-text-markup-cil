@@ -173,6 +173,104 @@ namespace MfGames.Text.Markup.Tests.Markdown
         {
             /* Specification Example:
                 .
+                [foo]: /url '
+                title
+                line1
+                line2
+                '
+                
+                [foo]
+                .
+                <p><a href="/url" title="
+                title
+                line1
+                line2
+                ">foo</a></p>
+                .
+            */
+
+            this.Setup(
+                "[foo]: /url '",
+                "title",
+                "line1",
+                "line2",
+                "'",
+                string.Empty,
+                "[foo]");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href=\"/url\" title=\"" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "title" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "line1" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "line2" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "\">foo" },
+                new Event(MarkupElementType.EndAnchor),
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 116 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample116()
+        {
+            /* Specification Example:
+                .
+                [foo]: /url 'title
+                
+                with blank line'
+                
+                [foo]
+                .
+                <p>[foo]: /url 'title</p>
+                <p>with blank line'</p>
+                <p>[foo]</p>
+                .
+            */
+
+            this.Setup(
+                "[foo]: /url 'title",
+                string.Empty,
+                "with blank line'",
+                string.Empty,
+                "[foo]");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "[foo]: /url 'title" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "with blank line'" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "[foo]" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 117 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample117()
+        {
+            /* Specification Example:
+                .
                 [foo]:
                 /url
                 
@@ -201,10 +299,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 116 of the CommonMark specification.
+        /// Verifies example 118 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample116()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample118()
         {
             /* Specification Example:
                 .
@@ -236,10 +334,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 117 of the CommonMark specification.
+        /// Verifies example 119 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample117()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample119()
         {
             /* Specification Example:
                 .
@@ -269,10 +367,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 118 of the CommonMark specification.
+        /// Verifies example 120 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample118()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample120()
         {
             /* Specification Example:
                 .
@@ -304,10 +402,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 119 of the CommonMark specification.
+        /// Verifies example 121 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample119()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample121()
         {
             /* Specification Example:
                 .
@@ -337,10 +435,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 120 of the CommonMark specification.
+        /// Verifies example 122 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample120()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample122()
         {
             /* Specification Example:
                 .
@@ -370,10 +468,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 121 of the CommonMark specification.
+        /// Verifies example 123 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample121()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample123()
         {
             /* Specification Example:
                 .
@@ -393,10 +491,43 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 122 of the CommonMark specification.
+        /// Verifies example 124 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample122()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample124()
+        {
+            /* Specification Example:
+                .
+                [
+                foo
+                ]: /url
+                bar
+                .
+                <p>bar</p>
+                .
+            */
+
+            this.Setup(
+                "[",
+                "foo",
+                "]: /url",
+                "bar");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 125 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample125()
         {
             /* Specification Example:
                 .
@@ -420,10 +551,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 123 of the CommonMark specification.
+        /// Verifies example 126 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample123()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample126()
         {
             /* Specification Example:
                 .
@@ -457,10 +588,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 124 of the CommonMark specification.
+        /// Verifies example 127 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample124()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample127()
         {
             /* Specification Example:
                 .
@@ -498,10 +629,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 125 of the CommonMark specification.
+        /// Verifies example 128 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample125()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample128()
         {
             /* Specification Example:
                 .
@@ -538,10 +669,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 126 of the CommonMark specification.
+        /// Verifies example 129 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample126()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample129()
         {
             /* Specification Example:
                 .
@@ -579,10 +710,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 127 of the CommonMark specification.
+        /// Verifies example 130 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample127()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample130()
         {
             /* Specification Example:
                 .
@@ -634,10 +765,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 128 of the CommonMark specification.
+        /// Verifies example 131 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample128()
+        public void VerifyCommonMark04LeafBlocks07LinkReferenceDefinitionsExample131()
         {
             /* Specification Example:
                 .

@@ -615,7 +615,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 .
                 <ul>
                 <li>Foo</li>
-                <li><hr />
+                <li>
+                <hr />
                 </li>
                 </ul>
                 .

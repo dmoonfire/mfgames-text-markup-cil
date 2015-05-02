@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 363 of the CommonMark specification.
+        /// Verifies example 396 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample363()
+        public void VerifyCommonMark06Inlines05LinksExample396()
         {
             /* Specification Example:
                 .
@@ -55,10 +55,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 364 of the CommonMark specification.
+        /// Verifies example 397 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample364()
+        public void VerifyCommonMark06Inlines05LinksExample397()
         {
             /* Specification Example:
                 .
@@ -84,10 +84,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 365 of the CommonMark specification.
+        /// Verifies example 398 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample365()
+        public void VerifyCommonMark06Inlines05LinksExample398()
         {
             /* Specification Example:
                 .
@@ -113,10 +113,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 366 of the CommonMark specification.
+        /// Verifies example 399 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample366()
+        public void VerifyCommonMark06Inlines05LinksExample399()
         {
             /* Specification Example:
                 .
@@ -142,10 +142,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 367 of the CommonMark specification.
+        /// Verifies example 400 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample367()
+        public void VerifyCommonMark06Inlines05LinksExample400()
         {
             /* Specification Example:
                 .
@@ -169,10 +169,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 368 of the CommonMark specification.
+        /// Verifies example 401 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample368()
+        public void VerifyCommonMark06Inlines05LinksExample401()
         {
             /* Specification Example:
                 .
@@ -198,10 +198,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 369 of the CommonMark specification.
+        /// Verifies example 402 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample369()
+        public void VerifyCommonMark06Inlines05LinksExample402()
         {
             /* Specification Example:
                 .
@@ -230,10 +230,46 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 370 of the CommonMark specification.
+        /// Verifies example 403 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample370()
+        public void VerifyCommonMark06Inlines05LinksExample403()
+        {
+            /* Specification Example:
+                .
+                [link](<foo
+                bar>)
+                .
+                <p>[link](<foo
+                bar>)</p>
+                .
+            */
+
+            this.Setup(
+                "[link](<foo",
+                "bar>)");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "[link](" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<foo" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "bar>)" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 404 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines05LinksExample404()
         {
             /* Specification Example:
                 .
@@ -259,10 +295,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 371 of the CommonMark specification.
+        /// Verifies example 405 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample371()
+        public void VerifyCommonMark06Inlines05LinksExample405()
         {
             /* Specification Example:
                 .
@@ -286,10 +322,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 372 of the CommonMark specification.
+        /// Verifies example 406 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample372()
+        public void VerifyCommonMark06Inlines05LinksExample406()
         {
             /* Specification Example:
                 .
@@ -315,10 +351,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 373 of the CommonMark specification.
+        /// Verifies example 407 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample373()
+        public void VerifyCommonMark06Inlines05LinksExample407()
         {
             /* Specification Example:
                 .
@@ -344,10 +380,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 374 of the CommonMark specification.
+        /// Verifies example 408 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample374()
+        public void VerifyCommonMark06Inlines05LinksExample408()
         {
             /* Specification Example:
                 .
@@ -373,10 +409,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 375 of the CommonMark specification.
+        /// Verifies example 409 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample375()
+        public void VerifyCommonMark06Inlines05LinksExample409()
         {
             /* Specification Example:
                 .
@@ -402,10 +438,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 376 of the CommonMark specification.
+        /// Verifies example 410 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample376()
+        public void VerifyCommonMark06Inlines05LinksExample410()
         {
             /* Specification Example:
                 .
@@ -431,10 +467,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 377 of the CommonMark specification.
+        /// Verifies example 411 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample377()
+        public void VerifyCommonMark06Inlines05LinksExample411()
         {
             /* Specification Example:
                 .
@@ -474,10 +510,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 378 of the CommonMark specification.
+        /// Verifies example 412 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample378()
+        public void VerifyCommonMark06Inlines05LinksExample412()
         {
             /* Specification Example:
                 .
@@ -503,10 +539,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 379 of the CommonMark specification.
+        /// Verifies example 413 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample379()
+        public void VerifyCommonMark06Inlines05LinksExample413()
         {
             /* Specification Example:
                 .
@@ -530,10 +566,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 380 of the CommonMark specification.
+        /// Verifies example 414 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample380()
+        public void VerifyCommonMark06Inlines05LinksExample414()
         {
             /* Specification Example:
                 .
@@ -559,10 +595,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 381 of the CommonMark specification.
+        /// Verifies example 415 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample381()
+        public void VerifyCommonMark06Inlines05LinksExample415()
         {
             /* Specification Example:
                 .
@@ -590,10 +626,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 382 of the CommonMark specification.
+        /// Verifies example 416 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample382()
+        public void VerifyCommonMark06Inlines05LinksExample416()
         {
             /* Specification Example:
                 .
@@ -617,10 +653,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 383 of the CommonMark specification.
+        /// Verifies example 417 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample383()
+        public void VerifyCommonMark06Inlines05LinksExample417()
         {
             /* Specification Example:
                 .
@@ -646,10 +682,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 384 of the CommonMark specification.
+        /// Verifies example 418 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample384()
+        public void VerifyCommonMark06Inlines05LinksExample418()
         {
             /* Specification Example:
                 .
@@ -673,10 +709,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 385 of the CommonMark specification.
+        /// Verifies example 419 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample385()
+        public void VerifyCommonMark06Inlines05LinksExample419()
         {
             /* Specification Example:
                 .
@@ -703,10 +739,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 386 of the CommonMark specification.
+        /// Verifies example 420 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample386()
+        public void VerifyCommonMark06Inlines05LinksExample420()
         {
             /* Specification Example:
                 .
@@ -732,10 +768,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 387 of the CommonMark specification.
+        /// Verifies example 421 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample387()
+        public void VerifyCommonMark06Inlines05LinksExample421()
         {
             /* Specification Example:
                 .
@@ -765,10 +801,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 388 of the CommonMark specification.
+        /// Verifies example 422 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample388()
+        public void VerifyCommonMark06Inlines05LinksExample422()
         {
             /* Specification Example:
                 .
@@ -795,10 +831,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 389 of the CommonMark specification.
+        /// Verifies example 423 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample389()
+        public void VerifyCommonMark06Inlines05LinksExample423()
         {
             /* Specification Example:
                 .
@@ -826,10 +862,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 390 of the CommonMark specification.
+        /// Verifies example 424 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample390()
+        public void VerifyCommonMark06Inlines05LinksExample424()
         {
             /* Specification Example:
                 .
@@ -861,10 +897,39 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 391 of the CommonMark specification.
+        /// Verifies example 425 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample391()
+        public void VerifyCommonMark06Inlines05LinksExample425()
+        {
+            /* Specification Example:
+                .
+                ![[[foo](uri1)](uri2)](uri3)
+                .
+                <p><img src="uri3" alt="[foo](uri2)" /></p>
+                .
+            */
+
+            this.Setup(
+                "![[[foo](uri1)](uri2)](uri3)");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<img src=\"uri3\" alt=\"[foo](uri2)\" /></p>" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 426 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines05LinksExample426()
         {
             /* Specification Example:
                 .
@@ -891,10 +956,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 392 of the CommonMark specification.
+        /// Verifies example 427 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample392()
+        public void VerifyCommonMark06Inlines05LinksExample427()
         {
             /* Specification Example:
                 .
@@ -920,10 +985,40 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 393 of the CommonMark specification.
+        /// Verifies example 428 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample393()
+        public void VerifyCommonMark06Inlines05LinksExample428()
+        {
+            /* Specification Example:
+                .
+                *foo [bar* baz]
+                .
+                <p><em>foo [bar</em> baz]</p>
+                .
+            */
+
+            this.Setup(
+                "*foo [bar* baz]");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "foo [bar" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.Text) { Text = " baz]" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 429 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines05LinksExample429()
         {
             /* Specification Example:
                 .
@@ -950,10 +1045,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 394 of the CommonMark specification.
+        /// Verifies example 430 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample394()
+        public void VerifyCommonMark06Inlines05LinksExample430()
         {
             /* Specification Example:
                 .
@@ -980,29 +1075,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 395 of the CommonMark specification.
+        /// Verifies example 431 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample395()
+        public void VerifyCommonMark06Inlines05LinksExample431()
         {
             /* Specification Example:
                 .
-                [foo<http://example.com?search=](uri)>
+                [foo<http://example.com/?search=](uri)>
                 .
-                <p>[foo<a href="http://example.com?search=%5D(uri)">http://example.com?search=](uri)</a></p>
+                <p>[foo<a href="http://example.com/?search=%5D(uri)">http://example.com/?search=](uri)</a></p>
                 .
             */
 
             this.Setup(
-                "[foo<http://example.com?search=](uri)>");
+                "[foo<http://example.com/?search=](uri)>");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.BeginAnchor) { Href="http://example.com?search=%5D(uri)" },
-                new Event(MarkupElementType.Text) { Text = "http://example.com?search=](uri)" },
+                new Event(MarkupElementType.BeginAnchor) { Href="http://example.com/?search=%5D(uri)" },
+                new Event(MarkupElementType.Text) { Text = "http://example.com/?search=](uri)" },
                 new Event(MarkupElementType.EndAnchor),
                 new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
@@ -1010,10 +1105,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 396 of the CommonMark specification.
+        /// Verifies example 432 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample396()
+        public void VerifyCommonMark06Inlines05LinksExample432()
         {
             /* Specification Example:
                 .
@@ -1043,10 +1138,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 397 of the CommonMark specification.
+        /// Verifies example 433 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample397()
+        public void VerifyCommonMark06Inlines05LinksExample433()
         {
             /* Specification Example:
                 .
@@ -1076,10 +1171,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 398 of the CommonMark specification.
+        /// Verifies example 434 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample398()
+        public void VerifyCommonMark06Inlines05LinksExample434()
         {
             /* Specification Example:
                 .
@@ -1109,10 +1204,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 399 of the CommonMark specification.
+        /// Verifies example 435 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample399()
+        public void VerifyCommonMark06Inlines05LinksExample435()
         {
             /* Specification Example:
                 .
@@ -1146,10 +1241,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 400 of the CommonMark specification.
+        /// Verifies example 436 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample400()
+        public void VerifyCommonMark06Inlines05LinksExample436()
         {
             /* Specification Example:
                 .
@@ -1180,10 +1275,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 401 of the CommonMark specification.
+        /// Verifies example 437 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample401()
+        public void VerifyCommonMark06Inlines05LinksExample437()
         {
             /* Specification Example:
                 .
@@ -1218,10 +1313,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 402 of the CommonMark specification.
+        /// Verifies example 438 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample402()
+        public void VerifyCommonMark06Inlines05LinksExample438()
         {
             /* Specification Example:
                 .
@@ -1259,10 +1354,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 403 of the CommonMark specification.
+        /// Verifies example 439 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample403()
+        public void VerifyCommonMark06Inlines05LinksExample439()
         {
             /* Specification Example:
                 .
@@ -1293,10 +1388,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 404 of the CommonMark specification.
+        /// Verifies example 440 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample404()
+        public void VerifyCommonMark06Inlines05LinksExample440()
         {
             /* Specification Example:
                 .
@@ -1326,10 +1421,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 405 of the CommonMark specification.
+        /// Verifies example 441 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample405()
+        public void VerifyCommonMark06Inlines05LinksExample441()
         {
             /* Specification Example:
                 .
@@ -1360,10 +1455,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 406 of the CommonMark specification.
+        /// Verifies example 442 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample406()
+        public void VerifyCommonMark06Inlines05LinksExample442()
         {
             /* Specification Example:
                 .
@@ -1394,23 +1489,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 407 of the CommonMark specification.
+        /// Verifies example 443 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample407()
+        public void VerifyCommonMark06Inlines05LinksExample443()
         {
             /* Specification Example:
                 .
-                [foo<http://example.com?search=][ref]>
+                [foo<http://example.com/?search=][ref]>
                 
                 [ref]: /uri
                 .
-                <p>[foo<a href="http://example.com?search=%5D%5Bref%5D">http://example.com?search=][ref]</a></p>
+                <p>[foo<a href="http://example.com/?search=%5D%5Bref%5D">http://example.com/?search=][ref]</a></p>
                 .
             */
 
             this.Setup(
-                "[foo<http://example.com?search=][ref]>",
+                "[foo<http://example.com/?search=][ref]>",
                 string.Empty,
                 "[ref]: /uri");
 
@@ -1419,8 +1514,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.BeginAnchor) { Href="http://example.com?search=%5D%5Bref%5D" },
-                new Event(MarkupElementType.Text) { Text = "http://example.com?search=][ref]" },
+                new Event(MarkupElementType.BeginAnchor) { Href="http://example.com/?search=%5D%5Bref%5D" },
+                new Event(MarkupElementType.Text) { Text = "http://example.com/?search=][ref]" },
                 new Event(MarkupElementType.EndAnchor),
                 new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
@@ -1428,10 +1523,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 408 of the CommonMark specification.
+        /// Verifies example 444 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample408()
+        public void VerifyCommonMark06Inlines05LinksExample444()
         {
             /* Specification Example:
                 .
@@ -1461,10 +1556,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 409 of the CommonMark specification.
+        /// Verifies example 445 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample409()
+        public void VerifyCommonMark06Inlines05LinksExample445()
         {
             /* Specification Example:
                 .
@@ -1495,10 +1590,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 410 of the CommonMark specification.
+        /// Verifies example 446 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample410()
+        public void VerifyCommonMark06Inlines05LinksExample446()
         {
             /* Specification Example:
                 .
@@ -1530,10 +1625,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 411 of the CommonMark specification.
+        /// Verifies example 447 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample411()
+        public void VerifyCommonMark06Inlines05LinksExample447()
         {
             /* Specification Example:
                 .
@@ -1563,10 +1658,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 412 of the CommonMark specification.
+        /// Verifies example 448 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample412()
+        public void VerifyCommonMark06Inlines05LinksExample448()
         {
             /* Specification Example:
                 .
@@ -1598,10 +1693,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 413 of the CommonMark specification.
+        /// Verifies example 449 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample413()
+        public void VerifyCommonMark06Inlines05LinksExample449()
         {
             /* Specification Example:
                 .
@@ -1635,10 +1730,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 414 of the CommonMark specification.
+        /// Verifies example 450 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample414()
+        public void VerifyCommonMark06Inlines05LinksExample450()
         {
             /* Specification Example:
                 .
@@ -1666,10 +1761,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 415 of the CommonMark specification.
+        /// Verifies example 451 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample415()
+        public void VerifyCommonMark06Inlines05LinksExample451()
         {
             /* Specification Example:
                 .
@@ -1701,10 +1796,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 416 of the CommonMark specification.
+        /// Verifies example 452 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample416()
+        public void VerifyCommonMark06Inlines05LinksExample452()
         {
             /* Specification Example:
                 .
@@ -1736,10 +1831,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 417 of the CommonMark specification.
+        /// Verifies example 453 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample417()
+        public void VerifyCommonMark06Inlines05LinksExample453()
         {
             /* Specification Example:
                 .
@@ -1771,10 +1866,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 418 of the CommonMark specification.
+        /// Verifies example 454 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample418()
+        public void VerifyCommonMark06Inlines05LinksExample454()
         {
             /* Specification Example:
                 .
@@ -1804,10 +1899,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 419 of the CommonMark specification.
+        /// Verifies example 455 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample419()
+        public void VerifyCommonMark06Inlines05LinksExample455()
         {
             /* Specification Example:
                 .
@@ -1837,10 +1932,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 420 of the CommonMark specification.
+        /// Verifies example 456 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample420()
+        public void VerifyCommonMark06Inlines05LinksExample456()
         {
             /* Specification Example:
                 .
@@ -1873,10 +1968,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 421 of the CommonMark specification.
+        /// Verifies example 457 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample421()
+        public void VerifyCommonMark06Inlines05LinksExample457()
         {
             /* Specification Example:
                 .
@@ -1906,10 +2001,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 422 of the CommonMark specification.
+        /// Verifies example 458 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample422()
+        public void VerifyCommonMark06Inlines05LinksExample458()
         {
             /* Specification Example:
                 .
@@ -1941,10 +2036,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 423 of the CommonMark specification.
+        /// Verifies example 459 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample423()
+        public void VerifyCommonMark06Inlines05LinksExample459()
         {
             /* Specification Example:
                 .
@@ -1974,10 +2069,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 424 of the CommonMark specification.
+        /// Verifies example 460 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample424()
+        public void VerifyCommonMark06Inlines05LinksExample460()
         {
             /* Specification Example:
                 .
@@ -2010,10 +2105,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 425 of the CommonMark specification.
+        /// Verifies example 461 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample425()
+        public void VerifyCommonMark06Inlines05LinksExample461()
         {
             /* Specification Example:
                 .
@@ -2048,10 +2143,44 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 426 of the CommonMark specification.
+        /// Verifies example 462 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample426()
+        public void VerifyCommonMark06Inlines05LinksExample462()
+        {
+            /* Specification Example:
+                .
+                [[bar [foo]
+                
+                [foo]: /url
+                .
+                <p>[[bar <a href="/url">foo</a></p>
+                .
+            */
+
+            this.Setup(
+                "[[bar [foo]",
+                string.Empty,
+                "[foo]: /url");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "[[bar " },
+                new Event(MarkupElementType.BeginAnchor) { Href="/url" },
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.EndAnchor),
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 463 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines05LinksExample463()
         {
             /* Specification Example:
                 .
@@ -2081,10 +2210,44 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 427 of the CommonMark specification.
+        /// Verifies example 464 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample427()
+        public void VerifyCommonMark06Inlines05LinksExample464()
+        {
+            /* Specification Example:
+                .
+                [foo] bar
+                
+                [foo]: /url
+                .
+                <p><a href="/url">foo</a> bar</p>
+                .
+            */
+
+            this.Setup(
+                "[foo] bar",
+                string.Empty,
+                "[foo]: /url");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginAnchor) { Href="/url" },
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.EndAnchor),
+                new Event(MarkupElementType.Text) { Text = " bar" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 465 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines05LinksExample465()
         {
             /* Specification Example:
                 .
@@ -2112,10 +2275,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 428 of the CommonMark specification.
+        /// Verifies example 466 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample428()
+        public void VerifyCommonMark06Inlines05LinksExample466()
         {
             /* Specification Example:
                 .
@@ -2146,44 +2309,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 429 of the CommonMark specification.
+        /// Verifies example 467 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample429()
-        {
-            /* Specification Example:
-                .
-                [foo`]: /url
-                
-                [foo`]`
-                .
-                <p>[foo<code>]</code></p>
-                .
-            */
-
-            this.Setup(
-                "[foo`]: /url",
-                string.Empty,
-                "[foo`]`");
-
-            this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument),
-                new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "[foo" },
-                new Event(MarkupElementType.BeginCodeSpan),
-                new Event(MarkupElementType.Text) { Text = "]" },
-                new Event(MarkupElementType.EndCodeSpan),
-                new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndContent), 
-                new Event(MarkupElementType.EndDocument));
-        }
-
-        /// <summary>
-        /// Verifies example 430 of the CommonMark specification.
-        /// </summary>
-        [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample430()
+        public void VerifyCommonMark06Inlines05LinksExample467()
         {
             /* Specification Example:
                 .
@@ -2215,10 +2344,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 431 of the CommonMark specification.
+        /// Verifies example 468 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample431()
+        public void VerifyCommonMark06Inlines05LinksExample468()
         {
             /* Specification Example:
                 .
@@ -2249,10 +2378,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 432 of the CommonMark specification.
+        /// Verifies example 469 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample432()
+        public void VerifyCommonMark06Inlines05LinksExample469()
         {
             /* Specification Example:
                 .
@@ -2287,10 +2416,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 433 of the CommonMark specification.
+        /// Verifies example 470 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines05LinksExample433()
+        public void VerifyCommonMark06Inlines05LinksExample470()
         {
             /* Specification Example:
                 .

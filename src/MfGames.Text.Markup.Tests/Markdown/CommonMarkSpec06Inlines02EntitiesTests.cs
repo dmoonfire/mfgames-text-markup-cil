@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 233 of the CommonMark specification.
+        /// Verifies example 241 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample233()
+        public void VerifyCommonMark06Inlines02EntitiesExample241()
         {
             /* Specification Example:
                 .
@@ -53,10 +53,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 234 of the CommonMark specification.
+        /// Verifies example 242 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample234()
+        public void VerifyCommonMark06Inlines02EntitiesExample242()
         {
             /* Specification Example:
                 .
@@ -80,10 +80,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 235 of the CommonMark specification.
+        /// Verifies example 243 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample235()
+        public void VerifyCommonMark06Inlines02EntitiesExample243()
         {
             /* Specification Example:
                 .
@@ -107,10 +107,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 236 of the CommonMark specification.
+        /// Verifies example 244 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample236()
+        public void VerifyCommonMark06Inlines02EntitiesExample244()
         {
             /* Specification Example:
                 .
@@ -134,10 +134,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 237 of the CommonMark specification.
+        /// Verifies example 245 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample237()
+        public void VerifyCommonMark06Inlines02EntitiesExample245()
         {
             /* Specification Example:
                 .
@@ -161,10 +161,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 238 of the CommonMark specification.
+        /// Verifies example 246 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample238()
+        public void VerifyCommonMark06Inlines02EntitiesExample246()
         {
             /* Specification Example:
                 .
@@ -188,10 +188,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 239 of the CommonMark specification.
+        /// Verifies example 247 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample239()
+        public void VerifyCommonMark06Inlines02EntitiesExample247()
         {
             /* Specification Example:
                 .
@@ -215,10 +215,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 240 of the CommonMark specification.
+        /// Verifies example 248 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample240()
+        public void VerifyCommonMark06Inlines02EntitiesExample248()
         {
             /* Specification Example:
                 .
@@ -244,10 +244,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 241 of the CommonMark specification.
+        /// Verifies example 249 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample241()
+        public void VerifyCommonMark06Inlines02EntitiesExample249()
         {
             /* Specification Example:
                 .
@@ -277,10 +277,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 242 of the CommonMark specification.
+        /// Verifies example 250 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample242()
+        public void VerifyCommonMark06Inlines02EntitiesExample250()
         {
             /* Specification Example:
                 .
@@ -310,10 +310,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 243 of the CommonMark specification.
+        /// Verifies example 251 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample243()
+        public void VerifyCommonMark06Inlines02EntitiesExample251()
         {
             /* Specification Example:
                 .
@@ -339,10 +339,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 244 of the CommonMark specification.
+        /// Verifies example 252 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines02EntitiesExample244()
+        public void VerifyCommonMark06Inlines02EntitiesExample252()
         {
             /* Specification Example:
                 .

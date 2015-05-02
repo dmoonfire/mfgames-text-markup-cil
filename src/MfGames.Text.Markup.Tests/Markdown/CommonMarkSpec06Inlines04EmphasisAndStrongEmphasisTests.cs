@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 258 of the CommonMark specification.
+        /// Verifies example 268 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample258()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample268()
         {
             /* Specification Example:
                 .
@@ -55,10 +55,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 259 of the CommonMark specification.
+        /// Verifies example 269 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample259()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample269()
         {
             /* Specification Example:
                 .
@@ -82,10 +82,64 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 260 of the CommonMark specification.
+        /// Verifies example 270 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample260()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample270()
+        {
+            /* Specification Example:
+                .
+                a*"foo"*
+                .
+                <p>a*&quot;foo&quot;*</p>
+                .
+            */
+
+            this.Setup(
+                "a*\"foo\"*");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "a*\"foo\"*" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 271 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample271()
+        {
+            /* Specification Example:
+                .
+                * a *
+                .
+                <p>* a *</p>
+                .
+            */
+
+            this.Setup(
+                "* a *");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "* a *" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 272 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample272()
         {
             /* Specification Example:
                 .
@@ -112,10 +166,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 261 of the CommonMark specification.
+        /// Verifies example 273 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample261()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample273()
         {
             /* Specification Example:
                 .
@@ -143,10 +197,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 262 of the CommonMark specification.
+        /// Verifies example 274 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample262()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample274()
         {
             /* Specification Example:
                 .
@@ -172,10 +226,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 263 of the CommonMark specification.
+        /// Verifies example 275 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample263()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample275()
         {
             /* Specification Example:
                 .
@@ -199,10 +253,37 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 264 of the CommonMark specification.
+        /// Verifies example 276 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample264()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample276()
+        {
+            /* Specification Example:
+                .
+                a_"foo"_
+                .
+                <p>a_&quot;foo&quot;_</p>
+                .
+            */
+
+            this.Setup(
+                "a_\"foo\"_");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "a_\"foo\"_" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 277 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample277()
         {
             /* Specification Example:
                 .
@@ -226,10 +307,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 265 of the CommonMark specification.
+        /// Verifies example 278 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample265()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample278()
         {
             /* Specification Example:
                 .
@@ -253,16 +334,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 266 of the CommonMark specification.
+        /// Verifies example 279 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample266()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample279()
         {
             /* Specification Example:
                 .
                 пристаням_стремятся_
                 .
-                <p>пристаням<em>стремятся</em></p>
+                <p>пристаням_стремятся_</p>
                 .
             */
 
@@ -273,9 +354,63 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "пристаням" },
+                new Event(MarkupElementType.Text) { Text = "пристаням_стремятся_" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 280 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample280()
+        {
+            /* Specification Example:
+                .
+                aa_"bb"_cc
+                .
+                <p>aa_&quot;bb&quot;_cc</p>
+                .
+            */
+
+            this.Setup(
+                "aa_\"bb\"_cc");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "aa_\"bb\"_cc" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 281 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample281()
+        {
+            /* Specification Example:
+                .
+                foo-_(bar)_
+                .
+                <p>foo-<em>(bar)</em></p>
+                .
+            */
+
+            this.Setup(
+                "foo-_(bar)_");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "foo-" },
                 new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "стремятся" },
+                new Event(MarkupElementType.Text) { Text = "(bar)" },
                 new Event(MarkupElementType.EndItalic),
                 new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
@@ -283,10 +418,37 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 267 of the CommonMark specification.
+        /// Verifies example 282 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample267()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample282()
+        {
+            /* Specification Example:
+                .
+                _foo*
+                .
+                <p>_foo*</p>
+                .
+            */
+
+            this.Setup(
+                "_foo*");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "_foo*" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 283 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample283()
         {
             /* Specification Example:
                 .
@@ -310,10 +472,106 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 268 of the CommonMark specification.
+        /// Verifies example 284 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample268()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample284()
+        {
+            /* Specification Example:
+                .
+                *foo bar
+                *
+                .
+                <p>*foo bar</p>
+                <ul>
+                <li></li>
+                </ul>
+                .
+            */
+
+            this.Setup(
+                "*foo bar",
+                "*");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "*foo bar" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginUnorderedList),
+                new Event(MarkupElementType.BeginListItem),
+                new Event(MarkupElementType.EndListItem),
+                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 285 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample285()
+        {
+            /* Specification Example:
+                .
+                *(*foo)
+                .
+                <p>*(*foo)</p>
+                .
+            */
+
+            this.Setup(
+                "*(*foo)");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "*(*foo)" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 286 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample286()
+        {
+            /* Specification Example:
+                .
+                *(*foo*)*
+                .
+                <p><em>(<em>foo</em>)</em></p>
+                .
+            */
+
+            this.Setup(
+                "*(*foo*)*");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "(" },
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.Text) { Text = ")" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 287 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample287()
         {
             /* Specification Example:
                 .
@@ -340,10 +598,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 269 of the CommonMark specification.
+        /// Verifies example 288 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample269()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample288()
         {
             /* Specification Example:
                 .
@@ -367,10 +625,70 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 270 of the CommonMark specification.
+        /// Verifies example 289 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample270()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample289()
+        {
+            /* Specification Example:
+                .
+                _(_foo)
+                .
+                <p>_(_foo)</p>
+                .
+            */
+
+            this.Setup(
+                "_(_foo)");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "_(_foo)" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 290 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample290()
+        {
+            /* Specification Example:
+                .
+                _(_foo_)_
+                .
+                <p><em>(<em>foo</em>)</em></p>
+                .
+            */
+
+            this.Setup(
+                "_(_foo_)_");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "(" },
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.Text) { Text = ")" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 291 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample291()
         {
             /* Specification Example:
                 .
@@ -394,16 +712,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 271 of the CommonMark specification.
+        /// Verifies example 292 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample271()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample292()
         {
             /* Specification Example:
                 .
                 _пристаням_стремятся
                 .
-                <p><em>пристаням</em>стремятся</p>
+                <p>_пристаням_стремятся</p>
                 .
             */
 
@@ -414,20 +732,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginItalic),
-                new Event(MarkupElementType.Text) { Text = "пристаням" },
-                new Event(MarkupElementType.EndItalic),
-                new Event(MarkupElementType.Text) { Text = "стремятся" },
+                new Event(MarkupElementType.Text) { Text = "_пристаням_стремятся" },
                 new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
-        /// Verifies example 272 of the CommonMark specification.
+        /// Verifies example 293 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample272()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample293()
         {
             /* Specification Example:
                 .
@@ -453,10 +768,40 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 273 of the CommonMark specification.
+        /// Verifies example 294 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample273()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample294()
+        {
+            /* Specification Example:
+                .
+                _(bar)_.
+                .
+                <p><em>(bar)</em>.</p>
+                .
+            */
+
+            this.Setup(
+                "_(bar)_.");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "(bar)" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.Text) { Text = "." },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 295 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample295()
         {
             /* Specification Example:
                 .
@@ -482,10 +827,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 274 of the CommonMark specification.
+        /// Verifies example 296 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample274()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample296()
         {
             /* Specification Example:
                 .
@@ -509,10 +854,37 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 275 of the CommonMark specification.
+        /// Verifies example 297 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample275()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample297()
+        {
+            /* Specification Example:
+                .
+                a**"foo"**
+                .
+                <p>a**&quot;foo&quot;**</p>
+                .
+            */
+
+            this.Setup(
+                "a**\"foo\"**");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "a**\"foo\"**" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 298 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample298()
         {
             /* Specification Example:
                 .
@@ -539,10 +911,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 276 of the CommonMark specification.
+        /// Verifies example 299 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample276()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample299()
         {
             /* Specification Example:
                 .
@@ -568,10 +940,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 277 of the CommonMark specification.
+        /// Verifies example 300 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample277()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample300()
         {
             /* Specification Example:
                 .
@@ -595,10 +967,69 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 278 of the CommonMark specification.
+        /// Verifies example 301 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample278()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample301()
+        {
+            /* Specification Example:
+                .
+                __
+                foo bar__
+                .
+                <p>__
+                foo bar__</p>
+                .
+            */
+
+            this.Setup(
+                "__",
+                "foo bar__");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "__" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "foo bar__" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 302 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample302()
+        {
+            /* Specification Example:
+                .
+                a__"foo"__
+                .
+                <p>a__&quot;foo&quot;__</p>
+                .
+            */
+
+            this.Setup(
+                "a__\"foo\"__");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "a__\"foo\"__" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 303 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample303()
         {
             /* Specification Example:
                 .
@@ -622,10 +1053,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 279 of the CommonMark specification.
+        /// Verifies example 304 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample279()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample304()
         {
             /* Specification Example:
                 .
@@ -649,16 +1080,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 280 of the CommonMark specification.
+        /// Verifies example 305 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample280()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample305()
         {
             /* Specification Example:
                 .
                 пристаням__стремятся__
                 .
-                <p>пристаням<strong>стремятся</strong></p>
+                <p>пристаням__стремятся__</p>
                 .
             */
 
@@ -669,20 +1100,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "пристаням" },
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<strong>стремятся</strong></p>" },
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.Text) { Text = "пристаням__стремятся__" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
-        /// Verifies example 281 of the CommonMark specification.
+        /// Verifies example 306 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample281()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample306()
         {
             /* Specification Example:
                 .
@@ -708,10 +1136,40 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 282 of the CommonMark specification.
+        /// Verifies example 307 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample282()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample307()
+        {
+            /* Specification Example:
+                .
+                foo-__(bar)__
+                .
+                <p>foo-<strong>(bar)</strong></p>
+                .
+            */
+
+            this.Setup(
+                "foo-__(bar)__");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "foo-" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>(bar)</strong></p>" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 308 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample308()
         {
             /* Specification Example:
                 .
@@ -735,10 +1193,135 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 283 of the CommonMark specification.
+        /// Verifies example 309 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample283()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample309()
+        {
+            /* Specification Example:
+                .
+                **(**foo)
+                .
+                <p>**(**foo)</p>
+                .
+            */
+
+            this.Setup(
+                "**(**foo)");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "**(**foo)" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 310 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample310()
+        {
+            /* Specification Example:
+                .
+                *(**foo**)*
+                .
+                <p><em>(<strong>foo</strong>)</em></p>
+                .
+            */
+
+            this.Setup(
+                "*(**foo**)*");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "(" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong>)</em></p>" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 311 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample311()
+        {
+            /* Specification Example:
+                .
+                **Gomphocarpus (*Gomphocarpus physocarpus*, syn.
+                *Asclepias physocarpa*)**
+                .
+                <p><strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn.
+                <em>Asclepias physocarpa</em>)</strong></p>
+                .
+            */
+
+            this.Setup(
+                "**Gomphocarpus (*Gomphocarpus physocarpus*, syn.",
+                "*Asclepias physocarpa*)**");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>Gomphocarpus (<em>Gomphocarpus physocarpus</em>, syn." },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "Asclepias physocarpa" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.Text) { Text = ")" },
+                new Event(MarkupElementType.Text) { Text = "</strong></p>" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 312 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample312()
+        {
+            /* Specification Example:
+                .
+                **foo "*bar*" foo**
+                .
+                <p><strong>foo &quot;<em>bar</em>&quot; foo</strong></p>
+                .
+            */
+
+            this.Setup(
+                "**foo \"*bar*\" foo**");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo &quot;<em>bar</em>&quot; foo</strong></p>" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 313 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample313()
         {
             /* Specification Example:
                 .
@@ -764,10 +1347,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 284 of the CommonMark specification.
+        /// Verifies example 314 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample284()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample314()
         {
             /* Specification Example:
                 .
@@ -791,10 +1374,68 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 285 of the CommonMark specification.
+        /// Verifies example 315 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample285()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample315()
+        {
+            /* Specification Example:
+                .
+                __(__foo)
+                .
+                <p>__(__foo)</p>
+                .
+            */
+
+            this.Setup(
+                "__(__foo)");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "__(__foo)" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 316 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample316()
+        {
+            /* Specification Example:
+                .
+                _(__foo__)_
+                .
+                <p><em>(<strong>foo</strong>)</em></p>
+                .
+            */
+
+            this.Setup(
+                "_(__foo__)_");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "(" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>foo</strong>)</em></p>" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 317 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample317()
         {
             /* Specification Example:
                 .
@@ -818,16 +1459,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 286 of the CommonMark specification.
+        /// Verifies example 318 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample286()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample318()
         {
             /* Specification Example:
                 .
                 __пристаням__стремятся
                 .
-                <p><strong>пристаням</strong>стремятся</p>
+                <p>__пристаням__стремятся</p>
                 .
             */
 
@@ -838,19 +1479,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.BeginHtml),
-                new Event(MarkupElementType.Text) { Text = "<strong>пристаням</strong>стремятся</p>" },
-                new Event(MarkupElementType.NewLine),
-                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.Text) { Text = "__пристаням__стремятся" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
 
         /// <summary>
-        /// Verifies example 287 of the CommonMark specification.
+        /// Verifies example 319 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample287()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample319()
         {
             /* Specification Example:
                 .
@@ -876,10 +1515,39 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 288 of the CommonMark specification.
+        /// Verifies example 320 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample288()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample320()
+        {
+            /* Specification Example:
+                .
+                __(bar)__.
+                .
+                <p><strong>(bar)</strong>.</p>
+                .
+            */
+
+            this.Setup(
+                "__(bar)__.");
+
+            this.AssertEventElementTypes(
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<strong>(bar)</strong>.</p>" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
+                new Event(MarkupElementType.EndContent), 
+                new Event(MarkupElementType.EndDocument));
+        }
+
+        /// <summary>
+        /// Verifies example 321 of the CommonMark specification.
+        /// </summary>
+        [Fact]
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample321()
         {
             /* Specification Example:
                 .
@@ -908,10 +1576,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 289 of the CommonMark specification.
+        /// Verifies example 322 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample289()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample322()
         {
             /* Specification Example:
                 .
@@ -942,10 +1610,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 290 of the CommonMark specification.
+        /// Verifies example 323 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample290()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample323()
         {
             /* Specification Example:
                 .
@@ -973,10 +1641,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 291 of the CommonMark specification.
+        /// Verifies example 324 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample291()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample324()
         {
             /* Specification Example:
                 .
@@ -1006,10 +1674,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 292 of the CommonMark specification.
+        /// Verifies example 325 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample292()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample325()
         {
             /* Specification Example:
                 .
@@ -1038,10 +1706,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 293 of the CommonMark specification.
+        /// Verifies example 326 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample293()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample326()
         {
             /* Specification Example:
                 .
@@ -1070,10 +1738,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 294 of the CommonMark specification.
+        /// Verifies example 327 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample294()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample327()
         {
             /* Specification Example:
                 .
@@ -1101,10 +1769,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 295 of the CommonMark specification.
+        /// Verifies example 328 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample295()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample328()
         {
             /* Specification Example:
                 .
@@ -1136,10 +1804,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 296 of the CommonMark specification.
+        /// Verifies example 329 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample296()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample329()
         {
             /* Specification Example:
                 .
@@ -1166,10 +1834,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 297 of the CommonMark specification.
+        /// Verifies example 330 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample297()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample330()
         {
             /* Specification Example:
                 .
@@ -1197,10 +1865,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 298 of the CommonMark specification.
+        /// Verifies example 331 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample298()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample331()
         {
             /* Specification Example:
                 .
@@ -1230,10 +1898,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 299 of the CommonMark specification.
+        /// Verifies example 332 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample299()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample332()
         {
             /* Specification Example:
                 .
@@ -1261,10 +1929,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 300 of the CommonMark specification.
+        /// Verifies example 333 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample300()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample333()
         {
             /* Specification Example:
                 .
@@ -1295,10 +1963,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 301 of the CommonMark specification.
+        /// Verifies example 334 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample301()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample334()
         {
             /* Specification Example:
                 .
@@ -1322,10 +1990,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 302 of the CommonMark specification.
+        /// Verifies example 335 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample302()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample335()
         {
             /* Specification Example:
                 .
@@ -1349,10 +2017,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 303 of the CommonMark specification.
+        /// Verifies example 336 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample303()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample336()
         {
             /* Specification Example:
                 .
@@ -1378,10 +2046,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 304 of the CommonMark specification.
+        /// Verifies example 337 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample304()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample337()
         {
             /* Specification Example:
                 .
@@ -1413,10 +2081,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 305 of the CommonMark specification.
+        /// Verifies example 338 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample305()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample338()
         {
             /* Specification Example:
                 .
@@ -1442,10 +2110,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 306 of the CommonMark specification.
+        /// Verifies example 339 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample306()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample339()
         {
             /* Specification Example:
                 .
@@ -1471,10 +2139,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 307 of the CommonMark specification.
+        /// Verifies example 340 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample307()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample340()
         {
             /* Specification Example:
                 .
@@ -1500,10 +2168,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 308 of the CommonMark specification.
+        /// Verifies example 341 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample308()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample341()
         {
             /* Specification Example:
                 .
@@ -1529,10 +2197,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 309 of the CommonMark specification.
+        /// Verifies example 342 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample309()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample342()
         {
             /* Specification Example:
                 .
@@ -1558,10 +2226,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 310 of the CommonMark specification.
+        /// Verifies example 343 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample310()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample343()
         {
             /* Specification Example:
                 .
@@ -1591,10 +2259,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 311 of the CommonMark specification.
+        /// Verifies example 344 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample311()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample344()
         {
             /* Specification Example:
                 .
@@ -1620,10 +2288,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 312 of the CommonMark specification.
+        /// Verifies example 345 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample312()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample345()
         {
             /* Specification Example:
                 .
@@ -1649,10 +2317,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 313 of the CommonMark specification.
+        /// Verifies example 346 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample313()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample346()
         {
             /* Specification Example:
                 .
@@ -1686,10 +2354,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 314 of the CommonMark specification.
+        /// Verifies example 347 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample314()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample347()
         {
             /* Specification Example:
                 .
@@ -1715,10 +2383,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 315 of the CommonMark specification.
+        /// Verifies example 348 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample315()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample348()
         {
             /* Specification Example:
                 .
@@ -1742,10 +2410,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 316 of the CommonMark specification.
+        /// Verifies example 349 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample316()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample349()
         {
             /* Specification Example:
                 .
@@ -1769,10 +2437,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 317 of the CommonMark specification.
+        /// Verifies example 350 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample317()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample350()
         {
             /* Specification Example:
                 .
@@ -1796,10 +2464,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 318 of the CommonMark specification.
+        /// Verifies example 351 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample318()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample351()
         {
             /* Specification Example:
                 .
@@ -1826,10 +2494,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 319 of the CommonMark specification.
+        /// Verifies example 352 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample319()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample352()
         {
             /* Specification Example:
                 .
@@ -1856,10 +2524,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 320 of the CommonMark specification.
+        /// Verifies example 353 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample320()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample353()
         {
             /* Specification Example:
                 .
@@ -1883,10 +2551,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 321 of the CommonMark specification.
+        /// Verifies example 354 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample321()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample354()
         {
             /* Specification Example:
                 .
@@ -1913,10 +2581,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 322 of the CommonMark specification.
+        /// Verifies example 355 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample322()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample355()
         {
             /* Specification Example:
                 .
@@ -1943,10 +2611,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 323 of the CommonMark specification.
+        /// Verifies example 356 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample323()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample356()
         {
             /* Specification Example:
                 .
@@ -1973,10 +2641,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 324 of the CommonMark specification.
+        /// Verifies example 357 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample324()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample357()
         {
             /* Specification Example:
                 .
@@ -2003,10 +2671,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 325 of the CommonMark specification.
+        /// Verifies example 358 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample325()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample358()
         {
             /* Specification Example:
                 .
@@ -2033,10 +2701,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 326 of the CommonMark specification.
+        /// Verifies example 359 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample326()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample359()
         {
             /* Specification Example:
                 .
@@ -2063,10 +2731,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 327 of the CommonMark specification.
+        /// Verifies example 360 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample327()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample360()
         {
             /* Specification Example:
                 .
@@ -2092,10 +2760,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 328 of the CommonMark specification.
+        /// Verifies example 361 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample328()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample361()
         {
             /* Specification Example:
                 .
@@ -2122,10 +2790,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 329 of the CommonMark specification.
+        /// Verifies example 362 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample329()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample362()
         {
             /* Specification Example:
                 .
@@ -2149,10 +2817,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 330 of the CommonMark specification.
+        /// Verifies example 363 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample330()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample363()
         {
             /* Specification Example:
                 .
@@ -2179,10 +2847,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 331 of the CommonMark specification.
+        /// Verifies example 364 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample331()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample364()
         {
             /* Specification Example:
                 .
@@ -2209,10 +2877,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 332 of the CommonMark specification.
+        /// Verifies example 365 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample332()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample365()
         {
             /* Specification Example:
                 .
@@ -2236,10 +2904,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 333 of the CommonMark specification.
+        /// Verifies example 366 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample333()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample366()
         {
             /* Specification Example:
                 .
@@ -2266,10 +2934,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 334 of the CommonMark specification.
+        /// Verifies example 367 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample334()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample367()
         {
             /* Specification Example:
                 .
@@ -2296,10 +2964,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 335 of the CommonMark specification.
+        /// Verifies example 368 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample335()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample368()
         {
             /* Specification Example:
                 .
@@ -2326,10 +2994,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 336 of the CommonMark specification.
+        /// Verifies example 369 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample336()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample369()
         {
             /* Specification Example:
                 .
@@ -2356,10 +3024,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 337 of the CommonMark specification.
+        /// Verifies example 370 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample337()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample370()
         {
             /* Specification Example:
                 .
@@ -2386,10 +3054,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 338 of the CommonMark specification.
+        /// Verifies example 371 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample338()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample371()
         {
             /* Specification Example:
                 .
@@ -2416,10 +3084,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 339 of the CommonMark specification.
+        /// Verifies example 372 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample339()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample372()
         {
             /* Specification Example:
                 .
@@ -2445,10 +3113,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 340 of the CommonMark specification.
+        /// Verifies example 373 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample340()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample373()
         {
             /* Specification Example:
                 .
@@ -2475,10 +3143,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 341 of the CommonMark specification.
+        /// Verifies example 374 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample341()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample374()
         {
             /* Specification Example:
                 .
@@ -2504,10 +3172,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 342 of the CommonMark specification.
+        /// Verifies example 375 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample342()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample375()
         {
             /* Specification Example:
                 .
@@ -2535,10 +3203,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 343 of the CommonMark specification.
+        /// Verifies example 376 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample343()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample376()
         {
             /* Specification Example:
                 .
@@ -2564,10 +3232,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 344 of the CommonMark specification.
+        /// Verifies example 377 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample344()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample377()
         {
             /* Specification Example:
                 .
@@ -2595,10 +3263,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 345 of the CommonMark specification.
+        /// Verifies example 378 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample345()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample378()
         {
             /* Specification Example:
                 .
@@ -2624,10 +3292,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 346 of the CommonMark specification.
+        /// Verifies example 379 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample346()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample379()
         {
             /* Specification Example:
                 .
@@ -2653,10 +3321,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 347 of the CommonMark specification.
+        /// Verifies example 380 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample347()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample380()
         {
             /* Specification Example:
                 .
@@ -2682,10 +3350,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 348 of the CommonMark specification.
+        /// Verifies example 381 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample348()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample381()
         {
             /* Specification Example:
                 .
@@ -2711,10 +3379,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 349 of the CommonMark specification.
+        /// Verifies example 382 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample349()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample382()
         {
             /* Specification Example:
                 .
@@ -2740,10 +3408,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 350 of the CommonMark specification.
+        /// Verifies example 383 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample350()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample383()
         {
             /* Specification Example:
                 .
@@ -2770,10 +3438,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 351 of the CommonMark specification.
+        /// Verifies example 384 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample351()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample384()
         {
             /* Specification Example:
                 .
@@ -2803,10 +3471,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 352 of the CommonMark specification.
+        /// Verifies example 385 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample352()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample385()
         {
             /* Specification Example:
                 .
@@ -2833,10 +3501,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 353 of the CommonMark specification.
+        /// Verifies example 386 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample353()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample386()
         {
             /* Specification Example:
                 .
@@ -2863,10 +3531,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 354 of the CommonMark specification.
+        /// Verifies example 387 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample354()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample387()
         {
             /* Specification Example:
                 .
@@ -2893,10 +3561,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 355 of the CommonMark specification.
+        /// Verifies example 388 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample355()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample388()
         {
             /* Specification Example:
                 .
@@ -2923,10 +3591,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 356 of the CommonMark specification.
+        /// Verifies example 389 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample356()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample389()
         {
             /* Specification Example:
                 .
@@ -2953,10 +3621,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 357 of the CommonMark specification.
+        /// Verifies example 390 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample357()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample390()
         {
             /* Specification Example:
                 .
@@ -2981,10 +3649,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 358 of the CommonMark specification.
+        /// Verifies example 391 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample358()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample391()
         {
             /* Specification Example:
                 .
@@ -3009,10 +3677,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 359 of the CommonMark specification.
+        /// Verifies example 392 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample359()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample392()
         {
             /* Specification Example:
                 .
@@ -3041,10 +3709,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 360 of the CommonMark specification.
+        /// Verifies example 393 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample360()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample393()
         {
             /* Specification Example:
                 .
@@ -3073,29 +3741,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 361 of the CommonMark specification.
+        /// Verifies example 394 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample361()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample394()
         {
             /* Specification Example:
                 .
-                **a<http://foo.bar?q=**>
+                **a<http://foo.bar/?q=**>
                 .
-                <p>**a<a href="http://foo.bar?q=**">http://foo.bar?q=**</a></p>
+                <p>**a<a href="http://foo.bar/?q=**">http://foo.bar/?q=**</a></p>
                 .
             */
 
             this.Setup(
-                "**a<http://foo.bar?q=**>");
+                "**a<http://foo.bar/?q=**>");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "**a" },
-                new Event(MarkupElementType.BeginAnchor) { Href="http://foo.bar?q=**" },
-                new Event(MarkupElementType.Text) { Text = "http://foo.bar?q=**" },
+                new Event(MarkupElementType.BeginAnchor) { Href="http://foo.bar/?q=**" },
+                new Event(MarkupElementType.Text) { Text = "http://foo.bar/?q=**" },
                 new Event(MarkupElementType.EndAnchor),
                 new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
@@ -3103,29 +3771,29 @@ namespace MfGames.Text.Markup.Tests.Markdown
         }
 
         /// <summary>
-        /// Verifies example 362 of the CommonMark specification.
+        /// Verifies example 395 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample362()
+        public void VerifyCommonMark06Inlines04EmphasisAndStrongEmphasisExample395()
         {
             /* Specification Example:
                 .
-                __a<http://foo.bar?q=__>
+                __a<http://foo.bar/?q=__>
                 .
-                <p>__a<a href="http://foo.bar?q=__">http://foo.bar?q=__</a></p>
+                <p>__a<a href="http://foo.bar/?q=__">http://foo.bar/?q=__</a></p>
                 .
             */
 
             this.Setup(
-                "__a<http://foo.bar?q=__>");
+                "__a<http://foo.bar/?q=__>");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "__a" },
-                new Event(MarkupElementType.BeginAnchor) { Href="http://foo.bar?q=__" },
-                new Event(MarkupElementType.Text) { Text = "http://foo.bar?q=__" },
+                new Event(MarkupElementType.BeginAnchor) { Href="http://foo.bar/?q=__" },
+                new Event(MarkupElementType.Text) { Text = "http://foo.bar/?q=__" },
                 new Event(MarkupElementType.EndAnchor),
                 new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 

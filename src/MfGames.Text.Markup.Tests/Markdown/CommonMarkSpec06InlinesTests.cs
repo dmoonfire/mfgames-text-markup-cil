@@ -26,10 +26,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
         #region Public Methods and Operators
 
         /// <summary>
-        /// Verifies example 219 of the CommonMark specification.
+        /// Verifies example 227 of the CommonMark specification.
         /// </summary>
         [Fact]
-        public void VerifyCommonMark06Inlines00ListsExample219()
+        public void VerifyCommonMark06Inlines00ListsExample227()
         {
             /* Specification Example:
                 .
