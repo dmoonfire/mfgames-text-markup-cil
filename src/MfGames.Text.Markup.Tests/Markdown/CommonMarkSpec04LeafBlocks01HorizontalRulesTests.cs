@@ -4,23 +4,21 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests.Markdown
 {
-    using NUnit.Framework;
+    using Xunit;
 
     #region Designer generated code
 
     /// <summary>
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
-    [TestFixture]
-    public class CommonMarkSpec04LeafBlocks01HorizontalRulesTests :
-        MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec04LeafBlocks01HorizontalRulesTests : MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
         /// <summary>
         /// Verifies example 4 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample004()
         {
             /* Specification Example:
@@ -34,17 +32,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
+
             this.Setup(
-                "***", 
-                "---", 
+                "***",
+                "---",
                 "___");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.HorizontalRule), 
-                new Event(MarkupElementType.HorizontalRule), 
-                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.HorizontalRule),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -52,7 +51,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 5 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample005()
         {
             /* Specification Example:
@@ -62,18 +61,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>+++</p>
                 .
             */
+
             this.Setup(
                 "+++");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "+++"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "+++" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -81,7 +78,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 6 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample006()
         {
             /* Specification Example:
@@ -91,18 +88,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>===</p>
                 .
             */
+
             this.Setup(
                 "===");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "==="
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "===" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -110,7 +105,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 7 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample007()
         {
             /* Specification Example:
@@ -124,36 +119,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 __</p>
                 .
             */
+
             this.Setup(
-                "--", 
-                "**", 
+                "--",
+                "**",
                 "__");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "--"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "**"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "__"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "--" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "**" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "__" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -161,7 +142,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 8 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample008()
         {
             /* Specification Example:
@@ -175,17 +156,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
+
             this.Setup(
-                " ***", 
-                "  ***", 
+                " ***",
+                "  ***",
                 "   ***");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.HorizontalRule), 
-                new Event(MarkupElementType.HorizontalRule), 
-                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.HorizontalRule),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -193,7 +175,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 9 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample009()
         {
             /* Specification Example:
@@ -204,22 +186,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
                 "    ***");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "***"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "***" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -227,7 +204,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 10 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample010()
         {
             /* Specification Example:
@@ -239,27 +216,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 ***</p>
                 .
             */
+
             this.Setup(
-                "Foo", 
+                "Foo",
                 "    ***");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "Foo"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "***"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "Foo" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "***" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -267,7 +236,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 11 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample011()
         {
             /* Specification Example:
@@ -277,13 +246,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
+
             this.Setup(
                 "_____________________________________");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.HorizontalRule),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -291,7 +261,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 12 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample012()
         {
             /* Specification Example:
@@ -301,13 +271,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
+
             this.Setup(
                 " - - -");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.HorizontalRule),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -315,7 +286,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 13 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample013()
         {
             /* Specification Example:
@@ -325,13 +296,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
+
             this.Setup(
                 " **  * ** * ** * **");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.HorizontalRule),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -339,7 +311,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 14 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample014()
         {
             /* Specification Example:
@@ -349,13 +321,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
+
             this.Setup(
                 "-     -      -      -");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.HorizontalRule),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -363,7 +336,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 15 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample015()
         {
             /* Specification Example:
@@ -373,13 +346,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
+
             this.Setup(
                 "- - - -    ");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.HorizontalRule),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -387,7 +361,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 16 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample016()
         {
             /* Specification Example:
@@ -403,34 +377,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>---a---</p>
                 .
             */
+
             this.Setup(
-                "_ _ _ _ a", 
-                string.Empty, 
-                "a------", 
-                string.Empty, 
+                "_ _ _ _ a",
+                string.Empty,
+                "a------",
+                string.Empty,
                 "---a---");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "_ _ _ _ a"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "a------"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "---a---"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "_ _ _ _ a" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "a------" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "---a---" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -438,7 +404,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 17 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample017()
         {
             /* Specification Example:
@@ -448,20 +414,18 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><em>-</em></p>
                 .
             */
+
             this.Setup(
                 " *-*");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.BeginItalic), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "-"
-                    }, 
-                new Event(MarkupElementType.EndItalic), 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "-" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -469,7 +433,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 18 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample018()
         {
             /* Specification Example:
@@ -487,31 +451,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
+
             this.Setup(
-                "- foo", 
-                "***", 
+                "- foo",
+                "***",
                 "- bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginUnorderedList), 
-                new Event(MarkupElementType.BeginListItem), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.EndListItem), 
-                new Event(MarkupElementType.EndUnorderedList), 
-                new Event(MarkupElementType.HorizontalRule), 
-                new Event(MarkupElementType.BeginUnorderedList), 
-                new Event(MarkupElementType.BeginListItem), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.EndListItem), 
-                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginUnorderedList),
+                new Event(MarkupElementType.BeginListItem),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.EndListItem),
+                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginUnorderedList),
+                new Event(MarkupElementType.BeginListItem),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndListItem),
+                new Event(MarkupElementType.EndUnorderedList),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -519,7 +478,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 19 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample019()
         {
             /* Specification Example:
@@ -533,27 +492,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>bar</p>
                 .
             */
+
             this.Setup(
-                "Foo", 
-                "***", 
+                "Foo",
+                "***",
                 "bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "Foo"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.HorizontalRule), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "Foo" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -561,7 +515,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 20 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample020()
         {
             /* Specification Example:
@@ -574,32 +528,21 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>bar</p>
                 .
             */
+
             this.Setup(
-                "Foo", 
-                "---", 
+                "Foo",
+                "---",
                 "bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeader)
-                    {
-                        Level = 2
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "Foo"
-                    }, 
-                new Event(MarkupElementType.EndHeader)
-                    {
-                        Level = 2
-                    }, 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHeader) { Level = 2 },
+                new Event(MarkupElementType.Text) { Text = "Foo" },
+                new Event(MarkupElementType.EndHeader) { Level = 2 },
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -607,7 +550,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 21 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample021()
         {
             /* Specification Example:
@@ -625,31 +568,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
+
             this.Setup(
-                "* Foo", 
-                "* * *", 
+                "* Foo",
+                "* * *",
                 "* Bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginUnorderedList), 
-                new Event(MarkupElementType.BeginListItem), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "Foo"
-                    }, 
-                new Event(MarkupElementType.EndListItem), 
-                new Event(MarkupElementType.EndUnorderedList), 
-                new Event(MarkupElementType.HorizontalRule), 
-                new Event(MarkupElementType.BeginUnorderedList), 
-                new Event(MarkupElementType.BeginListItem), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "Bar"
-                    }, 
-                new Event(MarkupElementType.EndListItem), 
-                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginUnorderedList),
+                new Event(MarkupElementType.BeginListItem),
+                new Event(MarkupElementType.Text) { Text = "Foo" },
+                new Event(MarkupElementType.EndListItem),
+                new Event(MarkupElementType.EndUnorderedList),
+                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.BeginUnorderedList),
+                new Event(MarkupElementType.BeginListItem),
+                new Event(MarkupElementType.Text) { Text = "Bar" },
+                new Event(MarkupElementType.EndListItem),
+                new Event(MarkupElementType.EndUnorderedList),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -657,7 +595,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 22 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks01HorizontalRulesExample022()
         {
             /* Specification Example:
@@ -672,24 +610,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </ul>
                 .
             */
+
             this.Setup(
-                "- Foo", 
+                "- Foo",
                 "- * * *");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginUnorderedList), 
-                new Event(MarkupElementType.BeginListItem), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "Foo"
-                    }, 
-                new Event(MarkupElementType.EndListItem), 
-                new Event(MarkupElementType.BeginListItem), 
-                new Event(MarkupElementType.HorizontalRule), 
-                new Event(MarkupElementType.EndListItem), 
-                new Event(MarkupElementType.EndUnorderedList), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginUnorderedList),
+                new Event(MarkupElementType.BeginListItem),
+                new Event(MarkupElementType.Text) { Text = "Foo" },
+                new Event(MarkupElementType.EndListItem),
+                new Event(MarkupElementType.BeginListItem),
+                new Event(MarkupElementType.HorizontalRule),
+                new Event(MarkupElementType.EndListItem),
+                new Event(MarkupElementType.EndUnorderedList),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -698,4 +634,5 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
+
 }

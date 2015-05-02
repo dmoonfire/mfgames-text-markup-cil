@@ -6,12 +6,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
 {
     using MfGames.Text.Markup.Markdown;
 
-    using NUnit.Framework;
+    using Xunit;
 
     /// <summary>
     /// Tests parsing a single markdown line with no additional processing.
     /// </summary>
-    [TestFixture]
     public class SimpleMarkdownParsing : MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
@@ -19,7 +18,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyAsterixBreakEvents()
         {
             this.Setup(
@@ -52,7 +51,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyAsterixBreakEventsNoBlanks()
         {
             this.Setup(
@@ -83,7 +82,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyAtxHeader1Events()
         {
             this.Setup("# Header");
@@ -110,7 +109,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyAtxHeader2Events()
         {
             this.Setup("## Header");
@@ -137,7 +136,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyAtxHeader3Events()
         {
             this.Setup("### Header");
@@ -164,7 +163,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyAtxHeader4Events()
         {
             this.Setup("#### Header");
@@ -191,7 +190,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyAtxHeader5Events()
         {
             this.Setup("##### Header");
@@ -218,7 +217,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyAtxHeader6Events()
         {
             this.Setup("###### Header");
@@ -245,7 +244,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyBoldEvents()
         {
             this.Setup("One **two** three");
@@ -276,7 +275,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCodeSpanEvents()
         {
             this.Setup("One `two` three");
@@ -307,7 +306,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyDashBreakEvents()
         {
             this.Setup(
@@ -340,7 +339,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyDoubleBlockquoteEvents()
         {
             this.Setup(
@@ -372,7 +371,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyDoubleParagraphEvents()
         {
             this.Setup(
@@ -402,7 +401,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyItalicEvents()
         {
             this.Setup("One *two* three");
@@ -433,7 +432,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyLazyBlockquoteEvents()
         {
             this.Setup(
@@ -463,7 +462,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifySetextHeader1Events()
         {
             this.Setup(
@@ -492,7 +491,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifySetextHeader2Events()
         {
             this.Setup(
@@ -521,7 +520,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifySingleBlockEvents()
         {
             this.Setup(
@@ -553,7 +552,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifySingleBlockquoteEvents()
         {
             this.Setup("> One two three");
@@ -576,7 +575,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifySingleLineEvents()
         {
             this.Setup("One two three.");
@@ -597,12 +596,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifySingleLineText()
         {
             this.Setup("One two three.");
 
-            Assert.AreEqual(
+            Assert.Equal(
                 "One two three.", 
                 this.Events[3].Text);
         }
@@ -610,7 +609,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyUnderscoreBreakEvents()
         {
             this.Setup(
@@ -643,7 +642,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies the element types of the recorded events.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyYamlMetadataEvents()
         {
             this.Setup(

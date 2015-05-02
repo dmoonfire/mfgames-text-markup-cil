@@ -4,25 +4,22 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests.Markdown
 {
-    using NUnit.Framework;
+    using Xunit;
 
     #region Designer generated code
 
     /// <summary>
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
-    [TestFixture]
-    public class CommonMarkSpec02PreprocessingTests :
-        MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec02PreprocessingTests : MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
         /// <summary>
         /// Verifies example 1 of the CommonMark specification.
         /// </summary>
-        [Test]
-        public void VerifyCommonMark02Preprocessing00AboutThisDocumentExample001
-            ()
+        [Fact]
+        public void VerifyCommonMark02Preprocessing00AboutThisDocumentExample001()
         {
             /* Specification Example:
                 .
@@ -32,22 +29,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
                 "\tfoo\tbaz\t\tbim");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo baz     bim"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "foo baz     bim" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -55,9 +47,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 2 of the CommonMark specification.
         /// </summary>
-        [Test]
-        public void VerifyCommonMark02Preprocessing00AboutThisDocumentExample002
-            ()
+        [Fact]
+        public void VerifyCommonMark02Preprocessing00AboutThisDocumentExample002()
         {
             /* Specification Example:
                 .
@@ -69,31 +60,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
-                "    a\ta", 
+                "    a\ta",
                 "    ὐ\ta");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "a   a"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "ὐ   a"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "a   a" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "ὐ   a" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -102,4 +82,5 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
+
 }

@@ -6,10 +6,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.InteropServices;
 
     using MfGames.Text.Markup.Markdown;
 
-    using NUnit.Framework;
+    using Xunit;
 
     /// <summary>
     /// Contains common testing setup and methods for Markdown files.
@@ -114,7 +115,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             // If we aren't matching, then fail the tasks.
             if (!matches)
             {
-                Assert.Fail("Expected results did not match.");
+                throw new InvalidOperationException("Expected results did not match.");
             }
         }
 

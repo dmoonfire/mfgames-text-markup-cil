@@ -555,7 +555,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
             writer.WriteLine("namespace MfGames.Text.Markup.Tests.Markdown");
             writer.WriteLine("{");
 
-            writer.WriteLine("    using NUnit.Framework;");
+            writer.WriteLine("    using Xunit;");
             writer.WriteLine(string.Empty);
             writer.WriteLine("    #region Designer generated code");
             writer.WriteLine(string.Empty);
@@ -563,7 +563,6 @@ namespace CreateUnitTestsFromCommonMarkSpec
             writer.WriteLine(
                 "    /// Tests various examples from the CommonMark specifiction.");
             writer.WriteLine("    /// </summary>");
-            writer.WriteLine("    [TestFixture]");
             writer.WriteLine(
                 "    public class {0} : MarkdownReaderRecorderTestsBase", 
                 className);
@@ -606,7 +605,7 @@ namespace CreateUnitTestsFromCommonMarkSpec
                 "        /// Verifies example {0} of the CommonMark specification.", 
                 exampleNumber);
             writer.WriteLine("        /// </summary>");
-            writer.WriteLine("        [Test]");
+            writer.WriteLine("        [Fact]");
             writer.WriteLine(
                 "        public void VerifyCommonMark{0}{1}{2}{3}Example{4}()", 
                 sectionNumber.ToString().PadLeft(2, '0'), 

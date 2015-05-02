@@ -4,23 +4,21 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests.Markdown
 {
-    using NUnit.Framework;
+    using Xunit;
 
     #region Designer generated code
 
     /// <summary>
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
-    [TestFixture]
-    public class CommonMarkSpec06Inlines09HardLineBreaksTests :
-        MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec06Inlines09HardLineBreaksTests : MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
         /// <summary>
         /// Verifies example 489 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample489()
         {
             /* Specification Example:
@@ -32,37 +30,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 baz</p>
                 .
             */
+
             this.Setup(
-                "foo  ", 
+                "foo  ",
                 "baz");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.BeginHtml), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<br />"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "baz"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndHtml), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "baz" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -70,7 +54,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 490 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample490()
         {
             /* Specification Example:
@@ -82,37 +66,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 baz</p>
                 .
             */
+
             this.Setup(
-                "foo\\", 
+                "foo\\",
                 "baz");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.BeginHtml), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<br />"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "baz"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndHtml), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "baz" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -120,7 +90,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 491 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample491()
         {
             /* Specification Example:
@@ -132,37 +102,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 baz</p>
                 .
             */
+
             this.Setup(
-                "foo       ", 
+                "foo       ",
                 "baz");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.BeginHtml), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<br />"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "baz"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndHtml), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "baz" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -170,7 +126,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 492 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample492()
         {
             /* Specification Example:
@@ -182,37 +138,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 bar</p>
                 .
             */
+
             this.Setup(
-                "foo  ", 
+                "foo  ",
                 "     bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.BeginHtml), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<br />"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndHtml), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -220,7 +162,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 493 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample493()
         {
             /* Specification Example:
@@ -232,37 +174,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 bar</p>
                 .
             */
+
             this.Setup(
-                "foo\\", 
+                "foo\\",
                 "     bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.BeginHtml), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<br />"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndHtml), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -270,7 +198,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 494 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample494()
         {
             /* Specification Example:
@@ -282,39 +210,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 bar</em></p>
                 .
             */
+
             this.Setup(
-                "*foo  ", 
+                "*foo  ",
                 "bar*");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.BeginItalic), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.BeginHtml), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<br />"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.EndItalic), 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndHtml), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -322,7 +236,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 495 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample495()
         {
             /* Specification Example:
@@ -334,39 +248,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 bar</em></p>
                 .
             */
+
             this.Setup(
-                "*foo\\", 
+                "*foo\\",
                 "bar*");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.BeginItalic), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.BeginHtml), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<br />"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.EndItalic), 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndHtml), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginItalic),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<br />" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndItalic),
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -374,7 +274,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 496 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample496()
         {
             /* Specification Example:
@@ -385,21 +285,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>code span</code></p>
                 .
             */
+
             this.Setup(
-                "`code  ", 
+                "`code  ",
                 "span`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.BeginCodeSpan), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "code span"
-                    }, 
-                new Event(MarkupElementType.EndCodeSpan), 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginCodeSpan),
+                new Event(MarkupElementType.Text) { Text = "code span" },
+                new Event(MarkupElementType.EndCodeSpan),
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -407,7 +305,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 497 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample497()
         {
             /* Specification Example:
@@ -418,21 +316,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>code\ span</code></p>
                 .
             */
+
             this.Setup(
-                "`code\\", 
+                "`code\\",
                 "span`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.BeginCodeSpan), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "code\\ span"
-                    }, 
-                new Event(MarkupElementType.EndCodeSpan), 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginCodeSpan),
+                new Event(MarkupElementType.Text) { Text = "code\\ span" },
+                new Event(MarkupElementType.EndCodeSpan),
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -440,7 +336,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 498 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample498()
         {
             /* Specification Example:
@@ -452,33 +348,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 bar"></p>
                 .
             */
+
             this.Setup(
-                "<a href=\"foo  ", 
+                "<a href=\"foo  ",
                 "bar\">");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.BeginHtml), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<a href=\"foo  "
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar\">"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndHtml), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href=\"foo  " },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "bar\">" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -486,7 +371,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 499 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample499()
         {
             /* Specification Example:
@@ -498,33 +383,22 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 bar"></p>
                 .
             */
+
             this.Setup(
-                "<a href=\"foo\\", 
+                "<a href=\"foo\\",
                 "bar\">");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.BeginHtml), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<a href=\"foo\\"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar\">"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndHtml), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginHtml),
+                new Event(MarkupElementType.Text) { Text = "<a href=\"foo\\" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "bar\">" },
+                new Event(MarkupElementType.EndParagraph),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndHtml),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -532,7 +406,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 500 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample500()
         {
             /* Specification Example:
@@ -542,18 +416,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>foo\</p>
                 .
             */
+
             this.Setup(
                 "foo\\");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo\\"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "foo\\" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -561,7 +433,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 501 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample501()
         {
             /* Specification Example:
@@ -571,18 +443,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>foo</p>
                 .
             */
+
             this.Setup(
                 "foo");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -590,7 +460,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 502 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample502()
         {
             /* Specification Example:
@@ -600,24 +470,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <h3>foo\</h3>
                 .
             */
+
             this.Setup(
                 "### foo\\");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeader)
-                    {
-                        Level = 3
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo\\"
-                    }, 
-                new Event(MarkupElementType.EndHeader)
-                    {
-                        Level = 3
-                    }, 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHeader) { Level = 3 },
+                new Event(MarkupElementType.Text) { Text = "foo\\" },
+                new Event(MarkupElementType.EndHeader) { Level = 3 },
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -625,7 +487,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 503 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines09HardLineBreaksExample503()
         {
             /* Specification Example:
@@ -635,24 +497,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <h3>foo</h3>
                 .
             */
+
             this.Setup(
                 "### foo");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeader)
-                    {
-                        Level = 3
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.EndHeader)
-                    {
-                        Level = 3
-                    }, 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHeader) { Level = 3 },
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.EndHeader) { Level = 3 },
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -661,4 +515,5 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
+
 }

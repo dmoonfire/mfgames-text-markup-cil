@@ -4,14 +4,13 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests.Markdown
 {
-    using NUnit.Framework;
+    using Xunit;
 
     #region Designer generated code
 
     /// <summary>
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
-    [TestFixture]
     public class CommonMarkSpec06InlinesTests : MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
@@ -19,7 +18,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 219 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark06Inlines00ListsExample219()
         {
             /* Specification Example:
@@ -29,24 +28,19 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p><code>hi</code>lo`</p>
                 .
             */
+
             this.Setup(
                 "`hi`lo`");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.BeginCodeSpan), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "hi"
-                    }, 
-                new Event(MarkupElementType.EndCodeSpan), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "lo`"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.BeginCodeSpan),
+                new Event(MarkupElementType.Text) { Text = "hi" },
+                new Event(MarkupElementType.EndCodeSpan),
+                new Event(MarkupElementType.Text) { Text = "lo`" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -55,4 +49,5 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
+
 }

@@ -4,23 +4,21 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests.Markdown
 {
-    using NUnit.Framework;
+    using Xunit;
 
     #region Designer generated code
 
     /// <summary>
     /// Tests various examples from the CommonMark specifiction.
     /// </summary>
-    [TestFixture]
-    public class CommonMarkSpec04LeafBlocks04IndentedCodeBlocksTests :
-        MarkdownReaderRecorderTestsBase
+    public class CommonMarkSpec04LeafBlocks04IndentedCodeBlocksTests : MarkdownReaderRecorderTestsBase
     {
         #region Public Methods and Operators
 
         /// <summary>
         /// Verifies example 61 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample061()
         {
             /* Specification Example:
@@ -33,31 +31,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
-                "    a simple", 
+                "    a simple",
                 "      indented code block");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "a simple"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "  indented code block"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "a simple" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "  indented code block" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -65,7 +52,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 62 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample062()
         {
             /* Specification Example:
@@ -82,45 +69,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
-                "    <a/>", 
-                "    *hi*", 
-                string.Empty, 
+                "    <a/>",
+                "    *hi*",
+                string.Empty,
                 "    - one");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "<a/>"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "*hi*"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "- one"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "<a/>" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "*hi*" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "- one" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -128,7 +95,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 63 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample063()
         {
             /* Specification Example:
@@ -151,60 +118,31 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
-                "    chunk1", 
-                string.Empty, 
-                "    chunk2", 
-                "  ", 
-                " ", 
-                " ", 
+                "    chunk1",
+                string.Empty,
+                "    chunk2",
+                "  ",
+                " ",
+                " ",
                 "    chunk3");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "chunk1"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "chunk2"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "chunk3"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "chunk1" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "chunk2" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "chunk3" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -212,7 +150,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 64 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample064()
         {
             /* Specification Example:
@@ -227,40 +165,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
-                "    chunk1", 
-                "      ", 
+                "    chunk1",
+                "      ",
                 "      chunk2");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "chunk1"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "  "
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "  chunk2"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "chunk1" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "  " },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "  chunk2" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -268,7 +189,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 65 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample065()
         {
             /* Specification Example:
@@ -281,28 +202,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 bar</p>
                 .
             */
+
             this.Setup(
-                "Foo", 
-                "    bar", 
+                "Foo",
+                "    bar",
                 string.Empty);
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "Foo"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "Foo" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -310,7 +223,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 66 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample066()
         {
             /* Specification Example:
@@ -323,29 +236,21 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <p>bar</p>
                 .
             */
+
             this.Setup(
-                "    foo", 
+                "    foo",
                 "bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
-                new Event(MarkupElementType.BeginParagraph), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.EndParagraph), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
+                new Event(MarkupElementType.BeginParagraph),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -353,7 +258,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 67 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample067()
         {
             /* Specification Example:
@@ -374,62 +279,33 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 <hr />
                 .
             */
+
             this.Setup(
-                "# Header", 
-                "    foo", 
-                "Header", 
-                "------", 
-                "    foo", 
+                "# Header",
+                "    foo",
+                "Header",
+                "------",
+                "    foo",
                 "----");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginHeader)
-                    {
-                        Level = 1
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "Header"
-                    }, 
-                new Event(MarkupElementType.EndHeader)
-                    {
-                        Level = 1
-                    }, 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
-                new Event(MarkupElementType.BeginHeader)
-                    {
-                        Level = 2
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "Header"
-                    }, 
-                new Event(MarkupElementType.EndHeader)
-                    {
-                        Level = 2
-                    }, 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
-                new Event(MarkupElementType.HorizontalRule), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginHeader) { Level = 1 },
+                new Event(MarkupElementType.Text) { Text = "Header" },
+                new Event(MarkupElementType.EndHeader) { Level = 1 },
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
+                new Event(MarkupElementType.BeginHeader) { Level = 2 },
+                new Event(MarkupElementType.Text) { Text = "Header" },
+                new Event(MarkupElementType.EndHeader) { Level = 2 },
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
+                new Event(MarkupElementType.HorizontalRule),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -437,7 +313,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 68 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample068()
         {
             /* Specification Example:
@@ -450,31 +326,20 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
-                "        foo", 
+                "        foo",
                 "    bar");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "    foo"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "bar"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "    foo" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.Text) { Text = "bar" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -482,7 +347,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 69 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample069()
         {
             /* Specification Example:
@@ -497,26 +362,21 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
-                string.Empty, 
-                "    ", 
-                "    foo", 
-                "    ", 
+                string.Empty,
+                "    ",
+                "    foo",
+                "    ",
                 string.Empty);
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo"
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "foo" },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -524,7 +384,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
         /// <summary>
         /// Verifies example 70 of the CommonMark specification.
         /// </summary>
-        [Test]
+        [Fact]
         public void VerifyCommonMark04LeafBlocks04IndentedCodeBlocksExample070()
         {
             /* Specification Example:
@@ -535,22 +395,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 </code></pre>
                 .
             */
+
             this.Setup(
                 "    foo  ");
 
             this.AssertEventElementTypes(
-                new Event(MarkupElementType.BeginDocument), 
-                new Event(MarkupElementType.BeginContent), 
-                new Event(MarkupElementType.BeginCodeBlock), 
-                new Event(MarkupElementType.Text)
-                    {
-                        Text = "foo  "
-                    }, 
-                new Event(MarkupElementType.NewLine)
-                    {
-                        Text = "\r\n"
-                    }, 
-                new Event(MarkupElementType.EndCodeBlock), 
+                new Event(MarkupElementType.BeginDocument),
+                new Event(MarkupElementType.BeginContent),
+                new Event(MarkupElementType.BeginCodeBlock),
+                new Event(MarkupElementType.Text) { Text = "foo  " },
+                new Event(MarkupElementType.NewLine),
+                new Event(MarkupElementType.EndCodeBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -559,4 +414,5 @@ namespace MfGames.Text.Markup.Tests.Markdown
     }
 
     #endregion
+
 }

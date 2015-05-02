@@ -4,9 +4,10 @@
 // MIT Licensed (http://opensource.org/licenses/MIT)
 namespace MfGames.Text.Markup.Tests
 {
-    using System.Collections.Generic;
+	using System;
+	using System.Collections.Generic;
 
-    using NUnit.Framework;
+    using Xunit;
 
     /// <summary>
     /// A test base set up to record events from a MarkupReader and then
@@ -45,7 +46,8 @@ namespace MfGames.Text.Markup.Tests
                 // If we have more than a thousand events, we are probably in a loop.
                 if (this.Events.Count > 1000)
                 {
-                    Assert.Fail("Exceeded 1,000 events, possible loop.");
+					throw new IndexOutOfRangeException(
+						"Exceeded 1,000 events, possible loop.");
                 }
             }
         }
