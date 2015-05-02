@@ -1,13 +1,14 @@
 ﻿// <copyright file="BlockTextReader.cs" company="Moonfire Games">
-//     Copyright (c) Moonfire Games. Some Rights Reserved.
+//   Copyright (c) Moonfire Games. Some Rights Reserved.
 // </copyright>
-// 
-// MIT Licensed (http://opensource.org/licenses/MIT)
+// <license>
+//   MIT License (MIT)
+// </license>
+
+using System.IO;
 
 namespace MfGames.Text.Markup.Markdown
 {
-	using System.IO;
-
 	/// <summary>
 	/// A specialized reader that wraps around a TextReader and reads data
 	/// a block at a time. This is aware of the YAML headers and will retrieve
@@ -27,13 +28,12 @@ namespace MfGames.Text.Markup.Markdown
 			this.LineIndex++;
 		}
 
-		public int LineIndex { get; private set; }
-
-		public TextReader UnderlyingReader { get; set; }
-
 		#endregion
 
 		#region Public Properties
+
+		public int LineIndex { get; private set; }
+		public TextReader UnderlyingReader { get; set; }
 
 		#endregion
 	}
