@@ -70,6 +70,13 @@ namespace MfGames.Text.Markup.Markdown
 
 			lines.RemoveAt(0);
 
+			// If the line is blank, then move to the next one.
+			if (line.Trim() == "")
+			{
+				markdown.SetState(MarkupElementType.NewLine, this);
+				return true;
+			}
+
 			// Set the Markdown, remove the prefix, and send it on. In code
 			// blocks, we always have a trailing newline.
 			line = MarkdownRegex.CodeBlock.Replace(line, "");

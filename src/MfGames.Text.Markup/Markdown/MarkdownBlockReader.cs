@@ -38,18 +38,29 @@ namespace MfGames.Text.Markup.Markdown
 			int index,
 			string line)
 		{
-			// Atx headers are always breaks.
-			if (MarkdownRegex.AtxHeader.IsMatch(line))
+			// If we have a blank line and the initial is indented, we consider
+			// it part of the code block. All other blank lines are breaks.
+			string existing = buffer.ToString();
+			bool existingIsIndented = existing.StartsWith("    ");
+
+			if (string.IsNullOrWhiteSpace(line))
+			{
+				return !existingIsIndented;
+			}
+
+			// If the scope of an indent block is different than the beginning,
+			// then we treat them as a block barrier.
+			bool lineIsIndented = line.StartsWith("    ");
+
+			if (existingIsIndented != lineIsIndented)
 			{
 				return true;
 			}
 
-			// If the buffer starts with an indented block, we treat the first
-			// line as the second. This is because a rule will break a code
-			// span.
-			if (index == 1 && buffer.ToString().StartsWith("    "))
+			// Atx headers are always breaks.
+			if (MarkdownRegex.AtxHeader.IsMatch(line))
 			{
-				index++;
+				return true;
 			}
 
 			// The "---" can be used for both a header and a break. However, on

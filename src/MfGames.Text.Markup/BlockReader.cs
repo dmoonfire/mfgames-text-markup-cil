@@ -136,7 +136,7 @@ namespace MfGames.Text.Markup
 
 				line = UnderlyingReader.ReadLine();
 
-				while (!string.IsNullOrEmpty(line))
+				while (line != null)
 				{
 					// See if this is the first line of a new block.
 					if (IsBlockStart(buffer, index, line))
@@ -195,6 +195,13 @@ namespace MfGames.Text.Markup
 			int index,
 			string line)
 		{
+			// By default, blank lines are starts.
+			if (string.IsNullOrWhiteSpace(line))
+			{
+				return true;
+			}
+
+			// For everything else, it isn't.
 			return false;
 		}
 
