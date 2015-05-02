@@ -2,6 +2,9 @@
 //     Copyright (c) Moonfire Games. Some Rights Reserved.
 // </copyright>
 // MIT Licensed (http://opensource.org/licenses/MIT)
+
+using MfGames.Text.Markup.IO;
+
 namespace MfGames.Text.Markup
 {
     using System;
@@ -24,7 +27,7 @@ namespace MfGames.Text.Markup
         /// </param>
         protected MarkupReader(TextReader reader)
         {
-            this.Input = new BlockTextReader(reader);
+            this.Input = new BlockReader(reader);
         }
 
         /// <summary>
@@ -69,7 +72,7 @@ namespace MfGames.Text.Markup
 
         /// <summary>
         /// </summary>
-        protected BlockTextReader Input { get; private set; }
+        protected BlockReader Input { get; private set; }
 
         #endregion
 
