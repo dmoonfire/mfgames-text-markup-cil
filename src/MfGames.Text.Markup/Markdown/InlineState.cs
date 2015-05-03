@@ -13,7 +13,7 @@ namespace MfGames.Text.Markup.Markdown
 	{
 		#region Fields
 
-		private readonly ParagraphState paragraphState;
+		private readonly MarkdownState parentState;
 
 		private readonly List<InlineToken> tokens;
 
@@ -21,12 +21,12 @@ namespace MfGames.Text.Markup.Markdown
 
 		#region Constructors and Destructors
 
-		public InlineState(ParagraphState paragraphState, string text)
+		public InlineState(MarkdownState parentState, string text)
 		{
 			// Parse the text of the paragraph into its tokens.
 			var tokenizer = new InlineTokenizer();
 
-			this.paragraphState = paragraphState;
+			this.parentState = parentState;
 			tokens = tokenizer.Tokenize(text);
 		}
 
@@ -40,7 +40,7 @@ namespace MfGames.Text.Markup.Markdown
 
 			if (!hasMore)
 			{
-				paragraphState.Process(markdown);
+				parentState.Process(markdown);
 			}
 		}
 

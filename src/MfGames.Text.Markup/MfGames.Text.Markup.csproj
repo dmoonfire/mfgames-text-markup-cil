@@ -61,6 +61,7 @@
     <Compile Include="Markdown\ParagraphState.cs" />
     <Compile Include="Markdown\SetextHeaderState.cs" />
     <Compile Include="Markdown\StringExtensions.cs" />
+    <Compile Include="Markdown\TextContainerMarkdownState.cs" />
     <Compile Include="Markdown\YamlMetadataState.cs" />
     <Compile Include="MarkupElementType.cs" />
     <Compile Include="MarkupReader.cs" />
