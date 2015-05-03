@@ -107,6 +107,42 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		}
 
 		[Fact]
+		public void SimpleBold()
+		{
+			const string Text = "**abc**";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("**", MarkupElementType.BeginBold),
+					new InlineToken("abc", MarkupElementType.Text),
+					new InlineToken("**", MarkupElementType.EndBold)
+				},
+				tokens);
+		}
+
+		[Fact]
+		public void SimpleBoldItalic()
+		{
+			const string Text = "***abc***";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("**", MarkupElementType.BeginBold),
+					new InlineToken("*", MarkupElementType.BeginItalic),
+					new InlineToken("abc", MarkupElementType.Text),
+					new InlineToken("*", MarkupElementType.EndItalic),
+					new InlineToken("**", MarkupElementType.EndBold)
+				},
+				tokens);
+		}
+
+		[Fact]
 		public void SimpleItalic()
 		{
 			const string Text = "*abc*";

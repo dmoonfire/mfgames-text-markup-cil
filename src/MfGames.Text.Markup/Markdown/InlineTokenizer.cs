@@ -5,7 +5,9 @@
 //   MIT License (MIT)
 // </license>
 
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -90,26 +92,74 @@ namespace MfGames.Text.Markup.Markdown
 
 		#region Methods
 
-		private static bool AddAsterixToken(
+		[SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
+		private static bool AddEmphasis(
 			List<InlineToken> tokens,
+			char emphasisType,
 			string text,
 			ref int index)
 		{
-			// With asterix, we don't have any fancy rules about inner-word
-			// italics. It is simply a binary switch for each occurrence.
-			MarkupElementType previousType = GetPreviousType(
+			// We need to consider both italic and bold when we figure out
+			// what to do. We also need to know the previous state in the case
+			// when we are closing both of them off at the same time.
+			string singleType = emphasisType.ToString();
+			string doubledType = singleType + emphasisType;
+			string tripledType = doubledType + emphasisType;
+
+			MarkupElementType previousItalic = GetPreviousType(
 				tokens,
 				MarkupElementType.EndItalic,
-				"*",
+				singleType,
+				MarkupElementType.BeginItalic,
+				MarkupElementType.EndItalic);
+			MarkupElementType previousBold = GetPreviousType(
+				tokens,
+				MarkupElementType.EndBold,
+				doubledType,
+				MarkupElementType.BeginBold,
+				MarkupElementType.EndBold);
+			MarkupElementType previous = GetPreviousType(
+				tokens,
+				MarkupElementType.EndBold,
+				new[] { singleType, doubledType },
+				MarkupElementType.BeginBold,
+				MarkupElementType.EndBold,
 				MarkupElementType.BeginItalic,
 				MarkupElementType.EndItalic);
 
-			// Add the token for this italic.
-			var token = new InlineToken(
-				"*",
-				previousType == MarkupElementType.EndItalic
-					? MarkupElementType.BeginItalic
-					: MarkupElementType.EndItalic);
+			// Markdown also uses doubled-characters for bold, so we need to
+			// see if this is a italic or a bold request. We can't simply assume
+			// bold because when closing tags, we need to know which one when
+			// dealing with tripled ones.
+			string substring = text.Substring(index);
+			bool isTripled = substring.StartsWith(tripledType);
+			bool isDoubled = !isTripled && substring.StartsWith(doubledType);
+			bool isSingle = !isDoubled;
+
+			// For single, we just handle italics.
+			InlineToken token;
+
+			if (isSingle)
+			{
+				token = new InlineToken(
+					singleType,
+					previousItalic == MarkupElementType.EndItalic
+						? MarkupElementType.BeginItalic
+						: MarkupElementType.EndItalic);
+			}
+			else if (isDoubled)
+			{
+				token = new InlineToken(
+					doubledType,
+					previousBold == MarkupElementType.EndBold
+						? MarkupElementType.BeginBold
+						: MarkupElementType.EndBold);
+				index++;
+			}
+			else
+			{
+				throw new NotImplementedException("Not yet");
+			}
 
 			tokens.Add(token);
 			return true;
@@ -143,13 +193,27 @@ namespace MfGames.Text.Markup.Markdown
 			string searchText,
 			params MarkupElementType[] searchElementTypes)
 		{
+			return GetPreviousType(
+				tokens,
+				defaultElementType,
+				new[] { searchText },
+				searchElementTypes);
+		}
+
+		private static MarkupElementType GetPreviousType(
+			List<InlineToken> tokens,
+			MarkupElementType defaultElementType,
+			string[] searchTexts,
+			params MarkupElementType[] searchElementTypes)
+		{
 			// Go backwards through the list.
 			for (int index = tokens.Count - 1; index >= 0; index--)
 			{
 				// If the token doesn't match, then we don't match.
 				InlineToken token = tokens[index];
+				bool foundText = searchTexts.Any(s => token.Text == s);
 
-				if (token.Text != searchText)
+				if (foundText)
 				{
 					continue;
 				}
@@ -203,7 +267,8 @@ namespace MfGames.Text.Markup.Markdown
 					break;
 
 				case '*':
-					if (AddAsterixToken(tokens, text, ref index))
+				case '_':
+					if (AddEmphasis(tokens, c, text, ref index))
 					{
 						return;
 					}
