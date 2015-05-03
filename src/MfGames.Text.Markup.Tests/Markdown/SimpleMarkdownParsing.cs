@@ -363,7 +363,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
-				new Event(MarkupElementType.BeginBlockquote),
+				new Event(MarkupElementType.BeginQuoteBlock),
 				new Event(MarkupElementType.BeginParagraph),
 				new Event(MarkupElementType.Text)
 				{
@@ -376,7 +376,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 					Text = "Four five six."
 				},
 				new Event(MarkupElementType.EndParagraph),
-				new Event(MarkupElementType.EndBlockquote),
+				new Event(MarkupElementType.EndQuoteBlock),
 				new Event(MarkupElementType.EndContent),
 				new Event(MarkupElementType.EndDocument));
 		}
@@ -455,7 +455,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
-				new Event(MarkupElementType.BeginBlockquote),
+				new Event(MarkupElementType.BeginQuoteBlock),
 				new Event(MarkupElementType.BeginParagraph),
 				new Event(MarkupElementType.Text)
 				{
@@ -467,7 +467,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 					Text = "four five six."
 				},
 				new Event(MarkupElementType.EndParagraph),
-				new Event(MarkupElementType.EndBlockquote),
+				new Event(MarkupElementType.EndQuoteBlock),
 				new Event(MarkupElementType.EndContent),
 				new Event(MarkupElementType.EndDocument));
 		}
@@ -573,14 +573,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			AssertEventElementTypes(
 				new Event(MarkupElementType.BeginDocument),
 				new Event(MarkupElementType.BeginContent),
-				new Event(MarkupElementType.BeginBlockquote),
+				new Event(MarkupElementType.BeginQuoteBlock),
 				new Event(MarkupElementType.BeginParagraph),
 				new Event(MarkupElementType.Text)
 				{
 					Text = "One two three"
 				},
 				new Event(MarkupElementType.EndParagraph),
-				new Event(MarkupElementType.EndBlockquote),
+				new Event(MarkupElementType.EndQuoteBlock),
 				new Event(MarkupElementType.EndContent),
 				new Event(MarkupElementType.EndDocument));
 		}

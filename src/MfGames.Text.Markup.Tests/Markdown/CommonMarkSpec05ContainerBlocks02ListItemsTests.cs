@@ -70,11 +70,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "indented code" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "A block quote." },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -130,11 +130,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "indented code" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "A block quote." },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndOrderedList),
                 new Event(MarkupElementType.EndContent), 
@@ -340,8 +340,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginOrderedList),
                 new Event(MarkupElementType.BeginListItem),
                 new Event(MarkupElementType.BeginParagraph),
@@ -352,8 +352,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndOrderedList),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -389,8 +389,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginUnorderedList),
                 new Event(MarkupElementType.BeginListItem),
                 new Event(MarkupElementType.Text) { Text = "one" },
@@ -399,8 +399,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "two" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -645,11 +645,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bam" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndOrderedList),
                 new Event(MarkupElementType.EndContent), 
@@ -1296,11 +1296,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "indented code" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "A block quote." },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndOrderedList),
                 new Event(MarkupElementType.EndContent), 
@@ -1358,11 +1358,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "indented code" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "A block quote." },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndOrderedList),
                 new Event(MarkupElementType.EndContent), 
@@ -1420,11 +1420,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "indented code" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "A block quote." },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndOrderedList),
                 new Event(MarkupElementType.EndContent), 
@@ -1534,11 +1534,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "indented code" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "A block quote." },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndOrderedList),
                 new Event(MarkupElementType.EndContent), 
@@ -1588,14 +1588,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
         {
             /* Specification Example:
                 .
-                > 1. > Blockquote
+                > 1. > BlockQuote
                 continued here.
                 .
                 <blockquote>
                 <ol>
                 <li>
                 <blockquote>
-                <p>Blockquote
+                <p>BlockQuote
                 continued here.</p>
                 </blockquote>
                 </li>
@@ -1605,25 +1605,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
             */
 
             this.Setup(
-                "> 1. > Blockquote",
+                "> 1. > BlockQuote",
                 "continued here.");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginOrderedList),
                 new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "Blockquote" },
+                new Event(MarkupElementType.Text) { Text = "BlockQuote" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "continued here." },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndOrderedList),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -1636,14 +1636,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
         {
             /* Specification Example:
                 .
-                > 1. > Blockquote
+                > 1. > BlockQuote
                 > continued here.
                 .
                 <blockquote>
                 <ol>
                 <li>
                 <blockquote>
-                <p>Blockquote
+                <p>BlockQuote
                 continued here.</p>
                 </blockquote>
                 </li>
@@ -1653,25 +1653,25 @@ namespace MfGames.Text.Markup.Tests.Markdown
             */
 
             this.Setup(
-                "> 1. > Blockquote",
+                "> 1. > BlockQuote",
                 "> continued here.");
 
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginOrderedList),
                 new Event(MarkupElementType.BeginListItem),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
-                new Event(MarkupElementType.Text) { Text = "Blockquote" },
+                new Event(MarkupElementType.Text) { Text = "BlockQuote" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "continued here." },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndOrderedList),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }

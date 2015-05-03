@@ -23,6 +23,18 @@ namespace MfGames.Text.Markup.Markdown
 			DefaultOptions = new MarkdownOptions();
 		}
 
+		public MarkdownOptions()
+		{
+		}
+
+		public MarkdownOptions(MarkdownOptions options)
+			: this()
+		{
+			AllowMetadata = options.AllowMetadata;
+			TreatNewLinesAsBreaks = options.TreatNewLinesAsBreaks;
+			Fragment = options.Fragment;
+		}
+
 		#endregion
 
 		#region Public Properties
@@ -36,6 +48,12 @@ namespace MfGames.Text.Markup.Markdown
 		/// Gets or sets a flag whether metadata can be included in the input file.
 		/// </summary>
 		public bool AllowMetadata { get; set; }
+
+		/// <summary>
+		/// Gets or sets a flag whether the document and content flags will
+		/// be emitted.
+		/// </summary>
+		public bool Fragment { get; set; }
 
 		/// <summary>
 		/// Gets or sets whether newline are treated as breaks or just continuation

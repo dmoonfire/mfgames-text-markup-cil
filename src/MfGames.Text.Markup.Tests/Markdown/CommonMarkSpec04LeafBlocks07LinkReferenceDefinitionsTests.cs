@@ -700,11 +700,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "Foo" },
                 new Event(MarkupElementType.EndAnchor),
                 new Event(MarkupElementType.EndHeader) { Level = 1 },
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -795,8 +795,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndAnchor),
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }

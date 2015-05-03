@@ -42,6 +42,7 @@
     <Compile Include="Markdown\AtxHeaderState.cs" />
     <Compile Include="Markdown\BeginContentState.cs" />
     <Compile Include="BlockReader.cs" />
+    <Compile Include="Markdown\QuoteBlockState.cs" />
     <Compile Include="Markdown\CodeBlockState.cs" />
     <Compile Include="Markdown\ContainerMarkdownState.cs" />
     <Compile Include="Markdown\HorizontalRuleState.cs" />

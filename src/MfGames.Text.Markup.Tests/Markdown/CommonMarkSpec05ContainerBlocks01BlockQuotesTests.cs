@@ -53,7 +53,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginHeader) { Level = 1 },
                 new Event(MarkupElementType.Text) { Text = "Foo" },
                 new Event(MarkupElementType.EndHeader) { Level = 1 },
@@ -62,7 +62,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -95,7 +95,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginHeader) { Level = 1 },
                 new Event(MarkupElementType.Text) { Text = "Foo" },
                 new Event(MarkupElementType.EndHeader) { Level = 1 },
@@ -104,7 +104,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -137,7 +137,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginHeader) { Level = 1 },
                 new Event(MarkupElementType.Text) { Text = "Foo" },
                 new Event(MarkupElementType.EndHeader) { Level = 1 },
@@ -146,7 +146,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -218,7 +218,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginHeader) { Level = 1 },
                 new Event(MarkupElementType.Text) { Text = "Foo" },
                 new Event(MarkupElementType.EndHeader) { Level = 1 },
@@ -227,7 +227,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -260,7 +260,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.NewLine),
@@ -268,7 +268,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -298,11 +298,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.HorizontalRule),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
@@ -337,13 +337,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginUnorderedList),
                 new Event(MarkupElementType.BeginListItem),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndListItem),
                 new Event(MarkupElementType.EndUnorderedList),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.BeginUnorderedList),
                 new Event(MarkupElementType.BeginListItem),
                 new Event(MarkupElementType.Text) { Text = "bar" },
@@ -380,12 +380,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginCodeBlock),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.BeginCodeBlock),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.NewLine),
@@ -422,10 +422,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginCodeBlock),
                 new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndParagraph),
@@ -456,8 +456,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -487,8 +487,8 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -519,11 +519,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -557,16 +557,16 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -596,13 +596,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -634,14 +634,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndParagraph),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -674,11 +674,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -713,17 +713,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "aaa" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.HorizontalRule),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bbb" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -753,13 +753,13 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -791,11 +791,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
@@ -830,11 +830,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
@@ -871,17 +871,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
+                new Event(MarkupElementType.BeginQuoteBlock),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "bar" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
+                new Event(MarkupElementType.EndQuoteBlock),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -918,9 +918,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.BeginBlockquote),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
+                new Event(MarkupElementType.BeginQuoteBlock),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "foo" },
                 new Event(MarkupElementType.NewLine),
@@ -928,9 +928,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.Text) { Text = "baz" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
+                new Event(MarkupElementType.EndQuoteBlock),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }
@@ -965,17 +965,17 @@ namespace MfGames.Text.Markup.Tests.Markdown
             this.AssertEventElementTypes(
                 new Event(MarkupElementType.BeginDocument),
                 new Event(MarkupElementType.BeginContent),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginCodeBlock),
                 new Event(MarkupElementType.Text) { Text = "code" },
                 new Event(MarkupElementType.NewLine),
                 new Event(MarkupElementType.EndCodeBlock),
-                new Event(MarkupElementType.EndBlockquote),
-                new Event(MarkupElementType.BeginBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
+                new Event(MarkupElementType.BeginQuoteBlock),
                 new Event(MarkupElementType.BeginParagraph),
                 new Event(MarkupElementType.Text) { Text = "not code" },
                 new Event(MarkupElementType.EndParagraph),
-                new Event(MarkupElementType.EndBlockquote),
+                new Event(MarkupElementType.EndQuoteBlock),
                 new Event(MarkupElementType.EndContent), 
                 new Event(MarkupElementType.EndDocument));
         }

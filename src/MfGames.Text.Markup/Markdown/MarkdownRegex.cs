@@ -46,6 +46,11 @@ namespace MfGames.Text.Markup.Markdown
 			new Regex(@"^ {0,3}(#{1,6})(?:\s+\#+|\s+(.+?)(?:\s+\#+)?)?\s*$");
 
 		/// <summary>
+		/// Contains the regular expression that identifies a blockquote.
+		/// </summary>
+		public static readonly Regex BlockQuote = new Regex("^ {0,3}> ?");
+
+		/// <summary>
 		/// Contains the regular expression that identifies an indented block.
 		/// </summary>
 		public static readonly Regex CodeBlock = new Regex("^(?:\t| {4})");

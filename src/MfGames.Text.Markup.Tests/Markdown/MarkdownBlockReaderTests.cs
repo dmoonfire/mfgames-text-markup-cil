@@ -49,6 +49,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		}
 
 		[Fact]
+		public void ReadDoubleBlockquote()
+		{
+			var input = new[]
+			{
+				"> Line 1.",
+				"> Line 2."
+			};
+
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
+			{
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new[]
+					{
+						"> Line 1.\n> Line 2."
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
 		public void ReadInvalidYamlWithPreceedingBlank()
 		{
 			var input = new[]
@@ -101,6 +122,27 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		}
 
 		[Fact]
+		public void ReadLazyDoubleBlockquote()
+		{
+			var input = new[]
+			{
+				"> Line 1.",
+				"Line 2."
+			};
+
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
+			{
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new[]
+					{
+						"> Line 1.\nLine 2."
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
 		public void ReadMissingYaml()
 		{
 			var input = new[]
@@ -115,6 +157,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
 					new[]
 					{
 						"Line 1"
+					},
+					blocks);
+			}
+		}
+
+		[Fact]
+		public void ReadSingleBlockquote()
+		{
+			var input = new[]
+			{
+				"> Line 1."
+			};
+
+			using (MarkdownBlockReader markdownBlockReader = CreateBlockReader(input))
+			{
+				List<string> blocks = markdownBlockReader.ReadBlocks().ToList();
+				Assert.Equal(
+					new[]
+					{
+						"> Line 1."
 					},
 					blocks);
 			}

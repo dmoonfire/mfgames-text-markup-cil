@@ -72,12 +72,12 @@ namespace MfGames.Text.Markup
 		/// <summary>
 		/// Indicates the beginning of a blockquote.
 		/// </summary>
-		BeginBlockquote,
+		BeginQuoteBlock,
 
 		/// <summary>
 		/// Indicates the end of a blockquote.
 		/// </summary>
-		EndBlockquote,
+		EndQuoteBlock,
 
 		/// <summary>
 		/// Indicates the beginning of an italic.

@@ -69,8 +69,12 @@ namespace MfGames.Text.Markup.Markdown
 			Options = options ?? MarkdownOptions.DefaultOptions;
 			blockReader.HasYaml = Options.AllowMetadata;
 
-			// Prepare our initial state.
-			state = new BeginDocumentState();
+			// Prepare our initial state. For non-fragment readers, this is
+			// always begin document. For fragment, we go directly into the
+			// reader.
+			state = Options.Fragment
+				? GetNextBlockState()
+				: new BeginDocumentState();
 		}
 
 		#endregion
@@ -154,7 +158,15 @@ namespace MfGames.Text.Markup.Markdown
 
 			if (text == null)
 			{
-				nextState = new EndContentState();
+				// If we are a fragment, just stop sharply. Otherwise, go into
+				// the end content which leads to end document which then ends.
+				nextState = Options.Fragment
+					? null
+					: new EndContentState();
+			}
+			else if (MarkdownRegex.BlockQuote.IsMatch(text))
+			{
+				nextState = new QuoteBlockState();
 			}
 			else if (MarkdownRegex.CodeBlock.IsMatch(text))
 			{
@@ -184,6 +196,14 @@ namespace MfGames.Text.Markup.Markdown
 		{
 			BlockText = Input.ReadBlock();
 			return BlockText;
+		}
+
+		internal void Set(MarkdownReader reader, MarkdownState nextState)
+		{
+			Level = reader.Level;
+			Text = reader.Text;
+
+			SetState(reader.ElementType, nextState);
 		}
 
 		internal void SetState(
