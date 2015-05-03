@@ -5,7 +5,6 @@
 //   MIT License (MIT)
 // </license>
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -134,7 +133,7 @@ namespace MfGames.Text.Markup.Markdown
 			string substring = text.Substring(index);
 			bool isTripled = substring.StartsWith(tripledType);
 			bool isDoubled = !isTripled && substring.StartsWith(doubledType);
-			bool isSingle = !isDoubled;
+			bool isSingle = !isTripled && !isDoubled;
 
 			// For single, we just handle italics.
 			InlineToken token;
@@ -158,11 +157,96 @@ namespace MfGames.Text.Markup.Markdown
 			}
 			else
 			{
-				throw new NotImplementedException("Not yet");
+				// Bump the index to handle the fact we just consumed three
+				// characters, but then call a function since the rules can be
+				// complicated for how to add and remove.
+				index += 2;
+				AddEmphasis3(
+					tokens,
+					singleType,
+					doubledType,
+					previousItalic,
+					previousBold,
+					previous);
+				return true;
 			}
 
 			tokens.Add(token);
 			return true;
+		}
+
+		private static void AddEmphasis3(
+			List<InlineToken> tokens,
+			string singleType,
+			string doubleType,
+			MarkupElementType previousItalic,
+			MarkupElementType previousBold,
+			MarkupElementType previous)
+		{
+			// We have to close tags that were opened first.
+			var types = new List<MarkupElementType>();
+			var handledItalic = false;
+			var handledBold = false;
+
+			if (previous == MarkupElementType.BeginItalic)
+			{
+				types.Add(MarkupElementType.EndItalic);
+				handledItalic = true;
+
+				if (previousBold == MarkupElementType.BeginBold)
+				{
+					types.Add(MarkupElementType.EndBold);
+					handledBold = true;
+				}
+			}
+			else if (previous == MarkupElementType.BeginBold)
+			{
+				types.Add(MarkupElementType.EndBold);
+				handledBold = true;
+
+				if (previousItalic == MarkupElementType.BeginItalic)
+				{
+					types.Add(MarkupElementType.EndItalic);
+					handledItalic = true;
+				}
+			}
+
+			// Now, if we didn't just close them, we need to open the other
+			// one. According to CommonMark, we always prefer bold over italic
+			// while opening tags.
+			if (!handledBold)
+			{
+				types.Add(MarkupElementType.BeginBold);
+			}
+
+			if (!handledItalic)
+			{
+				types.Add(MarkupElementType.BeginItalic);
+			}
+
+			// Now add the actual tokens to the list.
+			foreach (MarkupElementType type in types)
+			{
+				// Figure out the text of the token.
+				string text = null;
+
+				switch (type)
+				{
+					case MarkupElementType.BeginItalic:
+					case MarkupElementType.EndItalic:
+						text = singleType;
+						break;
+
+					case MarkupElementType.BeginBold:
+					case MarkupElementType.EndBold:
+						text = doubleType;
+						break;
+				}
+
+				// Create and add the token to the list.
+				var token = new InlineToken(text, type);
+				tokens.Add(token);
+			}
 		}
 
 		private static bool AddSpaceToken(
@@ -213,7 +297,7 @@ namespace MfGames.Text.Markup.Markdown
 				InlineToken token = tokens[index];
 				bool foundText = searchTexts.Any(s => token.Text == s);
 
-				if (foundText)
+				if (!foundText)
 				{
 					continue;
 				}
