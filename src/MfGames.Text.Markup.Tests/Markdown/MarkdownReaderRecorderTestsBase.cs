@@ -205,12 +205,26 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			if (compareNulls ||
 				compareObjects)
 			{
+				string expectedFormatted = expectedObject == null
+					? "<null>"
+					: expectedObject.ToString()
+						.Replace("\\", "\\\\")
+						.Replace("\n", "\\n")
+						.Replace("\r", "\\r")
+						.Replace(" ", "\\s");
+				string actualFormatted = actualObject == null
+					? "<null>"
+					: actualObject.ToString()
+						.Replace("\\", "\\\\")
+						.Replace("\n", "\\n")
+						.Replace("\r", "\\r")
+						.Replace(" ", "\\s");
 				messages.Add(
 					string.Format(
 						"{0}: {1} != {2}",
 						name,
-						expectedObject ?? "<null>",
-						actualObject ?? "<null>"));
+						expectedFormatted,
+						actualFormatted));
 			}
 		}
 
@@ -241,7 +255,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			}
 
 			// Compare the elements.
-			AppendDifference("Text", expected.Text, actual.Text, messages);
+			AppendDifference(
+				"Text",
+				expected.Text,
+				actual.Text,
+				messages);
 			AppendDifference("Href", expected.Href, actual.Href, messages);
 			AppendDifference(
 				"Language",

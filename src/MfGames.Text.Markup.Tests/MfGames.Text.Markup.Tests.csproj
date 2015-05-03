@@ -54,6 +54,7 @@
     <Compile Include="Markdown\CommonMarkSpec02Preliminaries02TabExpansionTests.cs" />
     <Compile Include="Markdown\CommonMarkSpec06Inlines03CodeSpansTests.cs" />
     <Compile Include="Markdown\CommonMarkSpec06Inlines11TextualContentTests.cs" />
+    <Compile Include="Markdown\InlineTokenizerTests.cs" />
     <Compile Include="Markdown\MarkdownBlockReaderTests.cs" />
     <Compile Include="Markdown\CommonMarkRegexTests.cs" />
     <Compile Include="Markdown\CommonMarkSpec03BlocksAndInlines01PrecedenceTests.cs" />

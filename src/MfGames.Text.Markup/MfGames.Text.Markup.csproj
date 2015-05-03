@@ -45,6 +45,9 @@
     <Compile Include="Markdown\CodeBlockState.cs" />
     <Compile Include="Markdown\ContainerMarkdownState.cs" />
     <Compile Include="Markdown\HorizontalRuleState.cs" />
+    <Compile Include="Markdown\InlineState.cs" />
+    <Compile Include="Markdown\InlineToken.cs" />
+    <Compile Include="Markdown\InlineTokenizer.cs" />
     <Compile Include="Markdown\MarkdownRegex.cs" />
     <Compile Include="Markdown\MarkdownBlockReader.cs" />
     <Compile Include="Markdown\BeginDocumentState.cs" />

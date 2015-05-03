@@ -27,8 +27,10 @@ namespace MfGames.Text.Markup.Markdown
 			// Loop through and add each character in time.
 			var buffer = new StringBuilder();
 
-			foreach (char c in text)
+			for (int index = 0; index < text.Length; index++)
 			{
+				char c = text[index];
+
 				if (c == '\t')
 				{
 					// For tabs, we insert them as spaces but expand them out
