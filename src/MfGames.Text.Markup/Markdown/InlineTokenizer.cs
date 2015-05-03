@@ -77,11 +77,11 @@ namespace MfGames.Text.Markup.Markdown
 			// easier) because highly complicated sentences would eventually
 			// exceed the stack.
 
-			// Start by doing the "best guess" approach to the line.
-			for (var index = 0; index < text.Length; index++)
-			{
-				AddCharacterToken(tokens, text, ref index);
-			}
+			// Start by doing the "best guess" approach to the entire line.
+			// This will also verify that we have a valid state for unopened
+			// tags.
+			const int FirstCharacter = 0;
+			AddTokens(tokens, text, FirstCharacter);
 
 			// Return the list of resulting tokens.
 			return tokens;
@@ -377,6 +377,19 @@ namespace MfGames.Text.Markup.Markdown
 
 			// Append to either the created or previous token.
 			token.Text += c;
+		}
+
+		private void AddTokens(List<InlineToken> tokens, string text, int startIndex)
+		{
+			// Assign all the character tokens starting at this point.
+			for (int index = startIndex; index < text.Length; index++)
+			{
+				AddCharacterToken(tokens, text, ref index);
+			}
+
+			// Verify the tokens in reverse order. If one is in an invalid
+			// state, such as a BeginItalic with no EndItalic, then we alter
+			// the token and then try again at that point.
 		}
 
 		#endregion

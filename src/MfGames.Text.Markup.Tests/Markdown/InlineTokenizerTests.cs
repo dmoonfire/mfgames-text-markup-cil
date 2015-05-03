@@ -107,6 +107,21 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		}
 
 		[Fact]
+		public void OpenItalic()
+		{
+			const string Text = "*abc";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("*abc", MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
 		public void SequentialBoldItalic()
 		{
 			const string Text = "**abc***def*";
