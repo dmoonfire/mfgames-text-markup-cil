@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MfGames.Text.Markup</id>
+    <version>0.1.0.0</version>
+    <title>MfGames Text Markup CIL</title>
+    <authors>Dylan R. E. Moonfire</authors>
+    <owners>Dylan R. E. Moonfire</owners>
+    <licenseUrl>http://mfgames.com/mfgames-text-markup-cil/license</licenseUrl>
+    <projectUrl>http://mfgames.com/mfgames-text-markup-cil</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>An event-based reader/writer library for Markdown.</description>
+    <copyright>Copyright 2014-2015</copyright>
+  </metadata>
+    
+  <files>
+	<file src="bin\net45\MfGames.Text.Markup.dll" target="lib\net45\MfGames.Text.Markup.dll" />
+	<file src="bin\net45\MfGames.Text.Markup.pdb" target="lib\net45\MfGames.Text.Markup.pdb" />
+  </files>
+</package>
