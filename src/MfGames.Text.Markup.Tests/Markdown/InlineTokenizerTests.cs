@@ -18,6 +18,21 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		#region Public Methods and Operators
 
 		[Fact]
+		public void DoubleWordToken()
+		{
+			const string Text = "abc def";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("abc def", MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
 		public void HandleBlankInput()
 		{
 			const string Text = "";
@@ -25,6 +40,58 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			List<InlineToken> tokens = tokenizer.Tokenize(Text);
 
 			Assert.Equal(new InlineToken[] { }, tokens);
+		}
+
+		[Fact]
+		public void NewLine()
+		{
+			const string Text = "abc\ndef";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("abc", MarkupElementType.Text),
+					new InlineToken("\n", MarkupElementType.NewLine),
+					new InlineToken("def", MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
+		public void NewLineAndLineBreak()
+		{
+			const string Text = "abc  \ndef";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("abc", MarkupElementType.Text),
+					new InlineToken("\r", MarkupElementType.LineBreak),
+					new InlineToken("\n", MarkupElementType.NewLine),
+					new InlineToken("def", MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
+		public void NewLineAndSpace()
+		{
+			const string Text = "abc \ndef";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("abc", MarkupElementType.Text),
+					new InlineToken("\n", MarkupElementType.NewLine),
+					new InlineToken("def", MarkupElementType.Text)
+				},
+				tokens);
 		}
 
 		[Fact]
@@ -50,73 +117,6 @@ namespace MfGames.Text.Markup.Tests.Markdown
 				new[]
 				{
 					new InlineToken("abc", MarkupElementType.Text)
-				},
-				tokens);
-		}
-
-		[Fact]
-		public void DoubleWordToken()
-		{
-			const string Text = "abc def";
-			var tokenizer = new InlineTokenizer();
-			List<InlineToken> tokens = tokenizer.Tokenize(Text);
-
-			Assert.Equal(
-				new[]
-				{
-					new InlineToken("abc def", MarkupElementType.Text)
-				},
-				tokens);
-		}
-
-		[Fact]
-		public void DoubleWordTokenWithNewLine()
-		{
-			const string Text = "abc\ndef";
-			var tokenizer = new InlineTokenizer();
-			List<InlineToken> tokens = tokenizer.Tokenize(Text);
-
-			Assert.Equal(
-				new[]
-				{
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("\n", MarkupElementType.NewLine),
-					new InlineToken("def", MarkupElementType.Text)
-				},
-				tokens);
-		}
-
-		[Fact]
-		public void DoubleWordTokenWithNewLineAndSpace()
-		{
-			const string Text = "abc \ndef";
-			var tokenizer = new InlineTokenizer();
-			List<InlineToken> tokens = tokenizer.Tokenize(Text);
-
-			Assert.Equal(
-				new[]
-				{
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("\n", MarkupElementType.NewLine),
-					new InlineToken("def", MarkupElementType.Text)
-				},
-				tokens);
-		}
-
-		[Fact]
-		public void DoubleWordTokenWithNewLineAndLineBreak()
-		{
-			const string Text = "abc  \ndef";
-			var tokenizer = new InlineTokenizer();
-			List<InlineToken> tokens = tokenizer.Tokenize(Text);
-
-			Assert.Equal(
-				new[]
-				{
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("\r", MarkupElementType.LineBreak),
-					new InlineToken("\n", MarkupElementType.NewLine),
-					new InlineToken("def", MarkupElementType.Text)
 				},
 				tokens);
 		}
