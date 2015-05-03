@@ -6,6 +6,7 @@
 // </license>
 
 using System;
+using System.Text;
 
 namespace MfGames.Text.Markup.Markdown
 {
@@ -30,6 +31,50 @@ namespace MfGames.Text.Markup.Markdown
 		#region Public Properties
 
 		public MarkupElementType ElementType { get; private set; }
+
+		public string StateText
+		{
+			get
+			{
+				// If we aren't text, then don't do anything.
+				if (ElementType != MarkupElementType.Text)
+				{
+					return null;
+				}
+
+				// Otherwise, build up the character with all escapes.
+				var buffer = new StringBuilder();
+
+				for (var index = 0; index < Text.Length; index++)
+				{
+					// For non-escaped characters, just include them.
+					char c = Text[index];
+					bool isLast = index + 1 == Text.Length;
+
+					if (c != '\\' || isLast)
+					{
+						buffer.Append(c);
+						continue;
+					}
+
+					// We only escape when the following character is punctuation.
+					char n = Text[index + 1];
+
+					if (MarkdownRules.IsPunctuation(n))
+					{
+						buffer.Append(n);
+						index++;
+						continue;
+					}
+
+					// Otherwise, just add it.
+					buffer.Append(c);
+				}
+
+				return buffer.ToString();
+			}
+		}
+
 		public string Text { get; private set; }
 		public int TextIndex { get; private set; }
 		public int TextLength { get; private set; }
@@ -124,9 +169,14 @@ namespace MfGames.Text.Markup.Markdown
 				TextLength);
 		}
 
-		public void Trim()
+		public void TrimEnd()
 		{
-			Text = Text.Trim();
+			Text = Text.TrimEnd();
+		}
+
+		public void TrimStart()
+		{
+			Text = Text.TrimStart();
 		}
 
 		#endregion

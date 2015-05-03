@@ -398,7 +398,7 @@ namespace MfGames.Text.Markup.Markdown
 
 			if (token != null && token.ElementType == MarkupElementType.Text)
 			{
-				token.Trim();
+				token.TrimEnd();
 			}
 		}
 
@@ -439,6 +439,8 @@ namespace MfGames.Text.Markup.Markdown
 			// If we fall back, we want to append to the previous token if it
 			// is a text one, otherwise, create a new text token.
 			InlineToken token = tokens.Count > 0 ? tokens[tokens.Count - 1] : null;
+			bool trimLeading = token != null
+				&& token.ElementType != MarkupElementType.NewLine;
 
 			if (token != null && token.ElementType != MarkupElementType.Text)
 			{
@@ -453,6 +455,11 @@ namespace MfGames.Text.Markup.Markdown
 
 			// Append to either the created or previous token.
 			token.Append(c, 1);
+
+			if (trimLeading)
+			{
+				token.TrimStart();
+			}
 		}
 
 		private void AddTokens(List<InlineToken> tokens, string text, int startIndex)

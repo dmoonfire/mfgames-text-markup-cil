@@ -33,6 +33,14 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		}
 
 		[Fact]
+		public void EscapedHash()
+		{
+			var token = new InlineToken("\\#", 0, 2, MarkupElementType.Text);
+
+			Assert.Equal("#", token.StateText);
+		}
+
+		[Fact]
 		public void HandleBlankInput()
 		{
 			const string Text = "";
@@ -90,6 +98,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
 					new InlineToken("abc", 0, 4, MarkupElementType.Text),
 					new InlineToken("\n", 4, 1, MarkupElementType.NewLine),
 					new InlineToken("def", 5, 3, MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
+		public void NewLineWithLeadingSpace()
+		{
+			const string Text = "abc\n    def";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("abc", 0, 3, MarkupElementType.Text),
+					new InlineToken("\n", 3, 1, MarkupElementType.NewLine),
+					new InlineToken("def", 4, 7, MarkupElementType.Text)
 				},
 				tokens);
 		}
