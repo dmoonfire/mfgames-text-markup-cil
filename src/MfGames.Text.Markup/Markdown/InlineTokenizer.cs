@@ -142,6 +142,8 @@ namespace MfGames.Text.Markup.Markdown
 			{
 				token = new InlineToken(
 					singleType,
+					index,
+					1,
 					previousItalic == MarkupElementType.EndItalic
 						? MarkupElementType.BeginItalic
 						: MarkupElementType.EndItalic);
@@ -150,6 +152,8 @@ namespace MfGames.Text.Markup.Markdown
 			{
 				token = new InlineToken(
 					doubledType,
+					index,
+					2,
 					previousBold == MarkupElementType.EndBold
 						? MarkupElementType.BeginBold
 						: MarkupElementType.EndBold);
@@ -160,14 +164,15 @@ namespace MfGames.Text.Markup.Markdown
 				// Bump the index to handle the fact we just consumed three
 				// characters, but then call a function since the rules can be
 				// complicated for how to add and remove.
-				index += 2;
 				AddEmphasis3(
 					tokens,
+					index,
 					singleType,
 					doubledType,
 					previousItalic,
 					previousBold,
 					previous);
+				index += 2;
 				return true;
 			}
 
@@ -177,6 +182,7 @@ namespace MfGames.Text.Markup.Markdown
 
 		private static void AddEmphasis3(
 			List<InlineToken> tokens,
+			int index,
 			string singleType,
 			string doubleType,
 			MarkupElementType previousItalic,
@@ -184,30 +190,41 @@ namespace MfGames.Text.Markup.Markdown
 			MarkupElementType previous)
 		{
 			// We have to close tags that were opened first.
+			int nextIndex = index;
 			var types = new List<MarkupElementType>();
 			var handledItalic = false;
 			var handledBold = false;
+			var italicIndex = 0;
+			var boldIndex = 0;
 
 			if (previous == MarkupElementType.BeginItalic)
 			{
 				types.Add(MarkupElementType.EndItalic);
 				handledItalic = true;
+				italicIndex = nextIndex;
+				nextIndex += 1;
 
 				if (previousBold == MarkupElementType.BeginBold)
 				{
 					types.Add(MarkupElementType.EndBold);
 					handledBold = true;
+					boldIndex = nextIndex;
+					nextIndex += 2;
 				}
 			}
 			else if (previous == MarkupElementType.BeginBold)
 			{
 				types.Add(MarkupElementType.EndBold);
 				handledBold = true;
+				boldIndex = nextIndex;
+				nextIndex += 2;
 
 				if (previousItalic == MarkupElementType.BeginItalic)
 				{
 					types.Add(MarkupElementType.EndItalic);
 					handledItalic = true;
+					italicIndex = nextIndex;
+					nextIndex += 1;
 				}
 			}
 
@@ -217,11 +234,15 @@ namespace MfGames.Text.Markup.Markdown
 			if (!handledBold)
 			{
 				types.Add(MarkupElementType.BeginBold);
+				boldIndex = nextIndex;
+				nextIndex += 2;
 			}
 
 			if (!handledItalic)
 			{
 				types.Add(MarkupElementType.BeginItalic);
+				italicIndex = nextIndex;
+				nextIndex += 1;
 			}
 
 			// Now add the actual tokens to the list.
@@ -235,16 +256,19 @@ namespace MfGames.Text.Markup.Markdown
 					case MarkupElementType.BeginItalic:
 					case MarkupElementType.EndItalic:
 						text = singleType;
+						nextIndex = italicIndex;
 						break;
 
 					case MarkupElementType.BeginBold:
 					case MarkupElementType.EndBold:
 						text = doubleType;
+						nextIndex = boldIndex;
 						break;
 				}
 
 				// Create and add the token to the list.
-				var token = new InlineToken(text, type);
+				// ReSharper disable once PossibleNullReferenceException
+				var token = new InlineToken(text, nextIndex, text.Length, type);
 				tokens.Add(token);
 			}
 		}
@@ -259,16 +283,68 @@ namespace MfGames.Text.Markup.Markdown
 
 			if (spaceMatch.Success)
 			{
+				int spaceLength = spaceMatch.Groups[1].Value.Length;
+
 				TrimPreviousTextToken(tokens);
 				tokens.Add(
 					new InlineToken(
 						"\r",
+						index,
+						spaceLength,
 						MarkupElementType.LineBreak));
-				index += spaceMatch.Groups[1].Value.Length - 1;
+				index += spaceLength - 1;
 				return true;
 			}
 
 			return false;
+		}
+
+		private static MarkupElementType GetFollowingType(
+			List<InlineToken> tokens,
+			int startIndex,
+			MarkupElementType defaultElementType,
+			string searchText,
+			params MarkupElementType[] searchElementTypes)
+		{
+			return GetFollowingType(
+				tokens,
+				startIndex,
+				defaultElementType,
+				new[] { searchText },
+				searchElementTypes);
+		}
+
+		private static MarkupElementType GetFollowingType(
+			List<InlineToken> tokens,
+			int startIndex,
+			MarkupElementType defaultElementType,
+			string[] searchTexts,
+			params MarkupElementType[] searchElementTypes)
+		{
+			// Go backwards through the list.
+			for (int index = startIndex + 1; index < tokens.Count; index++)
+			{
+				// If the token doesn't match, then we don't match.
+				InlineToken token = tokens[index];
+				bool foundText = searchTexts.Any(s => token.Text == s);
+
+				if (!foundText)
+				{
+					continue;
+				}
+
+				// Make sure we are of the right type.
+				bool foundElementType = searchElementTypes
+					.Any(s => token.ElementType == s);
+
+				if (foundElementType)
+				{
+					return token.ElementType;
+				}
+			}
+
+			// If we got this far, we couldn't find any. So use the default.
+			return defaultElementType;
 		}
 
 		private static MarkupElementType GetPreviousType(
@@ -322,7 +398,7 @@ namespace MfGames.Text.Markup.Markdown
 
 			if (token != null && token.ElementType == MarkupElementType.Text)
 			{
-				token.Text = token.Text.TrimEnd();
+				token.Trim();
 			}
 		}
 
@@ -339,7 +415,7 @@ namespace MfGames.Text.Markup.Markdown
 			{
 				case '\n':
 					TrimPreviousTextToken(tokens);
-					tokens.Add(new InlineToken("\n", MarkupElementType.NewLine));
+					tokens.Add(new InlineToken("\n", index, 1, MarkupElementType.NewLine));
 					return;
 
 				case ' ':
@@ -371,12 +447,12 @@ namespace MfGames.Text.Markup.Markdown
 
 			if (token == null)
 			{
-				token = new InlineToken("", MarkupElementType.Text);
+				token = new InlineToken("", index, 0, MarkupElementType.Text);
 				tokens.Add(token);
 			}
 
 			// Append to either the created or previous token.
-			token.Text += c;
+			token.Append(c, 1);
 		}
 
 		private void AddTokens(List<InlineToken> tokens, string text, int startIndex)
@@ -390,6 +466,116 @@ namespace MfGames.Text.Markup.Markdown
 			// Verify the tokens in reverse order. If one is in an invalid
 			// state, such as a BeginItalic with no EndItalic, then we alter
 			// the token and then try again at that point.
+			for (int index = tokens.Count - 1; index >= 0; index--)
+			{
+				// If this returns false, we assume that the validation has
+				// made changes to any preceding token and we can remove this
+				// and all other tokes from the list and start over again.
+				bool isValid = ValidateToken(tokens, text, index);
+
+				if (!isValid)
+				{
+					// We've recursively validated this.
+					break;
+				}
+			}
+		}
+
+		private bool ValidateOpenToken(
+			List<InlineToken> tokens,
+			string text,
+			int index,
+			InlineToken token,
+			MarkupElementType endElementType)
+		{
+			// Check to see if we have a corresponding end tag for this item
+			// further down the list.
+			MarkupElementType nextRelatedType = GetFollowingType(
+				tokens,
+				index,
+				token.ElementType,
+				token.Text,
+				token.ElementType,
+				endElementType);
+
+			// If these two match, then we have a properly closed tag.
+			if (nextRelatedType == endElementType)
+			{
+				return true;
+			}
+
+			// Remove all items before this point as the new token list.
+			List<InlineToken> newTokens = tokens.Take(index).ToList();
+
+			// Append this token's text (but not type) to the previous item.
+			// This will remove the importance of the token, but duplicates how
+			// CommonMark handles it. There is slightly different method if
+			// this was the first item in the list. We also have to figure out
+			// the indexes of the tokens so we can append properly.
+			InlineToken previousToken = null;
+			var previousIndex = 0;
+
+			if (newTokens.Count != 0)
+			{
+				previousToken = newTokens[newTokens.Count - 1];
+				previousIndex = previousToken.TextIndex;
+
+				if (previousToken.ElementType != MarkupElementType.Text)
+				{
+					previousToken = null;
+				}
+			}
+
+			if (previousToken == null)
+			{
+				previousToken = new InlineToken(
+					"",
+					previousIndex,
+					0,
+					MarkupElementType.Text);
+				newTokens.Add(previousToken);
+			}
+
+			previousToken.Append(token.Text[0], 1);
+
+			// Rebuild the token list and rebuild the list. This will revalidate
+			// the entire list, so we pass false to stop.
+			tokens.Clear();
+			tokens.AddRange(newTokens);
+
+			AddTokens(tokens, text, previousToken.TextIndex + previousToken.TextLength);
+			return false;
+		}
+
+		private bool ValidateToken(List<InlineToken> tokens, string text, int index)
+		{
+			// Get the token in question. Then use the token type to determine
+			// if we need to do some additional validations.
+			InlineToken token = tokens[index];
+			var isValid = true;
+
+			switch (token.ElementType)
+			{
+				case MarkupElementType.BeginItalic:
+					isValid = ValidateOpenToken(
+						tokens,
+						text,
+						index,
+						token,
+						MarkupElementType.EndItalic);
+					break;
+
+				case MarkupElementType.BeginBold:
+					isValid = ValidateOpenToken(
+						tokens,
+						text,
+						index,
+						token,
+						MarkupElementType.EndBold);
+					break;
+			}
+
+			return isValid;
 		}
 
 		#endregion

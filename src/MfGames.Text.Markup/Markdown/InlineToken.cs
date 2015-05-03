@@ -13,9 +13,15 @@ namespace MfGames.Text.Markup.Markdown
 	{
 		#region Constructors and Destructors
 
-		public InlineToken(string text, MarkupElementType elementType)
+		public InlineToken(
+			string text,
+			int textIndex,
+			int textLength,
+			MarkupElementType elementType)
 		{
 			Text = text;
+			TextIndex = textIndex;
+			TextLength = textLength;
 			ElementType = elementType;
 		}
 
@@ -24,7 +30,9 @@ namespace MfGames.Text.Markup.Markdown
 		#region Public Properties
 
 		public MarkupElementType ElementType { get; private set; }
-		public string Text { get; internal set; }
+		public string Text { get; private set; }
+		public int TextIndex { get; private set; }
+		public int TextLength { get; private set; }
 
 		#endregion
 
@@ -40,6 +48,24 @@ namespace MfGames.Text.Markup.Markdown
 			return !Equals(left, right);
 		}
 
+		public void Append(char c, int length)
+		{
+			Text += c;
+			TextLength += length;
+		}
+
+		public void Append(string newText, int length)
+		{
+			Text += newText;
+			TextLength += length;
+		}
+
+		public void Append(InlineToken token)
+		{
+			Text += token.Text;
+			TextLength += token.TextLength;
+		}
+
 		public bool Equals(InlineToken other)
 		{
 			if (ReferenceEquals(null, other))
@@ -52,7 +78,8 @@ namespace MfGames.Text.Markup.Markdown
 				return true;
 			}
 
-			return string.Equals(Text, other.Text);
+			return ElementType == other.ElementType && string.Equals(Text, other.Text)
+				&& TextIndex == other.TextIndex && TextLength == other.TextLength;
 		}
 
 		public override bool Equals(object obj)
@@ -77,7 +104,29 @@ namespace MfGames.Text.Markup.Markdown
 
 		public override int GetHashCode()
 		{
-			return (Text != null ? Text.GetHashCode() : 0);
+			unchecked
+			{
+				var hashCode = (int)ElementType;
+				hashCode = (hashCode * 397) ^ (Text != null ? Text.GetHashCode() : 0);
+				hashCode = (hashCode * 397) ^ TextIndex;
+				hashCode = (hashCode * 397) ^ TextLength;
+				return hashCode;
+			}
+		}
+
+		public override string ToString()
+		{
+			return string.Format(
+				"{0} ({1}:{3}): {2}",
+				ElementType,
+				TextIndex,
+				Text,
+				TextLength);
+		}
+
+		public void Trim()
+		{
+			Text = Text.Trim();
 		}
 
 		#endregion

@@ -27,7 +27,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("abc def", MarkupElementType.Text)
+					new InlineToken("abc def", 0, 7, MarkupElementType.Text)
 				},
 				tokens);
 		}
@@ -52,9 +52,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("\n", MarkupElementType.NewLine),
-					new InlineToken("def", MarkupElementType.Text)
+					new InlineToken("abc", 0, 3, MarkupElementType.Text),
+					new InlineToken("\n", 3, 1, MarkupElementType.NewLine),
+					new InlineToken("def", 4, 3, MarkupElementType.Text)
 				},
 				tokens);
 		}
@@ -69,10 +69,10 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("\r", MarkupElementType.LineBreak),
-					new InlineToken("\n", MarkupElementType.NewLine),
-					new InlineToken("def", MarkupElementType.Text)
+					new InlineToken("abc", 0, 3, MarkupElementType.Text),
+					new InlineToken("\r", 3, 2, MarkupElementType.LineBreak),
+					new InlineToken("\n", 5, 1, MarkupElementType.NewLine),
+					new InlineToken("def", 6, 3, MarkupElementType.Text)
 				},
 				tokens);
 		}
@@ -87,9 +87,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("\n", MarkupElementType.NewLine),
-					new InlineToken("def", MarkupElementType.Text)
+					new InlineToken("abc", 0, 4, MarkupElementType.Text),
+					new InlineToken("\n", 4, 1, MarkupElementType.NewLine),
+					new InlineToken("def", 5, 3, MarkupElementType.Text)
 				},
 				tokens);
 		}
@@ -107,6 +107,69 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		}
 
 		[Fact]
+		public void OpenBold()
+		{
+			const string Text = "**abc";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("**abc", 0, 5, MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
+		public void OpenInnerBold()
+		{
+			const string Text = "def**abc";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("def**abc", 0, 8, MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
+		public void OpenInnerBoldWithItalic()
+		{
+			const string Text = "def**abc*";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("def*", 0, 4, MarkupElementType.Text),
+					new InlineToken("*", 4, 1, MarkupElementType.BeginItalic),
+					new InlineToken("abc", 5, 3, MarkupElementType.Text),
+					new InlineToken("*", 8, 1, MarkupElementType.EndItalic)
+				},
+				tokens);
+		}
+
+		[Fact]
+		public void OpenInnerItalic()
+		{
+			const string Text = "def*abc";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("def*abc", 0, 7, MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
 		public void OpenItalic()
 		{
 			const string Text = "*abc";
@@ -116,7 +179,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("*abc", MarkupElementType.Text)
+					new InlineToken("*abc", 0, 4, MarkupElementType.Text)
 				},
 				tokens);
 		}
@@ -131,12 +194,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("**", MarkupElementType.BeginBold),
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("**", MarkupElementType.EndBold),
-					new InlineToken("*", MarkupElementType.BeginItalic),
-					new InlineToken("def", MarkupElementType.Text),
-					new InlineToken("*", MarkupElementType.EndItalic)
+					new InlineToken("**", 0, 2, MarkupElementType.BeginBold),
+					new InlineToken("abc", 2, 3, MarkupElementType.Text),
+					new InlineToken("**", 5, 2, MarkupElementType.EndBold),
+					new InlineToken("*", 7, 1, MarkupElementType.BeginItalic),
+					new InlineToken("def", 8, 3, MarkupElementType.Text),
+					new InlineToken("*", 11, 1, MarkupElementType.EndItalic)
 				},
 				tokens);
 		}
@@ -151,12 +214,12 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("*", MarkupElementType.BeginItalic),
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("*", MarkupElementType.EndItalic),
-					new InlineToken("**", MarkupElementType.BeginBold),
-					new InlineToken("def", MarkupElementType.Text),
-					new InlineToken("**", MarkupElementType.EndBold)
+					new InlineToken("*", 0, 1, MarkupElementType.BeginItalic),
+					new InlineToken("abc", 1, 3, MarkupElementType.Text),
+					new InlineToken("*", 4, 1, MarkupElementType.EndItalic),
+					new InlineToken("**", 5, 2, MarkupElementType.BeginBold),
+					new InlineToken("def", 7, 3, MarkupElementType.Text),
+					new InlineToken("**", 10, 2, MarkupElementType.EndBold)
 				},
 				tokens);
 		}
@@ -171,9 +234,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("**", MarkupElementType.BeginBold),
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("**", MarkupElementType.EndBold)
+					new InlineToken("**", 0, 2, MarkupElementType.BeginBold),
+					new InlineToken("abc", 2, 3, MarkupElementType.Text),
+					new InlineToken("**", 5, 2, MarkupElementType.EndBold)
 				},
 				tokens);
 		}
@@ -188,11 +251,11 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("**", MarkupElementType.BeginBold),
-					new InlineToken("*", MarkupElementType.BeginItalic),
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("*", MarkupElementType.EndItalic),
-					new InlineToken("**", MarkupElementType.EndBold)
+					new InlineToken("**", 0, 2, MarkupElementType.BeginBold),
+					new InlineToken("*", 2, 1, MarkupElementType.BeginItalic),
+					new InlineToken("abc", 3, 3, MarkupElementType.Text),
+					new InlineToken("*", 6, 1, MarkupElementType.EndItalic),
+					new InlineToken("**", 7, 2, MarkupElementType.EndBold)
 				},
 				tokens);
 		}
@@ -207,9 +270,9 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("*", MarkupElementType.BeginItalic),
-					new InlineToken("abc", MarkupElementType.Text),
-					new InlineToken("*", MarkupElementType.EndItalic)
+					new InlineToken("*", 0, 1, MarkupElementType.BeginItalic),
+					new InlineToken("abc", 1, 3, MarkupElementType.Text),
+					new InlineToken("*", 4, 1, MarkupElementType.EndItalic)
 				},
 				tokens);
 		}
@@ -224,7 +287,7 @@ namespace MfGames.Text.Markup.Tests.Markdown
 			Assert.Equal(
 				new[]
 				{
-					new InlineToken("abc", MarkupElementType.Text)
+					new InlineToken("abc", 0, 3, MarkupElementType.Text)
 				},
 				tokens);
 		}
