@@ -165,7 +165,11 @@ namespace MfGames.Text.Markup.Markdown
 				"{0} ({1}:{3}): {2}",
 				ElementType,
 				TextIndex,
-				Text,
+				Text
+					.Replace("\\", "\\\\")
+					.Replace(" ", "\\s")
+					.Replace("\n", "\\n")
+					.Replace("\r", "\\r"),
 				TextLength);
 		}
 

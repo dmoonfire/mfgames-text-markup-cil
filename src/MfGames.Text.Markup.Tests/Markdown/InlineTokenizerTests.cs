@@ -41,6 +41,39 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		}
 
 		[Fact]
+		public void EscapedItalic()
+		{
+			const string Text = "\\*abc\\*";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("\\*abc\\*", 0, 7, MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
+		public void EscapedItalic2()
+		{
+			const string Text = "*def* \\*abc\\*";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("*", 0, 1, MarkupElementType.BeginItalic),
+					new InlineToken("def", 1, 3, MarkupElementType.Text),
+					new InlineToken("*", 4, 1, MarkupElementType.EndItalic),
+					new InlineToken(" \\*abc\\*", 5, 8, MarkupElementType.Text)
+				},
+				tokens);
+		}
+
+		[Fact]
 		public void HandleBlankInput()
 		{
 			const string Text = "";

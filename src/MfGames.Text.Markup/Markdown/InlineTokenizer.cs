@@ -439,8 +439,7 @@ namespace MfGames.Text.Markup.Markdown
 			// If we fall back, we want to append to the previous token if it
 			// is a text one, otherwise, create a new text token.
 			InlineToken token = tokens.Count > 0 ? tokens[tokens.Count - 1] : null;
-			bool trimLeading = token != null
-				&& token.ElementType != MarkupElementType.NewLine;
+			bool trimLeading = GetTrimLeading(tokens);
 
 			if (token != null && token.ElementType != MarkupElementType.Text)
 			{
@@ -456,6 +455,15 @@ namespace MfGames.Text.Markup.Markdown
 			// Append to either the created or previous token.
 			token.Append(c, 1);
 
+			// If we have an escape character, add the next one too.
+			if (c == '\\' && index + 1 != text.Length)
+			{
+				index++;
+				c = text[index];
+				token.Append(c, 1);
+			}
+
+			// Trim the leading spaces if we were preceded by a newline.
 			if (trimLeading)
 			{
 				token.TrimStart();
@@ -486,6 +494,33 @@ namespace MfGames.Text.Markup.Markdown
 					break;
 				}
 			}
+		}
+
+		private bool GetTrimLeading(List<InlineToken> tokens)
+		{
+			for (int index = tokens.Count - 1; index >= 0; index--)
+			{
+				// If this is a newline, then trim.
+				InlineToken token = tokens[index];
+
+				if (token.ElementType == MarkupElementType.NewLine)
+				{
+					return true;
+				}
+
+				// If this is a text and blank, then we continue on.
+				if (token.ElementType == MarkupElementType.Text &&
+					token.Text == "")
+				{
+					continue;
+				}
+
+				// Otherwise, this won't be trimmed.
+				return false;
+			}
+
+			// If we break out, then we aren't trimming.
+			return false;
 		}
 
 		private bool ValidateOpenToken(
