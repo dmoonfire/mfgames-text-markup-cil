@@ -107,6 +107,23 @@ namespace MfGames.Text.Markup.Tests.Markdown
 		}
 
 		[Fact]
+		public void SimpleItalic()
+		{
+			const string Text = "*abc*";
+			var tokenizer = new InlineTokenizer();
+			List<InlineToken> tokens = tokenizer.Tokenize(Text);
+
+			Assert.Equal(
+				new[]
+				{
+					new InlineToken("*", MarkupElementType.BeginItalic),
+					new InlineToken("abc", MarkupElementType.Text),
+					new InlineToken("*", MarkupElementType.EndItalic)
+				},
+				tokens);
+		}
+
+		[Fact]
 		public void SingleWordToken()
 		{
 			const string Text = "abc";

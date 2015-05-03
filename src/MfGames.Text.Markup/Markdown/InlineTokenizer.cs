@@ -90,6 +90,31 @@ namespace MfGames.Text.Markup.Markdown
 
 		#region Methods
 
+		private static bool AddAsterixToken(
+			List<InlineToken> tokens,
+			string text,
+			ref int index)
+		{
+			// With asterix, we don't have any fancy rules about inner-word
+			// italics. It is simply a binary switch for each occurrence.
+			MarkupElementType previousType = GetPreviousType(
+				tokens,
+				MarkupElementType.EndItalic,
+				"*",
+				MarkupElementType.BeginItalic,
+				MarkupElementType.EndItalic);
+
+			// Add the token for this italic.
+			var token = new InlineToken(
+				"*",
+				previousType == MarkupElementType.EndItalic
+					? MarkupElementType.BeginItalic
+					: MarkupElementType.EndItalic);
+
+			tokens.Add(token);
+			return true;
+		}
+
 		private static bool AddSpaceToken(
 			List<InlineToken> tokens,
 			string text,
@@ -110,6 +135,37 @@ namespace MfGames.Text.Markup.Markdown
 			}
 
 			return false;
+		}
+
+		private static MarkupElementType GetPreviousType(
+			List<InlineToken> tokens,
+			MarkupElementType defaultElementType,
+			string searchText,
+			params MarkupElementType[] searchElementTypes)
+		{
+			// Go backwards through the list.
+			for (int index = tokens.Count - 1; index >= 0; index--)
+			{
+				// If the token doesn't match, then we don't match.
+				InlineToken token = tokens[index];
+
+				if (token.Text != searchText)
+				{
+					continue;
+				}
+
+				// Make sure we are of the right type.
+				bool foundElementType = searchElementTypes
+					.Any(s => token.ElementType == s);
+
+				if (foundElementType)
+				{
+					return token.ElementType;
+				}
+			}
+
+			// If we got this far, we couldn't find any. So use the default.
+			return defaultElementType;
 		}
 
 		private static void TrimPreviousTextToken(List<InlineToken> tokens)
@@ -140,6 +196,14 @@ namespace MfGames.Text.Markup.Markdown
 
 				case ' ':
 					if (AddSpaceToken(tokens, text, ref index))
+					{
+						return;
+					}
+
+					break;
+
+				case '*':
+					if (AddAsterixToken(tokens, text, ref index))
 					{
 						return;
 					}
