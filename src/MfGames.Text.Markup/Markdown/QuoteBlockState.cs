@@ -14,20 +14,7 @@ namespace MfGames.Text.Markup.Markdown
 	{
 		#region Fields
 
-		private List<string> lines;
-
-		private bool needNewline;
-
 		private MarkdownReader reader;
-
-		#endregion
-
-		#region Constructors and Destructors
-
-		public QuoteBlockState()
-		{
-			lines = new List<string>();
-		}
 
 		#endregion
 
